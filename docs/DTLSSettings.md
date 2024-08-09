@@ -1,0 +1,30 @@
+# DTLSSettings
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | 
+**udp_profile** | [**UdpProfile**](UdpProfile.md) |  | 
+
+## Example
+
+```python
+from openapi_client.models.dtls_settings import DTLSSettings
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of DTLSSettings from a JSON string
+dtls_settings_instance = DTLSSettings.from_json(json)
+# print the JSON string representation of the object
+print(DTLSSettings.to_json())
+
+# convert the object into a dict
+dtls_settings_dict = dtls_settings_instance.to_dict()
+# create an instance of DTLSSettings from a dict
+dtls_settings_from_dict = DTLSSettings.from_dict(dtls_settings_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

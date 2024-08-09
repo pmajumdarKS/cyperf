@@ -1,0 +1,37 @@
+# APILink
+
+Defines a single link response as expected by the REST API Browser.
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**content_type** | **str** |  | [optional] 
+**href** | **str** |  | 
+**id** | **str** |  | 
+**method** | **str** |  | [optional] 
+**name** | **str** |  | 
+**references_count** | **int** |  | [optional] 
+**rel** | [**APIRelationship**](APIRelationship.md) |  | 
+**type** | [**APIRelationship**](APIRelationship.md) |  | 
+
+## Example
+
+```python
+from openapi_client.models.api_link import APILink
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of APILink from a JSON string
+api_link_instance = APILink.from_json(json)
+# print the JSON string representation of the object
+print(APILink.to_json())
+
+# convert the object into a dict
+api_link_dict = api_link_instance.to_dict()
+# create an instance of APILink from a dict
+api_link_from_dict = APILink.from_dict(api_link_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

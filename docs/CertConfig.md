@@ -1,0 +1,37 @@
+# CertConfig
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**certificate_file** | [**Params**](Params.md) | The certificate file of the TLS profile. | 
+**dh_file** | [**Params**](Params.md) |  | 
+**id** | **str** |  | 
+**is_playlist** | **bool** |  | [optional] 
+**key_file** | [**Params**](Params.md) | The key file of the TLS profile. | 
+**key_file_password** | **str** | The key file password of the TLS profile. | [optional] 
+**playlist_column_name** | **str** |  | [optional] 
+**playlist_filename** | **str** |  | [optional] 
+**sni_hostname** | **str** | The SNI hostname associated with the certificate. (default: generic.keysight.io). | 
+
+## Example
+
+```python
+from openapi_client.models.cert_config import CertConfig
+
+# TODO update the JSON string below
+json = "{}"
+# create an instance of CertConfig from a JSON string
+cert_config_instance = CertConfig.from_json(json)
+# print the JSON string representation of the object
+print(CertConfig.to_json())
+
+# convert the object into a dict
+cert_config_dict = cert_config_instance.to_dict()
+# create an instance of CertConfig from a dict
+cert_config_from_dict = CertConfig.from_dict(cert_config_dict)
+```
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
