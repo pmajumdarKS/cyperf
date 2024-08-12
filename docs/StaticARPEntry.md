@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.static_arp_entry import StaticARPEntry
+from cyperf.models.static_arp_entry import StaticARPEntry
 
 # TODO update the JSON string below
 json = "{}"

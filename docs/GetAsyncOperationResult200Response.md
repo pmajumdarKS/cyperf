@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
+from cyperf.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
 
 # TODO update the JSON string below
 json = "{}"

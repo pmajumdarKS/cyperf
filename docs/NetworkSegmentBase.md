@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.network_segment_base import NetworkSegmentBase
+from cyperf.models.network_segment_base import NetworkSegmentBase
 
 # TODO update the JSON string below
 json = "{}"

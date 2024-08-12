@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.emulated_router_range import EmulatedRouterRange
+from cyperf.models.emulated_router_range import EmulatedRouterRange
 
 # TODO update the JSON string below
 json = "{}"

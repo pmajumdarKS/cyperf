@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.stateless_stream import StatelessStream
+from cyperf.models.stateless_stream import StatelessStream
 
 # TODO update the JSON string below
 json = "{}"

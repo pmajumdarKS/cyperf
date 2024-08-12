@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.emulated_router import EmulatedRouter
+from cyperf.models.emulated_router import EmulatedRouter
 
 # TODO update the JSON string below
 json = "{}"

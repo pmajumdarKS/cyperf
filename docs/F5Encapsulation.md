@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.f5_encapsulation import F5Encapsulation
+from cyperf.models.f5_encapsulation import F5Encapsulation
 
 # TODO update the JSON string below
 json = "{}"

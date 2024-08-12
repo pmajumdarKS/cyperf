@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.type_media_metadata import TypeMediaMetadata
+from cyperf.models.type_media_metadata import TypeMediaMetadata
 
 # TODO update the JSON string below
 json = "{}"

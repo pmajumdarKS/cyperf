@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.inner_ip_range import InnerIPRange
+from cyperf.models.inner_ip_range import InnerIPRange
 
 # TODO update the JSON string below
 json = "{}"

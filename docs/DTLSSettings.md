@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.dtls_settings import DTLSSettings
+from cyperf.models.dtls_settings import DTLSSettings
 
 # TODO update the JSON string below
 json = "{}"

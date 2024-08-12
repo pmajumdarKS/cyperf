@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.ip_range import IPRange
+from cyperf.models.ip_range import IPRange
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.exchange import Exchange
+from cyperf.models.exchange import Exchange
 
 # TODO update the JSON string below
 json = "{}"

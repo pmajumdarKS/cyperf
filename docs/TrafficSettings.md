@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.traffic_settings import TrafficSettings
+from cyperf.models.traffic_settings import TrafficSettings
 
 # TODO update the JSON string below
 json = "{}"

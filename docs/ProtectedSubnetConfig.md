@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.protected_subnet_config import ProtectedSubnetConfig
+from cyperf.models.protected_subnet_config import ProtectedSubnetConfig
 
 # TODO update the JSON string below
 json = "{}"

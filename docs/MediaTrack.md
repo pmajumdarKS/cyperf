@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.media_track import MediaTrack
+from cyperf.models.media_track import MediaTrack
 
 # TODO update the JSON string below
 json = "{}"

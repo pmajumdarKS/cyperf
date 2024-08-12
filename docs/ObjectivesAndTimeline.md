@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.objectives_and_timeline import ObjectivesAndTimeline
+from cyperf.models.objectives_and_timeline import ObjectivesAndTimeline
 
 # TODO update the JSON string below
 json = "{}"

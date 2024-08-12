@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.set_ntp_operation_input import SetNtpOperationInput
+from cyperf.models.set_ntp_operation_input import SetNtpOperationInput
 
 # TODO update the JSON string below
 json = "{}"

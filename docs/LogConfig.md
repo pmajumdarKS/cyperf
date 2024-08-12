@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.log_config import LogConfig
+from cyperf.models.log_config import LogConfig
 
 # TODO update the JSON string below
 json = "{}"

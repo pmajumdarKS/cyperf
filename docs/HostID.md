@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.host_id import HostID
+from cyperf.models.host_id import HostID
 
 # TODO update the JSON string below
 json = "{}"

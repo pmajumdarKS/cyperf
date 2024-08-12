@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.required_file_types import RequiredFileTypes
+from cyperf.models.required_file_types import RequiredFileTypes
 
 # TODO update the JSON string below
 json = "{}"

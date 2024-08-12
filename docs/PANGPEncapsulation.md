@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.pangp_encapsulation import PANGPEncapsulation
+from cyperf.models.pangp_encapsulation import PANGPEncapsulation
 
 # TODO update the JSON string below
 json = "{}"

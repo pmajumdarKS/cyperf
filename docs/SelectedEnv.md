@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.selected_env import SelectedEnv
+from cyperf.models.selected_env import SelectedEnv
 
 # TODO update the JSON string below
 json = "{}"

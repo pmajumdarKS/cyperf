@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.pangp_settings import PANGPSettings
+from cyperf.models.pangp_settings import PANGPSettings
 
 # TODO update the JSON string below
 json = "{}"

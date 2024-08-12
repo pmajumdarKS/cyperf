@@ -1,4 +1,4 @@
-# openapi_client.DiagnosticsApi
+# cyperf.DiagnosticsApi
 
 All URIs are relative to *http://localhost*
 
@@ -26,14 +26,14 @@ Get the list of diagnostic components.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.diagnostic_component import DiagnosticComponent
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.diagnostic_component import DiagnosticComponent
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -47,9 +47,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_diagnostics_components_get()
@@ -98,13 +98,13 @@ This endpoint does not need any parameter.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -118,9 +118,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_diagnostics_operations_delete_delete()
@@ -169,13 +169,13 @@ This endpoint does not need any parameter.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -189,9 +189,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
     id = 56 # int | The subresource id of the operation.
 
     try:
@@ -244,14 +244,14 @@ Name | Type | Description  | Notes
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.archive_info import ArchiveInfo
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.archive_info import ArchiveInfo
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -265,9 +265,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_diagnostics_operations_export_get()
@@ -318,14 +318,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -339,9 +339,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -396,13 +396,13 @@ Download the diagnostics from the operation with the specified id.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -416,9 +416,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
+    api_instance = cyperf.DiagnosticsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -473,15 +473,15 @@ Start the diagnostic export operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.models.diagnostic_component_context import DiagnosticComponentContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.diagnostic_component_context import DiagnosticComponentContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -495,10 +495,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DiagnosticsApi(api_client)
-    diagnostic_component_context = openapi_client.DiagnosticComponentContext() # DiagnosticComponentContext | The list of diagnostic components to export. If the list is empty, all components will be exported. (optional)
+    api_instance = cyperf.DiagnosticsApi(api_client)
+    diagnostic_component_context = cyperf.DiagnosticComponentContext() # DiagnosticComponentContext | The list of diagnostic components to export. If the list is empty, all components will be exported. (optional)
 
     try:
         api_response = api_instance.api_v2_diagnostics_operations_export_post(diagnostic_component_context=diagnostic_component_context)

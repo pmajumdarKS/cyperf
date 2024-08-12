@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.export_package_operation import ExportPackageOperation
+from cyperf.models.export_package_operation import ExportPackageOperation
 
 # TODO update the JSON string below
 json = "{}"

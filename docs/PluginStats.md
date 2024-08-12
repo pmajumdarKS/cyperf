@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.plugin_stats import PluginStats
+from cyperf.models.plugin_stats import PluginStats
 
 # TODO update the JSON string below
 json = "{}"

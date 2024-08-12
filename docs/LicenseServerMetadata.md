@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.license_server_metadata import LicenseServerMetadata
+from cyperf.models.license_server_metadata import LicenseServerMetadata
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.attack_action import AttackAction
+from cyperf.models.attack_action import AttackAction
 
 # TODO update the JSON string below
 json = "{}"

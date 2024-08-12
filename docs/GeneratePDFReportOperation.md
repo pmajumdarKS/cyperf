@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.generate_pdf_report_operation import GeneratePDFReportOperation
+from cyperf.models.generate_pdf_report_operation import GeneratePDFReportOperation
 
 # TODO update the JSON string below
 json = "{}"

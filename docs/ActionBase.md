@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.action_base import ActionBase
+from cyperf.models.action_base import ActionBase
 
 # TODO update the JSON string below
 json = "{}"

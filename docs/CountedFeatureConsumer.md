@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.counted_feature_consumer import CountedFeatureConsumer
+from cyperf.models.counted_feature_consumer import CountedFeatureConsumer
 
 # TODO update the JSON string below
 json = "{}"

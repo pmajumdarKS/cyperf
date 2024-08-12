@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.rtp_profile import RTPProfile
+from cyperf.models.rtp_profile import RTPProfile
 
 # TODO update the JSON string below
 json = "{}"

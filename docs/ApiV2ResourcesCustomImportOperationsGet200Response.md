@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.api_v2_resources_custom_import_operations_get200_response import ApiV2ResourcesCustomImportOperationsGet200Response
+from cyperf.models.api_v2_resources_custom_import_operations_get200_response import ApiV2ResourcesCustomImportOperationsGet200Response
 
 # TODO update the JSON string below
 json = "{}"

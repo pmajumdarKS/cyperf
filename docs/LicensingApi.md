@@ -1,4 +1,4 @@
-# openapi_client.LicensingApi
+# cyperf.LicensingApi
 
 All URIs are relative to *http://localhost*
 
@@ -36,15 +36,15 @@ Performs an online request to KSM and activates the requested licenses.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.models.fulfillment_request import FulfillmentRequest
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.fulfillment_request import FulfillmentRequest
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -58,10 +58,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
-    fulfillment_request = [openapi_client.FulfillmentRequest()] # List[FulfillmentRequest] | fulfillments to activate (optional)
+    api_instance = cyperf.LicensingApi(api_client)
+    fulfillment_request = [cyperf.FulfillmentRequest()] # List[FulfillmentRequest] | fulfillments to activate (optional)
 
     try:
         # Performs an online request to KSM and activates the requested licenses.
@@ -114,15 +114,15 @@ Performs an online request to KSM to deactivate the requested licenses.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.models.fulfillment_request import FulfillmentRequest
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.fulfillment_request import FulfillmentRequest
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -136,10 +136,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
-    fulfillment_request = [openapi_client.FulfillmentRequest()] # List[FulfillmentRequest] | fulfillments to activate (optional)
+    api_instance = cyperf.LicensingApi(api_client)
+    fulfillment_request = [cyperf.FulfillmentRequest()] # List[FulfillmentRequest] | fulfillments to activate (optional)
 
     try:
         # Performs an online request to KSM to deactivate the requested licenses.
@@ -192,13 +192,13 @@ Generates an offline request that can be used on the offline licensing portal.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -212,9 +212,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Generates an offline request that can be used on the offline licensing portal.
@@ -264,15 +264,15 @@ Retrieves the activation code info from KSM.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.activation_code_request import ActivationCodeRequest
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.activation_code_request import ActivationCodeRequest
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -286,10 +286,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
-    activation_code_request = openapi_client.ActivationCodeRequest() # ActivationCodeRequest | activation code request (optional)
+    api_instance = cyperf.LicensingApi(api_client)
+    activation_code_request = cyperf.ActivationCodeRequest() # ActivationCodeRequest | activation code request (optional)
 
     try:
         # Retrieves the activation code info from KSM.
@@ -342,15 +342,15 @@ Retrieves the activation code info list from KSM.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.activation_code_list_request import ActivationCodeListRequest
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.activation_code_list_request import ActivationCodeListRequest
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -364,10 +364,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
-    activation_code_list_request = openapi_client.ActivationCodeListRequest() # ActivationCodeListRequest | activation codes request (optional)
+    api_instance = cyperf.LicensingApi(api_client)
+    activation_code_list_request = cyperf.ActivationCodeListRequest() # ActivationCodeListRequest | activation codes request (optional)
 
     try:
         # Retrieves the activation code info list from KSM.
@@ -420,14 +420,14 @@ Returns the result of async operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -441,9 +441,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     operation_type = 'operation_type_example' # str | The async operation type.
     id = 56 # int | The subresource id of the operation.
 
@@ -499,14 +499,14 @@ Returns the status of an ongoing async operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -520,9 +520,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     operation_type = 'operation_type_example' # str | The async operation type.
     id = 56 # int | The subresource id of the operation.
 
@@ -578,14 +578,14 @@ Retrieves the counted feature stats.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -599,9 +599,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Retrieves the counted feature stats.
@@ -651,15 +651,15 @@ Retrieves the activations codes of the supplied entitlement code from KSM.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.models.entitlement_code_request import EntitlementCodeRequest
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.entitlement_code_request import EntitlementCodeRequest
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -673,10 +673,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
-    entitlement_code_request = openapi_client.EntitlementCodeRequest() # EntitlementCodeRequest | entitlment code request (optional)
+    api_instance = cyperf.LicensingApi(api_client)
+    entitlement_code_request = cyperf.EntitlementCodeRequest() # EntitlementCodeRequest | entitlment code request (optional)
 
     try:
         # Retrieves the activations codes of the supplied entitlement code from KSM.
@@ -729,14 +729,14 @@ Retrieves the host ID of the license server.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.host_id import HostID
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.host_id import HostID
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -750,9 +750,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Retrieves the host ID of the license server.
@@ -802,14 +802,14 @@ Returns the installed licenses.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.license import License
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.license import License
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -823,9 +823,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Returns the installed licenses.
@@ -875,14 +875,14 @@ Returns the requested license.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.license import License
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.license import License
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -896,9 +896,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     license_id = 56 # int | The subresource id of the operation.
 
     try:
@@ -952,14 +952,14 @@ Returns the result of async operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.get_license_async_operation_result200_response import GetLicenseAsyncOperationResult200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.get_license_async_operation_result200_response import GetLicenseAsyncOperationResult200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -973,9 +973,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     license_id = 'license_id_example' # str | The license resource id.
     operation_type = 'operation_type_example' # str | The async operation type.
     id = 56 # int | The subresource id of the operation.
@@ -1033,14 +1033,14 @@ Returns the status of an ongoing async operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1054,9 +1054,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     license_id = 'license_id_example' # str | The license resource id.
     operation_type = 'operation_type_example' # str | The async operation type.
     id = 56 # int | The subresource id of the operation.
@@ -1114,14 +1114,14 @@ Installs the offline license.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.import_offline_license_result import ImportOfflineLicenseResult
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.import_offline_license_result import ImportOfflineLicenseResult
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1135,9 +1135,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     file_name = None # bytearray |  (optional)
 
     try:
@@ -1191,14 +1191,14 @@ Remove previously reserved features, thus making them available for checkout by 
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1212,9 +1212,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     license_id = 56 # int | The subresource id of the operation.
     request_body = ['request_body_example'] # List[str] | Features remove reservations object. (optional)
 
@@ -1270,14 +1270,14 @@ Synchronize local licenses with KSM.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1291,9 +1291,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Synchronize local licenses with KSM.
@@ -1343,14 +1343,14 @@ Tests connection of the license server with KSM.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1364,9 +1364,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
 
     try:
         # Tests connection of the license server with KSM.
@@ -1416,15 +1416,15 @@ Retain over a period of time specific counts of installed features, that can be 
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_operation_response import AsyncOperationResponse
-from openapi_client.models.feature_reservation_reserve import FeatureReservationReserve
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.feature_reservation_reserve import FeatureReservationReserve
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1438,11 +1438,11 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicensingApi(api_client)
+    api_instance = cyperf.LicensingApi(api_client)
     license_id = 56 # int | The subresource id of the operation.
-    feature_reservation_reserve = [openapi_client.FeatureReservationReserve()] # List[FeatureReservationReserve] | Reservation reserve object. (optional)
+    feature_reservation_reserve = [cyperf.FeatureReservationReserve()] # List[FeatureReservationReserve] | Reservation reserve object. (optional)
 
     try:
         # Retain over a period of time specific counts of installed features, that can be consumed only by current user. 

@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.application_type import ApplicationType
+from cyperf.models.application_type import ApplicationType
 
 # TODO update the JSON string below
 json = "{}"

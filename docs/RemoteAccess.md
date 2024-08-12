@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.remote_access import RemoteAccess
+from cyperf.models.remote_access import RemoteAccess
 
 # TODO update the JSON string below
 json = "{}"

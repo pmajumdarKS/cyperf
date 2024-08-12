@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.get_categories_operation import GetCategoriesOperation
+from cyperf.models.get_categories_operation import GetCategoriesOperation
 
 # TODO update the JSON string below
 json = "{}"

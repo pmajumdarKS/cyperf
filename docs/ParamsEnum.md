@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.params_enum import ParamsEnum
+from cyperf.models.params_enum import ParamsEnum
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.conflict import Conflict
+from cyperf.models.conflict import Conflict
 
 # TODO update the JSON string below
 json = "{}"

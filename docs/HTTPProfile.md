@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.http_profile import HTTPProfile
+from cyperf.models.http_profile import HTTPProfile
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.specific_objective import SpecificObjective
+from cyperf.models.specific_objective import SpecificObjective
 
 # TODO update the JSON string below
 json = "{}"

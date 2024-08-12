@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.timers import Timers
+from cyperf.models.timers import Timers
 
 # TODO update the JSON string below
 json = "{}"

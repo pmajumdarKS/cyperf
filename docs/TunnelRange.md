@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.tunnel_range import TunnelRange
+from cyperf.models.tunnel_range import TunnelRange
 
 # TODO update the JSON string below
 json = "{}"

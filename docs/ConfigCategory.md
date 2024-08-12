@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.config_category import ConfigCategory
+from cyperf.models.config_category import ConfigCategory
 
 # TODO update the JSON string below
 json = "{}"

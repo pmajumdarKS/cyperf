@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.reboot_operation_input import RebootOperationInput
+from cyperf.models.reboot_operation_input import RebootOperationInput
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.custom_dashboards import CustomDashboards
+from cyperf.models.custom_dashboards import CustomDashboards
 
 # TODO update the JSON string below
 json = "{}"

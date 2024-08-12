@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.tunnel_stack import TunnelStack
+from cyperf.models.tunnel_stack import TunnelStack
 
 # TODO update the JSON string below
 json = "{}"

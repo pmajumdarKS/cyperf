@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "openapi_client"
+name = "cyperf"
 version = "1.0.0"
 description = "CyPerf Application API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
@@ -7,7 +7,7 @@ license = "NoLicense"
 readme = "README.md"
 repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
 keywords = ["OpenAPI", "OpenAPI-Generator", "CyPerf Application API"]
-include = ["openapi_client/py.typed"]
+include = ["cyperf/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -34,7 +34,7 @@ extension-pkg-whitelist = "pydantic"
 
 [tool.mypy]
 files = [
-  "openapi_client",
+  "cyperf",
   #"test",  # auto-generated tests
   "tests", # hand-written tests
 ]

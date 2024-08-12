@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.timeline_segment_base import TimelineSegmentBase
+from cyperf.models.timeline_segment_base import TimelineSegmentBase
 
 # TODO update the JSON string below
 json = "{}"

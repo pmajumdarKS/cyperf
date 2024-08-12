@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.test_state_changed_operation import TestStateChangedOperation
+from cyperf.models.test_state_changed_operation import TestStateChangedOperation
 
 # TODO update the JSON string below
 json = "{}"

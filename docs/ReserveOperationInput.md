@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.reserve_operation_input import ReserveOperationInput
+from cyperf.models.reserve_operation_input import ReserveOperationInput
 
 # TODO update the JSON string below
 json = "{}"

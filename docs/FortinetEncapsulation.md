@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.fortinet_encapsulation import FortinetEncapsulation
+from cyperf.models.fortinet_encapsulation import FortinetEncapsulation
 
 # TODO update the JSON string below
 json = "{}"

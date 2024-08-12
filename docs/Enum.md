@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.enum import Enum
+from cyperf.models.enum import Enum
 
 # TODO update the JSON string below
 json = "{}"

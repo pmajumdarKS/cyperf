@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.entitlement_code_request import EntitlementCodeRequest
+from cyperf.models.entitlement_code_request import EntitlementCodeRequest
 
 # TODO update the JSON string below
 json = "{}"

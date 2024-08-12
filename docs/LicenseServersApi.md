@@ -1,4 +1,4 @@
-# openapi_client.LicenseServersApi
+# cyperf.LicenseServersApi
 
 All URIs are relative to *http://localhost*
 
@@ -24,14 +24,14 @@ Get all the currently available license servers.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_license_servers_get200_response import ApiV2LicenseServersGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_license_servers_get200_response import ApiV2LicenseServersGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -45,9 +45,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicenseServersApi(api_client)
+    api_instance = cyperf.LicenseServersApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 
@@ -104,13 +104,13 @@ Remove a particular license server.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -124,9 +124,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicenseServersApi(api_client)
+    api_instance = cyperf.LicenseServersApi(api_client)
     license_server_id = 'license_server_id_example' # str | The ID of the license server.
 
     try:
@@ -180,14 +180,14 @@ Get a particular license server.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.license_server_metadata import LicenseServerMetadata
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.license_server_metadata import LicenseServerMetadata
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -201,9 +201,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicenseServersApi(api_client)
+    api_instance = cyperf.LicenseServersApi(api_client)
     license_server_id = 'license_server_id_example' # str | The ID of the license server.
 
     try:
@@ -259,14 +259,14 @@ Update a particular license server.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.license_server_metadata import LicenseServerMetadata
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.license_server_metadata import LicenseServerMetadata
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -280,11 +280,11 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicenseServersApi(api_client)
+    api_instance = cyperf.LicenseServersApi(api_client)
     license_server_id = 'license_server_id_example' # str | The ID of the license server.
-    license_server_metadata = openapi_client.LicenseServerMetadata() # LicenseServerMetadata |  (optional)
+    license_server_metadata = cyperf.LicenseServerMetadata() # LicenseServerMetadata |  (optional)
 
     try:
         api_instance.api_v2_license_servers_license_server_id_patch(license_server_id, license_server_metadata=license_server_metadata)
@@ -338,14 +338,14 @@ Register a license server.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.license_server_metadata import LicenseServerMetadata
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.license_server_metadata import LicenseServerMetadata
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -359,10 +359,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LicenseServersApi(api_client)
-    license_server_metadata = [openapi_client.LicenseServerMetadata()] # List[LicenseServerMetadata] |  (optional)
+    api_instance = cyperf.LicenseServersApi(api_client)
+    license_server_metadata = [cyperf.LicenseServerMetadata()] # List[LicenseServerMetadata] |  (optional)
 
     try:
         api_response = api_instance.api_v2_license_servers_post(license_server_metadata=license_server_metadata)

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.version import Version
+from cyperf.models.version import Version
 
 # TODO update the JSON string below
 json = "{}"

@@ -1,4 +1,4 @@
-# openapi_client.DataMigrationApi
+# cyperf.DataMigrationApi
 
 All URIs are relative to *http://localhost*
 
@@ -23,14 +23,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -44,9 +44,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DataMigrationApi(api_client)
+    api_instance = cyperf.DataMigrationApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -100,15 +100,15 @@ Export the data from the controller as a package.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.models.export_package_operation import ExportPackageOperation
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.models.export_package_operation import ExportPackageOperation
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -122,10 +122,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DataMigrationApi(api_client)
-    export_package_operation = openapi_client.ExportPackageOperation() # ExportPackageOperation |  (optional)
+    api_instance = cyperf.DataMigrationApi(api_client)
+    export_package_operation = cyperf.ExportPackageOperation() # ExportPackageOperation |  (optional)
 
     try:
         api_response = api_instance.api_v2_controller_migration_operations_export_post(export_package_operation=export_package_operation)
@@ -178,14 +178,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -199,9 +199,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DataMigrationApi(api_client)
+    api_instance = cyperf.DataMigrationApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -255,14 +255,14 @@ Import the data from the supplied package into the controller.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -276,9 +276,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.DataMigrationApi(api_client)
+    api_instance = cyperf.DataMigrationApi(api_client)
     file = None # bytearray |  (optional)
 
     try:

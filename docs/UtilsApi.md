@@ -1,4 +1,4 @@
-# openapi_client.UtilsApi
+# cyperf.UtilsApi
 
 All URIs are relative to *http://localhost*
 
@@ -38,14 +38,14 @@ Get the size for logs and diagnostics.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.consumer import Consumer
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.consumer import Consumer
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -59,9 +59,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     consumer_id = 'consumer_id_example' # str | The ID of the consumer.
 
     try:
@@ -117,14 +117,14 @@ Get the list of consumers.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_disk_usage_consumers_get200_response import ApiV2DiskUsageConsumersGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_disk_usage_consumers_get200_response import ApiV2DiskUsageConsumersGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -138,9 +138,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 
@@ -197,14 +197,14 @@ Get information about the controller's disk usage.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_disk_usage_get200_response import ApiV2DiskUsageGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_disk_usage_get200_response import ApiV2DiskUsageGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -218,9 +218,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 
@@ -277,14 +277,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -298,9 +298,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -354,14 +354,14 @@ Clean the system diagnostics.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -375,9 +375,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_disk_usage_operations_cleanup_diagnostics_post()
@@ -427,14 +427,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -448,9 +448,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -504,14 +504,14 @@ Clean the system logs.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -525,9 +525,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_disk_usage_operations_cleanup_logs_post()
@@ -577,14 +577,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -598,9 +598,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -654,14 +654,14 @@ Clean the migration packages.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -675,9 +675,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_disk_usage_operations_cleanup_migration_post()
@@ -727,14 +727,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -748,9 +748,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -804,14 +804,14 @@ Clean all notifications.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -825,9 +825,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_disk_usage_operations_cleanup_notifications_post()
@@ -877,14 +877,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -898,9 +898,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     id = 56 # int | The ID of the async operation.
 
     try:
@@ -954,14 +954,14 @@ Clean all statistics.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -975,9 +975,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_disk_usage_operations_cleanup_results_post()
@@ -1027,13 +1027,13 @@ Get the OpenAPI definitions.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1047,9 +1047,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_instance.api_v2_docs_get()
@@ -1098,13 +1098,13 @@ Get the OpenAPI definitions.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1118,9 +1118,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_instance.api_v2_docs_json_get()
@@ -1169,13 +1169,13 @@ Get the OpenAPI definitions.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1189,9 +1189,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
 
     try:
         api_response = api_instance.api_v2_docs_yaml_get()
@@ -1242,14 +1242,14 @@ Get the current global log level.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_log_config_get200_response import ApiV2LogConfigGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_log_config_get200_response import ApiV2LogConfigGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1263,9 +1263,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 
@@ -1322,14 +1322,14 @@ Update the global log level for all services.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.log_config import LogConfig
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.log_config import LogConfig
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1343,10 +1343,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
-    log_config = openapi_client.LogConfig() # LogConfig |  (optional)
+    api_instance = cyperf.UtilsApi(api_client)
+    log_config = cyperf.LogConfig() # LogConfig |  (optional)
 
     try:
         api_response = api_instance.api_v2_log_config_put(log_config=log_config)
@@ -1400,14 +1400,14 @@ Get the cluster time.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_time_get200_response import ApiV2TimeGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_time_get200_response import ApiV2TimeGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -1421,9 +1421,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.UtilsApi(api_client)
+    api_instance = cyperf.UtilsApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 

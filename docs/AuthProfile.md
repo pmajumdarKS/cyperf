@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.auth_profile import AuthProfile
+from cyperf.models.auth_profile import AuthProfile
 
 # TODO update the JSON string below
 json = "{}"

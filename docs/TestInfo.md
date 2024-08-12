@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.test_info import TestInfo
+from cyperf.models.test_info import TestInfo
 
 # TODO update the JSON string below
 json = "{}"

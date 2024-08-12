@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.external_resource_info import ExternalResourceInfo
+from cyperf.models.external_resource_info import ExternalResourceInfo
 
 # TODO update the JSON string below
 json = "{}"

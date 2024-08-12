@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.feature import Feature
+from cyperf.models.feature import Feature
 
 # TODO update the JSON string below
 json = "{}"

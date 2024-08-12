@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.attack_objectives_and_timeline import AttackObjectivesAndTimeline
+from cyperf.models.attack_objectives_and_timeline import AttackObjectivesAndTimeline
 
 # TODO update the JSON string below
 json = "{}"

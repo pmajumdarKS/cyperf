@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.link import Link
+from cyperf.models.link import Link
 
 # TODO update the JSON string below
 json = "{}"

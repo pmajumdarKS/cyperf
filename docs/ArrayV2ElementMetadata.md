@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.array_v2_element_metadata import ArrayV2ElementMetadata
+from cyperf.models.array_v2_element_metadata import ArrayV2ElementMetadata
 
 # TODO update the JSON string below
 json = "{}"

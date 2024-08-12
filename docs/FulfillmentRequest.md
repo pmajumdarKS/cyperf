@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.fulfillment_request import FulfillmentRequest
+from cyperf.models.fulfillment_request import FulfillmentRequest
 
 # TODO update the JSON string below
 json = "{}"

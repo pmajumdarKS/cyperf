@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.import_offline_license_result import ImportOfflineLicenseResult
+from cyperf.models.import_offline_license_result import ImportOfflineLicenseResult
 
 # TODO update the JSON string below
 json = "{}"

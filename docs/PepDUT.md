@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.pep_dut import PepDUT
+from cyperf.models.pep_dut import PepDUT
 
 # TODO update the JSON string below
 json = "{}"

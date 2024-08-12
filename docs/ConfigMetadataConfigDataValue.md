@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.config_metadata_config_data_value import ConfigMetadataConfigDataValue
+from cyperf.models.config_metadata_config_data_value import ConfigMetadataConfigDataValue
 
 # TODO update the JSON string below
 json = "{}"

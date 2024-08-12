@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.generate_csv_reports_operation import GenerateCSVReportsOperation
+from cyperf.models.generate_csv_reports_operation import GenerateCSVReportsOperation
 
 # TODO update the JSON string below
 json = "{}"

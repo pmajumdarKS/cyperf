@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.track import Track
+from cyperf.models.track import Track
 
 # TODO update the JSON string below
 json = "{}"

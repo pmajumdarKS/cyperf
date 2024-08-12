@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.type_info_metadata import TypeInfoMetadata
+from cyperf.models.type_info_metadata import TypeInfoMetadata
 
 # TODO update the JSON string below
 json = "{}"

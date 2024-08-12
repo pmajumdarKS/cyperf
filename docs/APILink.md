@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.api_link import APILink
+from cyperf.models.api_link import APILink
 
 # TODO update the JSON string below
 json = "{}"

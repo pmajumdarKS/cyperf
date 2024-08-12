@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.tcp_profile import TcpProfile
+from cyperf.models.tcp_profile import TcpProfile
 
 # TODO update the JSON string below
 json = "{}"

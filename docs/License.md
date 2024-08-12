@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.license import License
+from cyperf.models.license import License
 
 # TODO update the JSON string below
 json = "{}"

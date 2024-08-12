@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.stream_profile import StreamProfile
+from cyperf.models.stream_profile import StreamProfile
 
 # TODO update the JSON string below
 json = "{}"

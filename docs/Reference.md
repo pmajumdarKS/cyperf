@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.reference import Reference
+from cyperf.models.reference import Reference
 
 # TODO update the JSON string below
 json = "{}"

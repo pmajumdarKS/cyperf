@@ -1,4 +1,4 @@
-# openapi_client.ReportsApi
+# cyperf.ReportsApi
 
 All URIs are relative to *http://localhost*
 
@@ -25,13 +25,13 @@ Download the generated CSV reports for the current result as a zip file.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -45,9 +45,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
     download_csv_id = 'download_csv_id_example' # str | The ID of the download csv.
 
@@ -105,13 +105,13 @@ Download the generated PDF report for the current result.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -125,9 +125,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
     pdf_id = 56 # int | The ID of the download PDF operation.
 
@@ -184,14 +184,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -205,9 +205,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
     id = 56 # int | The ID of the async operation.
 
@@ -263,15 +263,15 @@ Generate CSV reports for the current result.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.models.generate_csv_reports_operation import GenerateCSVReportsOperation
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.models.generate_csv_reports_operation import GenerateCSVReportsOperation
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -285,11 +285,11 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
-    generate_csv_reports_operation = openapi_client.GenerateCSVReportsOperation() # GenerateCSVReportsOperation |  (optional)
+    generate_csv_reports_operation = cyperf.GenerateCSVReportsOperation() # GenerateCSVReportsOperation |  (optional)
 
     try:
         api_response = api_instance.api_v2_results_result_id_operations_generate_csv_post(result_id, generate_csv_reports_operation=generate_csv_reports_operation)
@@ -343,14 +343,14 @@ Get the state of an ongoing operation.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -364,9 +364,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
     id = 56 # int | The ID of the async operation.
 
@@ -422,15 +422,15 @@ Generate a PDF report for the current result.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.async_context import AsyncContext
-from openapi_client.models.generate_pdf_report_operation import GeneratePDFReportOperation
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.models.generate_pdf_report_operation import GeneratePDFReportOperation
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -444,11 +444,11 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.ReportsApi(api_client)
+    api_instance = cyperf.ReportsApi(api_client)
     result_id = 'result_id_example' # str | The ID of the result.
-    generate_pdf_report_operation = openapi_client.GeneratePDFReportOperation() # GeneratePDFReportOperation |  (optional)
+    generate_pdf_report_operation = cyperf.GeneratePDFReportOperation() # GeneratePDFReportOperation |  (optional)
 
     try:
         api_response = api_instance.api_v2_results_result_id_operations_generate_pdf_post(result_id, generate_pdf_report_operation=generate_pdf_report_operation)

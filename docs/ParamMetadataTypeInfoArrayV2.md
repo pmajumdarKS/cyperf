@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.param_metadata_type_info_array_v2 import ParamMetadataTypeInfoArrayV2
+from cyperf.models.param_metadata_type_info_array_v2 import ParamMetadataTypeInfoArrayV2
 
 # TODO update the JSON string below
 json = "{}"

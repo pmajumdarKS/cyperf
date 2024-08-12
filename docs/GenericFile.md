@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.generic_file import GenericFile
+from cyperf.models.generic_file import GenericFile
 
 # TODO update the JSON string below
 json = "{}"

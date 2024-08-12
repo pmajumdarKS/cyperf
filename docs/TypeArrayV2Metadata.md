@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.type_array_v2_metadata import TypeArrayV2Metadata
+from cyperf.models.type_array_v2_metadata import TypeArrayV2Metadata
 
 # TODO update the JSON string below
 json = "{}"

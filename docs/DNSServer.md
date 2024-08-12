@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.dns_server import DNSServer
+from cyperf.models.dns_server import DNSServer
 
 # TODO update the JSON string below
 json = "{}"

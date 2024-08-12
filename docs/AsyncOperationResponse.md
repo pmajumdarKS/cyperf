@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.async_operation_response import AsyncOperationResponse
 
 # TODO update the JSON string below
 json = "{}"

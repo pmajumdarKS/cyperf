@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.eth_range import EthRange
+from cyperf.models.eth_range import EthRange
 
 # TODO update the JSON string below
 json = "{}"

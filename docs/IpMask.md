@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.ip_mask import IpMask
+from cyperf.models.ip_mask import IpMask
 
 # TODO update the JSON string below
 json = "{}"

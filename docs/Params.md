@@ -34,7 +34,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.params import Params
+from cyperf.models.params import Params
 
 # TODO update the JSON string below
 json = "{}"

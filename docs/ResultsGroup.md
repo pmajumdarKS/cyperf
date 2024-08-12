@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.results_group import ResultsGroup
+from cyperf.models.results_group import ResultsGroup
 
 # TODO update the JSON string below
 json = "{}"

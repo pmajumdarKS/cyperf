@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.custom_import_handler import CustomImportHandler
+from cyperf.models.custom_import_handler import CustomImportHandler
 
 # TODO update the JSON string below
 json = "{}"

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.payload_metadata import PayloadMetadata
+from cyperf.models.payload_metadata import PayloadMetadata
 
 # TODO update the JSON string below
 json = "{}"

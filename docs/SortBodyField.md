@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.sort_body_field import SortBodyField
+from cyperf.models.sort_body_field import SortBodyField
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.update_network_mapping import UpdateNetworkMapping
+from cyperf.models.update_network_mapping import UpdateNetworkMapping
 
 # TODO update the JSON string below
 json = "{}"

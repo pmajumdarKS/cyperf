@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
+from cyperf.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
 
 # TODO update the JSON string below
 json = "{}"

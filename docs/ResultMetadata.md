@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.result_metadata import ResultMetadata
+from cyperf.models.result_metadata import ResultMetadata
 
 # TODO update the JSON string below
 json = "{}"

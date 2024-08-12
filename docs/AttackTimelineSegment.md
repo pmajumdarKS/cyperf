@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.attack_timeline_segment import AttackTimelineSegment
+from cyperf.models.attack_timeline_segment import AttackTimelineSegment
 
 # TODO update the JSON string below
 json = "{}"

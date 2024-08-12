@@ -1,4 +1,4 @@
-# openapi_client.BrokersApi
+# cyperf.BrokersApi
 
 All URIs are relative to *http://localhost*
 
@@ -24,13 +24,13 @@ Remove a particular broker.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -44,9 +44,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BrokersApi(api_client)
+    api_instance = cyperf.BrokersApi(api_client)
     broker_id = 'broker_id_example' # str | The ID of the broker.
 
     try:
@@ -99,14 +99,14 @@ void (empty response body)
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.broker import Broker
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.broker import Broker
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -120,9 +120,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BrokersApi(api_client)
+    api_instance = cyperf.BrokersApi(api_client)
     broker_id = 'broker_id_example' # str | The ID of the broker.
 
     try:
@@ -178,14 +178,14 @@ Update a particular broker.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.broker import Broker
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.broker import Broker
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -199,11 +199,11 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BrokersApi(api_client)
+    api_instance = cyperf.BrokersApi(api_client)
     broker_id = 'broker_id_example' # str | The ID of the broker.
-    broker = openapi_client.Broker() # Broker |  (optional)
+    broker = cyperf.Broker() # Broker |  (optional)
 
     try:
         api_instance.api_v2_brokers_broker_id_patch(broker_id, broker=broker)
@@ -258,14 +258,14 @@ Get all the currently available brokers.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.api_v2_brokers_get200_response import ApiV2BrokersGet200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.api_v2_brokers_get200_response import ApiV2BrokersGet200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -279,9 +279,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BrokersApi(api_client)
+    api_instance = cyperf.BrokersApi(api_client)
     take = 56 # int | The number of search results to return (optional)
     skip = 56 # int | The number of search results to skip (optional)
 
@@ -339,14 +339,14 @@ Register an external broker.
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.broker import Broker
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.broker import Broker
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -360,10 +360,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.BrokersApi(api_client)
-    broker = [openapi_client.Broker()] # List[Broker] |  (optional)
+    api_instance = cyperf.BrokersApi(api_client)
+    broker = [cyperf.Broker()] # List[Broker] |  (optional)
 
     try:
         api_response = api_instance.api_v2_brokers_post(broker=broker)

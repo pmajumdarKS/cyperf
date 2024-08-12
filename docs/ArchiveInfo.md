@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.archive_info import ArchiveInfo
+from cyperf.models.archive_info import ArchiveInfo
 
 # TODO update the JSON string below
 json = "{}"

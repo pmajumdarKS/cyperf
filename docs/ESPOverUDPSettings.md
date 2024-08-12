@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.esp_over_udp_settings import ESPOverUDPSettings
+from cyperf.models.esp_over_udp_settings import ESPOverUDPSettings
 
 # TODO update the JSON string below
 json = "{}"

@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.notification import Notification
+from cyperf.models.notification import Notification
 
 # TODO update the JSON string below
 json = "{}"

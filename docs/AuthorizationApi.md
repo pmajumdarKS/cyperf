@@ -1,4 +1,4 @@
-# openapi_client.AuthorizationApi
+# cyperf.AuthorizationApi
 
 All URIs are relative to *http://localhost*
 
@@ -20,14 +20,14 @@ Get an access_token and refresh_token with a username+password, or use a refresh
 * OAuth Authentication (OAuth2):
 
 ```python
-import openapi_client
-from openapi_client.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
-from openapi_client.rest import ApiException
+import cyperf
+from cyperf.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
+from cyperf.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = cyperf.Configuration(
     host = "http://localhost"
 )
 
@@ -41,9 +41,9 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.AuthorizationApi(api_client)
+    api_instance = cyperf.AuthorizationApi(api_client)
     client_id = 'client_id_example' # str |  (optional)
     grant_type = 'grant_type_example' # str | Controls the type of credentials to be used for authentication. (optional)
     password = 'password_example' # str | (only for grant_type: password) The password to use. (optional)

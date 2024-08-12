@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.ip_network import IPNetwork
+from cyperf.models.ip_network import IPNetwork
 
 # TODO update the JSON string below
 json = "{}"

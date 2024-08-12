@@ -37,7 +37,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.scenario import Scenario
+from cyperf.models.scenario import Scenario
 
 # TODO update the JSON string below
 json = "{}"

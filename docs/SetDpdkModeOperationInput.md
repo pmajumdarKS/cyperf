@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.set_dpdk_mode_operation_input import SetDpdkModeOperationInput
+from cyperf.models.set_dpdk_mode_operation_input import SetDpdkModeOperationInput
 
 # TODO update the JSON string below
 json = "{}"

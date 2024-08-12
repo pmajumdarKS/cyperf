@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.cisco_encapsulation import CiscoEncapsulation
+from cyperf.models.cisco_encapsulation import CiscoEncapsulation
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.steady_segment import SteadySegment
+from cyperf.models.steady_segment import SteadySegment
 
 # TODO update the JSON string below
 json = "{}"

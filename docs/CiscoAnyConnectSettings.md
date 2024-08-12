@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.cisco_any_connect_settings import CiscoAnyConnectSettings
+from cyperf.models.cisco_any_connect_settings import CiscoAnyConnectSettings
 
 # TODO update the JSON string below
 json = "{}"

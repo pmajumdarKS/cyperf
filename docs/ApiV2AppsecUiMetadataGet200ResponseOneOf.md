@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.api_v2_appsec_ui_metadata_get200_response_one_of import ApiV2AppsecUiMetadataGet200ResponseOneOf
+from cyperf.models.api_v2_appsec_ui_metadata_get200_response_one_of import ApiV2AppsecUiMetadataGet200ResponseOneOf
 
 # TODO update the JSON string below
 json = "{}"

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.definition import Definition
+from cyperf.models.definition import Definition
 
 # TODO update the JSON string below
 json = "{}"

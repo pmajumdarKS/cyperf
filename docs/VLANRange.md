@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.vlan_range import VLANRange
+from cyperf.models.vlan_range import VLANRange
 
 # TODO update the JSON string below
 json = "{}"

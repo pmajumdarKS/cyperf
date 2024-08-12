@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.appsec_attack import AppsecAttack
+from cyperf.models.appsec_attack import AppsecAttack
 
 # TODO update the JSON string below
 json = "{}"

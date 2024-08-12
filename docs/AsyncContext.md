@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.async_context import AsyncContext
+from cyperf.models.async_context import AsyncContext
 
 # TODO update the JSON string below
 json = "{}"

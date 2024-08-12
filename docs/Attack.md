@@ -45,7 +45,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.attack import Attack
+from cyperf.models.attack import Attack
 
 # TODO update the JSON string below
 json = "{}"

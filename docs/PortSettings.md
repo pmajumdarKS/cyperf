@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.port_settings import PortSettings
+from cyperf.models.port_settings import PortSettings
 
 # TODO update the JSON string below
 json = "{}"

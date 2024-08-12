@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.connection import Connection
+from cyperf.models.connection import Connection
 
 # TODO update the JSON string below
 json = "{}"

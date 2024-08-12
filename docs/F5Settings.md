@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.f5_settings import F5Settings
+from cyperf.models.f5_settings import F5Settings
 
 # TODO update the JSON string below
 json = "{}"

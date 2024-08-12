@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.command import Command
+from cyperf.models.command import Command
 
 # TODO update the JSON string below
 json = "{}"

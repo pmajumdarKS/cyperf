@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.expected_disk_space import ExpectedDiskSpace
+from cyperf.models.expected_disk_space import ExpectedDiskSpace
 
 # TODO update the JSON string below
 json = "{}"

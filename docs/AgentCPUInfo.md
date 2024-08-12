@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.agent_cpu_info import AgentCPUInfo
+from cyperf.models.agent_cpu_info import AgentCPUInfo
 
 # TODO update the JSON string below
 json = "{}"

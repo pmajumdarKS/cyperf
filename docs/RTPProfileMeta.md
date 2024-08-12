@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.rtp_profile_meta import RTPProfileMeta
+from cyperf.models.rtp_profile_meta import RTPProfileMeta
 
 # TODO update the JSON string below
 json = "{}"

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.export_files_operation_input import ExportFilesOperationInput
+from cyperf.models.export_files_operation_input import ExportFilesOperationInput
 
 # TODO update the JSON string below
 json = "{}"
