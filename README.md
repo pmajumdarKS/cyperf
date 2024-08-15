@@ -57,9 +57,8 @@ from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost
 # See configuration.py for a list of all supported configuration parameters.
-controller = "localhost"
 configuration = cyperf.Configuration(
-    host = f"https://{controller}"
+    host = "http://localhost"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -84,7 +83,7 @@ with cyperf.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://<controller-host>*
+All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
