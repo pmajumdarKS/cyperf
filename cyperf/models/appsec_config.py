@@ -28,12 +28,12 @@ class AppsecConfig(BaseModel):
     AppsecConfig
     """ # noqa: E501
     config: Optional[Config] = Field(default=None, alias="Config")
+    name: Optional[StrictStr] = Field(default=None, description="The name of the configuration", alias="Name")
     session_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the session this configuration belongs to", alias="SessionID")
     template_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the CyPerf configuration template from which this configuration was created", alias="TemplateID")
     data_model_version: Optional[StrictStr] = Field(default=None, description="The version of the data model used for this configuration", alias="dataModelVersion")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the CyPerf configuration")
-    name: Optional[StrictStr] = Field(default=None, description="The name of the configuration")
-    __properties: ClassVar[List[str]] = ["Config", "SessionID", "TemplateID", "dataModelVersion", "id", "name"]
+    __properties: ClassVar[List[str]] = ["Config", "Name", "SessionID", "TemplateID", "dataModelVersion", "id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -98,11 +98,11 @@ class AppsecConfig(BaseModel):
 
         _obj = cls.model_validate({
             "Config": Config.from_dict(obj["Config"]) if obj.get("Config") is not None else None,
+            "Name": obj.get("Name"),
             "SessionID": obj.get("SessionID"),
             "TemplateID": obj.get("TemplateID"),
             "dataModelVersion": obj.get("dataModelVersion"),
-            "id": obj.get("id"),
-            "name": obj.get("name")
+            "id": obj.get("id")
         })
         return _obj
 

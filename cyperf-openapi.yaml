@@ -694,6 +694,9 @@ components:
       properties:
         Config:
           $ref: '#/components/schemas/Config'
+        Name:
+          description: The name of the configuration
+          type: string
         SessionID:
           description: The unique identifier of the session this configuration belongs
             to
@@ -711,9 +714,6 @@ components:
         id:
           description: The unique identifier of the CyPerf configuration
           readOnly: 'true'
-          type: string
-        name:
-          description: The name of the configuration
           type: string
       type: object
     ArchiveInfo:
@@ -5683,7 +5683,7 @@ components:
       enum:
       - RANDOM
       - PSEUDORANDOM
-      - <nil>
+      - 'null'
       type: string
     StreamProfile:
       properties:
