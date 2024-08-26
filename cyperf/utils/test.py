@@ -43,7 +43,7 @@ class TestRunner(object):
                    "password"     : self.password,
                    "grant_type"   : "password",
                    "client_id"    : TestRunner.WAP_CLIENT_ID}
-        response = session.post(url, headers = headers, data = payload, verify = False)
+        response = session.post(url, headers = headers, data = payload, verify = False, timeout = (10, 30))
         if response.headers.get('content-type') == 'application/json':
             return response.json()['access_token']
         else:
@@ -122,10 +122,13 @@ class TestRunner(object):
                         ipNet.agent_assignments = cyperf.AgentAssignments()
                     agents = agentMapping[ipNet.name]
                     for agentName in agents:
-                        agent = self.agents[agentName]
-                        interfaces = [iFace.name for iFace in agent.interfaces]
-                        agentDetails = cyperf.AgentAssignmentDetails(agent_id = agent.id, id = agent.id, interfaces = interfaces)
-                        ipNet.agent_assignments.by_id.append(agentDetails)
+                        if agentName in self.agents:
+                            agent = self.agents[agentName]
+                            interfaces = [iFace.name for iFace in agent.interfaces]
+                            agentDetails = cyperf.AgentAssignmentDetails(agent_id = agent.id, id = agent.id, interfaces = interfaces)
+                            ipNet.agent_assignments.by_id.append(agentDetails)
+                        else:
+                            pprint (f'Could not find the agent {agentName} in the registered list')
         apiInstance = cyperf.SessionsApi(self.apiClient)
         #try:
         #    session.config = apiInstance.api_v2_sessions_session_id_config_put(session.id, session.config)
