@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.emulated_router_range import EmulatedRouterRange
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class EmulatedRouter(BaseModel):
     """
     EmulatedRouter
     """ # noqa: E501
-    emulated_router_ranges: List[EmulatedRouterRange] = Field(alias="EmulatedRouterRanges")
+    emulated_router_ranges: Optional[List[EmulatedRouterRange]] = Field(default=None, alias="EmulatedRouterRanges")
     enabled: StrictBool = Field(alias="Enabled")
     __properties: ClassVar[List[str]] = ["EmulatedRouterRanges", "Enabled"]
 

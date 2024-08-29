@@ -1,6 +1,6 @@
 # ErrorResponse
 
-REST API error response
+REST API error response.
 
 ## Properties
 

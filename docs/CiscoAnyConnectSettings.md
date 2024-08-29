@@ -5,13 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | 
-**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | 
-**cisco_encapsulation** | [**CiscoEncapsulation**](CiscoEncapsulation.md) |  | 
-**connection_profiles** | **List[str]** |  | 
+**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | [optional] 
+**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
+**cisco_encapsulation** | [**CiscoEncapsulation**](CiscoEncapsulation.md) |  | [optional] 
+**connection_profiles** | **List[str]** |  | [optional] 
 **esp_probe_retry_timeout** | **int** |  | [optional] 
 **esp_probe_timeout** | **int** |  | [optional] 
-**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | 
+**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
 **vpn_gateway** | **str** |  | 
 
 ## Example

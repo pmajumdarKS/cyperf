@@ -31,15 +31,15 @@ class PANGPSettings(BaseModel):
     """
     PANGPSettings
     """ # noqa: E501
-    var_auth_settings: AuthSettings = Field(alias="AuthSettings")
-    outer_tcp_profile: TcpProfile = Field(alias="OuterTCPProfile")
+    var_auth_settings: Optional[AuthSettings] = Field(default=None, alias="AuthSettings")
+    outer_tcp_profile: Optional[TcpProfile] = Field(default=None, alias="OuterTCPProfile")
     esp_probe_retry_timeout: Optional[StrictInt] = Field(default=None, alias="ESPProbeRetryTimeout")
     esp_probe_timeout: Optional[StrictInt] = Field(default=None, alias="ESPProbeTimeout")
     is_portal: Optional[StrictBool] = Field(default=None, description="A flag indicating if the tunnel is connected to PAN Portal instead of a direct connection to the PAN GP VPN Gateway (default: true).", alias="IsPortal")
-    outer_tls_client_profile: TLSProfile = Field(alias="OuterTLSClientProfile")
-    pangp_encapsulation: PANGPEncapsulation = Field(alias="PANGPEncapsulation")
+    outer_tls_client_profile: Optional[TLSProfile] = Field(default=None, alias="OuterTLSClientProfile")
+    pangp_encapsulation: Optional[PANGPEncapsulation] = Field(default=None, alias="PANGPEncapsulation")
     portal_hostname: Annotated[str, Field(strict=True)] = Field(alias="PortalHostname")
-    vpn_gateway: StrictStr = Field(alias="VPNGateway")
+    vpn_gateway: Optional[StrictStr] = Field(default=None, alias="VPNGateway")
     vpn_gateways: List[StrictStr] = Field(alias="VPNGateways")
     __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile", "ESPProbeRetryTimeout", "ESPProbeTimeout", "IsPortal", "OuterTLSClientProfile", "PANGPEncapsulation", "PortalHostname", "VPNGateway", "VPNGateways"]
 

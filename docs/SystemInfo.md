@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**chassis_info** | [**ChassisInfo**](ChassisInfo.md) |  | [optional] 
 **kernel_version** | **str** |  | [optional] [readonly] 
 **os_name** | **str** |  | [optional] [readonly] 
 **port_manager_version** | **str** |  | [optional] [readonly] 

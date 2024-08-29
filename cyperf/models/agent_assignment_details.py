@@ -30,7 +30,7 @@ class AgentAssignmentDetails(BaseModel):
     agent_id: StrictStr = Field(description="The id of the agent that is assigned.", alias="agentId")
     capture_settings: Optional[CaptureSettings] = Field(default=None, description="The capture settings of the agent that is assigned.", alias="captureSettings")
     id: StrictStr
-    interfaces: List[StrictStr] = Field(description="The names of the assigned test interfaces for the agent.")
+    interfaces: Optional[List[StrictStr]] = Field(default=None, description="The names of the assigned test interfaces for the agent.")
     __properties: ClassVar[List[str]] = ["agentId", "captureSettings", "id", "interfaces"]
 
     model_config = ConfigDict(

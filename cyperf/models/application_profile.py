@@ -33,12 +33,12 @@ class ApplicationProfile(BaseModel):
     ApplicationProfile
     """ # noqa: E501
     active: Optional[StrictBool] = Field(default=None, description="Indicates whether the profile is enabled or not.", alias="Active")
-    traffic_settings: TrafficSettings = Field(alias="TrafficSettings")
-    id: StrictStr
-    applications: List[Application] = Field(alias="Applications")
-    default_network_mapping: NetworkMapping = Field(alias="DefaultNetworkMapping")
+    traffic_settings: Optional[TrafficSettings] = Field(default=None, alias="TrafficSettings")
+    id: Optional[StrictStr] = None
+    applications: Optional[List[Application]] = Field(default=None, alias="Applications")
+    default_network_mapping: Optional[NetworkMapping] = Field(default=None, alias="DefaultNetworkMapping")
     name: StrictStr = Field(alias="Name")
-    objectives_and_timeline: ObjectivesAndTimeline = Field(alias="ObjectivesAndTimeline")
+    objectives_and_timeline: Optional[ObjectivesAndTimeline] = Field(default=None, alias="ObjectivesAndTimeline")
     add_applications: Optional[List[ExternalResourceInfo]] = Field(default=None, alias="add-applications")
     modify_excluded_dut_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-excluded-dut-recursively")
     modify_tags_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-tags-recursively")

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.dtls_settings import DTLSSettings
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class FortinetEncapsulation(BaseModel):
     """ # noqa: E501
     encapsulation_mode: StrictStr = Field(description="The encapsulation mode for inner traffic.", alias="EncapsulationMode")
     ppp_over_dtls_enabled: StrictBool = Field(alias="PPPOverDTLSEnabled")
-    ppp_over_dtls_settings: DTLSSettings = Field(alias="PPPOverDTLSSettings")
+    ppp_over_dtls_settings: Optional[DTLSSettings] = Field(default=None, alias="PPPOverDTLSSettings")
     udp_port: StrictInt = Field(alias="UdpPort")
     __properties: ClassVar[List[str]] = ["EncapsulationMode", "PPPOverDTLSEnabled", "PPPOverDTLSSettings", "UdpPort"]
 

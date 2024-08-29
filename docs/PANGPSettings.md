@@ -5,15 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | 
-**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | 
+**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | [optional] 
+**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
 **esp_probe_retry_timeout** | **int** |  | [optional] 
 **esp_probe_timeout** | **int** |  | [optional] 
 **is_portal** | **bool** | A flag indicating if the tunnel is connected to PAN Portal instead of a direct connection to the PAN GP VPN Gateway (default: true). | [optional] 
-**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | 
-**pangp_encapsulation** | [**PANGPEncapsulation**](PANGPEncapsulation.md) |  | 
+**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
+**pangp_encapsulation** | [**PANGPEncapsulation**](PANGPEncapsulation.md) |  | [optional] 
 **portal_hostname** | **str** |  | 
-**vpn_gateway** | **str** |  | 
+**vpn_gateway** | **str** |  | [optional] 
 **vpn_gateways** | **List[str]** |  | 
 
 ## Example

@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **dns_resolver** | [**DNSResolver**](DNSResolver.md) |  | [optional] 
 **dns_server** | [**DNSServer**](DNSServer.md) | The DNS Server configuration for Network Segment | [optional] 
 **dut_connections** | **List[str]** | The connected DUT network segments. | [optional] 
-**emulated_router** | **object** |  | 
+**emulated_router** | **object** |  | [optional] 
 **eth_range** | **object** |  | [optional] 
-**ip_ranges** | [**List[IPRange]**](IPRange.md) |  | 
-**ip_sec_stacks** | [**List[IPSecStack]**](IPSecStack.md) |  | 
-**tunnel_stacks** | [**List[TunnelStack]**](TunnelStack.md) |  | 
+**ip_ranges** | [**List[IPRange]**](IPRange.md) |  | [optional] 
+**ip_sec_stacks** | [**List[IPSecStack]**](IPSecStack.md) |  | [optional] 
+**tunnel_stacks** | [**List[TunnelStack]**](TunnelStack.md) |  | [optional] 
 **active** | **bool** | A flag indicating if the network segment is active.(default: true) | [optional] 
 **agent_assignments** | [**AgentAssignments**](AgentAssignments.md) |  | [optional] 
 **min_agents** | **int** | The minimum number of agents that should be assigned to this network segment in a valid test (default: 1). | [optional] 

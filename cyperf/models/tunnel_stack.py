@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cyperf.models.inner_ip_range import InnerIPRange
 from cyperf.models.ip_range import IPRange
@@ -30,9 +30,9 @@ class TunnelStack(BaseModel):
     """
     The tunnel stack assigned to the current test configuration
     """ # noqa: E501
-    inner_ip_range: InnerIPRange = Field(alias="InnerIPRange")
-    outer_ip_range: IPRange = Field(alias="OuterIPRange")
-    tunnel_range: TunnelRange = Field(alias="TunnelRange")
+    inner_ip_range: Optional[InnerIPRange] = Field(default=None, alias="InnerIPRange")
+    outer_ip_range: Optional[IPRange] = Field(default=None, alias="OuterIPRange")
+    tunnel_range: Optional[TunnelRange] = Field(default=None, alias="TunnelRange")
     tunnel_stack_name: Annotated[str, Field(strict=True)] = Field(alias="TunnelStackName")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["InnerIPRange", "OuterIPRange", "TunnelRange", "TunnelStackName", "id"]

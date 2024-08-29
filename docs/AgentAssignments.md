@@ -6,7 +6,8 @@ The agents assigned to the current test configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**by_id** | [**List[AgentAssignmentDetails]**](AgentAssignmentDetails.md) | The agents statically assigned to the current test configuration. | 
+**by_id** | [**List[AgentAssignmentDetails]**](AgentAssignmentDetails.md) | The agents statically assigned to the current test configuration. | [optional] 
+**by_port** | [**List[AgentAssignmentByPort]**](AgentAssignmentByPort.md) | The ports assigned to the current test configuration. | [optional] 
 **by_tag** | **List[str]** | The tags according to which the agents are dynamically assigned. | 
 
 ## Example

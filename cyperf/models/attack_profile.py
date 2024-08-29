@@ -33,12 +33,12 @@ class AttackProfile(BaseModel):
     AttackProfile
     """ # noqa: E501
     active: Optional[StrictBool] = Field(default=None, description="Indicates whether the profile is enabled or not.", alias="Active")
-    traffic_settings: TrafficSettings = Field(alias="TrafficSettings")
-    id: StrictStr
-    attacks: List[Attack] = Field(alias="Attacks")
-    default_network_mapping: NetworkMapping = Field(alias="DefaultNetworkMapping")
+    traffic_settings: Optional[TrafficSettings] = Field(default=None, alias="TrafficSettings")
+    id: Optional[StrictStr] = None
+    attacks: Optional[List[Attack]] = Field(default=None, alias="Attacks")
+    default_network_mapping: Optional[NetworkMapping] = Field(default=None, alias="DefaultNetworkMapping")
     name: StrictStr = Field(alias="Name")
-    objectives_and_timeline: AttackObjectivesAndTimeline = Field(alias="ObjectivesAndTimeline")
+    objectives_and_timeline: Optional[AttackObjectivesAndTimeline] = Field(default=None, alias="ObjectivesAndTimeline")
     add_attacks: Optional[List[ExternalResourceInfo]] = Field(default=None, alias="add-attacks")
     modify_excluded_dut_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-excluded-dut-recursively")
     modify_tags_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-tags-recursively")

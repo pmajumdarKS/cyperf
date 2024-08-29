@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **str** | The description of the application | [optional] 
 **name** | **str** | The user friendly name of the application | [optional] 
 **static** | **bool** | If true, the application/strike is generated from Controller | [optional] [readonly] 
+**user_defined** | **bool** | If true, the application was created by the user | [optional] [readonly] 
 **id** | **str** | The unique identifier of the application | [optional] [readonly] 
 **owner** | **str** | The friendly display name of the application&#39;s owner | [optional] [readonly] 
 **owner_id** | **str** | The unique identifier of the application&#39;s owner | [optional] [readonly] 

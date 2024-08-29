@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**default** | **bool** | A flag indicating if the file is used as default configuration or not | [optional] 
 **user_visible** | **bool** | A flag indicating if the file is user-visible or not | [optional] 
 
 ## Example

@@ -28,9 +28,9 @@ class MediaFile(BaseModel):
     """
     MediaFile
     """ # noqa: E501
-    file_value: FileValue = Field(alias="FileValue")
+    file_value: Optional[FileValue] = Field(default=None, alias="FileValue")
     media_tracks: Optional[List[MediaTrack]] = Field(default=None, alias="MediaTracks")
-    id: StrictStr
+    id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["FileValue", "MediaTracks", "id"]
 
     model_config = ConfigDict(

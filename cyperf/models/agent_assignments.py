@@ -18,7 +18,8 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.agent_assignment_by_port import AgentAssignmentByPort
 from cyperf.models.agent_assignment_details import AgentAssignmentDetails
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +28,10 @@ class AgentAssignments(BaseModel):
     """
     The agents assigned to the current test configuration
     """ # noqa: E501
-    by_id: List[AgentAssignmentDetails] = Field(description="The agents statically assigned to the current test configuration.", alias="ByID")
+    by_id: Optional[List[AgentAssignmentDetails]] = Field(default=None, description="The agents statically assigned to the current test configuration.", alias="ByID")
+    by_port: Optional[List[AgentAssignmentByPort]] = Field(default=None, description="The ports assigned to the current test configuration.", alias="ByPort")
     by_tag: List[StrictStr] = Field(description="The tags according to which the agents are dynamically assigned.", alias="ByTag")
-    __properties: ClassVar[List[str]] = ["ByID", "ByTag"]
+    __properties: ClassVar[List[str]] = ["ByID", "ByPort", "ByTag"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,6 +79,13 @@ class AgentAssignments(BaseModel):
                 if _item_by_id:
                     _items.append(_item_by_id.to_dict())
             _dict['ByID'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in by_port (list)
+        _items = []
+        if self.by_port:
+            for _item_by_port in self.by_port:
+                if _item_by_port:
+                    _items.append(_item_by_port.to_dict())
+            _dict['ByPort'] = _items
         return _dict
 
     @classmethod
@@ -90,6 +99,7 @@ class AgentAssignments(BaseModel):
 
         _obj = cls.model_validate({
             "ByID": [AgentAssignmentDetails.from_dict(_item) for _item in obj["ByID"]] if obj.get("ByID") is not None else None,
+            "ByPort": [AgentAssignmentByPort.from_dict(_item) for _item in obj["ByPort"]] if obj.get("ByPort") is not None else None,
             "ByTag": obj.get("ByTag")
         })
         return _obj

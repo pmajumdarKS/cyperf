@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **advanced_settings** | [**AdvancedSettings**](AdvancedSettings.md) |  | [optional] 
-**primary_objective** | [**SpecificObjective**](SpecificObjective.md) |  | 
-**secondary_objective** | [**SecondaryObjective**](SecondaryObjective.md) |  | 
+**primary_objective** | [**SpecificObjective**](SpecificObjective.md) |  | [optional] 
+**secondary_objective** | [**SecondaryObjective**](SecondaryObjective.md) |  | [optional] 
 **secondary_objectives** | [**List[SpecificObjective]**](SpecificObjective.md) | Deprecated. Use SecondaryObjective instead. | [optional] 
 **timeline_segments** | [**List[TimelineSegment]**](TimelineSegment.md) | Deprecated. Use PrimaryObjective.Timeline instead. | [optional] 
 

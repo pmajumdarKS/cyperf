@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_transport_profile** | [**TransportProfile**](TransportProfile.md) |  | 
+**default_transport_profile** | [**TransportProfile**](TransportProfile.md) |  | [optional] 
 
 ## Example
 

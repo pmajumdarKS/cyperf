@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.network_mapping import NetworkMapping
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class Endpoint(BaseModel):
     Endpoint
     """ # noqa: E501
     name: StrictStr = Field(alias="Name")
-    network_mapping: NetworkMapping = Field(description="The per-endpoint network mapping. Depending on Endpoint type, only ClientNetworkTags or ServerNetworkTags will be used.", alias="NetworkMapping")
+    network_mapping: Optional[NetworkMapping] = Field(default=None, description="The per-endpoint network mapping. Depending on Endpoint type, only ClientNetworkTags or ServerNetworkTags will be used.", alias="NetworkMapping")
     type: StrictStr = Field(alias="Type")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["Name", "NetworkMapping", "Type", "id"]

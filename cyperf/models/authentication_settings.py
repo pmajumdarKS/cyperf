@@ -27,16 +27,19 @@ class AuthenticationSettings(BaseModel):
     """
     AuthenticationSettings
     """ # noqa: E501
-    auth_method: StrictStr = Field(alias="AuthMethod")
+    auth_method: Optional[StrictStr] = Field(default=None, alias="AuthMethod")
     certificate_file: Optional[Params] = Field(default=None, description="The authentication certificate file of the IPsec tunnel(s).", alias="CertificateFile")
     key_file: Optional[Params] = Field(default=None, description="The authentication key file of the IPsec tunnel(s).", alias="KeyFile")
     key_file_password: Optional[StrictStr] = Field(default=None, description="The key file password of the IPsec authentication.", alias="KeyFilePassword")
-    shared_key: StrictStr = Field(alias="SharedKey")
+    shared_key: Optional[StrictStr] = Field(default=None, alias="SharedKey")
     __properties: ClassVar[List[str]] = ["AuthMethod", "CertificateFile", "KeyFile", "KeyFilePassword", "SharedKey"]
 
     @field_validator('auth_method')
     def auth_method_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in set(['PRE-SHARED-KEY', 'CERTIFICATES']):
             raise ValueError("must be one of enum values ('PRE-SHARED-KEY', 'CERTIFICATES')")
         return value

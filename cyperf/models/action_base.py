@@ -30,18 +30,18 @@ class ActionBase(BaseModel):
     ActionBase
     """ # noqa: E501
     dst_host: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The destination host of the action.", alias="DstHost")
-    exchanges: List[Exchange] = Field(alias="Exchanges")
+    exchanges: Optional[List[Exchange]] = Field(default=None, alias="Exchanges")
     index: Optional[StrictInt] = Field(default=None, description="The index of the action.", alias="Index")
     is_banner: Optional[StrictBool] = Field(default=None, description="Indicates if this is a required action, can only be add once and also must be the first", alias="IsBanner")
     is_deprecated: Optional[StrictBool] = Field(default=None, description="A value that indicates if the action is deprecated.", alias="IsDeprecated")
     is_hostname: Optional[StrictInt] = Field(default=None, alias="IsHostname")
-    is_strike: StrictBool = Field(description="A value that indicates if the action is a strike.", alias="IsStrike")
+    is_strike: Optional[StrictBool] = Field(default=None, description="A value that indicates if the action is a strike.", alias="IsStrike")
     name: Optional[StrictStr] = Field(default=None, description="The name of the action.", alias="Name")
     params: Optional[List[Params]] = Field(default=None, alias="Params")
     port: Optional[StrictInt] = Field(default=None, description="The port of the destination host.", alias="Port")
-    protocol_id: StrictStr = Field(alias="ProtocolID")
+    protocol_id: Optional[StrictStr] = Field(default=None, alias="ProtocolID")
     requires_uniqueness: Optional[StrictBool] = Field(default=None, description="If true, for applications with the same protocol id, application/attack must have been uniquely identified in previous commands.", alias="RequiresUniqueness")
-    id: StrictStr
+    id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["DstHost", "Exchanges", "Index", "IsBanner", "IsDeprecated", "IsHostname", "IsStrike", "Name", "Params", "Port", "ProtocolID", "RequiresUniqueness", "id"]
 
     @field_validator('dst_host')

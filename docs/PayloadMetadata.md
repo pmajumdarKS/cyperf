@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **file_extension** | **str** | The extension of the file | [optional] 
 **file_name** | **str** | The path of the file | [optional] 
 **file_type** | **str** | The type of the file | [optional] 
+**file_url** | **str** | The relative URL of the file | [optional] 
 
 ## Example
 

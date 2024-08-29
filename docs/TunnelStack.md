@@ -6,9 +6,9 @@ The tunnel stack assigned to the current test configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**inner_ip_range** | [**InnerIPRange**](InnerIPRange.md) |  | 
-**outer_ip_range** | [**IPRange**](IPRange.md) |  | 
-**tunnel_range** | [**TunnelRange**](TunnelRange.md) |  | 
+**inner_ip_range** | [**InnerIPRange**](InnerIPRange.md) |  | [optional] 
+**outer_ip_range** | [**IPRange**](IPRange.md) |  | [optional] 
+**tunnel_range** | [**TunnelRange**](TunnelRange.md) |  | [optional] 
 **tunnel_stack_name** | **str** |  | 
 **id** | **str** |  | 
 

@@ -26,6 +26,7 @@ from cyperf.models.conflict import Conflict
 from cyperf.models.params import Params
 from cyperf.models.session_reuse_method_tls12 import SessionReuseMethodTLS12
 from cyperf.models.session_reuse_method_tls13 import SessionReuseMethodTLS13
+from cyperf.models.supported_group_tls13 import SupportedGroupTLS13
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,16 +34,16 @@ class TLSProfile(BaseModel):
     """
     TLSProfile
     """ # noqa: E501
-    certificate_file: Params = Field(description="The certificate file of the TLS profile.", alias="certificateFile")
+    certificate_file: Optional[Params] = Field(default=None, description="The certificate file of the TLS profile.", alias="certificateFile")
     cipher: Optional[CipherTLS12] = None
     cipher12: Optional[CipherTLS12] = None
     cipher13: Optional[CipherTLS13] = None
     ciphers12: Optional[List[CipherTLS12]] = None
     ciphers13: Optional[List[CipherTLS13]] = None
-    dh_file: Params = Field(alias="dhFile")
+    dh_file: Optional[Params] = Field(default=None, alias="dhFile")
     get_tls_conflicts: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="get-tls-conflicts")
     immediate_close: Optional[StrictBool] = Field(default=None, description="The immediate FIN after close notify", alias="immediateClose")
-    key_file: Params = Field(description="The key file of the TLS profile.", alias="keyFile")
+    key_file: Optional[Params] = Field(default=None, description="The key file of the TLS profile.", alias="keyFile")
     key_file_password: Optional[StrictStr] = Field(default=None, description="The key file password of the TLS profile.", alias="keyFilePassword")
     middle_box_enabled: Optional[StrictBool] = Field(default=None, description="If true, the middle box compatibility will be enabled", alias="middleBoxEnabled")
     profile_id: StrictStr = Field(description="The ID of the TLS profile (default: TLSProfile).", alias="profileId")
@@ -54,11 +55,12 @@ class TLSProfile(BaseModel):
     session_reuse_method13: Optional[SessionReuseMethodTLS13] = Field(default=None, alias="sessionReuseMethod13")
     sni_cert_configs: Optional[List[CertConfig]] = Field(default=None, description="The certificate configs per SNI of the TLS profile.", alias="sniCertConfigs")
     sni_enabled: StrictBool = Field(description="The enable status of the SNI configuration (default: false).", alias="sniEnabled")
+    supported_groups13: Optional[List[SupportedGroupTLS13]] = Field(default=None, alias="supportedGroups13")
     tls12_enabled: StrictBool = Field(alias="tls12Enabled")
-    tls13_enabled: StrictBool = Field(alias="tls13Enabled")
+    tls13_enabled: Optional[StrictBool] = Field(default=None, alias="tls13Enabled")
     use_tls_profile: Optional[StrictBool] = Field(default=None, description="When disabled, the connection is not TLS secured (default: true).", alias="useTlsProfile")
     version: StrictStr = Field(description="The version of the TLS profile (default: NONE). Must be one of: NONE or TLSv1.2 or TLSv1.3.")
-    __properties: ClassVar[List[str]] = ["certificateFile", "cipher", "cipher12", "cipher13", "ciphers12", "ciphers13", "dhFile", "get-tls-conflicts", "immediateClose", "keyFile", "keyFilePassword", "middleBoxEnabled", "profileId", "resolve-tls-conflicts", "sendCloseNotify", "sessionReuseCount", "sessionReuseMethod", "sessionReuseMethod12", "sessionReuseMethod13", "sniCertConfigs", "sniEnabled", "tls12Enabled", "tls13Enabled", "useTlsProfile", "version"]
+    __properties: ClassVar[List[str]] = ["certificateFile", "cipher", "cipher12", "cipher13", "ciphers12", "ciphers13", "dhFile", "get-tls-conflicts", "immediateClose", "keyFile", "keyFilePassword", "middleBoxEnabled", "profileId", "resolve-tls-conflicts", "sendCloseNotify", "sessionReuseCount", "sessionReuseMethod", "sessionReuseMethod12", "sessionReuseMethod13", "sniCertConfigs", "sniEnabled", "supportedGroups13", "tls12Enabled", "tls13Enabled", "useTlsProfile", "version"]
 
     @field_validator('version')
     def version_validate_enum(cls, value):
@@ -162,6 +164,7 @@ class TLSProfile(BaseModel):
             "sessionReuseMethod13": obj.get("sessionReuseMethod13"),
             "sniCertConfigs": [CertConfig.from_dict(_item) for _item in obj["sniCertConfigs"]] if obj.get("sniCertConfigs") is not None else None,
             "sniEnabled": obj.get("sniEnabled"),
+            "supportedGroups13": obj.get("supportedGroups13"),
             "tls12Enabled": obj.get("tls12Enabled"),
             "tls13Enabled": obj.get("tls13Enabled"),
             "useTlsProfile": obj.get("useTlsProfile"),

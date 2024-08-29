@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **static_arp_table** | [**List[StaticARPEntry]**](StaticARPEntry.md) |  | [optional] 
 **tag_protocol_id** | **int** | The tag protocol identifier (default: 33024). | [optional] 
 **vlan_auto** | **bool** | A flag indicating if VLAN settings for the VLANRange should be determined automatically (default: false). | 
-**vlan_enabled** | **bool** | The enable status of the VLAN configuration, if not determined automatically (default: false). | 
+**vlan_enabled** | **bool** | The enable status of the VLAN configuration, if not determined automatically (default: false). | [optional] 
 **vlan_id** | **int** | The VLAN identifier (default: 1). | [optional] 
 **vlan_incr** | **int** | The VLAN incrementation rule (default: 1). | [optional] 
 

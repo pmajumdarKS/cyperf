@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.chassis_info import ChassisInfo
 from cyperf.models.traffic_agent_info import TrafficAgentInfo
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,11 +28,12 @@ class SystemInfo(BaseModel):
     """
     SystemInfo
     """ # noqa: E501
+    chassis_info: Optional[ChassisInfo] = Field(default=None, alias="chassisInfo")
     kernel_version: Optional[StrictStr] = Field(default=None, alias="kernelVersion")
     os_name: Optional[StrictStr] = Field(default=None, alias="osName")
     port_manager_version: Optional[StrictStr] = Field(default=None, alias="portManagerVersion")
     traffic_agent_info: Optional[List[TrafficAgentInfo]] = Field(default=None, alias="trafficAgentInfo")
-    __properties: ClassVar[List[str]] = ["kernelVersion", "osName", "portManagerVersion", "trafficAgentInfo"]
+    __properties: ClassVar[List[str]] = ["chassisInfo", "kernelVersion", "osName", "portManagerVersion", "trafficAgentInfo"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +82,9 @@ class SystemInfo(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of chassis_info
+        if self.chassis_info:
+            _dict['chassisInfo'] = self.chassis_info.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in traffic_agent_info (list)
         _items = []
         if self.traffic_agent_info:
@@ -99,6 +104,7 @@ class SystemInfo(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "chassisInfo": ChassisInfo.from_dict(obj["chassisInfo"]) if obj.get("chassisInfo") is not None else None,
             "kernelVersion": obj.get("kernelVersion"),
             "osName": obj.get("osName"),
             "portManagerVersion": obj.get("portManagerVersion"),

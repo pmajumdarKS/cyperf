@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**index** | **int** | The index of the category | [optional] 
 **name** | **str** | The name of the category | [optional] 
 **values** | [**List[CategoryValue]**](CategoryValue.md) | The values of the category | [optional] 
 

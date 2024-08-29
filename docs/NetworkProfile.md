@@ -6,8 +6,8 @@ The networks assigned to the current test configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**dut_network_segment** | [**List[DUTNetwork]**](DUTNetwork.md) |  | 
-**ip_network_segment** | [**List[IPNetwork]**](IPNetwork.md) |  | 
+**dut_network_segment** | [**List[DUTNetwork]**](DUTNetwork.md) |  | [optional] 
+**ip_network_segment** | [**List[IPNetwork]**](IPNetwork.md) |  | [optional] 
 **id** | **str** |  | 
 
 ## Example

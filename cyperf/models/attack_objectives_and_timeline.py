@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.attack_timeline_segment import AttackTimelineSegment
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class AttackObjectivesAndTimeline(BaseModel):
     """
     AttackObjectivesAndTimeline
     """ # noqa: E501
-    timeline_segments: List[AttackTimelineSegment] = Field(alias="TimelineSegments")
+    timeline_segments: Optional[List[AttackTimelineSegment]] = Field(default=None, alias="TimelineSegments")
     __properties: ClassVar[List[str]] = ["TimelineSegments"]
 
     model_config = ConfigDict(

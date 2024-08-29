@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**file_value** | [**FileValue**](FileValue.md) |  | 
+**file_value** | [**FileValue**](FileValue.md) |  | [optional] 
 **media_tracks** | [**List[MediaTrack]**](MediaTrack.md) |  | [optional] 
-**id** | **str** |  | 
+**id** | **str** |  | [optional] 
 
 ## Example
 

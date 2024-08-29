@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cyperf.models.authentication_settings import AuthenticationSettings
 from cyperf.models.p1_config import P1Config
@@ -33,17 +33,17 @@ class IPSecRange(BaseModel):
     """
     IPSecRange
     """ # noqa: E501
-    var_auth_settings: AuthenticationSettings = Field(alias="AuthSettings")
-    ike_phase1_config: P1Config = Field(alias="IKEPhase1Config")
-    ike_phase2_config: P2Config = Field(alias="IKEPhase2Config")
+    var_auth_settings: Optional[AuthenticationSettings] = Field(default=None, alias="AuthSettings")
+    ike_phase1_config: Optional[P1Config] = Field(default=None, alias="IKEPhase1Config")
+    ike_phase2_config: Optional[P2Config] = Field(default=None, alias="IKEPhase2Config")
     ip_sec_range_name: Annotated[str, Field(strict=True)] = Field(alias="IPSecRangeName")
     multi_p2_over_p1: StrictBool = Field(alias="MultiP2OverP1")
-    protected_sub_config: ProtectedSubnetConfig = Field(alias="ProtectedSubConfig")
+    protected_sub_config: Optional[ProtectedSubnetConfig] = Field(default=None, alias="ProtectedSubConfig")
     public_peer: Annotated[str, Field(strict=True)] = Field(alias="PublicPeer")
     public_peer_increment: Annotated[str, Field(strict=True)] = Field(alias="PublicPeerIncrement")
-    remote_access: RemoteAccess = Field(alias="RemoteAccess")
+    remote_access: Optional[RemoteAccess] = Field(default=None, alias="RemoteAccess")
     test_scenario: StrictStr = Field(alias="TestScenario")
-    timers: Timers = Field(alias="Timers")
+    timers: Optional[Timers] = Field(default=None, alias="Timers")
     tunnel_count_per_outer_ip: StrictInt = Field(alias="TunnelCountPerOuterIP")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["AuthSettings", "IKEPhase1Config", "IKEPhase2Config", "IPSecRangeName", "MultiP2OverP1", "ProtectedSubConfig", "PublicPeer", "PublicPeerIncrement", "RemoteAccess", "TestScenario", "Timers", "TunnelCountPerOuterIP", "id"]

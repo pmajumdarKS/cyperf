@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.dtls_settings import DTLSSettings
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class CiscoEncapsulation(BaseModel):
     CiscoEncapsulation
     """ # noqa: E501
     dtls_enabled: StrictBool = Field(alias="DTLSEnabled")
-    dtls_settings: DTLSSettings = Field(alias="DTLSSettings")
+    dtls_settings: Optional[DTLSSettings] = Field(default=None, alias="DTLSSettings")
     encapsulation_mode: StrictStr = Field(description="The encapsulation mode for inner traffic.", alias="EncapsulationMode")
     udp_port: StrictInt = Field(alias="UdpPort")
     __properties: ClassVar[List[str]] = ["DTLSEnabled", "DTLSSettings", "EncapsulationMode", "UdpPort"]

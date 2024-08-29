@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **agent_id** | **str** | The id of the agent that is assigned. | 
 **capture_settings** | [**CaptureSettings**](CaptureSettings.md) | The capture settings of the agent that is assigned. | [optional] 
 **id** | **str** |  | 
-**interfaces** | **List[str]** | The names of the assigned test interfaces for the agent. | 
+**interfaces** | **List[str]** | The names of the assigned test interfaces for the agent. | [optional] 
 
 ## Example
 

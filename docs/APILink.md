@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **content_type** | **str** |  | [optional] 
 **href** | **str** |  | 
-**id** | **str** |  | 
+**id** | **str** |  | [optional] 
 **method** | **str** |  | [optional] 
-**name** | **str** |  | 
+**name** | **str** |  | [optional] 
 **references_count** | **int** |  | [optional] 
 **rel** | [**APIRelationship**](APIRelationship.md) |  | 
 **type** | [**APIRelationship**](APIRelationship.md) |  | 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Indicates whether the custom dashboards are enabled or not. | 
-**links** | [**List[APILink]**](APILink.md) | A list of links to user defined stats dashboards. | 
+**links** | [**List[APILink]**](APILink.md) | A list of links to user defined stats dashboards. | [optional] 
 
 ## Example
 

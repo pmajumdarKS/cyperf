@@ -6,12 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Indicates whether the profile is enabled or not. | [optional] 
-**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | 
-**id** | **str** |  | 
-**applications** | [**List[Application]**](Application.md) |  | 
-**default_network_mapping** | [**NetworkMapping**](NetworkMapping.md) |  | 
+**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | [optional] 
+**id** | **str** |  | [optional] 
+**applications** | [**List[Application]**](Application.md) |  | [optional] 
+**default_network_mapping** | [**NetworkMapping**](NetworkMapping.md) |  | [optional] 
 **name** | **str** |  | 
-**objectives_and_timeline** | [**ObjectivesAndTimeline**](ObjectivesAndTimeline.md) |  | 
+**objectives_and_timeline** | [**ObjectivesAndTimeline**](ObjectivesAndTimeline.md) |  | [optional] 
 **add_applications** | [**List[ExternalResourceInfo]**](ExternalResourceInfo.md) |  | [optional] 
 **modify_excluded_dut_recursively** | [**List[UpdateNetworkMapping]**](UpdateNetworkMapping.md) |  | [optional] 
 **modify_tags_recursively** | [**List[UpdateNetworkMapping]**](UpdateNetworkMapping.md) |  | [optional] 

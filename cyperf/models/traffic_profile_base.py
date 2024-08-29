@@ -28,8 +28,8 @@ class TrafficProfileBase(BaseModel):
     TrafficProfileBase
     """ # noqa: E501
     active: Optional[StrictBool] = Field(default=None, description="Indicates whether the profile is enabled or not.", alias="Active")
-    traffic_settings: TrafficSettings = Field(alias="TrafficSettings")
-    id: StrictStr
+    traffic_settings: Optional[TrafficSettings] = Field(default=None, alias="TrafficSettings")
+    id: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["Active", "TrafficSettings", "id"]
 
     model_config = ConfigDict(

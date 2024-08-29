@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **auth_method** | [**Params**](Params.md) |  | [optional] 
 **auth_profile_params** | [**List[Params]**](Params.md) |  | [optional] 
-**auth_profile_type** | **str** |  | 
+**auth_profile_type** | **str** |  | [optional] 
 **hostname_suffix** | **str** | A suffix to be added to the Host header of all Apps/Attacks running through the DUT (default: empty string). | [optional] 
 **idp_type** | [**Params**](Params.md) |  | [optional] 
 **is_explicit_proxy** | **bool** | A flag indicating if PEP for the selected authentication profile is an explicit proxy | [optional] 

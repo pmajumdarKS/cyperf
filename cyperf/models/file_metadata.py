@@ -26,8 +26,9 @@ class FileMetadata(BaseModel):
     """
     FileMetadata
     """ # noqa: E501
+    default: Optional[StrictBool] = Field(default=None, description="A flag indicating if the file is used as default configuration or not")
     user_visible: Optional[StrictBool] = Field(default=None, description="A flag indicating if the file is user-visible or not", alias="userVisible")
-    __properties: ClassVar[List[str]] = ["userVisible"]
+    __properties: ClassVar[List[str]] = ["default", "userVisible"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,6 +81,7 @@ class FileMetadata(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "default": obj.get("default"),
             "userVisible": obj.get("userVisible")
         })
         return _obj

@@ -19,7 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictInt, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
-from cyperf.models.api_v2_license_servers_get200_response import ApiV2LicenseServersGet200Response
+from cyperf.models.get_license_servers200_response import GetLicenseServers200Response
 from cyperf.models.license_server_metadata import LicenseServerMetadata
 
 from cyperf.api_client import ApiClient, RequestSerialized
@@ -41,10 +41,9 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_get(
+    def create_license_servers(
         self,
-        take: Annotated[Optional[StrictInt], Field(description="The number of search results to return")] = None,
-        skip: Annotated[Optional[StrictInt], Field(description="The number of search results to skip")] = None,
+        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -57,15 +56,13 @@ class LicenseServersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiV2LicenseServersGet200Response:
-        """api_v2_license_servers_get
+    ) -> List[LicenseServerMetadata]:
+        """create_license_servers
 
-        Get all the currently available license servers.
+        Register a license server.
 
-        :param take: The number of search results to return
-        :type take: int
-        :param skip: The number of search results to skip
-        :type skip: int
+        :param license_server_metadata:
+        :type license_server_metadata: List[LicenseServerMetadata]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -88,9 +85,8 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_get_serialize(
-            take=take,
-            skip=skip,
+        _param = self._create_license_servers_serialize(
+            license_server_metadata=license_server_metadata,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -98,7 +94,8 @@ class LicenseServersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiV2LicenseServersGet200Response",
+            '201': "List[LicenseServerMetadata]",
+            '400': "ErrorResponse",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -113,7 +110,484 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_get_with_http_info(
+    def create_license_servers_with_http_info(
+        self,
+        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[List[LicenseServerMetadata]]:
+        """create_license_servers
+
+        Register a license server.
+
+        :param license_server_metadata:
+        :type license_server_metadata: List[LicenseServerMetadata]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_license_servers_serialize(
+            license_server_metadata=license_server_metadata,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "List[LicenseServerMetadata]",
+            '400': "ErrorResponse",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_license_servers_without_preload_content(
+        self,
+        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """create_license_servers
+
+        Register a license server.
+
+        :param license_server_metadata:
+        :type license_server_metadata: List[LicenseServerMetadata]
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_license_servers_serialize(
+            license_server_metadata=license_server_metadata,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "List[LicenseServerMetadata]",
+            '400': "ErrorResponse",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_license_servers_serialize(
+        self,
+        license_server_metadata,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'LicenseServerMetadata': '',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if license_server_metadata is not None:
+            _body_params = license_server_metadata
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'OAuth2', 
+            'OAuth2'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/v2/license-servers',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def delete_license_servers(
+        self,
+        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """delete_license_servers
+
+        Remove a particular license server.
+
+        :param license_server_id: The ID of the license server. (required)
+        :type license_server_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_license_servers_serialize(
+            license_server_id=license_server_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '404': "ErrorResponse",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def delete_license_servers_with_http_info(
+        self,
+        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """delete_license_servers
+
+        Remove a particular license server.
+
+        :param license_server_id: The ID of the license server. (required)
+        :type license_server_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_license_servers_serialize(
+            license_server_id=license_server_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '404': "ErrorResponse",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def delete_license_servers_without_preload_content(
+        self,
+        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """delete_license_servers
+
+        Remove a particular license server.
+
+        :param license_server_id: The ID of the license server. (required)
+        :type license_server_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._delete_license_servers_serialize(
+            license_server_id=license_server_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+            '404': "ErrorResponse",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _delete_license_servers_serialize(
+        self,
+        license_server_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if license_server_id is not None:
+            _path_params['licenseServerId'] = license_server_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'OAuth2', 
+            'OAuth2'
+        ]
+
+        return self.api_client.param_serialize(
+            method='DELETE',
+            resource_path='/api/v2/license-servers/{licenseServerId}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_license_servers(
         self,
         take: Annotated[Optional[StrictInt], Field(description="The number of search results to return")] = None,
         skip: Annotated[Optional[StrictInt], Field(description="The number of search results to skip")] = None,
@@ -129,8 +603,8 @@ class LicenseServersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ApiV2LicenseServersGet200Response]:
-        """api_v2_license_servers_get
+    ) -> GetLicenseServers200Response:
+        """get_license_servers
 
         Get all the currently available license servers.
 
@@ -160,7 +634,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_get_serialize(
+        _param = self._get_license_servers_serialize(
             take=take,
             skip=skip,
             _request_auth=_request_auth,
@@ -170,7 +644,79 @@ class LicenseServersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiV2LicenseServersGet200Response",
+            '200': "GetLicenseServers200Response",
+            '500': "ErrorResponse",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_license_servers_with_http_info(
+        self,
+        take: Annotated[Optional[StrictInt], Field(description="The number of search results to return")] = None,
+        skip: Annotated[Optional[StrictInt], Field(description="The number of search results to skip")] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[GetLicenseServers200Response]:
+        """get_license_servers
+
+        Get all the currently available license servers.
+
+        :param take: The number of search results to return
+        :type take: int
+        :param skip: The number of search results to skip
+        :type skip: int
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_license_servers_serialize(
+            take=take,
+            skip=skip,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "GetLicenseServers200Response",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -185,7 +731,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_get_without_preload_content(
+    def get_license_servers_without_preload_content(
         self,
         take: Annotated[Optional[StrictInt], Field(description="The number of search results to return")] = None,
         skip: Annotated[Optional[StrictInt], Field(description="The number of search results to skip")] = None,
@@ -202,7 +748,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """api_v2_license_servers_get
+        """get_license_servers
 
         Get all the currently available license servers.
 
@@ -232,7 +778,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_get_serialize(
+        _param = self._get_license_servers_serialize(
             take=take,
             skip=skip,
             _request_auth=_request_auth,
@@ -242,7 +788,7 @@ class LicenseServersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ApiV2LicenseServersGet200Response",
+            '200': "GetLicenseServers200Response",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -252,7 +798,7 @@ class LicenseServersApi:
         return response_data.response
 
 
-    def _api_v2_license_servers_get_serialize(
+    def _get_license_servers_serialize(
         self,
         take,
         skip,
@@ -323,273 +869,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_delete(
-        self,
-        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
-        """api_v2_license_servers_license_server_id_delete
-
-        Remove a particular license server.
-
-        :param license_server_id: The ID of the license server. (required)
-        :type license_server_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_license_server_id_delete_serialize(
-            license_server_id=license_server_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-            '404': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def api_v2_license_servers_license_server_id_delete_with_http_info(
-        self,
-        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
-        """api_v2_license_servers_license_server_id_delete
-
-        Remove a particular license server.
-
-        :param license_server_id: The ID of the license server. (required)
-        :type license_server_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_license_server_id_delete_serialize(
-            license_server_id=license_server_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-            '404': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def api_v2_license_servers_license_server_id_delete_without_preload_content(
-        self,
-        license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """api_v2_license_servers_license_server_id_delete
-
-        Remove a particular license server.
-
-        :param license_server_id: The ID of the license server. (required)
-        :type license_server_id: str
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_license_server_id_delete_serialize(
-            license_server_id=license_server_id,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
-            '404': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _api_v2_license_servers_license_server_id_delete_serialize(
-        self,
-        license_server_id,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        if license_server_id is not None:
-            _path_params['licenseServerId'] = license_server_id
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'OAuth2', 
-            'OAuth2'
-        ]
-
-        return self.api_client.param_serialize(
-            method='DELETE',
-            resource_path='/api/v2/license-servers/{licenseServerId}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def api_v2_license_servers_license_server_id_get(
+    def get_license_servers_by_id(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         _request_timeout: Union[
@@ -605,7 +885,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> LicenseServerMetadata:
-        """api_v2_license_servers_license_server_id_get
+        """get_license_servers_by_id
 
         Get a particular license server.
 
@@ -633,7 +913,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_get_serialize(
+        _param = self._get_license_servers_by_id_serialize(
             license_server_id=license_server_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -658,7 +938,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_get_with_http_info(
+    def get_license_servers_by_id_with_http_info(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         _request_timeout: Union[
@@ -674,7 +954,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[LicenseServerMetadata]:
-        """api_v2_license_servers_license_server_id_get
+        """get_license_servers_by_id
 
         Get a particular license server.
 
@@ -702,7 +982,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_get_serialize(
+        _param = self._get_license_servers_by_id_serialize(
             license_server_id=license_server_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -727,7 +1007,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_get_without_preload_content(
+    def get_license_servers_by_id_without_preload_content(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         _request_timeout: Union[
@@ -743,7 +1023,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """api_v2_license_servers_license_server_id_get
+        """get_license_servers_by_id
 
         Get a particular license server.
 
@@ -771,7 +1051,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_get_serialize(
+        _param = self._get_license_servers_by_id_serialize(
             license_server_id=license_server_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -791,7 +1071,7 @@ class LicenseServersApi:
         return response_data.response
 
 
-    def _api_v2_license_servers_license_server_id_get_serialize(
+    def _get_license_servers_by_id_serialize(
         self,
         license_server_id,
         _request_auth,
@@ -855,7 +1135,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_patch(
+    def patch_license_servers(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         license_server_metadata: Optional[LicenseServerMetadata] = None,
@@ -872,7 +1152,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> None:
-        """api_v2_license_servers_license_server_id_patch
+        """patch_license_servers
 
         Update a particular license server.
 
@@ -902,7 +1182,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_patch_serialize(
+        _param = self._patch_license_servers_serialize(
             license_server_id=license_server_id,
             license_server_metadata=license_server_metadata,
             _request_auth=_request_auth,
@@ -928,7 +1208,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_patch_with_http_info(
+    def patch_license_servers_with_http_info(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         license_server_metadata: Optional[LicenseServerMetadata] = None,
@@ -945,7 +1225,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[None]:
-        """api_v2_license_servers_license_server_id_patch
+        """patch_license_servers
 
         Update a particular license server.
 
@@ -975,7 +1255,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_patch_serialize(
+        _param = self._patch_license_servers_serialize(
             license_server_id=license_server_id,
             license_server_metadata=license_server_metadata,
             _request_auth=_request_auth,
@@ -1001,7 +1281,7 @@ class LicenseServersApi:
 
 
     @validate_call
-    def api_v2_license_servers_license_server_id_patch_without_preload_content(
+    def patch_license_servers_without_preload_content(
         self,
         license_server_id: Annotated[StrictStr, Field(description="The ID of the license server.")],
         license_server_metadata: Optional[LicenseServerMetadata] = None,
@@ -1018,7 +1298,7 @@ class LicenseServersApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """api_v2_license_servers_license_server_id_patch
+        """patch_license_servers
 
         Update a particular license server.
 
@@ -1048,7 +1328,7 @@ class LicenseServersApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._api_v2_license_servers_license_server_id_patch_serialize(
+        _param = self._patch_license_servers_serialize(
             license_server_id=license_server_id,
             license_server_metadata=license_server_metadata,
             _request_auth=_request_auth,
@@ -1069,7 +1349,7 @@ class LicenseServersApi:
         return response_data.response
 
 
-    def _api_v2_license_servers_license_server_id_patch_serialize(
+    def _patch_license_servers_serialize(
         self,
         license_server_id,
         license_server_metadata,
@@ -1133,286 +1413,6 @@ class LicenseServersApi:
         return self.api_client.param_serialize(
             method='PATCH',
             resource_path='/api/v2/license-servers/{licenseServerId}',
-            path_params=_path_params,
-            query_params=_query_params,
-            header_params=_header_params,
-            body=_body_params,
-            post_params=_form_params,
-            files=_files,
-            auth_settings=_auth_settings,
-            collection_formats=_collection_formats,
-            _host=_host,
-            _request_auth=_request_auth
-        )
-
-
-
-
-    @validate_call
-    def api_v2_license_servers_post(
-        self,
-        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[LicenseServerMetadata]:
-        """api_v2_license_servers_post
-
-        Register a license server.
-
-        :param license_server_metadata:
-        :type license_server_metadata: List[LicenseServerMetadata]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_post_serialize(
-            license_server_metadata=license_server_metadata,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "List[LicenseServerMetadata]",
-            '400': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        ).data
-
-
-    @validate_call
-    def api_v2_license_servers_post_with_http_info(
-        self,
-        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[LicenseServerMetadata]]:
-        """api_v2_license_servers_post
-
-        Register a license server.
-
-        :param license_server_metadata:
-        :type license_server_metadata: List[LicenseServerMetadata]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_post_serialize(
-            license_server_metadata=license_server_metadata,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "List[LicenseServerMetadata]",
-            '400': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        response_data.read()
-        return self.api_client.response_deserialize(
-            response_data=response_data,
-            response_types_map=_response_types_map,
-        )
-
-
-    @validate_call
-    def api_v2_license_servers_post_without_preload_content(
-        self,
-        license_server_metadata: Optional[List[LicenseServerMetadata]] = None,
-        _request_timeout: Union[
-            None,
-            Annotated[StrictFloat, Field(gt=0)],
-            Tuple[
-                Annotated[StrictFloat, Field(gt=0)],
-                Annotated[StrictFloat, Field(gt=0)]
-            ]
-        ] = None,
-        _request_auth: Optional[Dict[StrictStr, Any]] = None,
-        _content_type: Optional[StrictStr] = None,
-        _headers: Optional[Dict[StrictStr, Any]] = None,
-        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> RESTResponseType:
-        """api_v2_license_servers_post
-
-        Register a license server.
-
-        :param license_server_metadata:
-        :type license_server_metadata: List[LicenseServerMetadata]
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :type _request_timeout: int, tuple(int, int), optional
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the
-                              authentication in the spec for a single request.
-        :type _request_auth: dict, optional
-        :param _content_type: force content-type for the request.
-        :type _content_type: str, Optional
-        :param _headers: set to override the headers for a single
-                         request; this effectively ignores the headers
-                         in the spec for a single request.
-        :type _headers: dict, optional
-        :param _host_index: set to override the host_index for a single
-                            request; this effectively ignores the host_index
-                            in the spec for a single request.
-        :type _host_index: int, optional
-        :return: Returns the result object.
-        """ # noqa: E501
-
-        _param = self._api_v2_license_servers_post_serialize(
-            license_server_metadata=license_server_metadata,
-            _request_auth=_request_auth,
-            _content_type=_content_type,
-            _headers=_headers,
-            _host_index=_host_index
-        )
-
-        _response_types_map: Dict[str, Optional[str]] = {
-            '201': "List[LicenseServerMetadata]",
-            '400': "ErrorResponse",
-            '500': "ErrorResponse",
-        }
-        response_data = self.api_client.call_api(
-            *_param,
-            _request_timeout=_request_timeout
-        )
-        return response_data.response
-
-
-    def _api_v2_license_servers_post_serialize(
-        self,
-        license_server_metadata,
-        _request_auth,
-        _content_type,
-        _headers,
-        _host_index,
-    ) -> RequestSerialized:
-
-        _host = None
-
-        _collection_formats: Dict[str, str] = {
-            'LicenseServerMetadata': '',
-        }
-
-        _path_params: Dict[str, str] = {}
-        _query_params: List[Tuple[str, str]] = []
-        _header_params: Dict[str, Optional[str]] = _headers or {}
-        _form_params: List[Tuple[str, str]] = []
-        _files: Dict[str, Union[str, bytes]] = {}
-        _body_params: Optional[bytes] = None
-
-        # process the path parameters
-        # process the query parameters
-        # process the header parameters
-        # process the form parameters
-        # process the body parameter
-        if license_server_metadata is not None:
-            _body_params = license_server_metadata
-
-
-        # set the HTTP header `Accept`
-        if 'Accept' not in _header_params:
-            _header_params['Accept'] = self.api_client.select_header_accept(
-                [
-                    'application/json'
-                ]
-            )
-
-        # set the HTTP header `Content-Type`
-        if _content_type:
-            _header_params['Content-Type'] = _content_type
-        else:
-            _default_content_type = (
-                self.api_client.select_header_content_type(
-                    [
-                        'application/json'
-                    ]
-                )
-            )
-            if _default_content_type is not None:
-                _header_params['Content-Type'] = _default_content_type
-
-        # authentication setting
-        _auth_settings: List[str] = [
-            'OAuth2', 
-            'OAuth2'
-        ]
-
-        return self.api_client.param_serialize(
-            method='POST',
-            resource_path='/api/v2/license-servers',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

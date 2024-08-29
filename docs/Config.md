@@ -6,11 +6,13 @@ The test configuration
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**attack_profiles** | [**List[AttackProfile]**](AttackProfile.md) |  | 
-**custom_dashboards** | [**CustomDashboards**](CustomDashboards.md) |  | 
-**expected_disk_space** | [**List[ExpectedDiskSpace]**](ExpectedDiskSpace.md) |  | 
-**network_profiles** | [**List[NetworkProfile]**](NetworkProfile.md) |  | 
-**traffic_profiles** | [**List[ApplicationProfile]**](ApplicationProfile.md) |  | 
+**attack_profiles** | [**List[AttackProfile]**](AttackProfile.md) |  | [optional] 
+**config_validation** | [**ConfigValidation**](ConfigValidation.md) |  | [optional] 
+**custom_dashboards** | [**CustomDashboards**](CustomDashboards.md) |  | [optional] 
+**expected_disk_space** | [**List[ExpectedDiskSpace]**](ExpectedDiskSpace.md) |  | [optional] 
+**network_profiles** | [**List[NetworkProfile]**](NetworkProfile.md) |  | [optional] 
+**traffic_profiles** | [**List[ApplicationProfile]**](ApplicationProfile.md) |  | [optional] 
+**validate** | **List[bytearray]** |  | [optional] 
 
 ## Example
 

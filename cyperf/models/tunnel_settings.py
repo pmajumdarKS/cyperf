@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.auth_settings import AuthSettings
 from cyperf.models.tcp_profile import TcpProfile
 from typing import Optional, Set
@@ -28,8 +28,8 @@ class TunnelSettings(BaseModel):
     """
     TunnelSettings
     """ # noqa: E501
-    var_auth_settings: AuthSettings = Field(alias="AuthSettings")
-    outer_tcp_profile: TcpProfile = Field(alias="OuterTCPProfile")
+    var_auth_settings: Optional[AuthSettings] = Field(default=None, alias="AuthSettings")
+    outer_tcp_profile: Optional[TcpProfile] = Field(default=None, alias="OuterTCPProfile")
     __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile"]
 
     model_config = ConfigDict(

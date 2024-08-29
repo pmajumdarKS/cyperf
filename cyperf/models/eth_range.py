@@ -32,7 +32,7 @@ class EthRange(BaseModel):
     mac_auto: StrictBool = Field(description="A flag indicating if the MAC address for the EthRange should be determined automatically (default: true).", alias="MacAuto")
     mac_incr: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The MAC address increment rule for the EthRange (default: 00:00:00:00:00:01).", alias="MacIncr")
     mac_start: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The MAC start address for the EthRange (default: 01:02:03:04:05:06).", alias="MacStart")
-    one_mac_per_ip: StrictBool = Field(description="A flag indicating if there is only one MAC address for the EthRange per IPRange (default: true).", alias="OneMacPerIP")
+    one_mac_per_ip: Optional[StrictBool] = Field(default=None, description="A flag indicating if there is only one MAC address for the EthRange per IPRange (default: true).", alias="OneMacPerIP")
     static_arp_table: Optional[List[StaticARPEntry]] = Field(default=None, alias="StaticARPTable")
     max_count_per_agent: Optional[StrictInt] = Field(default=None, description="The maximum number of MACs that should be assigned to each traffic agent for this Ethernet range segment in a valid test (default: 0, split equally between agents).", alias="maxCountPerAgent")
     __properties: ClassVar[List[str]] = ["Count", "MacAuto", "MacIncr", "MacStart", "OneMacPerIP", "StaticARPTable", "maxCountPerAgent"]

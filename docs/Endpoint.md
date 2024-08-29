@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**network_mapping** | [**NetworkMapping**](NetworkMapping.md) | The per-endpoint network mapping. Depending on Endpoint type, only ClientNetworkTags or ServerNetworkTags will be used. | 
+**network_mapping** | [**NetworkMapping**](NetworkMapping.md) | The per-endpoint network mapping. Depending on Endpoint type, only ClientNetworkTags or ServerNetworkTags will be used. | [optional] 
 **type** | **str** |  | 
 **id** | **str** |  | 
 

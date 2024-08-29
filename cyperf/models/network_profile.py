@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.dut_network import DUTNetwork
 from cyperf.models.ip_network import IPNetwork
 from typing import Optional, Set
@@ -28,8 +28,8 @@ class NetworkProfile(BaseModel):
     """
     The networks assigned to the current test configuration
     """ # noqa: E501
-    dut_network_segment: List[DUTNetwork] = Field(alias="DUTNetworkSegment")
-    ip_network_segment: List[IPNetwork] = Field(alias="IPNetworkSegment")
+    dut_network_segment: Optional[List[DUTNetwork]] = Field(default=None, alias="DUTNetworkSegment")
+    ip_network_segment: Optional[List[IPNetwork]] = Field(default=None, alias="IPNetworkSegment")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["DUTNetworkSegment", "IPNetworkSegment", "id"]
 

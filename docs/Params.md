@@ -15,13 +15,13 @@ Name | Type | Description | Notes
 **enum** | [**ParamsEnum**](ParamsEnum.md) |  | [optional] 
 **file_value** | [**FileValue**](FileValue.md) |  | [optional] 
 **flow_identifier** | **bool** | If true, the value of this parameter is used to uniquely identify an application/attack | [optional] 
-**is_deprecated** | **bool** |  | 
+**is_deprecated** | **bool** |  | [optional] 
 **is_modified** | **bool** |  | [optional] 
 **media_files** | [**List[MediaFile]**](MediaFile.md) |  | [optional] 
 **metadata** | [**ParamMetadata**](ParamMetadata.md) |  | [optional] 
 **name** | **str** | The name of the parameter. | [optional] 
 **param_id** | **str** | The id of the parameter. | [optional] 
-**readonly** | **bool** |  | 
+**readonly** | **bool** |  | [optional] 
 **source** | **str** | The source of the parameter. | [optional] 
 **supported_sources** | **List[str]** | A list that indicates possible sources for the parameter | [optional] 
 **type** | **str** | The type of the parameter. | [optional] 

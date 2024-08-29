@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emulated_router_ranges** | [**List[EmulatedRouterRange]**](EmulatedRouterRange.md) |  | 
+**emulated_router_ranges** | [**List[EmulatedRouterRange]**](EmulatedRouterRange.md) |  | [optional] 
 **enabled** | **bool** |  | 
 
 ## Example

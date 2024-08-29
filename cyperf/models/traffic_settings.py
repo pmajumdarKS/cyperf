@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.transport_profile import TransportProfile
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class TrafficSettings(BaseModel):
     """
     TrafficSettings
     """ # noqa: E501
-    default_transport_profile: TransportProfile = Field(alias="DefaultTransportProfile")
+    default_transport_profile: Optional[TransportProfile] = Field(default=None, alias="DefaultTransportProfile")
     __properties: ClassVar[List[str]] = ["DefaultTransportProfile"]
 
     model_config = ConfigDict(

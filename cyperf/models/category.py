@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.category_value import CategoryValue
 from typing import Optional, Set
@@ -27,9 +27,10 @@ class Category(BaseModel):
     """
     Category
     """ # noqa: E501
+    index: Optional[StrictInt] = Field(default=None, description="The index of the category")
     name: Optional[StrictStr] = Field(default=None, description="The name of the category")
     values: Optional[List[CategoryValue]] = Field(default=None, description="The values of the category")
-    __properties: ClassVar[List[str]] = ["name", "values"]
+    __properties: ClassVar[List[str]] = ["index", "name", "values"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,6 +90,7 @@ class Category(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "index": obj.get("index"),
             "name": obj.get("name"),
             "values": [CategoryValue.from_dict(_item) for _item in obj["values"]] if obj.get("values") is not None else None
         })

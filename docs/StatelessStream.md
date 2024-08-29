@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **client_stream_profile** | [**StreamProfile**](StreamProfile.md) |  | [optional] 
-**direction** | [**StreamDirection**](StreamDirection.md) |  | 
+**direction** | [**StreamDirection**](StreamDirection.md) |  | [optional] 
 **is_flood_stream** | **bool** |  | [optional] 
 **server_stream_profile** | [**StreamProfile**](StreamProfile.md) |  | [optional] 
 

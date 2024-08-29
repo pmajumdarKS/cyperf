@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **message** | **str** |  | 
 **severity** | **str** |  | 
-**timestamp** | **int** |  | 
 
 ## Example
 

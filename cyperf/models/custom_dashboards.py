@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.api_link import APILink
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class CustomDashboards(BaseModel):
     CustomDashboards
     """ # noqa: E501
     active: StrictBool = Field(description="Indicates whether the custom dashboards are enabled or not.", alias="Active")
-    links: List[APILink] = Field(description="A list of links to user defined stats dashboards.", alias="Links")
+    links: Optional[List[APILink]] = Field(default=None, description="A list of links to user defined stats dashboards.", alias="Links")
     __properties: ClassVar[List[str]] = ["Active", "Links"]
 
     model_config = ConfigDict(

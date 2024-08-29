@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**actions** | [**List[AttackAction]**](AttackAction.md) |  | 
+**actions** | [**List[AttackAction]**](AttackAction.md) |  | [optional] 
 **add_actions** | **List[bytearray]** |  | [optional] 
 **id** | **str** |  | 
 

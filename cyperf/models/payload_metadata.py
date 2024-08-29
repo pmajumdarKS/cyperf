@@ -29,7 +29,8 @@ class PayloadMetadata(BaseModel):
     file_extension: Optional[StrictStr] = Field(default=None, description="The extension of the file", alias="FileExtension")
     file_name: Optional[StrictStr] = Field(default=None, description="The path of the file", alias="FileName")
     file_type: Optional[StrictStr] = Field(default=None, description="The type of the file", alias="FileType")
-    __properties: ClassVar[List[str]] = ["FileExtension", "FileName", "FileType"]
+    file_url: Optional[StrictStr] = Field(default=None, description="The relative URL of the file", alias="FileURL")
+    __properties: ClassVar[List[str]] = ["FileExtension", "FileName", "FileType", "FileURL"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,7 +85,8 @@ class PayloadMetadata(BaseModel):
         _obj = cls.model_validate({
             "FileExtension": obj.get("FileExtension"),
             "FileName": obj.get("FileName"),
-            "FileType": obj.get("FileType")
+            "FileType": obj.get("FileType"),
+            "FileURL": obj.get("FileURL")
         })
         return _obj
 

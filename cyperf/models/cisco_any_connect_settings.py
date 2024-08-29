@@ -31,13 +31,13 @@ class CiscoAnyConnectSettings(BaseModel):
     """
     CiscoAnyConnectSettings
     """ # noqa: E501
-    var_auth_settings: AuthSettings = Field(alias="AuthSettings")
-    outer_tcp_profile: TcpProfile = Field(alias="OuterTCPProfile")
-    cisco_encapsulation: CiscoEncapsulation = Field(alias="CiscoEncapsulation")
-    connection_profiles: List[StrictStr] = Field(alias="ConnectionProfiles")
+    var_auth_settings: Optional[AuthSettings] = Field(default=None, alias="AuthSettings")
+    outer_tcp_profile: Optional[TcpProfile] = Field(default=None, alias="OuterTCPProfile")
+    cisco_encapsulation: Optional[CiscoEncapsulation] = Field(default=None, alias="CiscoEncapsulation")
+    connection_profiles: Optional[List[StrictStr]] = Field(default=None, alias="ConnectionProfiles")
     esp_probe_retry_timeout: Optional[StrictInt] = Field(default=None, alias="ESPProbeRetryTimeout")
     esp_probe_timeout: Optional[StrictInt] = Field(default=None, alias="ESPProbeTimeout")
-    outer_tls_client_profile: TLSProfile = Field(alias="OuterTLSClientProfile")
+    outer_tls_client_profile: Optional[TLSProfile] = Field(default=None, alias="OuterTLSClientProfile")
     vpn_gateway: Annotated[str, Field(strict=True)] = Field(alias="VPNGateway")
     __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile", "CiscoEncapsulation", "ConnectionProfiles", "ESPProbeRetryTimeout", "ESPProbeTimeout", "OuterTLSClientProfile", "VPNGateway"]
 

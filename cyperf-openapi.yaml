@@ -22,8 +22,6 @@ components:
           $ref: '#/components/schemas/APIRelationship'
           type: string
       required:
-      - id
-      - name
       - href
       - rel
       - type
@@ -107,11 +105,6 @@ components:
           x-readonly: 'true'
         id:
           $ref: '#/components/schemas/ID'
-      required:
-      - id
-      - Exchanges
-      - IsStrike
-      - ProtocolID
       type: object
     AdvancedSettings:
       properties:
@@ -242,6 +235,25 @@ components:
         systemInfo:
           $ref: '#/components/schemas/SystemInfo'
       type: object
+    AgentAssignmentByPort:
+      description: Details of an agent assignment by port
+      properties:
+        captureSettings:
+          allOf:
+          - $ref: '#/components/schemas/CaptureSettings'
+          description: The capture settings of the port that is assigned.
+          x-get: '*'
+          x-multiplicity: required
+          x-patch: '*'
+          x-put: '*'
+        id:
+          $ref: '#/components/schemas/ID'
+        portId:
+          description: The id of the port that is assigned.
+          type: string
+      required:
+      - id
+      type: object
     AgentAssignmentDetails:
       description: Details of an agent assignment by ID
       properties:
@@ -266,7 +278,6 @@ components:
       required:
       - id
       - agentId
-      - interfaces
       type: object
     AgentAssignments:
       description: The agents assigned to the current test configuration
@@ -281,6 +292,16 @@ components:
           x-multiplicity: list
           x-patch: '*,*'
           x-put: '*,*'
+        ByPort:
+          description: The ports assigned to the current test configuration.
+          items:
+            allOf:
+            - $ref: '#/components/schemas/AgentAssignmentByPort'
+          type: array
+          x-get: '*,*'
+          x-multiplicity: list
+          x-patch: '*,*'
+          x-put: '*,*'
         ByTag:
           description: The tags according to which the agents are dynamically assigned.
           items:
@@ -288,7 +309,6 @@ components:
           type: array
       required:
       - ByTag
-      - ByID
       type: object
     AgentCPUInfo:
       properties:
@@ -383,6 +403,47 @@ components:
             in the last 5 minutes
           readOnly: 'true'
           type: boolean
+      type: object
+    AppExchange:
+      properties:
+        c2sPayload:
+          $ref: '#/components/schemas/GenericFile'
+        id:
+          readOnly: 'true'
+          type: string
+        payload:
+          $ref: '#/components/schemas/ExchangePayload'
+        s2cPayload:
+          $ref: '#/components/schemas/GenericFile'
+      type: object
+    AppFlow:
+      properties:
+        dstAddress:
+          format: byte
+          type: string
+        dstPort:
+          type: integer
+        exchanges:
+          items:
+            $ref: '#/components/schemas/AppExchange'
+          type: array
+        id:
+          readOnly: 'true'
+          type: string
+        srcAddress:
+          format: byte
+          type: string
+        srcPort:
+          type: integer
+        transportType:
+          type: string
+      type: object
+    AppMode:
+      properties:
+        appId:
+          type: string
+        uiAppId:
+          type: string
       type: object
     Application:
       allOf:
@@ -479,12 +540,7 @@ components:
             x-operation: 'true'
             x-post: -,UpdateApplicationNetworkMapping
         required:
-        - Tracks
         - ObjectiveWeight
-        - DataTypes
-        - InheritTLS
-        - IsStatelessStream
-        - Static
         type: object
     ApplicationProfile:
       allOf:
@@ -545,9 +601,6 @@ components:
             x-post: -,ResetTrafficProfileNetworkMapping
         required:
         - Name
-        - Applications
-        - ObjectivesAndTimeline
-        - DefaultNetworkMapping
         type: object
     ApplicationType:
       properties:
@@ -651,6 +704,10 @@ components:
           description: If true, the application/strike is generated from Controller
           readOnly: 'true'
           type: boolean
+        UserDefined:
+          description: If true, the application was created by the user
+          readOnly: 'true'
+          type: boolean
         id:
           description: The unique identifier of the application
           readOnly: 'true'
@@ -694,9 +751,6 @@ components:
       properties:
         Config:
           $ref: '#/components/schemas/Config'
-        Name:
-          description: The name of the configuration
-          type: string
         SessionID:
           description: The unique identifier of the session this configuration belongs
             to
@@ -714,6 +768,9 @@ components:
         id:
           description: The unique identifier of the CyPerf configuration
           readOnly: 'true'
+          type: string
+        name:
+          description: The name of the configuration
           type: string
       type: object
     ArchiveInfo:
@@ -899,9 +956,6 @@ components:
             type: array
             x-operation: 'true'
             x-post: -,UpdateAttackNetworkMapping
-        required:
-        - Tracks
-        - InheritTLS
         type: object
     AttackAction:
       allOf:
@@ -921,8 +975,6 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
-      required:
-      - TimelineSegments
       type: object
     AttackProfile:
       allOf:
@@ -982,9 +1034,6 @@ components:
             x-post: -,ResetAttackProfileNetworkMapping
         required:
         - Name
-        - Attacks
-        - ObjectivesAndTimeline
-        - DefaultNetworkMapping
         type: object
     AttackTimelineSegment:
       allOf:
@@ -1046,7 +1095,6 @@ components:
           $ref: '#/components/schemas/ID'
       required:
       - id
-      - Actions
       type: object
     AuthMethodType:
       description: The authentication method for TLS VPN tunnels.
@@ -1193,9 +1241,6 @@ components:
           maxLength: '4096'
           type: string
           x-auto: default(ipsec)
-      required:
-      - AuthMethod
-      - SharedKey
       type: object
     AutomaticIpType:
       enum:
@@ -1272,6 +1317,9 @@ components:
       type: object
     Category:
       properties:
+        index:
+          description: The index of the category
+          type: integer
         name:
           description: The name of the category
           type: string
@@ -1318,6 +1366,13 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        get-sni-conflicts:
+          items:
+            format: byte
+            type: string
+          type: array
+          x-operation: 'true'
+          x-post: -,GetSNICertConflicts
         id:
           $ref: '#/components/schemas/ID'
         isPlaylist:
@@ -1341,6 +1396,12 @@ components:
           type: string
         playlistFilename:
           type: string
+        resolve-sni-conflicts:
+          items:
+            $ref: '#/components/schemas/Conflict'
+          type: array
+          x-operation: 'true'
+          x-post: -,ResolveSNIConflicts
         sniHostname:
           description: 'The SNI hostname associated with the certificate. (default:
             generic.keysight.io).'
@@ -1348,11 +1409,43 @@ components:
           type: string
           x-auto: default(generic.keysight.io)
       required:
-      - dhFile
-      - certificateFile
-      - keyFile
       - sniHostname
       - id
+      type: object
+    Certificate:
+      properties:
+        auto:
+          type: boolean
+        dnsNames:
+          items:
+            type: string
+          type: array
+        ipAddresses:
+          items:
+            type: string
+          type: array
+        issuer:
+          readOnly: 'true'
+          type: string
+        notAfter:
+          readOnly: 'true'
+          type: string
+        notBefore:
+          readOnly: 'true'
+          type: string
+        validFor:
+          type: integer
+      type: object
+    ChassisInfo:
+      properties:
+        computeNodeID:
+          description: The id of the compute node where the agent is running
+          readOnly: 'true'
+          type: string
+        portID:
+          description: The id of the corresponding port
+          readOnly: 'true'
+          type: string
       type: object
     Choice:
       properties:
@@ -1440,9 +1533,7 @@ components:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
         required:
-        - CiscoEncapsulation
         - VPNGateway
-        - ConnectionProfiles
         type: object
     CiscoEncapsulation:
       properties:
@@ -1472,7 +1563,6 @@ components:
           x-auto: default(1024)
       required:
       - DTLSEnabled
-      - DTLSSettings
       - UdpPort
       - EncapsulationMode
       type: object
@@ -1506,6 +1596,23 @@ components:
             $ref: '#/components/schemas/Parameter'
           type: array
       type: object
+    ComputeNode:
+      properties:
+        appMode:
+          $ref: '#/components/schemas/AppMode'
+        id:
+          type: string
+        mode:
+          type: string
+        name:
+          type: string
+        ports:
+          items:
+            $ref: '#/components/schemas/Port'
+          type: array
+        type:
+          type: string
+      type: object
     Config:
       description: The test configuration
       properties:
@@ -1519,6 +1626,11 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
+        ConfigValidation:
+          allOf:
+          - $ref: '#/components/schemas/ConfigValidation'
+          x-get: '*'
+          x-multiplicity: required
         CustomDashboards:
           allOf:
           - $ref: '#/components/schemas/CustomDashboards'
@@ -1552,13 +1664,13 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
-      required:
-      - NetworkProfiles
-      - TrafficProfiles
-      - AttackProfiles
-      - ExpectedDiskSpace
-      - CustomDashboards
-      - ValidationReport
+        validate:
+          items:
+            format: byte
+            type: string
+          type: array
+          x-operation: 'true'
+          x-post: -,ValidateConfig
       type: object
     ConfigCategory:
       properties:
@@ -1643,6 +1755,20 @@ components:
           type: string
         version:
           $ref: '#/components/schemas/Version'
+      type: object
+    ConfigValidation:
+      properties:
+        IsValidated:
+          type: boolean
+          x-auto: default(false)
+        ValidationMessages:
+          items:
+            $ref: '#/components/schemas/ValidationMessage'
+          type: array
+          x-get: '*'
+          x-multiplicity: list
+      required:
+      - IsValidated
       type: object
     Conflict:
       properties:
@@ -1769,8 +1895,6 @@ components:
       - ServerPort
       - MaxTransactions
       - ClientEndpoint
-      - ServerEndpoint
-      - Name
       type: object
     ConnectionPersistence:
       enum:
@@ -1793,6 +1917,32 @@ components:
           readOnly: 'true'
           type: integer
       type: object
+    Controller:
+      properties:
+        computeNodes:
+          items:
+            $ref: '#/components/schemas/ComputeNode'
+          type: array
+        id:
+          type: string
+        name:
+          type: string
+        serial:
+          type: string
+        type:
+          type: string
+      type: object
+    CreateAppOperation:
+      properties:
+        Actions:
+          items:
+            $ref: '#/components/schemas/Action'
+          type: array
+        AppName:
+          type: string
+        AppType:
+          type: string
+      type: object
     CustomDashboards:
       properties:
         Active:
@@ -1809,7 +1959,6 @@ components:
           x-post: '*'
       required:
       - Active
-      - Links
       type: object
     CustomImportHandler:
       properties:
@@ -1885,9 +2034,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - UDPProfile
-      - TLSClientProfile
       type: object
     DUTNetwork:
       allOf:
@@ -2039,11 +2185,6 @@ components:
             allOf:
             - $ref: '#/components/schemas/Host'
             description: The hostname where the traffic goes if server DUT is active.
-        required:
-        - HTTPHealthCheck
-        - HTTPSHealthCheck
-        - TCPHealthCheck
-        - active
         type: object
     Dashboard:
       properties:
@@ -2233,8 +2374,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - UDPProfile
       type: object
     EffectivePorts:
       properties:
@@ -2270,7 +2409,6 @@ components:
           x-auto: default(False)
       required:
       - Enabled
-      - EmulatedRouterRanges
     EmulatedRouterRange:
       allOf:
       - $ref: '#/components/schemas/IPRange'
@@ -2469,7 +2607,6 @@ components:
       - id
       - Name
       - Type
-      - NetworkMapping
       type: object
     Enum:
       properties:
@@ -2483,7 +2620,7 @@ components:
           type: string
       type: object
     ErrorResponse:
-      description: REST API error response
+      description: REST API error response.
       properties:
         message:
           description: The error message
@@ -2540,7 +2677,6 @@ components:
           type: integer
       required:
       - MacAuto
-      - OneMacPerIP
       x-multiplicity: list
     Exchange:
       properties:
@@ -2558,6 +2694,15 @@ components:
           $ref: '#/components/schemas/ID'
       required:
       - id
+      type: object
+    ExchangePayload:
+      properties:
+        c2s:
+          format: byte
+          type: string
+        s2c:
+          format: byte
+          type: string
       type: object
     ExpectedDiskSpace:
       properties:
@@ -2706,7 +2851,6 @@ components:
           x-auto: default(1024)
       required:
       - PPPOverDTLSEnabled
-      - PPPOverDTLSSettings
       - UdpPort
       - EncapsulationMode
       type: object
@@ -2732,12 +2876,13 @@ components:
           VPNGateway:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
-        required:
-        - F5Encapsulation
-        - VPNGateway
         type: object
     FileMetadata:
       properties:
+        default:
+          description: A flag indicating if the file is used as default configuration
+            or not
+          type: boolean
         userVisible:
           description: A flag indicating if the file is user-visible or not
           type: boolean
@@ -2809,7 +2954,6 @@ components:
           x-auto: default(1024)
       required:
       - PPPOverDTLSEnabled
-      - PPPOverDTLSSettings
       - UdpPort
       - EncapsulationMode
       type: object
@@ -2835,9 +2979,6 @@ components:
           VPNGateway:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
-        required:
-        - FortinetEncapsulation
-        - VPNGateway
         type: object
     GenerateAllOperation:
       properties:
@@ -3045,9 +3186,6 @@ components:
       required:
       - Name
       - Description
-      - Params
-      - ExternalResourceURL
-      - IsModified
       type: object
     HTTPVersion:
       enum:
@@ -3121,8 +3259,6 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(80)
-      required:
-      - Port
       type: object
     Host:
       pattern: ^$|^(([a-zA-Z0-9\-]*[a-zA-Z0-9])\.)+([A-Za-z|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(([0-9a-fA-F]{1,4}:){5,5}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}|([0-9a-fA-F]{1,4}:){1,4}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){2,2}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){3,3}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){4,4})|:(:[0-9a-fA-F]{1,4}){1,5}):((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$
@@ -3231,12 +3367,6 @@ components:
             minimum: '0'
             type: integer
             x-auto: default(1)
-        required:
-        - id
-        - IPRanges
-        - TunnelStacks
-        - IPSecStacks
-        - EmulatedRouter
         type: object
       description: The IP network configuration
     IPRange:
@@ -3345,8 +3475,6 @@ components:
       - NetMaskAuto
       - IpVer
       - MssAuto
-      - Mss
-      - id
       type: object
       x-multiplicity: list
     IPSecRange:
@@ -3426,12 +3554,6 @@ components:
       - PublicPeerIncrement
       - TunnelCountPerOuterIP
       - MultiP2OverP1
-      - ProtectedSubConfig
-      - AuthSettings
-      - IKEPhase1Config
-      - IKEPhase2Config
-      - RemoteAccess
-      - Timers
       type: object
     IPSecStack:
       properties:
@@ -3538,8 +3660,6 @@ components:
       - id
       - IPSecStackName
       - StackRole
-      - EmulatedSubConfig
-      - IPSecRange
       - MaxInitiationRate
       - MaxPending
       - EnableRekey
@@ -3550,8 +3670,6 @@ components:
       - RetransmissionTimeout
       - RetryCount
       - RetryInterval
-      - RetryIntervalIncrement
-      - OuterIPRange
       type: object
     IdPSignatureAlgo:
       enum:
@@ -3719,9 +3837,6 @@ components:
           x-put: '*,*'
         id:
           $ref: '#/components/schemas/ID'
-      required:
-      - id
-      - FileValue
       type: object
     MediaTrack:
       properties:
@@ -3844,8 +3959,6 @@ components:
         id:
           $ref: '#/components/schemas/ID'
       required:
-      - IPNetworkSegment
-      - DUTNetworkSegment
       - id
       type: object
       x-multiplicity: required
@@ -4045,9 +4158,6 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
-      required:
-      - PrimaryObjective
-      - SecondaryObjective
       type: object
     OpenAPIDefinitions:
       properties:
@@ -4161,7 +4271,6 @@ components:
           x-auto: default(1024)
       required:
       - ESPOverUDPEnabled
-      - ESPOverUDPSettings
       - UdpPort
       - EncapsulationMode
       type: object
@@ -4211,10 +4320,8 @@ components:
               type: string
             type: array
         required:
-        - PANGPEncapsulation
         - VPNGateways
         - PortalHostname
-        - AuthSettings
         type: object
     Pair:
       properties:
@@ -4504,8 +4611,6 @@ components:
           type: string
       required:
       - id
-      - IsDeprecated
-      - Readonly
       type: object
     PayloadMeta:
       properties:
@@ -4532,6 +4637,9 @@ components:
           type: string
         FileType:
           description: The type of the file
+          type: string
+        FileURL:
+          description: The relative URL of the file
           type: string
       type: object
     PepDUT:
@@ -4590,8 +4698,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - AuthProfileType
       type: object
     PfsP2Group:
       enum:
@@ -4698,6 +4804,17 @@ components:
           description: The version of the plugin
           type: string
       type: object
+    Port:
+      properties:
+        disabled:
+          type: boolean
+        id:
+          type: string
+        name:
+          type: string
+        speed:
+          type: string
+      type: object
     PortSettings:
       properties:
         Automatic:
@@ -4738,7 +4855,64 @@ components:
       - ServerListenPort
       - AutomaticForwardProxyPort
       - ForwardProxyPort
-      - Readonly
+      type: object
+    PrepareTestOperation:
+      properties:
+        Options:
+          $ref: '#/components/schemas/PreparedTestOptions'
+        message:
+          description: An optional message that describes the reason the test ended
+          type: string
+        newState:
+          description: An optional enum that identifies the current state of the test
+          type: string
+        oldState:
+          description: An optional enum that identifies the previous state of the
+            test
+          type: string
+        owner:
+          description: An optional friendly display name for the user which initiated
+            the operation
+          type: string
+        ownerId:
+          description: An optional identifier that uniquely identifies the user which
+            initiated the operation
+          type: string
+        reason:
+          description: An optional enum that identifies the underlying reason for
+            the test's end
+          type: string
+        testId:
+          description: The test to which the state change refers
+          type: string
+        timestamp:
+          description: An optional Unix timestamp that indicates when the test state
+            was changed
+          format: int64
+          type: integer
+      type: object
+    PreparedTestOptions:
+      properties:
+        AddActivityMeta:
+          type: boolean
+        DatasourceForUIViews:
+          type: string
+        ExtraTags:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        FilterByProperties:
+          additionalProperties:
+            type: string
+          type: object
+        FormatProtocolName:
+          type: boolean
+        OverrideProperties:
+          additionalProperties:
+            type: string
+          type: object
       type: object
     PrfP1Algorithm:
       enum:
@@ -4913,6 +5087,19 @@ components:
       required:
       - ModeCfgIncrement
       - ModeCfgSuffix
+      type: object
+    ReplayCapture:
+      properties:
+        flows:
+          items:
+            $ref: '#/components/schemas/AppFlow'
+          type: array
+        id:
+          description: The unique identifier of the application
+          readOnly: 'true'
+          type: string
+        name:
+          type: string
       type: object
     RequiredFileTypes:
       properties:
@@ -5229,15 +5416,6 @@ components:
           type: boolean
         id:
           $ref: '#/components/schemas/ID'
-      required:
-      - Name
-      - id
-      - ClientHTTPProfile
-      - ServerHTTPProfile
-      - SupportsHTTPProfiles
-      - Endpoints
-      - NetworkMapping
-      - InheritHTTPProfile
       type: object
     SecondaryObjective:
       properties:
@@ -5471,8 +5649,6 @@ components:
       - NameIdFormat
       - ResponseSignature
       - AssertionSignature
-      - SignatureAlgorithm
-      - CertConfig
       type: object
     Snapshot:
       properties:
@@ -5551,7 +5727,6 @@ components:
       - Type
       - Unit
       - MaxPendingSimulatedUsers
-      - Timeline
     StatelessStream:
       properties:
         ClientStreamProfile:
@@ -5575,9 +5750,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - ObjectiveWeight
-      - Direction
       type: object
     StaticARPEntry:
       properties:
@@ -5645,7 +5817,7 @@ components:
             type: string
           ObjectiveValue:
             format: float
-            minimum: '1'
+            minimum: '0'
             type: number
             x-auto: default(1)
         required:
@@ -5683,7 +5855,7 @@ components:
       enum:
       - RANDOM
       - PSEUDORANDOM
-      - 'null'
+      - <nil>
       type: string
     StreamProfile:
       properties:
@@ -5713,8 +5885,40 @@ components:
       - payloadSize
       - payloadType
       type: object
+    SupportedGroupTLS13:
+      description: 'The TLSv1.3 supported groups (default: P-256).'
+      enum:
+      - P-256
+      - P-384
+      - P-521
+      - X25519_KYBER768
+      - X25519_KYBER512
+      - X25519_MLKEM512
+      - X25519_MLKEM768
+      - KYBER768
+      - MLKEM768
+      - KYBER512
+      - MLKEM512
+      - KYBER1024
+      - MLKEM1024
+      - P384_KYBER768
+      - P256_KYBER512
+      - P384_MLKEM1024
+      - X448_MLKEM768
+      - P384_MLKEM768
+      - P256_MLKEM768
+      - P256_MLKEM512
+      type: string
+      x-auto: default(P-256)
+    SwitchAppOperation:
+      properties:
+        appID:
+          type: string
+      type: object
     SystemInfo:
       properties:
+        chassisInfo:
+          $ref: '#/components/schemas/ChassisInfo'
         kernelVersion:
           readOnly: 'true'
           type: string
@@ -5837,6 +6041,9 @@ components:
           description: 'The enable status of the SNI configuration (default: false).'
           type: boolean
           x-auto: default(False)
+        supportedGroups13:
+          items:
+            $ref: '#/components/schemas/SupportedGroupTLS13'
         tls12Enabled:
           type: boolean
         tls13Enabled:
@@ -5858,12 +6065,8 @@ components:
       required:
       - profileId
       - version
-      - dhFile
-      - certificateFile
-      - keyFile
       - sniEnabled
       - tls12Enabled
-      - tls13Enabled
       type: object
     TagList:
       description: A list of tags.
@@ -6110,7 +6313,6 @@ components:
             x-put: -,*
         required:
         - PrimaryObjectiveValue
-        - SecondaryObjectiveValues
         - PrimaryObjectiveUnit
         - SecondaryObjectiveUnit
         type: object
@@ -6195,7 +6397,6 @@ components:
           $ref: '#/components/schemas/ID'
       required:
       - id
-      - Actions
       type: object
     TrackType:
       enum:
@@ -6226,9 +6427,6 @@ components:
           x-put: '*'
         id:
           $ref: '#/components/schemas/ID'
-      required:
-      - id
-      - TrafficSettings
       type: object
     TrafficSettings:
       properties:
@@ -6239,8 +6437,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - DefaultTransportProfile
       type: object
     TransportProfile:
       allOf:
@@ -6323,9 +6519,6 @@ components:
           format: int32
           type: integer
           x-auto: default(0)
-      required:
-      - id
-      - L4ProfileName
       type: object
     TunnelRange:
       description: The Tunnel Range assigned to the current test configuration
@@ -6401,11 +6594,6 @@ components:
       - TunnelCountPerOuterIP
       - InnerIPCount
       - TcpDstPort
-      - CiscoAnyConnectSettings
-      - FortinetSettings
-      - PANGPSettings
-      - DCPRequestTimeout
-      - F5Settings
       type: object
     TunnelSettings:
       properties:
@@ -6423,14 +6611,6 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
-      required:
-      - OuterTCPProfile
-      - OuterTLSClientProfile
-      - CiscoEncapsulation
-      - FortinetEncapsulation
-      - PANGPEncapsulation
-      - VPNGateway
-      - AuthSettings
       type: object
     TunnelStack:
       description: The tunnel stack assigned to the current test configuration
@@ -6463,9 +6643,6 @@ components:
       required:
       - id
       - TunnelStackName
-      - InnerIPRange
-      - OuterIPRange
-      - TunnelRange
       type: object
     TypeArrayV2Metadata:
       properties:
@@ -6646,7 +6823,6 @@ components:
           x-auto: default(1)
       required:
       - VlanAuto
-      - VlanEnabled
       type: object
     ValidationMessage:
       properties:
@@ -6654,16 +6830,11 @@ components:
           type: string
         Severity:
           enum:
-          - INFO
           - WARNING
           - ERROR
           type: string
-        Timestamp:
-          format: int64
-          type: integer
       required:
       - Message
-      - Timestamp
       - Severity
       type: object
     Version:
@@ -7092,6 +7263,7 @@ paths:
   /api/v2/agents:
     get:
       description: Get all the currently available agents.
+      operationId: getAgents
       parameters:
       - description: The number of search results to return
         in: query
@@ -7166,6 +7338,7 @@ paths:
   /api/v2/agents/operations/batch-delete:
     post:
       description: Remove multiple agents.
+      operationId: startRootBatchDelete
       requestBody:
         content:
           application/json:
@@ -7188,6 +7361,7 @@ paths:
   /api/v2/agents/operations/batch-delete/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootBatchDelete
       responses:
         '200':
           content:
@@ -7207,6 +7381,7 @@ paths:
   /api/v2/agents/operations/exportFiles:
     post:
       description: Sends export files requests to a list of agents.
+      operationId: startRootExportFiles
       requestBody:
         content:
           application/json:
@@ -7224,6 +7399,7 @@ paths:
   /api/v2/agents/operations/exportFiles/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootExportFiles
       responses:
         '200':
           content:
@@ -7243,6 +7419,7 @@ paths:
   /api/v2/agents/operations/reboot:
     post:
       description: Reboot the agents specified in the request.
+      operationId: startRootReboot
       requestBody:
         content:
           application/json:
@@ -7260,6 +7437,7 @@ paths:
   /api/v2/agents/operations/reboot/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootReboot
       responses:
         '200':
           content:
@@ -7279,6 +7457,7 @@ paths:
   /api/v2/agents/operations/release:
     post:
       description: Releases all the agents from the given session.
+      operationId: startRootRelease
       requestBody:
         content:
           application/json:
@@ -7296,6 +7475,7 @@ paths:
   /api/v2/agents/operations/release/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootRelease
       responses:
         '200':
           content:
@@ -7315,6 +7495,7 @@ paths:
   /api/v2/agents/operations/reserve:
     post:
       description: Reserves all the agents from the given session.
+      operationId: startRootReserve
       requestBody:
         content:
           application/json:
@@ -7332,6 +7513,7 @@ paths:
   /api/v2/agents/operations/reserve/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootReserve
       responses:
         '200':
           content:
@@ -7351,6 +7533,7 @@ paths:
   /api/v2/agents/operations/set-dpdk-mode:
     post:
       description: Enable/disable DPDK for a list of agents.
+      operationId: startRootSetDpdkMode
       requestBody:
         content:
           application/json:
@@ -7368,6 +7551,7 @@ paths:
   /api/v2/agents/operations/set-dpdk-mode/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootSetDpdkMode
       responses:
         '200':
           content:
@@ -7387,6 +7571,7 @@ paths:
   /api/v2/agents/operations/set-ntp:
     post:
       description: Set the NTP servers for a list of agents.
+      operationId: startRootSetNtp
       requestBody:
         content:
           application/json:
@@ -7404,6 +7589,7 @@ paths:
   /api/v2/agents/operations/set-ntp/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootSetNtp
       responses:
         '200':
           content:
@@ -7423,6 +7609,7 @@ paths:
   /api/v2/agents/operations/update:
     post:
       description: Update agents to the recommended version.
+      operationId: startRootUpdate
       responses:
         '202':
           content:
@@ -7435,6 +7622,7 @@ paths:
   /api/v2/agents/operations/update/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootUpdate
       responses:
         '200':
           content:
@@ -7454,6 +7642,7 @@ paths:
   /api/v2/agents/{agentId}:
     delete:
       description: Remove a particular agent.
+      operationId: deleteAgents
       responses:
         '204':
           description: The agent was successfully removed.
@@ -7473,6 +7662,7 @@ paths:
       - Agents
     get:
       description: Get a particular agent.
+      operationId: getAgentsById
       responses:
         '200':
           content:
@@ -7503,6 +7693,7 @@ paths:
         type: string
     patch:
       description: Update a particular agent. Only non-null fields are updated.
+      operationId: patchAgents
       requestBody:
         content:
           application/json:
@@ -7528,27 +7719,20 @@ paths:
   /api/v2/appsec-ui-metadata:
     get:
       description: Get the UI metadata
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getAppsecUiMetadata
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - properties:
-                    totalCount:
-                      type: integer
-                  type: object
+                anyOf:
+                - type: string
+                - type: number
+                - type: integer
+                - type: boolean
+                - items: {}
+                  type: array
+                - type: object
           description: The UI metadata
         '500':
           content:
@@ -7561,6 +7745,7 @@ paths:
   /api/v2/brokers:
     get:
       description: Get all the currently available brokers.
+      operationId: getBrokers
       parameters:
       - description: The number of search results to return
         in: query
@@ -7607,6 +7792,7 @@ paths:
       - Brokers
     post:
       description: Register an external broker.
+      operationId: createBrokers
       requestBody:
         content:
           application/json:
@@ -7640,6 +7826,7 @@ paths:
   /api/v2/brokers/{brokerId}:
     delete:
       description: Remove a particular broker.
+      operationId: deleteBrokers
       responses:
         '204':
           description: The broker was successfully removed.
@@ -7664,6 +7851,7 @@ paths:
       tags:
       - Brokers
     get:
+      operationId: getBrokersById
       responses:
         '200':
           content:
@@ -7694,6 +7882,7 @@ paths:
         type: string
     patch:
       description: Update a particular broker.
+      operationId: patchBrokers
       requestBody:
         content:
           application/json:
@@ -7722,9 +7911,100 @@ paths:
           description: Unexpected error
       tags:
       - Brokers
+  /api/v2/cert-manager/certificate:
+    get:
+      description: Get controller's certificate.
+      operationId: getCertificate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+          description: The controller's certificate
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Utils
+  /api/v2/cert-manager/operations/generate:
+    post:
+      description: Generate a certificate.
+      operationId: startRootGenerate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Certificate'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Utils
+  /api/v2/cert-manager/operations/generate/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollRootGenerate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Utils
+    parameters:
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
+  /api/v2/cert-manager/operations/upload:
+    post:
+      description: Upload a certificate/key pair that will replace the system certificate.
+      operationId: startRootUpload
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Utils
+  /api/v2/cert-manager/operations/upload/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollRootUpload
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Utils
+    parameters:
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
   /api/v2/config-categories:
     get:
       description: Get the list of available configuration categories.
+      operationId: getConfigCategories
       parameters:
       - description: The number of search results to return
         in: query
@@ -7765,6 +8045,7 @@ paths:
   /api/v2/configs:
     get:
       description: Get all the configurations available to the current user.
+      operationId: getConfigs
       parameters:
       - description: The number of search results to return
         in: query
@@ -7832,6 +8113,7 @@ paths:
       description: Save or import a new configuration. If the ConfigData field is
         not provided, this is implemented as a Save operation, only recording the
         metadata.
+      operationId: createConfigs
       requestBody:
         content:
           application/json:
@@ -7880,6 +8162,7 @@ paths:
   /api/v2/configs/operations/batch-delete:
     post:
       description: Remove multiple configurations.
+      operationId: startConfigsBatchDelete
       requestBody:
         content:
           application/json:
@@ -7902,6 +8185,7 @@ paths:
   /api/v2/configs/operations/batch-delete/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigsBatchDelete
       responses:
         '200':
           content:
@@ -7922,6 +8206,7 @@ paths:
     post:
       description: Export all configurations owned by the current user. Optionally,
         provide a list of config IDs to export.
+      operationId: startConfigsExportAll
       requestBody:
         content:
           application/json:
@@ -7939,6 +8224,7 @@ paths:
   /api/v2/configs/operations/exportAll/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigsExportAll
       responses:
         '200':
           content:
@@ -7958,6 +8244,7 @@ paths:
   /api/v2/configs/operations/import:
     post:
       description: Import a single configuration from the specified file.
+      operationId: startConfigsImport
       requestBody:
         content:
           application/x-zip:
@@ -7987,6 +8274,7 @@ paths:
   /api/v2/configs/operations/import/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigsImport
       responses:
         '200':
           content:
@@ -8006,6 +8294,7 @@ paths:
   /api/v2/configs/operations/importAll:
     post:
       description: Import all configurations from the specified file.
+      operationId: startConfigsImportAll
       requestBody:
         content:
           application/json:
@@ -8023,6 +8312,7 @@ paths:
   /api/v2/configs/operations/importAll/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigsImportAll
       responses:
         '200':
           content:
@@ -8042,6 +8332,7 @@ paths:
   /api/v2/configs/{configId}:
     delete:
       description: Delete a particular configuration.
+      operationId: deleteConfigs
       responses:
         '204':
           description: The configuration was successfully deleted.
@@ -8068,6 +8359,7 @@ paths:
       - Configurations
     get:
       description: Get a particular configuration.
+      operationId: getConfigsById
       parameters:
       - description: Specifies if the sub-fields that are objects should be included
           (eg. 'configData').
@@ -8130,6 +8422,7 @@ paths:
         type: string
     patch:
       description: Update a particular configuration. Only non-null fields are updated.
+      operationId: patchConfigs
       requestBody:
         content:
           application/json:
@@ -8154,6 +8447,7 @@ paths:
       - Configurations
     put:
       description: Update a particular configuration.
+      operationId: updateConfigs
       requestBody:
         content:
           application/json:
@@ -8189,6 +8483,7 @@ paths:
   /api/v2/controller-migration/operations/export:
     post:
       description: Export the data from the controller as a package.
+      operationId: startRootExport
       requestBody:
         content:
           application/json:
@@ -8206,6 +8501,7 @@ paths:
   /api/v2/controller-migration/operations/export/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootExport
       responses:
         '200':
           content:
@@ -8225,6 +8521,7 @@ paths:
   /api/v2/controller-migration/operations/import:
     post:
       description: Import the data from the supplied package into the controller.
+      operationId: startRootImport
       requestBody:
         content:
           multipart/form-data:
@@ -8246,6 +8543,7 @@ paths:
   /api/v2/controller-migration/operations/import/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootImport
       responses:
         '200':
           content:
@@ -8256,6 +8554,124 @@ paths:
       tags:
       - Data Migration
     parameters:
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
+  /api/v2/controllers:
+    get:
+      description: Get the controllers chain.
+      operationId: getControllers
+      parameters:
+      - description: The number of search results to return
+        in: query
+        name: take
+        schema:
+          type: integer
+      - description: The number of search results to skip
+        in: query
+        name: skip
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - items:
+                    $ref: '#/components/schemas/Controller'
+                  type: array
+                - properties:
+                    data:
+                      items:
+                        $ref: '#/components/schemas/Controller'
+                      type: array
+                    totalCount:
+                      type: integer
+                  type: object
+          description: The list of controllers.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Agents
+  /api/v2/controllers/{controllerId}:
+    get:
+      description: Get the controller chain.
+      operationId: getControllersById
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Controller'
+          description: The controller chain.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Agents
+    parameters:
+    - description: The ID of the controller.
+      in: path
+      name: controllerId
+      required: 'true'
+      schema:
+        type: string
+  /api/v2/controllers/{controllerId}/operations/switch-app:
+    parameters:
+    - description: The ID of the controller.
+      in: path
+      name: controllerId
+      required: 'true'
+      schema:
+        type: string
+    post:
+      description: Switch the controller active app.
+      operationId: startControllersSwitchApp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwitchAppOperation'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Agents
+  /api/v2/controllers/{controllerId}/operations/switch-app/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollControllersSwitchApp
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Agents
+    parameters:
+    - description: The ID of the controller.
+      in: path
+      name: controllerId
+      required: 'true'
+      schema:
+        type: string
     - description: The ID of the async operation.
       in: path
       name: id
@@ -8393,30 +8809,13 @@ paths:
   /api/v2/disk-usage:
     get:
       description: Get information about the controller's disk usage.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getDiskUsage
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/DiskUsage'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/DiskUsage'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/DiskUsage'
           description: The controller disk usage
         '500':
           content:
@@ -8429,6 +8828,7 @@ paths:
   /api/v2/disk-usage/consumers:
     get:
       description: Get the list of consumers.
+      operationId: getConsumers
       parameters:
       - description: The number of search results to return
         in: query
@@ -8469,6 +8869,7 @@ paths:
   /api/v2/disk-usage/consumers/{consumerId}:
     get:
       description: Get the size for logs and diagnostics.
+      operationId: getConsumersById
       responses:
         '200':
           content:
@@ -8500,6 +8901,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-diagnostics:
     post:
       description: Clean the system diagnostics.
+      operationId: startDiskUsageCleanupDiagnostics
       responses:
         '202':
           content:
@@ -8512,6 +8914,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-diagnostics/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollDiskUsageCleanupDiagnostics
       responses:
         '200':
           content:
@@ -8531,6 +8934,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-logs:
     post:
       description: Clean the system logs.
+      operationId: startDiskUsageCleanupLogs
       responses:
         '202':
           content:
@@ -8543,6 +8947,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-logs/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollDiskUsageCleanupLogs
       responses:
         '200':
           content:
@@ -8562,6 +8967,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-migration:
     post:
       description: Clean the migration packages.
+      operationId: startDiskUsageCleanupMigration
       responses:
         '202':
           content:
@@ -8574,6 +8980,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-migration/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollDiskUsageCleanupMigration
       responses:
         '200':
           content:
@@ -8593,6 +9000,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-notifications:
     post:
       description: Clean all notifications.
+      operationId: startDiskUsageCleanupNotifications
       responses:
         '202':
           content:
@@ -8605,6 +9013,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-notifications/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollDiskUsageCleanupNotifications
       responses:
         '200':
           content:
@@ -8624,6 +9033,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-results:
     post:
       description: Clean all statistics.
+      operationId: startDiskUsageCleanupResults
       responses:
         '202':
           content:
@@ -8636,6 +9046,7 @@ paths:
   /api/v2/disk-usage/operations/cleanup-results/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollDiskUsageCleanupResults
       responses:
         '200':
           content:
@@ -8655,6 +9066,7 @@ paths:
   /api/v2/docs:
     get:
       description: Get the OpenAPI definitions.
+      operationId: getDocs
       responses:
         '200':
           description: The OpenAPI definitions
@@ -8669,6 +9081,7 @@ paths:
   /api/v2/docs.json:
     get:
       description: Get the OpenAPI definitions.
+      operationId: getDocsJson
       responses:
         '200':
           description: The OpenAPI definitions
@@ -8683,6 +9096,7 @@ paths:
   /api/v2/docs.yaml:
     get:
       description: Get the OpenAPI definitions.
+      operationId: getDocsYaml
       responses:
         '200':
           content:
@@ -8701,6 +9115,7 @@ paths:
   /api/v2/license-servers:
     get:
       description: Get all the currently available license servers.
+      operationId: getLicenseServers
       parameters:
       - description: The number of search results to return
         in: query
@@ -8740,6 +9155,7 @@ paths:
       - License servers
     post:
       description: Register a license server.
+      operationId: createLicenseServers
       requestBody:
         content:
           application/json:
@@ -8773,6 +9189,7 @@ paths:
   /api/v2/license-servers/{licenseServerId}:
     delete:
       description: Remove a particular license server.
+      operationId: deleteLicenseServers
       responses:
         '204':
           description: The license server was successfully removed.
@@ -8792,6 +9209,7 @@ paths:
       - License servers
     get:
       description: Get a particular license server.
+      operationId: getLicenseServersById
       responses:
         '200':
           content:
@@ -8822,6 +9240,7 @@ paths:
         type: string
     patch:
       description: Update a particular license server.
+      operationId: patchLicenseServers
       requestBody:
         content:
           application/json:
@@ -9390,30 +9809,13 @@ paths:
   /api/v2/log-config:
     get:
       description: Get the current global log level.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getLogConfig
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/LogConfig'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/LogConfig'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/LogConfig'
           description: The current global log level
         '500':
           content:
@@ -9425,6 +9827,7 @@ paths:
       - Utils
     put:
       description: Update the global log level for all services.
+      operationId: updateLogConfig
       requestBody:
         content:
           application/json:
@@ -9448,17 +9851,8 @@ paths:
   /api/v2/notification-counts:
     get:
       description: Get the number of notifications that match the query.
+      operationId: getNotificationCounts
       parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
       - in: query
         name: notificationId
         schema:
@@ -9516,14 +9910,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/NotificationCounts'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/NotificationCounts'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/NotificationCounts'
           description: The number of notifications, aggregated by their severity
         '500':
           content:
@@ -9536,6 +9923,7 @@ paths:
   /api/v2/notifications:
     get:
       description: Get all the notifications that match the query.
+      operationId: getNotifications
       parameters:
       - description: The number of search results to return
         in: query
@@ -9628,6 +10016,7 @@ paths:
   /api/v2/notifications/operations/cleanup:
     post:
       description: Cleanup all notifications that match the specified filter.
+      operationId: startNotificationsCleanup
       responses:
         '202':
           content:
@@ -9640,6 +10029,7 @@ paths:
   /api/v2/notifications/operations/cleanup/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollNotificationsCleanup
       responses:
         '200':
           content:
@@ -9659,6 +10049,7 @@ paths:
   /api/v2/notifications/operations/dismiss:
     post:
       description: Dismiss all notifications that match the specified filter.
+      operationId: startNotificationsDismiss
       responses:
         '202':
           content:
@@ -9671,6 +10062,7 @@ paths:
   /api/v2/notifications/operations/dismiss/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollNotificationsDismiss
       responses:
         '200':
           content:
@@ -9690,6 +10082,7 @@ paths:
   /api/v2/notifications/{notificationId}:
     delete:
       description: Delete an existing notification.
+      operationId: deleteNotifications
       responses:
         '204':
           description: The notification was successfully deleted.
@@ -9722,6 +10115,7 @@ paths:
       - Notifications
     get:
       description: Get a particular notification.
+      operationId: getNotificationsById
       responses:
         '200':
           content:
@@ -9747,6 +10141,7 @@ paths:
   /api/v2/resources/application-types:
     get:
       description: Get all the available applications.
+      operationId: getApplicationTypes
       parameters:
       - description: The number of search results to return
         in: query
@@ -9787,6 +10182,7 @@ paths:
   /api/v2/resources/application-types/{applicationTypeId}:
     get:
       description: Get a particular application.
+      operationId: getApplicationTypesById
       responses:
         '200':
           content:
@@ -9812,6 +10208,7 @@ paths:
   /api/v2/resources/apps:
     get:
       description: Get all the available CyPerf applications.
+      operationId: getApps
       parameters:
       - description: The number of search results to return
         in: query
@@ -9884,6 +10281,7 @@ paths:
   /api/v2/resources/apps/{appId}:
     get:
       description: Get a particular CyPerf application.
+      operationId: getAppsById
       responses:
         '200':
           content:
@@ -9920,6 +10318,7 @@ paths:
         type: string
   /api/v2/resources/attack-categories:
     get:
+      operationId: getAttackCategories
       parameters:
       - description: The number of search results to return
         in: query
@@ -9951,6 +10350,7 @@ paths:
   /api/v2/resources/attacks:
     get:
       description: Get all the available CyPerf attacks.
+      operationId: getAttacks
       parameters:
       - description: The number of search results to return
         in: query
@@ -10035,6 +10435,7 @@ paths:
   /api/v2/resources/attacks/{attackId}:
     get:
       description: Get a particular CyPerf attack.
+      operationId: getAttacksById
       responses:
         '200':
           content:
@@ -10072,6 +10473,7 @@ paths:
   /api/v2/resources/auth-profiles:
     get:
       description: Get all the available Auth profiles.
+      operationId: getAuthProfiles
       parameters:
       - description: The number of search results to return
         in: query
@@ -10112,6 +10514,7 @@ paths:
   /api/v2/resources/auth-profiles/{authProfileId}:
     get:
       description: Get a particular Auth profile.
+      operationId: getAuthProfilesById
       responses:
         '200':
           content:
@@ -10140,9 +10543,99 @@ paths:
       required: 'true'
       schema:
         type: string
+  /api/v2/resources/captures:
+    get:
+      operationId: getCaptures
+      parameters:
+      - description: The number of search results to return
+        in: query
+        name: take
+        schema:
+          type: integer
+      - description: The number of search results to skip
+        in: query
+        name: skip
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ReplayCapture'
+                type: array
+          description: OK
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+  /api/v2/resources/captures/operations/uploadFile:
+    post:
+      operationId: createResourcesCapturesOperationsUploadFile
+      responses:
+        '201':
+          description: Resource successfully created.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+  /api/v2/resources/captures/{captureId}:
+    delete:
+      operationId: deleteCaptures
+      responses:
+        '204':
+          description: The request was completed successfully.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+    get:
+      operationId: getCapturesById
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplayCapture'
+          description: OK
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: A resource with the specified ID was not found.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+    parameters:
+    - description: The ID of the capture.
+      in: path
+      name: captureId
+      required: 'true'
+      schema:
+        type: string
   /api/v2/resources/certificates:
     get:
       description: Get all the available certificates files.
+      operationId: getCertificates
       parameters:
       - description: The number of search results to return
         in: query
@@ -10189,6 +10682,7 @@ paths:
   /api/v2/resources/certificates/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesCertificatesOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -10212,6 +10706,7 @@ paths:
   /api/v2/resources/certificates/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesCertificatesOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -10239,6 +10734,7 @@ paths:
   /api/v2/resources/certificates/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesCertificatesOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -10266,6 +10762,7 @@ paths:
   /api/v2/resources/certificates/{certificateId}:
     delete:
       description: Delete a particular certificates file.
+      operationId: deleteCertificates
       responses:
         '204':
           description: The certificates file was successfully deleted.
@@ -10285,6 +10782,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular certificates archive file.
+      operationId: getCertificatesById
       responses:
         '200':
           content:
@@ -10322,8 +10820,14 @@ paths:
   /api/v2/resources/certificates/{certificateId}/contentFile:
     get:
       description: Get the content of a particular certificate archive file.
+      operationId: getResourcesCertificatesCertificatesIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the certificate archive file
         '404':
           content:
@@ -10343,6 +10847,7 @@ paths:
   /api/v2/resources/custom-import-operations:
     get:
       description: Get all the custom import config operations.
+      operationId: getCustomImportOperations
       parameters:
       - description: The number of search results to return
         in: query
@@ -10383,6 +10888,7 @@ paths:
   /api/v2/resources/flow-library:
     get:
       description: Get all the available flow library files.
+      operationId: getFlowLibrary
       parameters:
       - description: The number of search results to return
         in: query
@@ -10429,6 +10935,7 @@ paths:
   /api/v2/resources/flow-library/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesFlowLibraryOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -10452,6 +10959,7 @@ paths:
   /api/v2/resources/flow-library/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesFlowLibraryOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -10479,6 +10987,7 @@ paths:
   /api/v2/resources/flow-library/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesFlowLibraryOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -10506,6 +11015,7 @@ paths:
   /api/v2/resources/flow-library/{flowLibraryId}:
     delete:
       description: Delete a particular flow library file.
+      operationId: deleteFlowLibrary
       responses:
         '204':
           description: The flow library file was successfully deleted.
@@ -10525,6 +11035,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular flow library file.
+      operationId: getFlowLibraryById
       responses:
         '200':
           content:
@@ -10562,8 +11073,14 @@ paths:
   /api/v2/resources/flow-library/{flowLibraryId}/contentFile:
     get:
       description: Get the content of a particular flow library file.
+      operationId: getResourcesFlowLibraryFlowLibraryIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the flow library file
         '404':
           content:
@@ -10583,6 +11100,7 @@ paths:
   /api/v2/resources/global-playlists:
     get:
       description: Get all the available global playlists files.
+      operationId: getGlobalPlaylists
       parameters:
       - description: The number of search results to return
         in: query
@@ -10629,6 +11147,7 @@ paths:
   /api/v2/resources/global-playlists/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesGlobalPlaylistsOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -10652,6 +11171,7 @@ paths:
   /api/v2/resources/global-playlists/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesGlobalPlaylistsOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -10679,6 +11199,7 @@ paths:
   /api/v2/resources/global-playlists/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesGlobalPlaylistsOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -10706,6 +11227,7 @@ paths:
   /api/v2/resources/global-playlists/{globalPlaylistId}:
     delete:
       description: Delete a particular global playlists file.
+      operationId: deleteGlobalPlaylists
       responses:
         '204':
           description: The global playlists file was successfully deleted.
@@ -10725,6 +11247,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular global playlists archive file.
+      operationId: getGlobalPlaylistsById
       responses:
         '200':
           content:
@@ -10763,8 +11286,14 @@ paths:
   /api/v2/resources/global-playlists/{globalPlaylistId}/contentFile:
     get:
       description: Get the content of a particular global playlists archive file.
+      operationId: getResourcesGlobalPlaylistsGlobalPlaylistsIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the global playlists archive file
         '404':
           content:
@@ -10784,6 +11313,7 @@ paths:
   /api/v2/resources/http-library:
     get:
       description: Get all the available http library files.
+      operationId: getHttpLibrary
       parameters:
       - description: The number of search results to return
         in: query
@@ -10830,6 +11360,7 @@ paths:
   /api/v2/resources/http-library/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesHttpLibraryOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -10853,6 +11384,7 @@ paths:
   /api/v2/resources/http-library/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesHttpLibraryOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -10880,6 +11412,7 @@ paths:
   /api/v2/resources/http-library/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesHttpLibraryOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -10907,6 +11440,7 @@ paths:
   /api/v2/resources/http-library/{httpLibraryId}:
     delete:
       description: Delete a particular http library file.
+      operationId: deleteHttpLibrary
       responses:
         '204':
           description: The http library file was successfully deleted.
@@ -10926,6 +11460,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular http library  file.
+      operationId: getHttpLibraryById
       responses:
         '200':
           content:
@@ -10963,8 +11498,14 @@ paths:
   /api/v2/resources/http-library/{httpLibraryId}/contentFile:
     get:
       description: Get the content of a particular http library file.
+      operationId: getResourcesHttpLibraryHttpLibraryIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the http library file
         '404':
           content:
@@ -10984,6 +11525,7 @@ paths:
   /api/v2/resources/http-profiles:
     get:
       description: Get all the available HTTP profiles.
+      operationId: getHttpProfiles
       parameters:
       - description: The number of search results to return
         in: query
@@ -11024,6 +11566,7 @@ paths:
   /api/v2/resources/http-profiles/{httpProfileId}:
     get:
       description: Get a particular HTTP profile.
+      operationId: getHttpProfilesById
       responses:
         '200':
           content:
@@ -11055,6 +11598,7 @@ paths:
   /api/v2/resources/media-files:
     get:
       description: Get all the available media files.
+      operationId: getMediaFiles
       parameters:
       - description: The number of search results to return
         in: query
@@ -11101,6 +11645,7 @@ paths:
   /api/v2/resources/media-files/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesMediaFilesOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -11124,6 +11669,7 @@ paths:
   /api/v2/resources/media-files/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesMediaFilesOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -11151,6 +11697,7 @@ paths:
   /api/v2/resources/media-files/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesMediaFilesOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -11178,6 +11725,7 @@ paths:
   /api/v2/resources/media-files/{mediaFileId}:
     delete:
       description: Delete a particular media file.
+      operationId: deleteMediaFiles
       responses:
         '204':
           description: The media file was successfully deleted.
@@ -11197,6 +11745,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular media file.
+      operationId: getMediaFilesById
       responses:
         '200':
           content:
@@ -11234,8 +11783,14 @@ paths:
   /api/v2/resources/media-files/{mediaFileId}/contentFile:
     get:
       description: Get the content of a particular media file.
+      operationId: getResourcesMediaFilesMediaFilesIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the media file
         '404':
           content:
@@ -11255,6 +11810,7 @@ paths:
   /api/v2/resources/media-library:
     get:
       description: Get all the available media library files.
+      operationId: getMediaLibrary
       parameters:
       - description: The number of search results to return
         in: query
@@ -11301,6 +11857,7 @@ paths:
   /api/v2/resources/media-library/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesMediaLibraryOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -11324,6 +11881,7 @@ paths:
   /api/v2/resources/media-library/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesMediaLibraryOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -11351,6 +11909,7 @@ paths:
   /api/v2/resources/media-library/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesMediaLibraryOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -11378,6 +11937,7 @@ paths:
   /api/v2/resources/media-library/{mediaLibraryId}:
     delete:
       description: Delete a particular media library file.
+      operationId: deleteMediaLibrary
       responses:
         '204':
           description: The media library file was successfully deleted.
@@ -11397,6 +11957,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular media library file.
+      operationId: getMediaLibraryById
       responses:
         '200':
           content:
@@ -11434,8 +11995,14 @@ paths:
   /api/v2/resources/media-library/{mediaLibraryId}/contentFile:
     get:
       description: Get the content of a particular media library file.
+      operationId: getResourcesMediaLibraryMediaLibraryIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the media library file
         '404':
           content:
@@ -11452,9 +12019,48 @@ paths:
       required: 'true'
       schema:
         type: string
+  /api/v2/resources/operations/create-app:
+    post:
+      description: Create an app from captures
+      operationId: startRootCreateApp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAppOperation'
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Application Resources
+  /api/v2/resources/operations/create-app/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollRootCreateApp
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Application Resources
+    parameters:
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
   /api/v2/resources/operations/get-attack-categories:
     post:
       description: Get the list of attack categories
+      operationId: startRootGetAttackCategories
       requestBody:
         content:
           application/json:
@@ -11472,6 +12078,7 @@ paths:
   /api/v2/resources/operations/get-attack-categories/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootGetAttackCategories
       responses:
         '200':
           content:
@@ -11491,6 +12098,7 @@ paths:
   /api/v2/resources/operations/get-attacks:
     post:
       description: Get the list of attacks
+      operationId: startRootGetAttacks
       requestBody:
         content:
           application/json:
@@ -11508,6 +12116,7 @@ paths:
   /api/v2/resources/operations/get-attacks/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootGetAttacks
       responses:
         '200':
           content:
@@ -11527,6 +12136,7 @@ paths:
   /api/v2/resources/operations/get-strike-categories:
     post:
       description: Get the list of strike categories
+      operationId: startRootGetStrikeCategories
       requestBody:
         content:
           application/json:
@@ -11544,6 +12154,7 @@ paths:
   /api/v2/resources/operations/get-strike-categories/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootGetStrikeCategories
       responses:
         '200':
           content:
@@ -11563,6 +12174,7 @@ paths:
   /api/v2/resources/operations/get-strikes:
     post:
       description: Get the list of strikes
+      operationId: startRootGetStrikes
       requestBody:
         content:
           application/json:
@@ -11580,6 +12192,7 @@ paths:
   /api/v2/resources/operations/get-strikes/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootGetStrikes
       responses:
         '200':
           content:
@@ -11599,6 +12212,7 @@ paths:
   /api/v2/resources/other-library:
     get:
       description: Get all the available other library files.
+      operationId: getOtherLibrary
       parameters:
       - description: The number of search results to return
         in: query
@@ -11645,6 +12259,7 @@ paths:
   /api/v2/resources/other-library/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesOtherLibraryOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -11668,6 +12283,7 @@ paths:
   /api/v2/resources/other-library/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesOtherLibraryOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -11695,6 +12311,7 @@ paths:
   /api/v2/resources/other-library/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesOtherLibraryOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -11722,6 +12339,7 @@ paths:
   /api/v2/resources/other-library/{otherLibraryId}:
     delete:
       description: Delete a particular other library file.
+      operationId: deleteOtherLibrary
       responses:
         '204':
           description: The other library file was successfully deleted.
@@ -11741,6 +12359,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular other library file.
+      operationId: getOtherLibraryById
       responses:
         '200':
           content:
@@ -11778,8 +12397,14 @@ paths:
   /api/v2/resources/other-library/{otherLibraryId}/contentFile:
     get:
       description: Get the content of a particular other library file.
+      operationId: getResourcesOtherLibraryOtherLibraryIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the other library file
         '404':
           content:
@@ -11799,6 +12424,7 @@ paths:
   /api/v2/resources/payloads:
     get:
       description: Get all the available payload files.
+      operationId: getPayloads
       parameters:
       - description: The number of search results to return
         in: query
@@ -11845,6 +12471,7 @@ paths:
   /api/v2/resources/payloads/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesPayloadsOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -11868,6 +12495,7 @@ paths:
   /api/v2/resources/payloads/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesPayloadsOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -11895,6 +12523,7 @@ paths:
   /api/v2/resources/payloads/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesPayloadsOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -11922,6 +12551,7 @@ paths:
   /api/v2/resources/payloads/{payloadId}:
     delete:
       description: Delete a particular payload file.
+      operationId: deletePayloads
       responses:
         '204':
           description: The payload file was successfully deleted.
@@ -11941,6 +12571,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular payload file.
+      operationId: getPayloadsById
       responses:
         '200':
           content:
@@ -11978,8 +12609,14 @@ paths:
   /api/v2/resources/payloads/{payloadId}/contentFile:
     get:
       description: Get the content of a particular payload file.
+      operationId: getResourcesPayloadsPayloadsIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the payload file
         '404':
           content:
@@ -11999,6 +12636,7 @@ paths:
   /api/v2/resources/pcaps:
     get:
       description: Get all the available pcap files.
+      operationId: getPcaps
       parameters:
       - description: The number of search results to return
         in: query
@@ -12045,6 +12683,7 @@ paths:
   /api/v2/resources/pcaps/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesPcapsOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -12068,6 +12707,7 @@ paths:
   /api/v2/resources/pcaps/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesPcapsOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -12095,6 +12735,7 @@ paths:
   /api/v2/resources/pcaps/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesPcapsOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -12122,6 +12763,7 @@ paths:
   /api/v2/resources/pcaps/{pcapId}:
     delete:
       description: Delete a particular pcap file.
+      operationId: deletePcaps
       responses:
         '204':
           description: The pcap file was successfully deleted.
@@ -12141,6 +12783,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular pcap file.
+      operationId: getPcapsById
       responses:
         '200':
           content:
@@ -12178,8 +12821,14 @@ paths:
   /api/v2/resources/pcaps/{pcapId}/contentFile:
     get:
       description: Get the content of a particular pcap file.
+      operationId: getResourcesPcapsPcapsIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the pcap file
         '404':
           content:
@@ -12199,6 +12848,7 @@ paths:
   /api/v2/resources/playlists:
     get:
       description: Get all the available playlist files.
+      operationId: getPlaylists
       parameters:
       - description: The number of search results to return
         in: query
@@ -12245,6 +12895,7 @@ paths:
   /api/v2/resources/playlists/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesPlaylistsOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -12268,6 +12919,7 @@ paths:
   /api/v2/resources/playlists/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesPlaylistsOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -12295,6 +12947,7 @@ paths:
   /api/v2/resources/playlists/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesPlaylistsOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -12322,6 +12975,7 @@ paths:
   /api/v2/resources/playlists/{playlistId}:
     delete:
       description: Delete a particular playlist file.
+      operationId: deletePlaylists
       responses:
         '204':
           description: The playlist file was successfully deleted.
@@ -12341,6 +12995,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular playlist file.
+      operationId: getPlaylistsById
       responses:
         '200':
           content:
@@ -12378,8 +13033,14 @@ paths:
   /api/v2/resources/playlists/{playlistId}/contentFile:
     get:
       description: Get the content of a particular playlist file.
+      operationId: getResourcesPlaylistsPlaylistsIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the playlist file
         '404':
           content:
@@ -12399,6 +13060,7 @@ paths:
   /api/v2/resources/playlists/{playlistId}/values:
     get:
       description: Get some specific values from a playlist file.
+      operationId: getResourcesPlaylistsPlaylistsIdValues
       parameters:
       - description: A comma-separated list of colName:rowIdx pairs
         in: query
@@ -12432,6 +13094,7 @@ paths:
   /api/v2/resources/sip-library:
     get:
       description: Get all the available sip library files.
+      operationId: getSipLibrary
       parameters:
       - description: The number of search results to return
         in: query
@@ -12478,6 +13141,7 @@ paths:
   /api/v2/resources/sip-library/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesSipLibraryOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -12501,6 +13165,7 @@ paths:
   /api/v2/resources/sip-library/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesSipLibraryOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -12528,6 +13193,7 @@ paths:
   /api/v2/resources/sip-library/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesSipLibraryOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -12555,6 +13221,7 @@ paths:
   /api/v2/resources/sip-library/{sipLibraryId}:
     delete:
       description: Delete a particular sip library file.
+      operationId: deleteSipLibrary
       responses:
         '204':
           description: The sip library file was successfully deleted.
@@ -12574,6 +13241,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular sip library file.
+      operationId: getSipLibraryById
       responses:
         '200':
           content:
@@ -12611,8 +13279,14 @@ paths:
   /api/v2/resources/sip-library/{sipLibraryId}/contentFile:
     get:
       description: Get the content of a particular sip library file.
+      operationId: getResourcesSipLibrarySipLibraryIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the sip library file
         '404':
           content:
@@ -12632,6 +13306,7 @@ paths:
   /api/v2/resources/stats-profile:
     get:
       description: Get all the available stats profile files.
+      operationId: getStatsProfile
       parameters:
       - description: The number of search results to return
         in: query
@@ -12678,6 +13353,7 @@ paths:
   /api/v2/resources/stats-profile/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesStatsProfileOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -12701,6 +13377,7 @@ paths:
   /api/v2/resources/stats-profile/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesStatsProfileOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -12728,6 +13405,7 @@ paths:
   /api/v2/resources/stats-profile/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesStatsProfileOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -12755,6 +13433,7 @@ paths:
   /api/v2/resources/stats-profile/{statsProfileId}:
     delete:
       description: Delete a particular stats profile file.
+      operationId: deleteStatsProfile
       responses:
         '204':
           description: The stats profile file was successfully deleted.
@@ -12774,6 +13453,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular stats profile file.
+      operationId: getStatsProfileById
       responses:
         '200':
           content:
@@ -12811,8 +13491,14 @@ paths:
   /api/v2/resources/stats-profile/{statsProfileId}/contentFile:
     get:
       description: Get the content of a particular stats profile file.
+      operationId: getResourcesStatsProfileStatsProfileIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the stats profile file
         '404':
           content:
@@ -12831,6 +13517,7 @@ paths:
         type: string
   /api/v2/resources/strike-categories:
     get:
+      operationId: getStrikeCategories
       parameters:
       - description: The number of search results to return
         in: query
@@ -12862,6 +13549,7 @@ paths:
   /api/v2/resources/strikes:
     get:
       description: Get all the available strikes.
+      operationId: getStrikes
       parameters:
       - description: The number of search results to return
         in: query
@@ -12946,6 +13634,7 @@ paths:
   /api/v2/resources/strikes/{strikeId}:
     get:
       description: Get a particular strike.
+      operationId: getStrikesById
       responses:
         '200':
           content:
@@ -12971,6 +13660,7 @@ paths:
   /api/v2/resources/tls-certificates:
     get:
       description: Get all the available TLS certificate files
+      operationId: getTlsCertificates
       parameters:
       - description: The number of search results to return
         in: query
@@ -13017,6 +13707,7 @@ paths:
   /api/v2/resources/tls-certificates/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesTlsCertificatesOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -13040,6 +13731,7 @@ paths:
   /api/v2/resources/tls-certificates/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesTlsCertificatesOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -13067,6 +13759,7 @@ paths:
   /api/v2/resources/tls-certificates/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesTlsCertificatesOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -13094,6 +13787,7 @@ paths:
   /api/v2/resources/tls-certificates/{tlsCertificateId}:
     delete:
       description: Delete a particular TLS certificate file.
+      operationId: deleteTlsCertificates
       responses:
         '204':
           description: The TLS certificate file was successfully deleted.
@@ -13113,6 +13807,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular TLS certificate file.
+      operationId: getTlsCertificatesById
       responses:
         '200':
           content:
@@ -13150,8 +13845,14 @@ paths:
   /api/v2/resources/tls-certificates/{tlsCertificateId}/contentFile:
     get:
       description: Get the content of a particular TLS certificate file.
+      operationId: getResourcesTlsCertificatesTlsCertificatesIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the TLS certificate file
         '404':
           content:
@@ -13171,6 +13872,7 @@ paths:
   /api/v2/resources/tls-dhs:
     get:
       description: Get all the available TLS DH files.
+      operationId: getTlsDhs
       parameters:
       - description: The number of search results to return
         in: query
@@ -13217,6 +13919,7 @@ paths:
   /api/v2/resources/tls-dhs/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesTlsDhsOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -13240,6 +13943,7 @@ paths:
   /api/v2/resources/tls-dhs/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesTlsDhsOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -13267,6 +13971,7 @@ paths:
   /api/v2/resources/tls-dhs/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesTlsDhsOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -13294,6 +13999,7 @@ paths:
   /api/v2/resources/tls-dhs/{tlsDhId}:
     delete:
       description: Delete a particular TLS DH file.
+      operationId: deleteTlsDhs
       responses:
         '204':
           description: The TLS DH file was successfully deleted.
@@ -13313,6 +14019,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular TLS DH file.
+      operationId: getTlsDhsById
       responses:
         '200':
           content:
@@ -13350,8 +14057,14 @@ paths:
   /api/v2/resources/tls-dhs/{tlsDhId}/contentFile:
     get:
       description: Get the content of a particular TLS DH file.
+      operationId: getResourcesTlsDhsTlsDhsIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the TLS DH file
         '404':
           content:
@@ -13371,6 +14084,7 @@ paths:
   /api/v2/resources/tls-keys:
     get:
       description: Get all the available TLS key files.
+      operationId: getTlsKeys
       parameters:
       - description: The number of search results to return
         in: query
@@ -13417,6 +14131,7 @@ paths:
   /api/v2/resources/tls-keys/operations/uploadFile:
     post:
       description: Upload a file.
+      operationId: createResourcesTlsKeysOperationsUploadFile
       requestBody:
         content:
           multipart/form-data:
@@ -13440,6 +14155,7 @@ paths:
   /api/v2/resources/tls-keys/operations/uploadFile/{uploadFileId}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: getResourcesTlsKeysOperationsUploadFileOperationId
       responses:
         '200':
           description: Details about the ongoing operation
@@ -13467,6 +14183,7 @@ paths:
   /api/v2/resources/tls-keys/operations/uploadFile/{uploadFileId}/result:
     get:
       description: Get the result of the upload file operation.
+      operationId: getResourcesTlsKeysOperationsUploadFileOperationIdResult
       responses:
         '200':
           description: The payload file that was added
@@ -13494,6 +14211,7 @@ paths:
   /api/v2/resources/tls-keys/{tlsKeyId}:
     delete:
       description: Delete a particular TLS key file.
+      operationId: deleteTlsKeys
       responses:
         '204':
           description: The TLS key file was successfully deleted.
@@ -13513,6 +14231,7 @@ paths:
       - Application Resources
     get:
       description: Get a particular TLS key file.
+      operationId: getTlsKeysById
       responses:
         '200':
           content:
@@ -13550,8 +14269,14 @@ paths:
   /api/v2/resources/tls-keys/{tlsKeyId}/contentFile:
     get:
       description: Get the content of a particular TLS key file.
+      operationId: getResourcesTlsKeysTlsKeysIdContentFile
       responses:
         '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
           description: The content of the TLS key file
         '404':
           content:
@@ -13571,6 +14296,7 @@ paths:
   /api/v2/results:
     get:
       description: Get all the available results.
+      operationId: getResults
       parameters:
       - description: The number of search results to return
         in: query
@@ -13637,6 +14363,7 @@ paths:
   /api/v2/results/operations/batch-delete:
     post:
       description: Remove multiple results.
+      operationId: startResultsBatchDelete
       requestBody:
         content:
           application/json:
@@ -13659,6 +14386,7 @@ paths:
   /api/v2/results/operations/batch-delete/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsBatchDelete
       responses:
         '200':
           content:
@@ -13678,6 +14406,7 @@ paths:
   /api/v2/results/tags:
     get:
       description: Get all the currently available agent groups.
+      operationId: getResultTags
       parameters:
       - description: The number of search results to return
         in: query
@@ -13718,6 +14447,7 @@ paths:
   /api/v2/results/{resultId}:
     delete:
       description: Delete a particular result.
+      operationId: deleteResults
       responses:
         '204':
           description: The result was successfully deleted.
@@ -13744,6 +14474,7 @@ paths:
       - Test Results
     get:
       description: Get a particular result.
+      operationId: getResultsById
       responses:
         '200':
           content:
@@ -13774,6 +14505,7 @@ paths:
         type: string
   /api/v2/results/{resultId}/download-all/{downloadAllId}:
     get:
+      operationId: getDownloadAllById
       responses:
         '200':
           description: OK
@@ -13808,13 +14540,9 @@ paths:
     get:
       description: Download the generated CSV reports for the current result as a
         zip file.
+      operationId: getDownloadCsvById
       responses:
         '200':
-          content:
-            application/zip:
-              schema:
-                format: binary
-                type: string
           description: The content of the zip file
         '404':
           content:
@@ -13846,6 +14574,7 @@ paths:
   /api/v2/results/{resultId}/download-pdf/{pdfId}:
     get:
       description: Download the generated PDF report for the current result.
+      operationId: downloadPDF
       responses:
         '200':
           content:
@@ -13878,31 +14607,20 @@ paths:
   /api/v2/results/{resultId}/download-result-config:
     get:
       description: Download the configuration associated with the result.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getDownloadResultConfig
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - properties:
-                    totalCount:
-                      type: integer
-                  type: object
-            application/zip:
-              schema:
-                format: binary
-                type: string
+                anyOf:
+                - type: string
+                - type: number
+                - type: integer
+                - type: boolean
+                - items: {}
+                  type: array
+                - type: object
           description: The content of the zip file
         '500':
           content:
@@ -13922,6 +14640,7 @@ paths:
   /api/v2/results/{resultId}/files:
     get:
       description: Get the list of files for a specific result.
+      operationId: getFiles
       parameters:
       - description: The number of search results to return
         in: query
@@ -13975,6 +14694,7 @@ paths:
   /api/v2/results/{resultId}/files/{fileId}:
     delete:
       description: Delete a particular result file.
+      operationId: deleteFiles
       responses:
         '204':
           description: The file was successfully deleted.
@@ -13994,6 +14714,7 @@ paths:
       - Test Results
     get:
       description: Get a particular result file.
+      operationId: getFilesById
       responses:
         '200':
           content:
@@ -14031,13 +14752,9 @@ paths:
   /api/v2/results/{resultId}/files/{fileId}/content:
     get:
       description: Get the content of a result file.
+      operationId: getResultsResultsIdFilesFilesIdContent
       responses:
         '200':
-          content:
-            application/octet-stream:
-              schema:
-                format: binary
-                type: string
           description: The content of the result file
         '404':
           content:
@@ -14076,6 +14793,7 @@ paths:
         type: string
     post:
       description: Generate all result types.
+      operationId: startResultsGenerateAll
       requestBody:
         content:
           application/json:
@@ -14093,6 +14811,7 @@ paths:
   /api/v2/results/{resultId}/operations/generate-all/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsGenerateAll
       responses:
         '200':
           content:
@@ -14125,6 +14844,7 @@ paths:
         type: string
     post:
       description: Generate CSV reports for the current result.
+      operationId: startResultsGenerateCsv
       requestBody:
         content:
           application/json:
@@ -14142,6 +14862,7 @@ paths:
   /api/v2/results/{resultId}/operations/generate-csv/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsGenerateCsv
       responses:
         '200':
           content:
@@ -14174,6 +14895,7 @@ paths:
         type: string
     post:
       description: Generate a PDF report for the current result.
+      operationId: startResultsGeneratePdf
       requestBody:
         content:
           application/json:
@@ -14191,6 +14913,7 @@ paths:
   /api/v2/results/{resultId}/operations/generate-pdf/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsGeneratePdf
       responses:
         '200':
           content:
@@ -14223,6 +14946,7 @@ paths:
         type: string
     post:
       description: Export all result files zipped.
+      operationId: startResultsGenerateResults
       responses:
         '202':
           content:
@@ -14235,6 +14959,7 @@ paths:
   /api/v2/results/{resultId}/operations/generate-results/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsGenerateResults
       responses:
         '200':
           content:
@@ -14267,6 +14992,7 @@ paths:
         type: string
     post:
       description: Loads a completed result into a new session.
+      operationId: startResultsLoad
       responses:
         '202':
           content:
@@ -14279,6 +15005,7 @@ paths:
   /api/v2/results/{resultId}/operations/load/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollResultsLoad
       responses:
         '200':
           content:
@@ -14304,6 +15031,7 @@ paths:
   /api/v2/results/{resultId}/stats:
     get:
       description: Get all the available queries.
+      operationId: getStats
       parameters:
       - description: The number of search results to return
         in: query
@@ -14363,6 +15091,7 @@ paths:
   /api/v2/results/{resultId}/stats/{statId}:
     get:
       description: Query statistics
+      operationId: getStatsById
       parameters:
       - description: (optional) UNIX time in milliseconds or milliseconds from the
           test start (based on useRelativeTime flag) as the query interval start.
@@ -14433,6 +15162,7 @@ paths:
   /api/v2/sessions:
     get:
       description: List all the sessions.
+      operationId: getSessions
       parameters:
       - description: The number of search results to return
         in: query
@@ -14500,6 +15230,7 @@ paths:
     post:
       description: Create a new session by providing the URL of the configuration
         to be loaded.
+      operationId: createSessions
       requestBody:
         content:
           application/json:
@@ -14533,6 +15264,7 @@ paths:
   /api/v2/sessions/operations/batch-delete:
     post:
       description: Remove multiple sessions.
+      operationId: startSessionsBatchDelete
       requestBody:
         content:
           application/json:
@@ -14553,6 +15285,7 @@ paths:
   /api/v2/sessions/operations/batch-delete/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollSessionsBatchDelete
       responses:
         '200':
           content:
@@ -14572,6 +15305,7 @@ paths:
   /api/v2/sessions/{sessionId}:
     delete:
       description: Delete a particular session.
+      operationId: deleteSessions
       responses:
         '204':
           description: The session was successfully deleted.
@@ -14604,6 +15338,7 @@ paths:
       - Sessions
     get:
       description: Get a particular session.
+      operationId: getSessionsById
       parameters:
       - description: Specifies if the sub-fields that are objects should be included
           (eg. test).
@@ -14637,6 +15372,7 @@ paths:
         type: string
     patch:
       description: Update a particular session. Only non-null fields are updated.
+      operationId: patchSessions
       requestBody:
         content:
           application/json:
@@ -14661,6 +15397,7 @@ paths:
       - Sessions
     put:
       description: Update a particular session.
+      operationId: updateSessions
       requestBody:
         content:
           application/json:
@@ -14696,17 +15433,8 @@ paths:
   /api/v2/sessions/{sessionId}/config:
     get:
       description: Get the current session's configuration.
+      operationId: getConfig
       parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
       - description: Specifies if the sub-fields that are objects should be included
           (eg. 'Config').
         in: query
@@ -14720,14 +15448,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/AppsecConfig'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/AppsecConfig'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/AppsecConfig'
           description: The current session's configuration
         '500':
           content:
@@ -14746,6 +15467,7 @@ paths:
         type: string
     put:
       description: Update the current session's configuration.
+      operationId: updateConfig
       requestBody:
         content:
           application/json:
@@ -14769,30 +15491,13 @@ paths:
   /api/v2/sessions/{sessionId}/config/$docs:
     get:
       description: Get the OpenAPI definitions for CyPerf data model.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: get$Docs
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/OpenAPIDefinitions'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/OpenAPIDefinitions'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/OpenAPIDefinitions'
           description: The OpenAPI definitions for CyPerf data model
         '500':
           content:
@@ -14812,27 +15517,20 @@ paths:
   /api/v2/sessions/{sessionId}/config/granular-stats:
     get:
       description: Get granular statistics based on the session configuration.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getGranularStats
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - properties:
-                    totalCount:
-                      type: integer
-                  type: object
+                anyOf:
+                - type: string
+                - type: number
+                - type: integer
+                - type: boolean
+                - items: {}
+                  type: array
+                - type: object
           description: The requested granular statistics
         '500':
           content:
@@ -14853,27 +15551,20 @@ paths:
     get:
       description: Get the filters for the granular statistics based on the session
         configuration.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getGranularStatsFilters
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - properties:
-                    totalCount:
-                      type: integer
-                  type: object
+                anyOf:
+                - type: string
+                - type: number
+                - type: integer
+                - type: boolean
+                - items: {}
+                  type: array
+                - type: object
           description: The requested filters for the granular statistics
         '500':
           content:
@@ -14900,6 +15591,7 @@ paths:
         type: string
     post:
       description: Create granular statistics dashboards based on the session configuration.
+      operationId: startConfigGranularStatsDefaultDashboards
       responses:
         '202':
           content:
@@ -14912,6 +15604,7 @@ paths:
   /api/v2/sessions/{sessionId}/config/operations/granular-stats-default-dashboards/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigGranularStatsDefaultDashboards
       responses:
         '200':
           content:
@@ -14945,6 +15638,7 @@ paths:
     post:
       description: Save the configuration of the current session using the specified
         name.
+      operationId: startConfigSave
       requestBody:
         content:
           application/json:
@@ -14962,6 +15656,7 @@ paths:
   /api/v2/sessions/{sessionId}/config/operations/save/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollConfigSave
       responses:
         '200':
           content:
@@ -14987,6 +15682,7 @@ paths:
   /api/v2/sessions/{sessionId}/meta:
     get:
       description: Get the metadata of a particular session.
+      operationId: getMeta
       parameters:
       - description: The number of search results to return
         in: query
@@ -15033,6 +15729,7 @@ paths:
         type: string
     post:
       description: Create a new session metadata.
+      operationId: createMeta
       requestBody:
         content:
           application/json:
@@ -15065,6 +15762,7 @@ paths:
       - Sessions
     put:
       description: Update the session metadata.
+      operationId: updateMeta
       requestBody:
         content:
           application/json:
@@ -15098,6 +15796,7 @@ paths:
   /api/v2/sessions/{sessionId}/meta/{metaId}:
     delete:
       description: Delete a particular session metadata pair.
+      operationId: deleteMeta
       responses:
         '204':
           description: The session metadata was successfully deleted.
@@ -15117,6 +15816,7 @@ paths:
       - Sessions
     get:
       description: Get a particular session metadata pair.
+      operationId: getMetaById
       responses:
         '200':
           content:
@@ -15148,6 +15848,7 @@ paths:
     patch:
       description: Update a particular session metadata pair. Only non-null fields
         are updated.
+      operationId: patchMeta
       requestBody:
         content:
           application/json:
@@ -15180,6 +15881,7 @@ paths:
         type: string
     post:
       description: Load a new test in the current session.
+      operationId: startSessionsLoadConfig
       requestBody:
         content:
           application/json:
@@ -15197,6 +15899,61 @@ paths:
   /api/v2/sessions/{sessionId}/operations/loadConfig/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollSessionsLoadConfig
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Sessions
+    parameters:
+    - description: The ID of the session.
+      in: path
+      name: sessionId
+      required: 'true'
+      schema:
+        type: string
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
+  /api/v2/sessions/{sessionId}/operations/prepareTest:
+    parameters:
+    - description: The ID of the session.
+      in: path
+      name: sessionId
+      required: 'true'
+      schema:
+        type: string
+    post:
+      description: This operation returns the config processed as agent messages and
+        any data necessary for UI and REST stats
+      operationId: startRootPrepareTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PrepareTestOperation'
+              type: array
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Sessions
+  /api/v2/sessions/{sessionId}/operations/prepareTest/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollRootPrepareTest
       responses:
         '200':
           content:
@@ -15231,6 +15988,7 @@ paths:
       description: This is called from traffic controller to notify that a test has
         ended. It should return any information needed by the traffic controller to
         completely clean up the test.
+      operationId: startRootTestEnd
       requestBody:
         content:
           application/json:
@@ -15250,6 +16008,7 @@ paths:
   /api/v2/sessions/{sessionId}/operations/testEnd/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootTestEnd
       responses:
         '200':
           content:
@@ -15284,6 +16043,7 @@ paths:
       description: This is called from traffic controller to notify that a new test
         is starting. It should return all the information needed by the traffic controller
         to start the test.
+      operationId: startRootTestInit
       requestBody:
         content:
           application/json:
@@ -15303,6 +16063,7 @@ paths:
   /api/v2/sessions/{sessionId}/operations/testInit/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootTestInit
       responses:
         '200':
           content:
@@ -15335,6 +16096,7 @@ paths:
         type: string
     post:
       description: Update last visited field when session is touched.
+      operationId: startSessionsTouch
       requestBody:
         content:
           application/json:
@@ -15355,6 +16117,7 @@ paths:
   /api/v2/sessions/{sessionId}/operations/touch/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollSessionsTouch
       responses:
         '200':
           content:
@@ -15379,17 +16142,7 @@ paths:
         type: integer
   /api/v2/sessions/{sessionId}/test:
     get:
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getTest
       responses:
         '200':
           content:
@@ -15413,6 +16166,7 @@ paths:
       schema:
         type: string
     patch:
+      operationId: patchTest
       requestBody:
         content:
           application/json:
@@ -15430,6 +16184,7 @@ paths:
       tags:
       - Sessions
     put:
+      operationId: updateTest
       requestBody:
         content:
           application/json:
@@ -15460,6 +16215,7 @@ paths:
         type: string
     post:
       description: Start calibration for the test configured in the current session.
+      operationId: startCalibrationStart
       responses:
         '202':
           content:
@@ -15472,6 +16228,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollCalibrationStart
       responses:
         '200':
           content:
@@ -15504,6 +16261,7 @@ paths:
         type: string
     post:
       description: Stop calibration for the test configured in the current session.
+      operationId: startCalibrationStop
       responses:
         '202':
           content:
@@ -15516,6 +16274,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollCalibrationStop
       responses:
         '200':
           content:
@@ -15548,6 +16307,7 @@ paths:
         type: string
     post:
       description: Abort traffic for the test configured in the current session.
+      operationId: startRootAbort
       responses:
         '202':
           content:
@@ -15560,6 +16320,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/abort/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootAbort
       responses:
         '200':
           content:
@@ -15592,6 +16353,7 @@ paths:
         type: string
     post:
       description: Start traffic for the test configured in the current session.
+      operationId: startRootStart
       responses:
         '202':
           content:
@@ -15604,6 +16366,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootStart
       responses:
         '200':
           content:
@@ -15636,6 +16399,7 @@ paths:
         type: string
     post:
       description: Stop traffic for the test configured in the current session.
+      operationId: startRootStop
       responses:
         '202':
           content:
@@ -15648,6 +16412,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollRootStop
       responses:
         '200':
           content:
@@ -15673,6 +16438,7 @@ paths:
   /api/v2/stats/plugins:
     get:
       description: List all the plugins.
+      operationId: getPlugins
       parameters:
       - description: The number of search results to return
         in: query
@@ -15706,6 +16472,7 @@ paths:
       - Statistics
     post:
       description: Create new plugins.
+      operationId: createPlugins
       requestBody:
         content:
           application/json:
@@ -15739,6 +16506,7 @@ paths:
   /api/v2/stats/plugins/operations/ingest:
     post:
       description: Ingest the plugin statistics.
+      operationId: startPluginsIngest
       requestBody:
         content:
           application/json:
@@ -15756,6 +16524,7 @@ paths:
   /api/v2/stats/plugins/operations/ingest/{id}:
     get:
       description: Get the state of an ongoing operation.
+      operationId: pollPluginsIngest
       responses:
         '200':
           content:
@@ -15775,6 +16544,7 @@ paths:
   /api/v2/stats/plugins/{pluginId}:
     delete:
       description: Delete a particular plugin.
+      operationId: deletePlugins
       responses:
         '204':
           description: The plugin was successfully deleted.
@@ -15802,6 +16572,7 @@ paths:
   /api/v2/tags:
     get:
       description: Get all the currently available agent groups.
+      operationId: getTags
       parameters:
       - description: The number of search results to return
         in: query
@@ -15842,30 +16613,13 @@ paths:
   /api/v2/time:
     get:
       description: Get the cluster time.
-      parameters:
-      - description: The number of search results to return
-        in: query
-        name: take
-        schema:
-          type: integer
-      - description: The number of search results to skip
-        in: query
-        name: skip
-        schema:
-          type: integer
+      operationId: getTime
       responses:
         '200':
           content:
             application/json:
               schema:
-                oneOf:
-                - $ref: '#/components/schemas/TimeValue'
-                - properties:
-                    data:
-                      $ref: '#/components/schemas/TimeValue'
-                    totalCount:
-                      type: integer
-                  type: object
+                $ref: '#/components/schemas/TimeValue'
           description: The current cluster time
       tags:
       - Utils

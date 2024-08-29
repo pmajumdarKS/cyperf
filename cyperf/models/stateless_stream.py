@@ -29,7 +29,7 @@ class StatelessStream(BaseModel):
     StatelessStream
     """ # noqa: E501
     client_stream_profile: Optional[StreamProfile] = Field(default=None, alias="ClientStreamProfile")
-    direction: StreamDirection = Field(alias="Direction")
+    direction: Optional[StreamDirection] = Field(default=None, alias="Direction")
     is_flood_stream: Optional[StrictBool] = Field(default=None, alias="IsFloodStream")
     server_stream_profile: Optional[StreamProfile] = Field(default=None, alias="ServerStreamProfile")
     __properties: ClassVar[List[str]] = ["ClientStreamProfile", "Direction", "IsFloodStream", "ServerStreamProfile"]

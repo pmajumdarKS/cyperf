@@ -17,10 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from cyperf.models.application_profile import ApplicationProfile
 from cyperf.models.attack_profile import AttackProfile
+from cyperf.models.config_validation import ConfigValidation
 from cyperf.models.custom_dashboards import CustomDashboards
 from cyperf.models.expected_disk_space import ExpectedDiskSpace
 from cyperf.models.network_profile import NetworkProfile
@@ -31,12 +32,14 @@ class Config(BaseModel):
     """
     The test configuration
     """ # noqa: E501
-    attack_profiles: List[AttackProfile] = Field(alias="AttackProfiles")
-    custom_dashboards: CustomDashboards = Field(alias="CustomDashboards")
-    expected_disk_space: List[ExpectedDiskSpace] = Field(alias="ExpectedDiskSpace")
-    network_profiles: List[NetworkProfile] = Field(alias="NetworkProfiles")
-    traffic_profiles: List[ApplicationProfile] = Field(alias="TrafficProfiles")
-    __properties: ClassVar[List[str]] = ["AttackProfiles", "CustomDashboards", "ExpectedDiskSpace", "NetworkProfiles", "TrafficProfiles"]
+    attack_profiles: Optional[List[AttackProfile]] = Field(default=None, alias="AttackProfiles")
+    config_validation: Optional[ConfigValidation] = Field(default=None, alias="ConfigValidation")
+    custom_dashboards: Optional[CustomDashboards] = Field(default=None, alias="CustomDashboards")
+    expected_disk_space: Optional[List[ExpectedDiskSpace]] = Field(default=None, alias="ExpectedDiskSpace")
+    network_profiles: Optional[List[NetworkProfile]] = Field(default=None, alias="NetworkProfiles")
+    traffic_profiles: Optional[List[ApplicationProfile]] = Field(default=None, alias="TrafficProfiles")
+    validate: Optional[List[Union[StrictBytes, StrictStr]]] = None
+    __properties: ClassVar[List[str]] = ["AttackProfiles", "ConfigValidation", "CustomDashboards", "ExpectedDiskSpace", "NetworkProfiles", "TrafficProfiles", "validate"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +87,9 @@ class Config(BaseModel):
                 if _item_attack_profiles:
                     _items.append(_item_attack_profiles.to_dict())
             _dict['AttackProfiles'] = _items
+        # override the default output from pydantic by calling `to_dict()` of config_validation
+        if self.config_validation:
+            _dict['ConfigValidation'] = self.config_validation.to_dict()
         # override the default output from pydantic by calling `to_dict()` of custom_dashboards
         if self.custom_dashboards:
             _dict['CustomDashboards'] = self.custom_dashboards.to_dict()
@@ -121,10 +127,12 @@ class Config(BaseModel):
 
         _obj = cls.model_validate({
             "AttackProfiles": [AttackProfile.from_dict(_item) for _item in obj["AttackProfiles"]] if obj.get("AttackProfiles") is not None else None,
+            "ConfigValidation": ConfigValidation.from_dict(obj["ConfigValidation"]) if obj.get("ConfigValidation") is not None else None,
             "CustomDashboards": CustomDashboards.from_dict(obj["CustomDashboards"]) if obj.get("CustomDashboards") is not None else None,
             "ExpectedDiskSpace": [ExpectedDiskSpace.from_dict(_item) for _item in obj["ExpectedDiskSpace"]] if obj.get("ExpectedDiskSpace") is not None else None,
             "NetworkProfiles": [NetworkProfile.from_dict(_item) for _item in obj["NetworkProfiles"]] if obj.get("NetworkProfiles") is not None else None,
-            "TrafficProfiles": [ApplicationProfile.from_dict(_item) for _item in obj["TrafficProfiles"]] if obj.get("TrafficProfiles") is not None else None
+            "TrafficProfiles": [ApplicationProfile.from_dict(_item) for _item in obj["TrafficProfiles"]] if obj.get("TrafficProfiles") is not None else None,
+            "validate": obj.get("validate")
         })
         return _obj
 

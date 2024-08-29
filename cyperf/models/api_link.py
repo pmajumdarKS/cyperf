@@ -28,9 +28,9 @@ class APILink(BaseModel):
     """ # noqa: E501
     content_type: Optional[StrictStr] = Field(default=None, alias="contentType")
     href: StrictStr
-    id: StrictStr
+    id: Optional[StrictStr] = None
     method: Optional[StrictStr] = None
-    name: StrictStr
+    name: Optional[StrictStr] = None
     references_count: Optional[StrictInt] = Field(default=None, alias="referencesCount")
     rel: StrictStr
     type: StrictStr

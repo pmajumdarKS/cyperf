@@ -24,7 +24,7 @@ from typing_extensions import Self
 
 class ErrorResponse(BaseModel):
     """
-    REST API error response
+    REST API error response.
     """ # noqa: E501
     message: Optional[StrictStr] = Field(default=None, description="The error message")
     __properties: ClassVar[List[str]] = ["message"]

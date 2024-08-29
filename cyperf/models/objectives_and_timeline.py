@@ -31,8 +31,8 @@ class ObjectivesAndTimeline(BaseModel):
     ObjectivesAndTimeline
     """ # noqa: E501
     advanced_settings: Optional[AdvancedSettings] = Field(default=None, alias="AdvancedSettings")
-    primary_objective: SpecificObjective = Field(alias="PrimaryObjective")
-    secondary_objective: SecondaryObjective = Field(alias="SecondaryObjective")
+    primary_objective: Optional[SpecificObjective] = Field(default=None, alias="PrimaryObjective")
+    secondary_objective: Optional[SecondaryObjective] = Field(default=None, alias="SecondaryObjective")
     secondary_objectives: Optional[List[SpecificObjective]] = Field(default=None, description="Deprecated. Use SecondaryObjective instead.", alias="SecondaryObjectives")
     timeline_segments: Optional[List[TimelineSegment]] = Field(default=None, description="Deprecated. Use PrimaryObjective.Timeline instead.", alias="TimelineSegments")
     __properties: ClassVar[List[str]] = ["AdvancedSettings", "PrimaryObjective", "SecondaryObjective", "SecondaryObjectives", "TimelineSegments"]

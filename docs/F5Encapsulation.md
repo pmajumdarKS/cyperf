@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **encapsulation_mode** | **str** | The encapsulation mode for inner traffic. | 
 **ppp_over_dtls_enabled** | **bool** |  | 
-**ppp_over_dtls_settings** | [**DTLSSettings**](DTLSSettings.md) |  | 
+**ppp_over_dtls_settings** | [**DTLSSettings**](DTLSSettings.md) |  | [optional] 
 **udp_port** | **int** |  | 
 
 ## Example

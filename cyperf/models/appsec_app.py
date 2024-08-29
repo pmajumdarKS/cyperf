@@ -31,10 +31,11 @@ class AppsecApp(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="The description of the application", alias="Description")
     name: Optional[StrictStr] = Field(default=None, description="The user friendly name of the application", alias="Name")
     static: Optional[StrictBool] = Field(default=None, description="If true, the application/strike is generated from Controller", alias="Static")
+    user_defined: Optional[StrictBool] = Field(default=None, description="If true, the application was created by the user", alias="UserDefined")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the application")
     owner: Optional[StrictStr] = Field(default=None, description="The friendly display name of the application's owner")
     owner_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the application's owner", alias="ownerId")
-    __properties: ClassVar[List[str]] = ["App", "Description", "Name", "Static", "id", "owner", "ownerId"]
+    __properties: ClassVar[List[str]] = ["App", "Description", "Name", "Static", "UserDefined", "id", "owner", "ownerId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -70,9 +71,11 @@ class AppsecApp(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "static",
+            "user_defined",
             "id",
             "owner",
             "owner_id",
@@ -102,6 +105,7 @@ class AppsecApp(BaseModel):
             "Description": obj.get("Description"),
             "Name": obj.get("Name"),
             "Static": obj.get("Static"),
+            "UserDefined": obj.get("UserDefined"),
             "id": obj.get("id"),
             "owner": obj.get("owner"),
             "ownerId": obj.get("ownerId")

@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.tls_profile import TLSProfile
 from cyperf.models.udp_profile import UdpProfile
 from typing import Optional, Set
@@ -28,8 +28,8 @@ class DTLSSettings(BaseModel):
     """
     DTLSSettings
     """ # noqa: E501
-    tls_client_profile: TLSProfile = Field(alias="TLSClientProfile")
-    udp_profile: UdpProfile = Field(alias="UDPProfile")
+    tls_client_profile: Optional[TLSProfile] = Field(default=None, alias="TLSClientProfile")
+    udp_profile: Optional[UdpProfile] = Field(default=None, alias="UDPProfile")
     __properties: ClassVar[List[str]] = ["TLSClientProfile", "UDPProfile"]
 
     model_config = ConfigDict(

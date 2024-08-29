@@ -6,12 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Indicates whether the profile is enabled or not. | [optional] 
-**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | 
-**id** | **str** |  | 
-**attacks** | [**List[Attack]**](Attack.md) |  | 
-**default_network_mapping** | [**NetworkMapping**](NetworkMapping.md) |  | 
+**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | [optional] 
+**id** | **str** |  | [optional] 
+**attacks** | [**List[Attack]**](Attack.md) |  | [optional] 
+**default_network_mapping** | [**NetworkMapping**](NetworkMapping.md) |  | [optional] 
 **name** | **str** |  | 
-**objectives_and_timeline** | [**AttackObjectivesAndTimeline**](AttackObjectivesAndTimeline.md) |  | 
+**objectives_and_timeline** | [**AttackObjectivesAndTimeline**](AttackObjectivesAndTimeline.md) |  | [optional] 
 **add_attacks** | [**List[ExternalResourceInfo]**](ExternalResourceInfo.md) |  | [optional] 
 **modify_excluded_dut_recursively** | [**List[UpdateNetworkMapping]**](UpdateNetworkMapping.md) |  | [optional] 
 **modify_tags_recursively** | [**List[UpdateNetworkMapping]**](UpdateNetworkMapping.md) |  | [optional] 

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | 
-**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | 
+**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | [optional] 
+**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
 
 ## Example
 

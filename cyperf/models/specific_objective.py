@@ -32,7 +32,7 @@ class SpecificObjective(BaseModel):
     """ # noqa: E501
     max_pending_simulated_users: Annotated[str, Field(strict=True)] = Field(description="Only applies if Type is SimulatedUsers. The maximum number or percentage of users that can be in the pending state (not yet connected and sending traffic) at any time. You can either specify a number or a percentage using the % sign.", alias="MaxPendingSimulatedUsers")
     max_simulated_users_per_interval: Optional[StrictInt] = Field(default=None, description="Only applies if Type is SimulatedUsers. The maximum number of simulated users at which new users are initiated and teardown per interval(1 second). Default value is 0 (no limit)", alias="MaxSimulatedUsersPerInterval")
-    timeline: List[TimelineSegmentUnion] = Field(description="The timeline of this objective.", alias="Timeline")
+    timeline: Optional[List[TimelineSegmentUnion]] = Field(default=None, description="The timeline of this objective.", alias="Timeline")
     type: ObjectiveType = Field(description="The objective's type (default: Throughput).", alias="Type")
     unit: ObjectiveUnit = Field(description="The objective's unit. Must be one of: bps or ''.", alias="Unit")
     id: StrictStr

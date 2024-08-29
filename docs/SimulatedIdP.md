@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assertion_signature** | **bool** |  | 
 **audience_uri** | **str** |  | 
-**cert_config** | [**CertConfig**](CertConfig.md) |  | 
+**cert_config** | [**CertConfig**](CertConfig.md) |  | [optional] 
 **name_id_format** | [**NameIdFormat**](NameIdFormat.md) |  | 
 **response_signature** | **bool** |  | 
-**signature_algorithm** | [**IdPSignatureAlgo**](IdPSignatureAlgo.md) |  | 
+**signature_algorithm** | [**IdPSignatureAlgo**](IdPSignatureAlgo.md) |  | [optional] 
 **single_sign_on_url** | **str** |  | 
 **xml_metadata** | **List[bytearray]** |  | [optional] 
 

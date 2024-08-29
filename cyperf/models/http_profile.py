@@ -33,12 +33,12 @@ class HTTPProfile(BaseModel):
     connection_persistence: Optional[ConnectionPersistence] = Field(default=None, alias="ConnectionPersistence")
     connections_max_transactions: Optional[StrictInt] = Field(default=None, description="The maximum number of transactions for all scenario connections.", alias="ConnectionsMaxTransactions")
     description: StrictStr = Field(description="The description of the HTTP profile.", alias="Description")
-    external_resource_url: StrictStr = Field(description="The external resource URL of the HTTP profile.", alias="ExternalResourceURL")
+    external_resource_url: Optional[StrictStr] = Field(default=None, description="The external resource URL of the HTTP profile.", alias="ExternalResourceURL")
     http_version: Optional[HTTPVersion] = Field(default=None, alias="HTTPVersion")
     headers: Optional[Params] = Field(default=None, alias="Headers")
-    is_modified: StrictBool = Field(alias="IsModified")
+    is_modified: Optional[StrictBool] = Field(default=None, alias="IsModified")
     name: StrictStr = Field(description="The name of the HTTP profile.", alias="Name")
-    params: List[Params] = Field(description="The list of parameters present in the HTTP profile.", alias="Params")
+    params: Optional[List[Params]] = Field(default=None, description="The list of parameters present in the HTTP profile.", alias="Params")
     use_application_server_headers: Optional[StrictBool] = Field(default=None, alias="UseApplicationServerHeaders")
     __properties: ClassVar[List[str]] = ["AdditionalHeaders", "ConnectionPersistence", "ConnectionsMaxTransactions", "Description", "ExternalResourceURL", "HTTPVersion", "Headers", "IsModified", "Name", "Params", "UseApplicationServerHeaders"]
 

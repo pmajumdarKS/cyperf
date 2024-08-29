@@ -6,20 +6,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ca_certificate_file** | [**Params**](Params.md) | The authentication CA certificate file of the IPsec tunnel(s). | [optional] 
-**emulated_sub_config** | [**EmulatedSubnetConfig**](EmulatedSubnetConfig.md) |  | 
+**emulated_sub_config** | [**EmulatedSubnetConfig**](EmulatedSubnetConfig.md) |  | [optional] 
 **enable_rekey** | **bool** |  | 
-**ip_sec_range** | [**IPSecRange**](IPSecRange.md) |  | 
+**ip_sec_range** | [**IPSecRange**](IPSecRange.md) |  | [optional] 
 **ip_sec_stack_name** | **str** |  | 
 **log_keys** | **bool** |  | 
 **max_initiation_rate** | **int** |  | 
 **max_pending** | **int** |  | 
-**outer_ip_range** | [**IPRange**](IPRange.md) |  | 
+**outer_ip_range** | [**IPRange**](IPRange.md) |  | [optional] 
 **rekey_margin** | **int** |  | 
 **rekey_retry_count** | **int** |  | 
 **retransmission_timeout** | **int** |  | 
 **retry_count** | **int** |  | 
 **retry_interval** | **int** |  | 
-**retry_interval_increment** | **int** |  | 
+**retry_interval_increment** | **int** |  | [optional] 
 **setup_timeout** | **int** |  | 
 **stack_role** | **str** |  | 
 **id** | **str** |  | 

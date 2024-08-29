@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | 
-**udp_profile** | [**UdpProfile**](UdpProfile.md) |  | 
+**tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
+**udp_profile** | [**UdpProfile**](UdpProfile.md) |  | [optional] 
 
 ## Example
 

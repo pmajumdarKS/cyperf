@@ -31,10 +31,10 @@ class SimulatedIdP(BaseModel):
     """ # noqa: E501
     assertion_signature: StrictBool = Field(alias="AssertionSignature")
     audience_uri: StrictStr = Field(alias="AudienceURI")
-    cert_config: CertConfig = Field(alias="CertConfig")
+    cert_config: Optional[CertConfig] = Field(default=None, alias="CertConfig")
     name_id_format: NameIdFormat = Field(alias="NameIdFormat")
     response_signature: StrictBool = Field(alias="ResponseSignature")
-    signature_algorithm: IdPSignatureAlgo = Field(alias="SignatureAlgorithm")
+    signature_algorithm: Optional[IdPSignatureAlgo] = Field(default=None, alias="SignatureAlgorithm")
     single_sign_on_url: StrictStr = Field(alias="SingleSignOnURL")
     xml_metadata: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="XMLMetadata")
     __properties: ClassVar[List[str]] = ["AssertionSignature", "AudienceURI", "CertConfig", "NameIdFormat", "ResponseSignature", "SignatureAlgorithm", "SingleSignOnURL", "XMLMetadata"]

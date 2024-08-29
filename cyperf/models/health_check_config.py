@@ -29,7 +29,7 @@ class HealthCheckConfig(BaseModel):
     """ # noqa: E501
     enabled: Optional[StrictBool] = Field(default=None, description="A flag indicating if the servers should listen for HealthCheck requests (default: true).", alias="Enabled")
     params: Optional[List[Params]] = Field(default=None, description="A list of additional parameters for the HealthCheck.", alias="Params")
-    port: StrictInt = Field(description="The port that the DUT will send HealthCheck requests to the simulated servers. (default: 80)", alias="Port")
+    port: Optional[StrictInt] = Field(default=None, description="The port that the DUT will send HealthCheck requests to the simulated servers. (default: 80)", alias="Port")
     __properties: ClassVar[List[str]] = ["Enabled", "Params", "Port"]
 
     model_config = ConfigDict(

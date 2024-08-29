@@ -31,12 +31,12 @@ class TunnelRange(BaseModel):
     """
     The Tunnel Range assigned to the current test configuration
     """ # noqa: E501
-    cisco_any_connect_settings: CiscoAnyConnectSettings = Field(alias="CiscoAnyConnectSettings")
-    dcp_request_timeout: StrictInt = Field(alias="DCPRequestTimeout")
+    cisco_any_connect_settings: Optional[CiscoAnyConnectSettings] = Field(default=None, alias="CiscoAnyConnectSettings")
+    dcp_request_timeout: Optional[StrictInt] = Field(default=None, alias="DCPRequestTimeout")
     dns_resolver: Optional[DNSResolver] = Field(default=None, alias="DNSResolver")
-    f5_settings: F5Settings = Field(alias="F5Settings")
-    fortinet_settings: FortinetSettings = Field(alias="FortinetSettings")
-    pangp_settings: PANGPSettings = Field(alias="PANGPSettings")
+    f5_settings: Optional[F5Settings] = Field(default=None, alias="F5Settings")
+    fortinet_settings: Optional[FortinetSettings] = Field(default=None, alias="FortinetSettings")
+    pangp_settings: Optional[PANGPSettings] = Field(default=None, alias="PANGPSettings")
     tcp_dst_port: StrictInt = Field(alias="TcpDstPort")
     tunnel_count_per_outer_ip: StrictInt = Field(alias="TunnelCountPerOuterIP")
     tunnel_establishment_timeout: Optional[StrictInt] = Field(default=None, alias="TunnelEstablishmentTimeout")

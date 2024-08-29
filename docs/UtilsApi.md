@@ -4,29 +4,188 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v2_disk_usage_consumers_consumer_id_get**](UtilsApi.md#api_v2_disk_usage_consumers_consumer_id_get) | **GET** /api/v2/disk-usage/consumers/{consumerId} | 
-[**api_v2_disk_usage_consumers_get**](UtilsApi.md#api_v2_disk_usage_consumers_get) | **GET** /api/v2/disk-usage/consumers | 
-[**api_v2_disk_usage_get**](UtilsApi.md#api_v2_disk_usage_get) | **GET** /api/v2/disk-usage | 
-[**api_v2_disk_usage_operations_cleanup_diagnostics_id_get**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_diagnostics_id_get) | **GET** /api/v2/disk-usage/operations/cleanup-diagnostics/{id} | 
-[**api_v2_disk_usage_operations_cleanup_diagnostics_post**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_diagnostics_post) | **POST** /api/v2/disk-usage/operations/cleanup-diagnostics | 
-[**api_v2_disk_usage_operations_cleanup_logs_id_get**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_logs_id_get) | **GET** /api/v2/disk-usage/operations/cleanup-logs/{id} | 
-[**api_v2_disk_usage_operations_cleanup_logs_post**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_logs_post) | **POST** /api/v2/disk-usage/operations/cleanup-logs | 
-[**api_v2_disk_usage_operations_cleanup_migration_id_get**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_migration_id_get) | **GET** /api/v2/disk-usage/operations/cleanup-migration/{id} | 
-[**api_v2_disk_usage_operations_cleanup_migration_post**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_migration_post) | **POST** /api/v2/disk-usage/operations/cleanup-migration | 
-[**api_v2_disk_usage_operations_cleanup_notifications_id_get**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_notifications_id_get) | **GET** /api/v2/disk-usage/operations/cleanup-notifications/{id} | 
-[**api_v2_disk_usage_operations_cleanup_notifications_post**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_notifications_post) | **POST** /api/v2/disk-usage/operations/cleanup-notifications | 
-[**api_v2_disk_usage_operations_cleanup_results_id_get**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_results_id_get) | **GET** /api/v2/disk-usage/operations/cleanup-results/{id} | 
-[**api_v2_disk_usage_operations_cleanup_results_post**](UtilsApi.md#api_v2_disk_usage_operations_cleanup_results_post) | **POST** /api/v2/disk-usage/operations/cleanup-results | 
-[**api_v2_docs_get**](UtilsApi.md#api_v2_docs_get) | **GET** /api/v2/docs | 
-[**api_v2_docs_json_get**](UtilsApi.md#api_v2_docs_json_get) | **GET** /api/v2/docs.json | 
-[**api_v2_docs_yaml_get**](UtilsApi.md#api_v2_docs_yaml_get) | **GET** /api/v2/docs.yaml | 
-[**api_v2_log_config_get**](UtilsApi.md#api_v2_log_config_get) | **GET** /api/v2/log-config | 
-[**api_v2_log_config_put**](UtilsApi.md#api_v2_log_config_put) | **PUT** /api/v2/log-config | 
-[**api_v2_time_get**](UtilsApi.md#api_v2_time_get) | **GET** /api/v2/time | 
+[**get_certificate**](UtilsApi.md#get_certificate) | **GET** /api/v2/cert-manager/certificate | 
+[**get_consumers**](UtilsApi.md#get_consumers) | **GET** /api/v2/disk-usage/consumers | 
+[**get_consumers_by_id**](UtilsApi.md#get_consumers_by_id) | **GET** /api/v2/disk-usage/consumers/{consumerId} | 
+[**get_disk_usage**](UtilsApi.md#get_disk_usage) | **GET** /api/v2/disk-usage | 
+[**get_docs**](UtilsApi.md#get_docs) | **GET** /api/v2/docs | 
+[**get_docs_json**](UtilsApi.md#get_docs_json) | **GET** /api/v2/docs.json | 
+[**get_docs_yaml**](UtilsApi.md#get_docs_yaml) | **GET** /api/v2/docs.yaml | 
+[**get_log_config**](UtilsApi.md#get_log_config) | **GET** /api/v2/log-config | 
+[**get_time**](UtilsApi.md#get_time) | **GET** /api/v2/time | 
+[**poll_disk_usage_cleanup_diagnostics**](UtilsApi.md#poll_disk_usage_cleanup_diagnostics) | **GET** /api/v2/disk-usage/operations/cleanup-diagnostics/{id} | 
+[**poll_disk_usage_cleanup_logs**](UtilsApi.md#poll_disk_usage_cleanup_logs) | **GET** /api/v2/disk-usage/operations/cleanup-logs/{id} | 
+[**poll_disk_usage_cleanup_migration**](UtilsApi.md#poll_disk_usage_cleanup_migration) | **GET** /api/v2/disk-usage/operations/cleanup-migration/{id} | 
+[**poll_disk_usage_cleanup_notifications**](UtilsApi.md#poll_disk_usage_cleanup_notifications) | **GET** /api/v2/disk-usage/operations/cleanup-notifications/{id} | 
+[**poll_disk_usage_cleanup_results**](UtilsApi.md#poll_disk_usage_cleanup_results) | **GET** /api/v2/disk-usage/operations/cleanup-results/{id} | 
+[**poll_root_generate**](UtilsApi.md#poll_root_generate) | **GET** /api/v2/cert-manager/operations/generate/{id} | 
+[**poll_root_upload**](UtilsApi.md#poll_root_upload) | **GET** /api/v2/cert-manager/operations/upload/{id} | 
+[**start_disk_usage_cleanup_diagnostics**](UtilsApi.md#start_disk_usage_cleanup_diagnostics) | **POST** /api/v2/disk-usage/operations/cleanup-diagnostics | 
+[**start_disk_usage_cleanup_logs**](UtilsApi.md#start_disk_usage_cleanup_logs) | **POST** /api/v2/disk-usage/operations/cleanup-logs | 
+[**start_disk_usage_cleanup_migration**](UtilsApi.md#start_disk_usage_cleanup_migration) | **POST** /api/v2/disk-usage/operations/cleanup-migration | 
+[**start_disk_usage_cleanup_notifications**](UtilsApi.md#start_disk_usage_cleanup_notifications) | **POST** /api/v2/disk-usage/operations/cleanup-notifications | 
+[**start_disk_usage_cleanup_results**](UtilsApi.md#start_disk_usage_cleanup_results) | **POST** /api/v2/disk-usage/operations/cleanup-results | 
+[**start_root_generate**](UtilsApi.md#start_root_generate) | **POST** /api/v2/cert-manager/operations/generate | 
+[**start_root_upload**](UtilsApi.md#start_root_upload) | **POST** /api/v2/cert-manager/operations/upload | 
+[**update_log_config**](UtilsApi.md#update_log_config) | **PUT** /api/v2/log-config | 
 
 
-# **api_v2_disk_usage_consumers_consumer_id_get**
-> Consumer api_v2_disk_usage_consumers_consumer_id_get(consumer_id)
+# **get_certificate**
+> Certificate get_certificate()
+
+
+
+Get controller's certificate.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.certificate import Certificate
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_response = api_instance.get_certificate()
+        print("The response of UtilsApi->get_certificate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_certificate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Certificate**](Certificate.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The controller&#39;s certificate |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_consumers**
+> GetConsumers200Response get_consumers(take=take, skip=skip)
+
+
+
+Get the list of consumers.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_consumers200_response import GetConsumers200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_consumers(take=take, skip=skip)
+        print("The response of UtilsApi->get_consumers:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_consumers: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetConsumers200Response**](GetConsumers200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of consumers which can be either logs or diagnostics |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_consumers_by_id**
+> Consumer get_consumers_by_id(consumer_id)
 
 
 
@@ -65,11 +224,11 @@ with cyperf.ApiClient(configuration) as api_client:
     consumer_id = 'consumer_id_example' # str | The ID of the consumer.
 
     try:
-        api_response = api_instance.api_v2_disk_usage_consumers_consumer_id_get(consumer_id)
-        print("The response of UtilsApi->api_v2_disk_usage_consumers_consumer_id_get:\n")
+        api_response = api_instance.get_consumers_by_id(consumer_id)
+        print("The response of UtilsApi->get_consumers_by_id:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_consumers_consumer_id_get: %s\n" % e)
+        print("Exception when calling UtilsApi->get_consumers_by_id: %s\n" % e)
 ```
 
 
@@ -104,88 +263,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_consumers_get**
-> ApiV2DiskUsageConsumersGet200Response api_v2_disk_usage_consumers_get(take=take, skip=skip)
-
-
-
-Get the list of consumers.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.api_v2_disk_usage_consumers_get200_response import ApiV2DiskUsageConsumersGet200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.api_v2_disk_usage_consumers_get(take=take, skip=skip)
-        print("The response of UtilsApi->api_v2_disk_usage_consumers_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_consumers_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**ApiV2DiskUsageConsumersGet200Response**](ApiV2DiskUsageConsumersGet200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of consumers which can be either logs or diagnostics |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_disk_usage_get**
-> ApiV2DiskUsageGet200Response api_v2_disk_usage_get(take=take, skip=skip)
+# **get_disk_usage**
+> DiskUsage get_disk_usage()
 
 
 
@@ -198,7 +277,7 @@ Get information about the controller's disk usage.
 
 ```python
 import cyperf
-from cyperf.models.api_v2_disk_usage_get200_response import ApiV2DiskUsageGet200Response
+from cyperf.models.disk_usage import DiskUsage
 from cyperf.rest import ApiException
 from pprint import pprint
 
@@ -221,30 +300,24 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.UtilsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_get(take=take, skip=skip)
-        print("The response of UtilsApi->api_v2_disk_usage_get:\n")
+        api_response = api_instance.get_disk_usage()
+        print("The response of UtilsApi->get_disk_usage:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_get: %s\n" % e)
+        print("Exception when calling UtilsApi->get_disk_usage: %s\n" % e)
 ```
 
 
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**ApiV2DiskUsageGet200Response**](ApiV2DiskUsageGet200Response.md)
+[**DiskUsage**](DiskUsage.md)
 
 ### Authorization
 
@@ -264,8 +337,370 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_diagnostics_id_get**
-> AsyncContext api_v2_disk_usage_operations_cleanup_diagnostics_id_get(id)
+# **get_docs**
+> get_docs()
+
+
+
+Get the OpenAPI definitions.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_instance.get_docs()
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_docs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The OpenAPI definitions |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_docs_json**
+> get_docs_json()
+
+
+
+Get the OpenAPI definitions.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_instance.get_docs_json()
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_docs_json: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The OpenAPI definitions |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_docs_yaml**
+> str get_docs_yaml()
+
+
+
+Get the OpenAPI definitions.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_response = api_instance.get_docs_yaml()
+        print("The response of UtilsApi->get_docs_yaml:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_docs_yaml: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**str**
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/yaml, application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The OpenAPI definitions |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_log_config**
+> LogConfig get_log_config()
+
+
+
+Get the current global log level.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.log_config import LogConfig
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_response = api_instance.get_log_config()
+        print("The response of UtilsApi->get_log_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_log_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**LogConfig**](LogConfig.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The current global log level |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_time**
+> TimeValue get_time()
+
+
+
+Get the cluster time.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.time_value import TimeValue
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_response = api_instance.get_time()
+        print("The response of UtilsApi->get_time:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->get_time: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TimeValue**](TimeValue.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The current cluster time |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_disk_usage_cleanup_diagnostics**
+> AsyncContext poll_disk_usage_cleanup_diagnostics(id)
 
 
 
@@ -304,11 +739,11 @@ with cyperf.ApiClient(configuration) as api_client:
     id = 56 # int | The ID of the async operation.
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_diagnostics_id_get(id)
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_diagnostics_id_get:\n")
+        api_response = api_instance.poll_disk_usage_cleanup_diagnostics(id)
+        print("The response of UtilsApi->poll_disk_usage_cleanup_diagnostics:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_diagnostics_id_get: %s\n" % e)
+        print("Exception when calling UtilsApi->poll_disk_usage_cleanup_diagnostics: %s\n" % e)
 ```
 
 
@@ -341,8 +776,470 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_diagnostics_post**
-> AsyncContext api_v2_disk_usage_operations_cleanup_diagnostics_post()
+# **poll_disk_usage_cleanup_logs**
+> AsyncContext poll_disk_usage_cleanup_logs(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_disk_usage_cleanup_logs(id)
+        print("The response of UtilsApi->poll_disk_usage_cleanup_logs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_disk_usage_cleanup_logs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_disk_usage_cleanup_migration**
+> AsyncContext poll_disk_usage_cleanup_migration(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_disk_usage_cleanup_migration(id)
+        print("The response of UtilsApi->poll_disk_usage_cleanup_migration:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_disk_usage_cleanup_migration: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_disk_usage_cleanup_notifications**
+> AsyncContext poll_disk_usage_cleanup_notifications(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_disk_usage_cleanup_notifications(id)
+        print("The response of UtilsApi->poll_disk_usage_cleanup_notifications:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_disk_usage_cleanup_notifications: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_disk_usage_cleanup_results**
+> AsyncContext poll_disk_usage_cleanup_results(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_disk_usage_cleanup_results(id)
+        print("The response of UtilsApi->poll_disk_usage_cleanup_results:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_disk_usage_cleanup_results: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_root_generate**
+> AsyncContext poll_root_generate(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_root_generate(id)
+        print("The response of UtilsApi->poll_root_generate:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_root_generate: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_root_upload**
+> AsyncContext poll_root_upload(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_root_upload(id)
+        print("The response of UtilsApi->poll_root_upload:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->poll_root_upload: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_disk_usage_cleanup_diagnostics**
+> AsyncContext start_disk_usage_cleanup_diagnostics()
 
 
 
@@ -380,11 +1277,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_diagnostics_post()
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_diagnostics_post:\n")
+        api_response = api_instance.start_disk_usage_cleanup_diagnostics()
+        print("The response of UtilsApi->start_disk_usage_cleanup_diagnostics:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_diagnostics_post: %s\n" % e)
+        print("Exception when calling UtilsApi->start_disk_usage_cleanup_diagnostics: %s\n" % e)
 ```
 
 
@@ -414,85 +1311,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_logs_id_get**
-> AsyncContext api_v2_disk_usage_operations_cleanup_logs_id_get(id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_logs_id_get(id)
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_logs_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_logs_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_disk_usage_operations_cleanup_logs_post**
-> AsyncContext api_v2_disk_usage_operations_cleanup_logs_post()
+# **start_disk_usage_cleanup_logs**
+> AsyncContext start_disk_usage_cleanup_logs()
 
 
 
@@ -530,11 +1350,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_logs_post()
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_logs_post:\n")
+        api_response = api_instance.start_disk_usage_cleanup_logs()
+        print("The response of UtilsApi->start_disk_usage_cleanup_logs:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_logs_post: %s\n" % e)
+        print("Exception when calling UtilsApi->start_disk_usage_cleanup_logs: %s\n" % e)
 ```
 
 
@@ -564,85 +1384,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_migration_id_get**
-> AsyncContext api_v2_disk_usage_operations_cleanup_migration_id_get(id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_migration_id_get(id)
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_migration_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_migration_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_disk_usage_operations_cleanup_migration_post**
-> AsyncContext api_v2_disk_usage_operations_cleanup_migration_post()
+# **start_disk_usage_cleanup_migration**
+> AsyncContext start_disk_usage_cleanup_migration()
 
 
 
@@ -680,11 +1423,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_migration_post()
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_migration_post:\n")
+        api_response = api_instance.start_disk_usage_cleanup_migration()
+        print("The response of UtilsApi->start_disk_usage_cleanup_migration:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_migration_post: %s\n" % e)
+        print("Exception when calling UtilsApi->start_disk_usage_cleanup_migration: %s\n" % e)
 ```
 
 
@@ -714,85 +1457,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_notifications_id_get**
-> AsyncContext api_v2_disk_usage_operations_cleanup_notifications_id_get(id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_notifications_id_get(id)
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_notifications_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_notifications_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_disk_usage_operations_cleanup_notifications_post**
-> AsyncContext api_v2_disk_usage_operations_cleanup_notifications_post()
+# **start_disk_usage_cleanup_notifications**
+> AsyncContext start_disk_usage_cleanup_notifications()
 
 
 
@@ -830,11 +1496,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_notifications_post()
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_notifications_post:\n")
+        api_response = api_instance.start_disk_usage_cleanup_notifications()
+        print("The response of UtilsApi->start_disk_usage_cleanup_notifications:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_notifications_post: %s\n" % e)
+        print("Exception when calling UtilsApi->start_disk_usage_cleanup_notifications: %s\n" % e)
 ```
 
 
@@ -864,85 +1530,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_disk_usage_operations_cleanup_results_id_get**
-> AsyncContext api_v2_disk_usage_operations_cleanup_results_id_get(id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_results_id_get(id)
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_results_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_results_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_disk_usage_operations_cleanup_results_post**
-> AsyncContext api_v2_disk_usage_operations_cleanup_results_post()
+# **start_disk_usage_cleanup_results**
+> AsyncContext start_disk_usage_cleanup_results()
 
 
 
@@ -980,11 +1569,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.api_v2_disk_usage_operations_cleanup_results_post()
-        print("The response of UtilsApi->api_v2_disk_usage_operations_cleanup_results_post:\n")
+        api_response = api_instance.start_disk_usage_cleanup_results()
+        print("The response of UtilsApi->start_disk_usage_cleanup_results:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_disk_usage_operations_cleanup_results_post: %s\n" % e)
+        print("Exception when calling UtilsApi->start_disk_usage_cleanup_results: %s\n" % e)
 ```
 
 
@@ -1014,12 +1603,12 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_docs_get**
-> api_v2_docs_get()
+# **start_root_generate**
+> AsyncContext start_root_generate(certificate=certificate)
 
 
 
-Get the OpenAPI definitions.
+Generate a certificate.
 
 ### Example
 
@@ -1028,6 +1617,8 @@ Get the OpenAPI definitions.
 
 ```python
 import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.models.certificate import Certificate
 from cyperf.rest import ApiException
 from pprint import pprint
 
@@ -1050,231 +1641,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.UtilsApi(api_client)
+    certificate = cyperf.Certificate() # Certificate |  (optional)
 
     try:
-        api_instance.api_v2_docs_get()
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_docs_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The OpenAPI definitions |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_docs_json_get**
-> api_v2_docs_json_get()
-
-
-
-Get the OpenAPI definitions.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-
-    try:
-        api_instance.api_v2_docs_json_get()
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_docs_json_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The OpenAPI definitions |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_docs_yaml_get**
-> str api_v2_docs_yaml_get()
-
-
-
-Get the OpenAPI definitions.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-
-    try:
-        api_response = api_instance.api_v2_docs_yaml_get()
-        print("The response of UtilsApi->api_v2_docs_yaml_get:\n")
+        api_response = api_instance.start_root_generate(certificate=certificate)
+        print("The response of UtilsApi->start_root_generate:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_docs_yaml_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-**str**
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/yaml, application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The OpenAPI definitions |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_log_config_get**
-> ApiV2LogConfigGet200Response api_v2_log_config_get(take=take, skip=skip)
-
-
-
-Get the current global log level.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.api_v2_log_config_get200_response import ApiV2LogConfigGet200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.api_v2_log_config_get(take=take, skip=skip)
-        print("The response of UtilsApi->api_v2_log_config_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_log_config_get: %s\n" % e)
+        print("Exception when calling UtilsApi->start_root_generate: %s\n" % e)
 ```
 
 
@@ -1284,12 +1658,84 @@ with cyperf.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
+ **certificate** | [**Certificate**](Certificate.md)|  | [optional] 
 
 ### Return type
 
-[**ApiV2LogConfigGet200Response**](ApiV2LogConfigGet200Response.md)
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_root_upload**
+> AsyncContext start_root_upload()
+
+
+
+Upload a certificate/key pair that will replace the system certificate.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.UtilsApi(api_client)
+
+    try:
+        api_response = api_instance.start_root_upload()
+        print("The response of UtilsApi->start_root_upload:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UtilsApi->start_root_upload: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
 
 ### Authorization
 
@@ -1304,13 +1750,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The current global log level |  -  |
-**500** | Unexpected error |  -  |
+**202** | Details about the operation that just started |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_log_config_put**
-> LogConfig api_v2_log_config_put(log_config=log_config)
+# **update_log_config**
+> LogConfig update_log_config(log_config=log_config)
 
 
 
@@ -1349,11 +1794,11 @@ with cyperf.ApiClient(configuration) as api_client:
     log_config = cyperf.LogConfig() # LogConfig |  (optional)
 
     try:
-        api_response = api_instance.api_v2_log_config_put(log_config=log_config)
-        print("The response of UtilsApi->api_v2_log_config_put:\n")
+        api_response = api_instance.update_log_config(log_config=log_config)
+        print("The response of UtilsApi->update_log_config:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_log_config_put: %s\n" % e)
+        print("Exception when calling UtilsApi->update_log_config: %s\n" % e)
 ```
 
 
@@ -1384,85 +1829,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The current global log level |  -  |
 **500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_time_get**
-> ApiV2TimeGet200Response api_v2_time_get(take=take, skip=skip)
-
-
-
-Get the cluster time.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.api_v2_time_get200_response import ApiV2TimeGet200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.UtilsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.api_v2_time_get(take=take, skip=skip)
-        print("The response of UtilsApi->api_v2_time_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UtilsApi->api_v2_time_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**ApiV2TimeGet200Response**](ApiV2TimeGet200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The current cluster time |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

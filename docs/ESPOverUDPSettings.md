@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**udp_profile** | [**UdpProfile**](UdpProfile.md) |  | 
+**udp_profile** | [**UdpProfile**](UdpProfile.md) |  | [optional] 
 
 ## Example
 

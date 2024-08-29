@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.esp_over_udp_settings import ESPOverUDPSettings
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +28,7 @@ class PANGPEncapsulation(BaseModel):
     PANGPEncapsulation
     """ # noqa: E501
     esp_over_udp_enabled: StrictBool = Field(alias="ESPOverUDPEnabled")
-    esp_over_udp_settings: ESPOverUDPSettings = Field(alias="ESPOverUDPSettings")
+    esp_over_udp_settings: Optional[ESPOverUDPSettings] = Field(default=None, alias="ESPOverUDPSettings")
     encapsulation_mode: StrictStr = Field(description="The encapsulation mode for inner traffic.", alias="EncapsulationMode")
     udp_port: StrictInt = Field(alias="UdpPort")
     __properties: ClassVar[List[str]] = ["ESPOverUDPEnabled", "ESPOverUDPSettings", "EncapsulationMode", "UdpPort"]

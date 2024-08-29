@@ -39,8 +39,8 @@ class DUTNetwork(BaseModel):
     config_settings: Optional[StrictStr] = Field(default=None, alias="ConfigSettings")
     forward_proxy_pep_dut: Optional[PepDUT] = Field(default=None, alias="ForwardProxyPepDUT")
     forward_proxy_pep_dut_active: Optional[StrictBool] = Field(default=None, description="A flag indicating if the PEP device is an active device. If active, the simulated clients will send traffic to the PEP device host. (default: false)", alias="ForwardProxyPepDUTActive")
-    http_health_check: HealthCheckConfig = Field(description="The HTTP HealthCheck configuration for DUT", alias="HTTPHealthCheck")
-    https_health_check: HealthCheckConfig = Field(description="The HTTPS HealthCheck configuration for DUT", alias="HTTPSHealthCheck")
+    http_health_check: Optional[HealthCheckConfig] = Field(default=None, description="The HTTP HealthCheck configuration for DUT", alias="HTTPHealthCheck")
+    https_health_check: Optional[HealthCheckConfig] = Field(default=None, description="The HTTPS HealthCheck configuration for DUT", alias="HTTPSHealthCheck")
     hostname_suffix: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A suffix to be added to the Host header of all Apps/Attacks running through the forward proxy DUT (default: empty string).", alias="HostnameSuffix")
     http_forward_proxy_mode: Optional[StrictStr] = Field(default=None, description="Deprecated. This is ignored and the proxy mode will be deduced from the connection type.", alias="HttpForwardProxyMode")
     non_proxied_hosts: Optional[Params] = Field(default=None, alias="NonProxiedHosts")
@@ -51,9 +51,9 @@ class DUTNetwork(BaseModel):
     server_dut_active: Optional[StrictBool] = Field(default=None, description="A flag indicating if the server DUT is an active device. If it is, the simulated clients or client DUT(if active) will send traffic to the server DUT 'host'; and the simulated servers will use the healtcheck configurations. (default: false)", alias="ServerDUTActive")
     server_dut_host: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The hostname where the traffic goes if server DUT is active.", alias="ServerDUTHost")
     server_dut_port: Optional[StrictInt] = Field(default=None, description="The listen port for server-side DUT", alias="ServerDUTPort")
-    tcp_health_check: HealthCheckConfig = Field(description="The TCP HealthCheck configuration for DUT", alias="TCPHealthCheck")
+    tcp_health_check: Optional[HealthCheckConfig] = Field(default=None, description="The TCP HealthCheck configuration for DUT", alias="TCPHealthCheck")
     use_real_host: Optional[StrictBool] = Field(default=None, description="A flag indicating if tunneled hostname should use real domain names.", alias="UseRealHost")
-    active: StrictBool = Field(description="A flag indicating if the server DUT is an active device. If it is, the simulated clients or client DUT(if active) will send traffic to the DUT 'host'; and the simulated servers will use the healtcheck configurations. (default: false)")
+    active: Optional[StrictBool] = Field(default=None, description="A flag indicating if the server DUT is an active device. If it is, the simulated clients or client DUT(if active) will send traffic to the DUT 'host'; and the simulated servers will use the healtcheck configurations. (default: false)")
     host: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The hostname where the traffic goes if server DUT is active.")
     __properties: ClassVar[List[str]] = ["Name", "id", "networkTags", "ClientDUTActive", "ClientDUTHost", "ClientDUTPort", "ConfigSettings", "ForwardProxyPepDUT", "ForwardProxyPepDUTActive", "HTTPHealthCheck", "HTTPSHealthCheck", "HostnameSuffix", "HttpForwardProxyMode", "NonProxiedHosts", "PepDUT", "PepDUTActive", "ReverseProxyPepDUT", "ReverseProxyPepDUTActive", "ServerDUTActive", "ServerDUTHost", "ServerDUTPort", "TCPHealthCheck", "UseRealHost", "active", "host"]
 

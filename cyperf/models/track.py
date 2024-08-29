@@ -27,7 +27,7 @@ class Track(BaseModel):
     """
     Track
     """ # noqa: E501
-    actions: List[Action] = Field(alias="Actions")
+    actions: Optional[List[Action]] = Field(default=None, alias="Actions")
     add_actions: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="add-actions")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["Actions", "add-actions", "id"]

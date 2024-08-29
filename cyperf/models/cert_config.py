@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictBytes, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from cyperf.models.conflict import Conflict
 from cyperf.models.params import Params
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,16 +28,18 @@ class CertConfig(BaseModel):
     """
     CertConfig
     """ # noqa: E501
-    certificate_file: Params = Field(description="The certificate file of the TLS profile.", alias="certificateFile")
-    dh_file: Params = Field(alias="dhFile")
+    certificate_file: Optional[Params] = Field(default=None, description="The certificate file of the TLS profile.", alias="certificateFile")
+    dh_file: Optional[Params] = Field(default=None, alias="dhFile")
+    get_sni_conflicts: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="get-sni-conflicts")
     id: StrictStr
     is_playlist: Optional[StrictBool] = Field(default=None, alias="isPlaylist")
-    key_file: Params = Field(description="The key file of the TLS profile.", alias="keyFile")
+    key_file: Optional[Params] = Field(default=None, description="The key file of the TLS profile.", alias="keyFile")
     key_file_password: Optional[StrictStr] = Field(default=None, description="The key file password of the TLS profile.", alias="keyFilePassword")
     playlist_column_name: Optional[StrictStr] = Field(default=None, alias="playlistColumnName")
     playlist_filename: Optional[StrictStr] = Field(default=None, alias="playlistFilename")
+    resolve_sni_conflicts: Optional[List[Conflict]] = Field(default=None, alias="resolve-sni-conflicts")
     sni_hostname: StrictStr = Field(description="The SNI hostname associated with the certificate. (default: generic.keysight.io).", alias="sniHostname")
-    __properties: ClassVar[List[str]] = ["certificateFile", "dhFile", "id", "isPlaylist", "keyFile", "keyFilePassword", "playlistColumnName", "playlistFilename", "sniHostname"]
+    __properties: ClassVar[List[str]] = ["certificateFile", "dhFile", "get-sni-conflicts", "id", "isPlaylist", "keyFile", "keyFilePassword", "playlistColumnName", "playlistFilename", "resolve-sni-conflicts", "sniHostname"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -86,6 +89,13 @@ class CertConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of key_file
         if self.key_file:
             _dict['keyFile'] = self.key_file.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in resolve_sni_conflicts (list)
+        _items = []
+        if self.resolve_sni_conflicts:
+            for _item_resolve_sni_conflicts in self.resolve_sni_conflicts:
+                if _item_resolve_sni_conflicts:
+                    _items.append(_item_resolve_sni_conflicts.to_dict())
+            _dict['resolve-sni-conflicts'] = _items
         return _dict
 
     @classmethod
@@ -100,12 +110,14 @@ class CertConfig(BaseModel):
         _obj = cls.model_validate({
             "certificateFile": Params.from_dict(obj["certificateFile"]) if obj.get("certificateFile") is not None else None,
             "dhFile": Params.from_dict(obj["dhFile"]) if obj.get("dhFile") is not None else None,
+            "get-sni-conflicts": obj.get("get-sni-conflicts"),
             "id": obj.get("id"),
             "isPlaylist": obj.get("isPlaylist"),
             "keyFile": Params.from_dict(obj["keyFile"]) if obj.get("keyFile") is not None else None,
             "keyFilePassword": obj.get("keyFilePassword"),
             "playlistColumnName": obj.get("playlistColumnName"),
             "playlistFilename": obj.get("playlistFilename"),
+            "resolve-sni-conflicts": [Conflict.from_dict(_item) for _item in obj["resolve-sni-conflicts"]] if obj.get("resolve-sni-conflicts") is not None else None,
             "sniHostname": obj.get("sniHostname")
         })
         return _obj

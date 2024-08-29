@@ -27,7 +27,7 @@ class AttackTrack(BaseModel):
     """
     AttackTrack
     """ # noqa: E501
-    actions: List[AttackAction] = Field(alias="Actions")
+    actions: Optional[List[AttackAction]] = Field(default=None, alias="Actions")
     add_actions: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="add-actions")
     id: StrictStr
     __properties: ClassVar[List[str]] = ["Actions", "add-actions", "id"]

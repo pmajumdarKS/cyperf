@@ -5,14 +5,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**certificate_file** | [**Params**](Params.md) | The certificate file of the TLS profile. | 
-**dh_file** | [**Params**](Params.md) |  | 
+**certificate_file** | [**Params**](Params.md) | The certificate file of the TLS profile. | [optional] 
+**dh_file** | [**Params**](Params.md) |  | [optional] 
+**get_sni_conflicts** | **List[bytearray]** |  | [optional] 
 **id** | **str** |  | 
 **is_playlist** | **bool** |  | [optional] 
-**key_file** | [**Params**](Params.md) | The key file of the TLS profile. | 
+**key_file** | [**Params**](Params.md) | The key file of the TLS profile. | [optional] 
 **key_file_password** | **str** | The key file password of the TLS profile. | [optional] 
 **playlist_column_name** | **str** |  | [optional] 
 **playlist_filename** | **str** |  | [optional] 
+**resolve_sni_conflicts** | [**List[Conflict]**](Conflict.md) |  | [optional] 
 **sni_hostname** | **str** | The SNI hostname associated with the certificate. (default: generic.keysight.io). | 
 
 ## Example

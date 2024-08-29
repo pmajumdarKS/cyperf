@@ -36,7 +36,7 @@ class TimelineSegment(BaseModel):
     objective_value: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The objective value for this timeline segment.", alias="ObjectiveValue")
     primary_objective_unit: StrictStr = Field(description="Deprecated. Use PrimaryObjective.Timeline[].ObjectiveUnit instead. The primary objective unit. (default: Gbps)", alias="PrimaryObjectiveUnit")
     primary_objective_value: Union[StrictFloat, StrictInt] = Field(description="Deprecated. Use PrimaryObjective.Timeline[].ObjectiveValue instead. The primary objective value (default: 1).", alias="PrimaryObjectiveValue")
-    secondary_objective_values: List[ObjectiveValueEntry] = Field(description="Deprecated. Use SecondaryObjective.ObjectiveValue/ObjectiveUnit instead. The secondary objectives values.", alias="SecondaryObjectiveValues")
+    secondary_objective_values: Optional[List[ObjectiveValueEntry]] = Field(default=None, description="Deprecated. Use SecondaryObjective.ObjectiveValue/ObjectiveUnit instead. The secondary objectives values.", alias="SecondaryObjectiveValues")
     __properties: ClassVar[List[str]] = ["Duration", "SegmentType", "WarmUpPeriod", "id", "ObjectiveUnit", "ObjectiveValue", "PrimaryObjectiveUnit", "PrimaryObjectiveValue", "SecondaryObjectiveValues"]
 
     @field_validator('objective_unit')

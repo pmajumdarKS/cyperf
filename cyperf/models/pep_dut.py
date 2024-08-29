@@ -31,7 +31,7 @@ class PepDUT(BaseModel):
     """ # noqa: E501
     auth_method: Optional[Params] = Field(default=None, alias="AuthMethod")
     auth_profile_params: Optional[List[Params]] = Field(default=None, alias="AuthProfileParams")
-    auth_profile_type: StrictStr = Field(alias="AuthProfileType")
+    auth_profile_type: Optional[StrictStr] = Field(default=None, alias="AuthProfileType")
     hostname_suffix: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="A suffix to be added to the Host header of all Apps/Attacks running through the DUT (default: empty string).", alias="HostnameSuffix")
     idp_type: Optional[Params] = Field(default=None, alias="IDPType")
     is_explicit_proxy: Optional[StrictBool] = Field(default=None, description="A flag indicating if PEP for the selected authentication profile is an explicit proxy", alias="IsExplicitProxy")

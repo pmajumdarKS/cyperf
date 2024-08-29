@@ -4,20 +4,20 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v2_sessions_session_id_test_calibrate_operations_start_id_get**](TestOperationsApi.md#api_v2_sessions_session_id_test_calibrate_operations_start_id_get) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id} | 
-[**api_v2_sessions_session_id_test_calibrate_operations_start_post**](TestOperationsApi.md#api_v2_sessions_session_id_test_calibrate_operations_start_post) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/start | 
-[**api_v2_sessions_session_id_test_calibrate_operations_stop_id_get**](TestOperationsApi.md#api_v2_sessions_session_id_test_calibrate_operations_stop_id_get) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id} | 
-[**api_v2_sessions_session_id_test_calibrate_operations_stop_post**](TestOperationsApi.md#api_v2_sessions_session_id_test_calibrate_operations_stop_post) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop | 
-[**api_v2_sessions_session_id_test_run_operations_abort_id_get**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_abort_id_get) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/abort/{id} | 
-[**api_v2_sessions_session_id_test_run_operations_abort_post**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_abort_post) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/abort | 
-[**api_v2_sessions_session_id_test_run_operations_start_id_get**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_start_id_get) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/start/{id} | 
-[**api_v2_sessions_session_id_test_run_operations_start_post**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_start_post) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/start | 
-[**api_v2_sessions_session_id_test_run_operations_stop_id_get**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_stop_id_get) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/stop/{id} | 
-[**api_v2_sessions_session_id_test_run_operations_stop_post**](TestOperationsApi.md#api_v2_sessions_session_id_test_run_operations_stop_post) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/stop | 
+[**poll_calibration_start**](TestOperationsApi.md#poll_calibration_start) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id} | 
+[**poll_calibration_stop**](TestOperationsApi.md#poll_calibration_stop) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id} | 
+[**poll_root_abort**](TestOperationsApi.md#poll_root_abort) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/abort/{id} | 
+[**poll_root_start**](TestOperationsApi.md#poll_root_start) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/start/{id} | 
+[**poll_root_stop**](TestOperationsApi.md#poll_root_stop) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/stop/{id} | 
+[**start_calibration_start**](TestOperationsApi.md#start_calibration_start) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/start | 
+[**start_calibration_stop**](TestOperationsApi.md#start_calibration_stop) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop | 
+[**start_root_abort**](TestOperationsApi.md#start_root_abort) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/abort | 
+[**start_root_start**](TestOperationsApi.md#start_root_start) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/start | 
+[**start_root_stop**](TestOperationsApi.md#start_root_stop) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/stop | 
 
 
-# **api_v2_sessions_session_id_test_calibrate_operations_start_id_get**
-> AsyncContext api_v2_sessions_session_id_test_calibrate_operations_start_id_get(session_id, id)
+# **poll_calibration_start**
+> AsyncContext poll_calibration_start(session_id, id)
 
 
 
@@ -57,11 +57,11 @@ with cyperf.ApiClient(configuration) as api_client:
     id = 56 # int | The ID of the async operation.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_calibrate_operations_start_id_get(session_id, id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_start_id_get:\n")
+        api_response = api_instance.poll_calibration_start(session_id, id)
+        print("The response of TestOperationsApi->poll_calibration_start:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_start_id_get: %s\n" % e)
+        print("Exception when calling TestOperationsApi->poll_calibration_start: %s\n" % e)
 ```
 
 
@@ -95,8 +95,324 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_sessions_session_id_test_calibrate_operations_start_post**
-> AsyncContext api_v2_sessions_session_id_test_calibrate_operations_start_post(session_id)
+# **poll_calibration_stop**
+> AsyncContext poll_calibration_stop(session_id, id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.TestOperationsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_calibration_stop(session_id, id)
+        print("The response of TestOperationsApi->poll_calibration_stop:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TestOperationsApi->poll_calibration_stop: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_root_abort**
+> AsyncContext poll_root_abort(session_id, id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.TestOperationsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_root_abort(session_id, id)
+        print("The response of TestOperationsApi->poll_root_abort:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TestOperationsApi->poll_root_abort: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_root_start**
+> AsyncContext poll_root_start(session_id, id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.TestOperationsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_root_start(session_id, id)
+        print("The response of TestOperationsApi->poll_root_start:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TestOperationsApi->poll_root_start: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_root_stop**
+> AsyncContext poll_root_stop(session_id, id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.TestOperationsApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_root_stop(session_id, id)
+        print("The response of TestOperationsApi->poll_root_stop:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TestOperationsApi->poll_root_stop: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **session_id** | **str**| The ID of the session. | 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_calibration_start**
+> AsyncContext start_calibration_start(session_id)
 
 
 
@@ -135,11 +451,11 @@ with cyperf.ApiClient(configuration) as api_client:
     session_id = 'session_id_example' # str | The ID of the session.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_calibrate_operations_start_post(session_id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_start_post:\n")
+        api_response = api_instance.start_calibration_start(session_id)
+        print("The response of TestOperationsApi->start_calibration_start:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_start_post: %s\n" % e)
+        print("Exception when calling TestOperationsApi->start_calibration_start: %s\n" % e)
 ```
 
 
@@ -172,87 +488,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_sessions_session_id_test_calibrate_operations_stop_id_get**
-> AsyncContext api_v2_sessions_session_id_test_calibrate_operations_stop_id_get(session_id, id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.TestOperationsApi(api_client)
-    session_id = 'session_id_example' # str | The ID of the session.
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_sessions_session_id_test_calibrate_operations_stop_id_get(session_id, id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_stop_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_stop_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **session_id** | **str**| The ID of the session. | 
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_sessions_session_id_test_calibrate_operations_stop_post**
-> AsyncContext api_v2_sessions_session_id_test_calibrate_operations_stop_post(session_id)
+# **start_calibration_stop**
+> AsyncContext start_calibration_stop(session_id)
 
 
 
@@ -291,11 +528,11 @@ with cyperf.ApiClient(configuration) as api_client:
     session_id = 'session_id_example' # str | The ID of the session.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_calibrate_operations_stop_post(session_id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_stop_post:\n")
+        api_response = api_instance.start_calibration_stop(session_id)
+        print("The response of TestOperationsApi->start_calibration_stop:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_calibrate_operations_stop_post: %s\n" % e)
+        print("Exception when calling TestOperationsApi->start_calibration_stop: %s\n" % e)
 ```
 
 
@@ -328,87 +565,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_sessions_session_id_test_run_operations_abort_id_get**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_abort_id_get(session_id, id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.TestOperationsApi(api_client)
-    session_id = 'session_id_example' # str | The ID of the session.
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_abort_id_get(session_id, id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_abort_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_abort_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **session_id** | **str**| The ID of the session. | 
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_sessions_session_id_test_run_operations_abort_post**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_abort_post(session_id)
+# **start_root_abort**
+> AsyncContext start_root_abort(session_id)
 
 
 
@@ -447,11 +605,11 @@ with cyperf.ApiClient(configuration) as api_client:
     session_id = 'session_id_example' # str | The ID of the session.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_abort_post(session_id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_abort_post:\n")
+        api_response = api_instance.start_root_abort(session_id)
+        print("The response of TestOperationsApi->start_root_abort:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_abort_post: %s\n" % e)
+        print("Exception when calling TestOperationsApi->start_root_abort: %s\n" % e)
 ```
 
 
@@ -484,87 +642,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_sessions_session_id_test_run_operations_start_id_get**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_start_id_get(session_id, id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.TestOperationsApi(api_client)
-    session_id = 'session_id_example' # str | The ID of the session.
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_start_id_get(session_id, id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_start_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_start_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **session_id** | **str**| The ID of the session. | 
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_sessions_session_id_test_run_operations_start_post**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_start_post(session_id)
+# **start_root_start**
+> AsyncContext start_root_start(session_id)
 
 
 
@@ -603,11 +682,11 @@ with cyperf.ApiClient(configuration) as api_client:
     session_id = 'session_id_example' # str | The ID of the session.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_start_post(session_id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_start_post:\n")
+        api_response = api_instance.start_root_start(session_id)
+        print("The response of TestOperationsApi->start_root_start:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_start_post: %s\n" % e)
+        print("Exception when calling TestOperationsApi->start_root_start: %s\n" % e)
 ```
 
 
@@ -640,87 +719,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_sessions_session_id_test_run_operations_stop_id_get**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_stop_id_get(session_id, id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.TestOperationsApi(api_client)
-    session_id = 'session_id_example' # str | The ID of the session.
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_stop_id_get(session_id, id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_stop_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_stop_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **session_id** | **str**| The ID of the session. | 
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_sessions_session_id_test_run_operations_stop_post**
-> AsyncContext api_v2_sessions_session_id_test_run_operations_stop_post(session_id)
+# **start_root_stop**
+> AsyncContext start_root_stop(session_id)
 
 
 
@@ -759,11 +759,11 @@ with cyperf.ApiClient(configuration) as api_client:
     session_id = 'session_id_example' # str | The ID of the session.
 
     try:
-        api_response = api_instance.api_v2_sessions_session_id_test_run_operations_stop_post(session_id)
-        print("The response of TestOperationsApi->api_v2_sessions_session_id_test_run_operations_stop_post:\n")
+        api_response = api_instance.start_root_stop(session_id)
+        print("The response of TestOperationsApi->start_root_stop:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling TestOperationsApi->api_v2_sessions_session_id_test_run_operations_stop_post: %s\n" % e)
+        print("Exception when calling TestOperationsApi->start_root_stop: %s\n" % e)
 ```
 
 

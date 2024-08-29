@@ -40,45 +40,45 @@ class Application(BaseModel):
     """ # noqa: E501
     action_timeout: Optional[StrictInt] = Field(default=None, description="The action timeout value of the Scenario.", alias="ActionTimeout")
     active: Optional[StrictBool] = Field(default=None, description="Indicates whether the scenario is enabled or not.", alias="Active")
-    client_http_profile: HTTPProfile = Field(description="The client HTTP profile used in the Scenario.", alias="ClientHTTPProfile")
+    client_http_profile: Optional[HTTPProfile] = Field(default=None, description="The client HTTP profile used in the Scenario.", alias="ClientHTTPProfile")
     connections: Optional[List[Connection]] = Field(default=None, alias="Connections")
     connections_max_transactions: Optional[StrictInt] = Field(default=None, description="The maximum number of transactions for all scenario connections.", alias="ConnectionsMaxTransactions")
     description: Optional[StrictStr] = Field(default=None, description="The description of the Scenario.", alias="Description")
     destination_hostname: Optional[StrictStr] = Field(default=None, alias="DestinationHostname")
     dnn_id: Optional[StrictStr] = Field(default=None, alias="DnnId")
     end_point_id: Optional[StrictInt] = Field(default=None, description="The endpoint ID of the Scenario.", alias="EndPointID")
-    endpoints: List[Endpoint] = Field(alias="Endpoints")
+    endpoints: Optional[List[Endpoint]] = Field(default=None, alias="Endpoints")
     external_resource_url: Optional[StrictStr] = Field(default=None, description="The external resource URL of the Scenario.", alias="ExternalResourceURL")
     index: Optional[StrictInt] = Field(default=None, description="The index of the scenario.", alias="Index")
-    inherit_http_profile: StrictBool = Field(alias="InheritHTTPProfile")
+    inherit_http_profile: Optional[StrictBool] = Field(default=None, alias="InheritHTTPProfile")
     ip_preference: Optional[IpPreference] = Field(default=None, description="The Ip Preference. Must be one of: IPV4_ONLY, IPV6_ONLY, BOTH_IPV4_FIRST, BOTH_IPV6_FIRST or IP_PREF_MAX.", alias="IpPreference")
     is_deprecated: Optional[StrictBool] = Field(default=None, description="A value that indicates if the action is deprecated.", alias="IsDeprecated")
     iteration_count: Optional[StrictInt] = Field(default=None, description="The iteration counter of the Scenario.", alias="IterationCount")
     max_active_limit: Optional[StrictInt] = Field(default=None, description="The maximum active limit of the Scenario.", alias="MaxActiveLimit")
-    name: Annotated[str, Field(strict=True)] = Field(alias="Name")
-    network_mapping: NetworkMapping = Field(alias="NetworkMapping")
+    name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="Name")
+    network_mapping: Optional[NetworkMapping] = Field(default=None, alias="NetworkMapping")
     params: Optional[List[Params]] = Field(default=None, alias="Params")
     protocol_id: Optional[StrictStr] = Field(default=None, description="The protocol ID of the Scenario.", alias="ProtocolID")
     qos_flow_id: Optional[StrictStr] = Field(default=None, alias="QosFlowId")
     readonly_max_trans: Optional[StrictBool] = Field(default=None, description="If true, ConnectionsMaxTransactions will be readonly.", alias="ReadonlyMaxTrans")
-    server_http_profile: HTTPProfile = Field(description="The server HTTP profile used in the Scenario.", alias="ServerHTTPProfile")
+    server_http_profile: Optional[HTTPProfile] = Field(default=None, description="The server HTTP profile used in the Scenario.", alias="ServerHTTPProfile")
     supports_client_http_profile: Optional[StrictBool] = Field(default=None, description="Indicates if the scenario supports Client HTTP profile.", alias="SupportsClientHTTPProfile")
-    supports_http_profiles: StrictBool = Field(description="Indicates if the scenario supports HTTP profiles.", alias="SupportsHTTPProfiles")
+    supports_http_profiles: Optional[StrictBool] = Field(default=None, description="Indicates if the scenario supports HTTP profiles.", alias="SupportsHTTPProfiles")
     supports_server_http_profile: Optional[StrictBool] = Field(default=None, description="Indicates if the scenario supports Server HTTP profile.", alias="SupportsServerHTTPProfile")
-    id: StrictStr
+    id: Optional[StrictStr] = None
     client_tls_profile: Optional[TLSProfile] = Field(default=None, alias="ClientTLSProfile")
-    data_types: List[DataType] = Field(alias="DataTypes")
-    inherit_tls: StrictBool = Field(alias="InheritTLS")
-    is_stateless_stream: StrictBool = Field(alias="IsStatelessStream")
+    data_types: Optional[List[DataType]] = Field(default=None, alias="DataTypes")
+    inherit_tls: Optional[StrictBool] = Field(default=None, alias="InheritTLS")
+    is_stateless_stream: Optional[StrictBool] = Field(default=None, alias="IsStatelessStream")
     objective_weight: StrictInt = Field(description="The objective weight of the application.", alias="ObjectiveWeight")
     server_tls_profile: Optional[TLSProfile] = Field(default=None, alias="ServerTLSProfile")
     stateless_stream: Optional[StatelessStream] = Field(default=None, alias="StatelessStream")
-    static: StrictBool = Field(alias="Static")
+    static: Optional[StrictBool] = Field(default=None, alias="Static")
     supported_apps: Optional[List[StrictStr]] = Field(default=None, alias="SupportedApps")
     supports_calibration: Optional[StrictBool] = Field(default=None, alias="SupportsCalibration")
     supports_strikes: Optional[StrictBool] = Field(default=None, alias="SupportsStrikes")
     supports_tls: Optional[StrictBool] = Field(default=None, alias="SupportsTLS")
-    tracks: List[Track] = Field(alias="Tracks")
+    tracks: Optional[List[Track]] = Field(default=None, alias="Tracks")
     modify_excluded_dut_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-excluded-dut-recursively")
     modify_tags_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-tags-recursively")
     __properties: ClassVar[List[str]] = ["ActionTimeout", "Active", "ClientHTTPProfile", "Connections", "ConnectionsMaxTransactions", "Description", "DestinationHostname", "DnnId", "EndPointID", "Endpoints", "ExternalResourceURL", "Index", "InheritHTTPProfile", "IpPreference", "IsDeprecated", "IterationCount", "MaxActiveLimit", "Name", "NetworkMapping", "Params", "ProtocolID", "QosFlowId", "ReadonlyMaxTrans", "ServerHTTPProfile", "SupportsClientHTTPProfile", "SupportsHTTPProfiles", "SupportsServerHTTPProfile", "id", "ClientTLSProfile", "DataTypes", "InheritTLS", "IsStatelessStream", "ObjectiveWeight", "ServerTLSProfile", "StatelessStream", "Static", "SupportedApps", "SupportsCalibration", "SupportsStrikes", "SupportsTLS", "Tracks", "modify-excluded-dut-recursively", "modify-tags-recursively"]
@@ -86,6 +86,9 @@ class Application(BaseModel):
     @field_validator('name')
     def name_validate_regular_expression(cls, value):
         """Validates the regular expression"""
+        if value is None:
+            return value
+
         if not re.match(r"^$|^[^\"\\]+$", value):
             raise ValueError(r"must validate the regular expression /^$|^[^\"\\]+$/")
         return value

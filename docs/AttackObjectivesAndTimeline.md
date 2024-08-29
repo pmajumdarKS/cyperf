@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**timeline_segments** | [**List[AttackTimelineSegment]**](AttackTimelineSegment.md) |  | 
+**timeline_segments** | [**List[AttackTimelineSegment]**](AttackTimelineSegment.md) |  | [optional] 
 
 ## Example
 

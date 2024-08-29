@@ -6,11 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **config** | [**Config**](Config.md) |  | [optional] 
-**name** | **str** | The name of the configuration | [optional] 
 **session_id** | **str** | The unique identifier of the session this configuration belongs to | [optional] [readonly] 
 **template_id** | **str** | The unique identifier of the CyPerf configuration template from which this configuration was created | [optional] [readonly] 
 **data_model_version** | **str** | The version of the data model used for this configuration | [optional] [readonly] 
 **id** | **str** | The unique identifier of the CyPerf configuration | [optional] [readonly] 
+**name** | **str** | The name of the configuration | [optional] 
 
 ## Example
 

@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 **http_forward_proxy_mode** | **str** | Deprecated. This is ignored and the proxy mode will be deduced from the connection type. | [optional] 
 **is_deprecated** | **bool** |  | [optional] 
 **max_transactions** | **int** | The maximum number of transactions for this connection. | 
-**name** | **str** | The name of the Connection. | 
+**name** | **str** | The name of the Connection. | [optional] 
 **port_settings** | [**PortSettings**](PortSettings.md) |  | [optional] 
 **readonly** | **bool** | If true, the connection can&#39;t be modified by the user. | [optional] 
 **readonly_hostname** | **bool** | If true, the connection hostname will be readonly. | [optional] 
 **readonly_max_trans** | **bool** | If true, MaxTransactions will be readonly | [optional] 
 **readonly_type** | **bool** | If true or missing, the type of the connection cannot be changed | [optional] 
-**server_endpoint** | **str** | The server endpoint of the connection. | 
+**server_endpoint** | **str** | The server endpoint of the connection. | [optional] 
 **server_port** | **int** | The server port of the connection (default: 80). | 
 **type** | **str** |  | [optional] 
 **id** | **str** |  | 

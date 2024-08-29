@@ -4,30 +4,30 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_v2_config_categories_get**](ConfigurationsApi.md#api_v2_config_categories_get) | **GET** /api/v2/config-categories | 
-[**api_v2_configs_config_id_delete**](ConfigurationsApi.md#api_v2_configs_config_id_delete) | **DELETE** /api/v2/configs/{configId} | 
-[**api_v2_configs_config_id_get**](ConfigurationsApi.md#api_v2_configs_config_id_get) | **GET** /api/v2/configs/{configId} | 
-[**api_v2_configs_config_id_patch**](ConfigurationsApi.md#api_v2_configs_config_id_patch) | **PATCH** /api/v2/configs/{configId} | 
-[**api_v2_configs_config_id_put**](ConfigurationsApi.md#api_v2_configs_config_id_put) | **PUT** /api/v2/configs/{configId} | 
-[**api_v2_configs_get**](ConfigurationsApi.md#api_v2_configs_get) | **GET** /api/v2/configs | 
-[**api_v2_configs_operations_batch_delete_id_get**](ConfigurationsApi.md#api_v2_configs_operations_batch_delete_id_get) | **GET** /api/v2/configs/operations/batch-delete/{id} | 
-[**api_v2_configs_operations_batch_delete_post**](ConfigurationsApi.md#api_v2_configs_operations_batch_delete_post) | **POST** /api/v2/configs/operations/batch-delete | 
-[**api_v2_configs_operations_export_all_id_get**](ConfigurationsApi.md#api_v2_configs_operations_export_all_id_get) | **GET** /api/v2/configs/operations/exportAll/{id} | 
-[**api_v2_configs_operations_export_all_post**](ConfigurationsApi.md#api_v2_configs_operations_export_all_post) | **POST** /api/v2/configs/operations/exportAll | 
-[**api_v2_configs_operations_import_all_id_get**](ConfigurationsApi.md#api_v2_configs_operations_import_all_id_get) | **GET** /api/v2/configs/operations/importAll/{id} | 
-[**api_v2_configs_operations_import_all_post**](ConfigurationsApi.md#api_v2_configs_operations_import_all_post) | **POST** /api/v2/configs/operations/importAll | 
-[**api_v2_configs_operations_import_id_get**](ConfigurationsApi.md#api_v2_configs_operations_import_id_get) | **GET** /api/v2/configs/operations/import/{id} | 
-[**api_v2_configs_operations_import_post**](ConfigurationsApi.md#api_v2_configs_operations_import_post) | **POST** /api/v2/configs/operations/import | 
-[**api_v2_configs_post**](ConfigurationsApi.md#api_v2_configs_post) | **POST** /api/v2/configs | 
-[**api_v2_resources_custom_import_operations_get**](ConfigurationsApi.md#api_v2_resources_custom_import_operations_get) | **GET** /api/v2/resources/custom-import-operations | 
+[**create_configs**](ConfigurationsApi.md#create_configs) | **POST** /api/v2/configs | 
+[**delete_configs**](ConfigurationsApi.md#delete_configs) | **DELETE** /api/v2/configs/{configId} | 
+[**get_config_categories**](ConfigurationsApi.md#get_config_categories) | **GET** /api/v2/config-categories | 
+[**get_configs**](ConfigurationsApi.md#get_configs) | **GET** /api/v2/configs | 
+[**get_configs_by_id**](ConfigurationsApi.md#get_configs_by_id) | **GET** /api/v2/configs/{configId} | 
+[**get_custom_import_operations**](ConfigurationsApi.md#get_custom_import_operations) | **GET** /api/v2/resources/custom-import-operations | 
+[**patch_configs**](ConfigurationsApi.md#patch_configs) | **PATCH** /api/v2/configs/{configId} | 
+[**poll_configs_batch_delete**](ConfigurationsApi.md#poll_configs_batch_delete) | **GET** /api/v2/configs/operations/batch-delete/{id} | 
+[**poll_configs_export_all**](ConfigurationsApi.md#poll_configs_export_all) | **GET** /api/v2/configs/operations/exportAll/{id} | 
+[**poll_configs_import**](ConfigurationsApi.md#poll_configs_import) | **GET** /api/v2/configs/operations/import/{id} | 
+[**poll_configs_import_all**](ConfigurationsApi.md#poll_configs_import_all) | **GET** /api/v2/configs/operations/importAll/{id} | 
+[**start_configs_batch_delete**](ConfigurationsApi.md#start_configs_batch_delete) | **POST** /api/v2/configs/operations/batch-delete | 
+[**start_configs_export_all**](ConfigurationsApi.md#start_configs_export_all) | **POST** /api/v2/configs/operations/exportAll | 
+[**start_configs_import**](ConfigurationsApi.md#start_configs_import) | **POST** /api/v2/configs/operations/import | 
+[**start_configs_import_all**](ConfigurationsApi.md#start_configs_import_all) | **POST** /api/v2/configs/operations/importAll | 
+[**update_configs**](ConfigurationsApi.md#update_configs) | **PUT** /api/v2/configs/{configId} | 
 
 
-# **api_v2_config_categories_get**
-> ApiV2ConfigCategoriesGet200Response api_v2_config_categories_get(take=take, skip=skip)
+# **create_configs**
+> List[ConfigMetadata] create_configs(config_metadata=config_metadata)
 
 
 
-Get the list of available configuration categories.
+Save or import a new configuration. If the ConfigData field is not provided, this is implemented as a Save operation, only recording the metadata.
 
 ### Example
 
@@ -36,7 +36,7 @@ Get the list of available configuration categories.
 
 ```python
 import cyperf
-from cyperf.models.api_v2_config_categories_get200_response import ApiV2ConfigCategoriesGet200Response
+from cyperf.models.config_metadata import ConfigMetadata
 from cyperf.rest import ApiException
 from pprint import pprint
 
@@ -59,15 +59,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.ConfigurationsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
+    config_metadata = [cyperf.ConfigMetadata()] # List[ConfigMetadata] |  (optional)
 
     try:
-        api_response = api_instance.api_v2_config_categories_get(take=take, skip=skip)
-        print("The response of ConfigurationsApi->api_v2_config_categories_get:\n")
+        api_response = api_instance.create_configs(config_metadata=config_metadata)
+        print("The response of ConfigurationsApi->create_configs:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_config_categories_get: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->create_configs: %s\n" % e)
 ```
 
 
@@ -77,12 +76,11 @@ with cyperf.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
+ **config_metadata** | [**List[ConfigMetadata]**](ConfigMetadata.md)|  | [optional] 
 
 ### Return type
 
-[**ApiV2ConfigCategoriesGet200Response**](ApiV2ConfigCategoriesGet200Response.md)
+[**List[ConfigMetadata]**](ConfigMetadata.md)
 
 ### Authorization
 
@@ -90,20 +88,21 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json, application/x-zip, application/zip, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The list of configuration categories |  -  |
+**201** | The configuration that was saved or imported |  -  |
+**400** | Bad request |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_config_id_delete**
-> api_v2_configs_config_id_delete(config_id)
+# **delete_configs**
+> delete_configs(config_id)
 
 
 
@@ -141,9 +140,9 @@ with cyperf.ApiClient(configuration) as api_client:
     config_id = 'config_id_example' # str | The ID of the config.
 
     try:
-        api_instance.api_v2_configs_config_id_delete(config_id)
+        api_instance.delete_configs(config_id)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_config_id_delete: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->delete_configs: %s\n" % e)
 ```
 
 
@@ -179,8 +178,176 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_config_id_get**
-> ConfigMetadata api_v2_configs_config_id_get(config_id, include=include, resolve_dependencies=resolve_dependencies)
+# **get_config_categories**
+> GetConfigCategories200Response get_config_categories(take=take, skip=skip)
+
+
+
+Get the list of available configuration categories.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_config_categories200_response import GetConfigCategories200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_config_categories(take=take, skip=skip)
+        print("The response of ConfigurationsApi->get_config_categories:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_config_categories: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetConfigCategories200Response**](GetConfigCategories200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of configuration categories |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_configs**
+> GetConfigs200Response get_configs(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
+
+
+
+Get all the configurations available to the current user.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_configs200_response import GetConfigs200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+    search_col = 'search_col_example' # str | A list of comma-separated columns used to search for the supplied values (optional)
+    search_val = 'search_val_example' # str | The keywords used to filter the items (optional)
+    filter_mode = 'filter_mode_example' # str | The operator applied to the supplied values (optional)
+    sort = 'sort_example' # str | A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc (optional)
+
+    try:
+        api_response = api_instance.get_configs(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
+        print("The response of ConfigurationsApi->get_configs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_configs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+ **search_col** | **str**| A list of comma-separated columns used to search for the supplied values | [optional] 
+ **search_val** | **str**| The keywords used to filter the items | [optional] 
+ **filter_mode** | **str**| The operator applied to the supplied values | [optional] 
+ **sort** | **str**| A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc | [optional] 
+
+### Return type
+
+[**GetConfigs200Response**](GetConfigs200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of configurations |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_configs_by_id**
+> ConfigMetadata get_configs_by_id(config_id, include=include, resolve_dependencies=resolve_dependencies)
 
 
 
@@ -221,11 +388,11 @@ with cyperf.ApiClient(configuration) as api_client:
     resolve_dependencies = 'resolve_dependencies_example' # str | Specifies if the content of the referenced files (action payloads and TLS files) should be included. (optional)
 
     try:
-        api_response = api_instance.api_v2_configs_config_id_get(config_id, include=include, resolve_dependencies=resolve_dependencies)
-        print("The response of ConfigurationsApi->api_v2_configs_config_id_get:\n")
+        api_response = api_instance.get_configs_by_id(config_id, include=include, resolve_dependencies=resolve_dependencies)
+        print("The response of ConfigurationsApi->get_configs_by_id:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_config_id_get: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->get_configs_by_id: %s\n" % e)
 ```
 
 
@@ -262,8 +429,88 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_config_id_patch**
-> api_v2_configs_config_id_patch(config_id, config_metadata=config_metadata)
+# **get_custom_import_operations**
+> GetCustomImportOperations200Response get_custom_import_operations(take=take, skip=skip)
+
+
+
+Get all the custom import config operations.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_custom_import_operations200_response import GetCustomImportOperations200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_custom_import_operations(take=take, skip=skip)
+        print("The response of ConfigurationsApi->get_custom_import_operations:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->get_custom_import_operations: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetCustomImportOperations200Response**](GetCustomImportOperations200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of custom import config operations |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_configs**
+> patch_configs(config_id, config_metadata=config_metadata)
 
 
 
@@ -303,9 +550,9 @@ with cyperf.ApiClient(configuration) as api_client:
     config_metadata = cyperf.ConfigMetadata() # ConfigMetadata |  (optional)
 
     try:
-        api_instance.api_v2_configs_config_id_patch(config_id, config_metadata=config_metadata)
+        api_instance.patch_configs(config_id, config_metadata=config_metadata)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_config_id_patch: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->patch_configs: %s\n" % e)
 ```
 
 
@@ -341,178 +588,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_config_id_put**
-> ConfigMetadata api_v2_configs_config_id_put(config_id, config_metadata=config_metadata)
-
-
-
-Update a particular configuration.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.config_metadata import ConfigMetadata
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    config_id = 'config_id_example' # str | The ID of the config.
-    config_metadata = cyperf.ConfigMetadata() # ConfigMetadata |  (optional)
-
-    try:
-        api_response = api_instance.api_v2_configs_config_id_put(config_id, config_metadata=config_metadata)
-        print("The response of ConfigurationsApi->api_v2_configs_config_id_put:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_config_id_put: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **config_id** | **str**| The ID of the config. | 
- **config_metadata** | [**ConfigMetadata**](ConfigMetadata.md)|  | [optional] 
-
-### Return type
-
-[**ConfigMetadata**](ConfigMetadata.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The updated configuration |  -  |
-**400** | Bad request |  -  |
-**404** | A configuration with the specified ID was not found. |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_configs_get**
-> ApiV2ConfigsGet200Response api_v2_configs_get(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
-
-
-
-Get all the configurations available to the current user.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.api_v2_configs_get200_response import ApiV2ConfigsGet200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-    search_col = 'search_col_example' # str | A list of comma-separated columns used to search for the supplied values (optional)
-    search_val = 'search_val_example' # str | The keywords used to filter the items (optional)
-    filter_mode = 'filter_mode_example' # str | The operator applied to the supplied values (optional)
-    sort = 'sort_example' # str | A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc (optional)
-
-    try:
-        api_response = api_instance.api_v2_configs_get(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
-        print("The response of ConfigurationsApi->api_v2_configs_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
- **search_col** | **str**| A list of comma-separated columns used to search for the supplied values | [optional] 
- **search_val** | **str**| The keywords used to filter the items | [optional] 
- **filter_mode** | **str**| The operator applied to the supplied values | [optional] 
- **sort** | **str**| A list of comma-separated field:direction pairs used to sort the items where direction must be asc or dsc | [optional] 
-
-### Return type
-
-[**ApiV2ConfigsGet200Response**](ApiV2ConfigsGet200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of configurations |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_configs_operations_batch_delete_id_get**
-> AsyncContext api_v2_configs_operations_batch_delete_id_get(id)
+# **poll_configs_batch_delete**
+> AsyncContext poll_configs_batch_delete(id)
 
 
 
@@ -551,11 +628,11 @@ with cyperf.ApiClient(configuration) as api_client:
     id = 56 # int | The ID of the async operation.
 
     try:
-        api_response = api_instance.api_v2_configs_operations_batch_delete_id_get(id)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_batch_delete_id_get:\n")
+        api_response = api_instance.poll_configs_batch_delete(id)
+        print("The response of ConfigurationsApi->poll_configs_batch_delete:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_batch_delete_id_get: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->poll_configs_batch_delete: %s\n" % e)
 ```
 
 
@@ -588,12 +665,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_operations_batch_delete_post**
-> AsyncContext api_v2_configs_operations_batch_delete_post(api_v2_agents_operations_batch_delete_post_request_inner=api_v2_agents_operations_batch_delete_post_request_inner)
+# **poll_configs_export_all**
+> AsyncContext poll_configs_export_all(id)
 
 
 
-Remove multiple configurations.
+Get the state of an ongoing operation.
 
 ### Example
 
@@ -602,7 +679,6 @@ Remove multiple configurations.
 
 ```python
 import cyperf
-from cyperf.models.api_v2_agents_operations_batch_delete_post_request_inner import ApiV2AgentsOperationsBatchDeletePostRequestInner
 from cyperf.models.async_context import AsyncContext
 from cyperf.rest import ApiException
 from pprint import pprint
@@ -626,14 +702,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.ConfigurationsApi(api_client)
-    api_v2_agents_operations_batch_delete_post_request_inner = [cyperf.ApiV2AgentsOperationsBatchDeletePostRequestInner()] # List[ApiV2AgentsOperationsBatchDeletePostRequestInner] |  (optional)
+    id = 56 # int | The ID of the async operation.
 
     try:
-        api_response = api_instance.api_v2_configs_operations_batch_delete_post(api_v2_agents_operations_batch_delete_post_request_inner=api_v2_agents_operations_batch_delete_post_request_inner)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_batch_delete_post:\n")
+        api_response = api_instance.poll_configs_export_all(id)
+        print("The response of ConfigurationsApi->poll_configs_export_all:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_batch_delete_post: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->poll_configs_export_all: %s\n" % e)
 ```
 
 
@@ -643,7 +719,239 @@ with cyperf.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **api_v2_agents_operations_batch_delete_post_request_inner** | [**List[ApiV2AgentsOperationsBatchDeletePostRequestInner]**](ApiV2AgentsOperationsBatchDeletePostRequestInner.md)|  | [optional] 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_configs_import**
+> AsyncContext poll_configs_import(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_configs_import(id)
+        print("The response of ConfigurationsApi->poll_configs_import:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->poll_configs_import: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_configs_import_all**
+> AsyncContext poll_configs_import_all(id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_configs_import_all(id)
+        print("The response of ConfigurationsApi->poll_configs_import_all:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->poll_configs_import_all: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_configs_batch_delete**
+> AsyncContext start_configs_batch_delete(start_root_batch_delete_request_inner=start_root_batch_delete_request_inner)
+
+
+
+Remove multiple configurations.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.models.start_root_batch_delete_request_inner import StartRootBatchDeleteRequestInner
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.ConfigurationsApi(api_client)
+    start_root_batch_delete_request_inner = [cyperf.StartRootBatchDeleteRequestInner()] # List[StartRootBatchDeleteRequestInner] |  (optional)
+
+    try:
+        api_response = api_instance.start_configs_batch_delete(start_root_batch_delete_request_inner=start_root_batch_delete_request_inner)
+        print("The response of ConfigurationsApi->start_configs_batch_delete:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ConfigurationsApi->start_configs_batch_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **start_root_batch_delete_request_inner** | [**List[StartRootBatchDeleteRequestInner]**](StartRootBatchDeleteRequestInner.md)|  | [optional] 
 
 ### Return type
 
@@ -666,85 +974,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_operations_export_all_id_get**
-> AsyncContext api_v2_configs_operations_export_all_id_get(id)
-
-
-
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_configs_operations_export_all_id_get(id)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_export_all_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_export_all_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_configs_operations_export_all_post**
-> AsyncContext api_v2_configs_operations_export_all_post(export_all_operation=export_all_operation)
+# **start_configs_export_all**
+> AsyncContext start_configs_export_all(export_all_operation=export_all_operation)
 
 
 
@@ -784,11 +1015,11 @@ with cyperf.ApiClient(configuration) as api_client:
     export_all_operation = cyperf.ExportAllOperation() # ExportAllOperation |  (optional)
 
     try:
-        api_response = api_instance.api_v2_configs_operations_export_all_post(export_all_operation=export_all_operation)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_export_all_post:\n")
+        api_response = api_instance.start_configs_export_all(export_all_operation=export_all_operation)
+        print("The response of ConfigurationsApi->start_configs_export_all:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_export_all_post: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->start_configs_export_all: %s\n" % e)
 ```
 
 
@@ -821,12 +1052,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_operations_import_all_id_get**
-> AsyncContext api_v2_configs_operations_import_all_id_get(id)
+# **start_configs_import**
+> AsyncContext start_configs_import(body=body)
 
 
 
-Get the state of an ongoing operation.
+Import a single configuration from the specified file.
 
 ### Example
 
@@ -858,14 +1089,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.ConfigurationsApi(api_client)
-    id = 56 # int | The ID of the async operation.
+    body = None # bytearray |  (optional)
 
     try:
-        api_response = api_instance.api_v2_configs_operations_import_all_id_get(id)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_import_all_id_get:\n")
+        api_response = api_instance.start_configs_import(body=body)
+        print("The response of ConfigurationsApi->start_configs_import:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_import_all_id_get: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->start_configs_import: %s\n" % e)
 ```
 
 
@@ -875,7 +1106,7 @@ with cyperf.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
+ **body** | **bytearray**|  | [optional] 
 
 ### Return type
 
@@ -887,19 +1118,19 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-zip, application/zip, multipart/form-data
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
+**202** | Details about the operation that just started |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_operations_import_all_post**
-> AsyncContext api_v2_configs_operations_import_all_post(import_all_operation=import_all_operation)
+# **start_configs_import_all**
+> AsyncContext start_configs_import_all(import_all_operation=import_all_operation)
 
 
 
@@ -939,11 +1170,11 @@ with cyperf.ApiClient(configuration) as api_client:
     import_all_operation = cyperf.ImportAllOperation() # ImportAllOperation |  (optional)
 
     try:
-        api_response = api_instance.api_v2_configs_operations_import_all_post(import_all_operation=import_all_operation)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_import_all_post:\n")
+        api_response = api_instance.start_configs_import_all(import_all_operation=import_all_operation)
+        print("The response of ConfigurationsApi->start_configs_import_all:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_import_all_post: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->start_configs_import_all: %s\n" % e)
 ```
 
 
@@ -976,166 +1207,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_v2_configs_operations_import_id_get**
-> AsyncContext api_v2_configs_operations_import_id_get(id)
+# **update_configs**
+> ConfigMetadata update_configs(config_id, config_metadata=config_metadata)
 
 
 
-Get the state of an ongoing operation.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    id = 56 # int | The ID of the async operation.
-
-    try:
-        api_response = api_instance.api_v2_configs_operations_import_id_get(id)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_import_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_import_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**| The ID of the async operation. | 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Details about the ongoing operation |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_configs_operations_import_post**
-> AsyncContext api_v2_configs_operations_import_post(body=body)
-
-
-
-Import a single configuration from the specified file.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.async_context import AsyncContext
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    body = None # bytearray |  (optional)
-
-    try:
-        api_response = api_instance.api_v2_configs_operations_import_post(body=body)
-        print("The response of ConfigurationsApi->api_v2_configs_operations_import_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_operations_import_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **bytearray**|  | [optional] 
-
-### Return type
-
-[**AsyncContext**](AsyncContext.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: application/x-zip, application/zip, multipart/form-data
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** | Details about the operation that just started |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_configs_post**
-> List[ConfigMetadata] api_v2_configs_post(config_metadata=config_metadata)
-
-
-
-Save or import a new configuration. If the ConfigData field is not provided, this is implemented as a Save operation, only recording the metadata.
+Update a particular configuration.
 
 ### Example
 
@@ -1167,14 +1244,15 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = cyperf.ConfigurationsApi(api_client)
-    config_metadata = [cyperf.ConfigMetadata()] # List[ConfigMetadata] |  (optional)
+    config_id = 'config_id_example' # str | The ID of the config.
+    config_metadata = cyperf.ConfigMetadata() # ConfigMetadata |  (optional)
 
     try:
-        api_response = api_instance.api_v2_configs_post(config_metadata=config_metadata)
-        print("The response of ConfigurationsApi->api_v2_configs_post:\n")
+        api_response = api_instance.update_configs(config_id, config_metadata=config_metadata)
+        print("The response of ConfigurationsApi->update_configs:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_configs_post: %s\n" % e)
+        print("Exception when calling ConfigurationsApi->update_configs: %s\n" % e)
 ```
 
 
@@ -1184,11 +1262,12 @@ with cyperf.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **config_metadata** | [**List[ConfigMetadata]**](ConfigMetadata.md)|  | [optional] 
+ **config_id** | **str**| The ID of the config. | 
+ **config_metadata** | [**ConfigMetadata**](ConfigMetadata.md)|  | [optional] 
 
 ### Return type
 
-[**List[ConfigMetadata]**](ConfigMetadata.md)
+[**ConfigMetadata**](ConfigMetadata.md)
 
 ### Authorization
 
@@ -1196,95 +1275,16 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/x-zip, application/zip, multipart/form-data
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | The configuration that was saved or imported |  -  |
+**200** | The updated configuration |  -  |
 **400** | Bad request |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_v2_resources_custom_import_operations_get**
-> ApiV2ResourcesCustomImportOperationsGet200Response api_v2_resources_custom_import_operations_get(take=take, skip=skip)
-
-
-
-Get all the custom import config operations.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.api_v2_resources_custom_import_operations_get200_response import ApiV2ResourcesCustomImportOperationsGet200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.ConfigurationsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.api_v2_resources_custom_import_operations_get(take=take, skip=skip)
-        print("The response of ConfigurationsApi->api_v2_resources_custom_import_operations_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ConfigurationsApi->api_v2_resources_custom_import_operations_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**ApiV2ResourcesCustomImportOperationsGet200Response**](ApiV2ResourcesCustomImportOperationsGet200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of custom import config operations |  -  |
+**404** | A configuration with the specified ID was not found. |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

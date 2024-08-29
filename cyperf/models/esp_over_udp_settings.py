@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.udp_profile import UdpProfile
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +27,7 @@ class ESPOverUDPSettings(BaseModel):
     """
     ESPOverUDPSettings
     """ # noqa: E501
-    udp_profile: UdpProfile = Field(alias="UDPProfile")
+    udp_profile: Optional[UdpProfile] = Field(default=None, alias="UDPProfile")
     __properties: ClassVar[List[str]] = ["UDPProfile"]
 
     model_config = ConfigDict(

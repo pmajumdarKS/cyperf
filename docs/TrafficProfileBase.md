@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** | Indicates whether the profile is enabled or not. | [optional] 
-**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | 
-**id** | **str** |  | 
+**traffic_settings** | [**TrafficSettings**](TrafficSettings.md) |  | [optional] 
+**id** | **str** |  | [optional] 
 
 ## Example
 

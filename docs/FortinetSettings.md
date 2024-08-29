@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | 
-**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | 
-**fortinet_encapsulation** | [**FortinetEncapsulation**](FortinetEncapsulation.md) |  | 
-**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | 
-**vpn_gateway** | **str** |  | 
+**var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | [optional] 
+**outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
+**fortinet_encapsulation** | [**FortinetEncapsulation**](FortinetEncapsulation.md) |  | [optional] 
+**outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
+**vpn_gateway** | **str** |  | [optional] 
 
 ## Example
 

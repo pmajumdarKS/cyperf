@@ -41,11 +41,11 @@ class IPRange(BaseModel):
     ip_start: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The start IP for the IPRange (default: 10.0.0.10).", alias="IpStart")
     ip_ver: IpVer = Field(description="The type of the IP. 'IPV4' and 'IPV6' are both supported currently.", alias="IpVer")
     is_emulated_router: Optional[StrictBool] = Field(default=None, alias="IsEmulatedRouter")
-    mss: StrictInt = Field(description="The maximum segment size of the TCP header.", alias="Mss")
+    mss: Optional[StrictInt] = Field(default=None, description="The maximum segment size of the TCP header.", alias="Mss")
     mss_auto: StrictBool = Field(description="A flag indicating if Mss settings for the IPRange should be determined automatically (default: false).", alias="MssAuto")
     net_mask: Optional[StrictInt] = Field(default=None, description="The network mask of the IP Range (default: 16).", alias="NetMask")
     net_mask_auto: StrictBool = Field(description="A flag indicating if the network mask of the IPRange should be determined automatically (default: true).", alias="NetMaskAuto")
-    id: StrictStr
+    id: Optional[StrictStr] = None
     max_count_per_agent: Optional[StrictInt] = Field(default=None, description="The maximum number of IPs that should be assigned to each traffic agent for this IP range segment in a valid test (default: 1).", alias="maxCountPerAgent")
     network_tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags.", alias="networkTags")
     __properties: ClassVar[List[str]] = ["AutomaticIpType", "Count", "GwAuto", "GwStart", "InnerVlanRange", "IpAuto", "IpIncr", "IpRangeName", "IpStart", "IpVer", "IsEmulatedRouter", "Mss", "MssAuto", "NetMask", "NetMaskAuto", "id", "maxCountPerAgent", "networkTags"]

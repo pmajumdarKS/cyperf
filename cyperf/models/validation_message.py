@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,14 +28,13 @@ class ValidationMessage(BaseModel):
     """ # noqa: E501
     message: StrictStr = Field(alias="Message")
     severity: StrictStr = Field(alias="Severity")
-    timestamp: StrictInt = Field(alias="Timestamp")
-    __properties: ClassVar[List[str]] = ["Message", "Severity", "Timestamp"]
+    __properties: ClassVar[List[str]] = ["Message", "Severity"]
 
     @field_validator('severity')
     def severity_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['INFO', 'WARNING', 'ERROR']):
-            raise ValueError("must be one of enum values ('INFO', 'WARNING', 'ERROR')")
+        if value not in set(['WARNING', 'ERROR']):
+            raise ValueError("must be one of enum values ('WARNING', 'ERROR')")
         return value
 
     model_config = ConfigDict(
@@ -90,8 +89,7 @@ class ValidationMessage(BaseModel):
 
         _obj = cls.model_validate({
             "Message": obj.get("Message"),
-            "Severity": obj.get("Severity"),
-            "Timestamp": obj.get("Timestamp")
+            "Severity": obj.get("Severity")
         })
         return _obj
 

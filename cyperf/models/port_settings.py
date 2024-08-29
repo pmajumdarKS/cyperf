@@ -33,7 +33,7 @@ class PortSettings(BaseModel):
     destination_port: StrictInt = Field(alias="DestinationPort")
     effective_ports: Optional[EffectivePorts] = Field(default=None, alias="EffectivePorts")
     forward_proxy_port: StrictInt = Field(alias="ForwardProxyPort")
-    readonly: StrictBool = Field(description="If true, the port can't be selected by the user", alias="Readonly")
+    readonly: Optional[StrictBool] = Field(default=None, description="If true, the port can't be selected by the user", alias="Readonly")
     server_listen_port: StrictInt = Field(alias="ServerListenPort")
     __properties: ClassVar[List[str]] = ["Automatic", "AutomaticDestinationPort", "AutomaticForwardProxyPort", "DestinationPort", "EffectivePorts", "ForwardProxyPort", "Readonly", "ServerListenPort"]
 

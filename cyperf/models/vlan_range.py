@@ -34,7 +34,7 @@ class VLANRange(BaseModel):
     static_arp_table: Optional[List[StaticARPEntry]] = Field(default=None, alias="StaticARPTable")
     tag_protocol_id: Optional[StrictInt] = Field(default=None, description="The tag protocol identifier (default: 33024).", alias="TagProtocolId")
     vlan_auto: StrictBool = Field(description="A flag indicating if VLAN settings for the VLANRange should be determined automatically (default: false).", alias="VlanAuto")
-    vlan_enabled: StrictBool = Field(description="The enable status of the VLAN configuration, if not determined automatically (default: false).", alias="VlanEnabled")
+    vlan_enabled: Optional[StrictBool] = Field(default=None, description="The enable status of the VLAN configuration, if not determined automatically (default: false).", alias="VlanEnabled")
     vlan_id: Optional[StrictInt] = Field(default=None, description="The VLAN identifier (default: 1).", alias="VlanId")
     vlan_incr: Optional[StrictInt] = Field(default=None, description="The VLAN incrementation rule (default: 1).", alias="VlanIncr")
     __properties: ClassVar[List[str]] = ["Count", "CountPerAgent", "MaxCountPerAgent", "Priority", "StaticARPTable", "TagProtocolId", "VlanAuto", "VlanEnabled", "VlanId", "VlanIncr"]
