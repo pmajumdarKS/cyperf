@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.data_type_values_inner import DataTypeValuesInner
+from cyperf.models.data_type_values_inner import DataTypeValuesInner
 
 class TestDataTypeValuesInner(unittest.TestCase):
     """DataTypeValuesInner unit test stubs"""

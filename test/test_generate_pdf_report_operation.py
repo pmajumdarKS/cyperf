@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.generate_pdf_report_operation import GeneratePDFReportOperation
+from cyperf.models.generate_pdf_report_operation import GeneratePDFReportOperation
 
 class TestGeneratePDFReportOperation(unittest.TestCase):
     """GeneratePDFReportOperation unit test stubs"""

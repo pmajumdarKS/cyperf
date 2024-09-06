@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_sec_stack import IPSecStack
+from cyperf.models.ip_sec_stack import IPSecStack
 
 class TestIPSecStack(unittest.TestCase):
     """IPSecStack unit test stubs"""
@@ -35,7 +35,7 @@ class TestIPSecStack(unittest.TestCase):
         model = IPSecStack()
         if include_optional:
             return IPSecStack(
-                ca_certificate_file = openapi_client.models.params.Params(
+                ca_certificate_file = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -49,9 +49,9 @@ class TestIPSecStack(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -62,10 +62,10 @@ class TestIPSecStack(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -76,20 +76,20 @@ class TestIPSecStack(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -108,7 +108,7 @@ class TestIPSecStack(unittest.TestCase):
                     id = , 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
-                emulated_sub_config = openapi_client.models.emulated_subnet_config.EmulatedSubnetConfig(
+                emulated_sub_config = cyperf.models.emulated_subnet_config.EmulatedSubnetConfig(
                     host_count_per_tunnel = 56, 
                     hosts_increment = '::02:84:9:0cc0:F:CCf', 
                     hosts_prefix = 56, 
@@ -120,7 +120,7 @@ class TestIPSecStack(unittest.TestCase):
                         ''
                         ], ),
                 enable_rekey = True,
-                ip_sec_range = openapi_client.models.ip_sec_range.IPSecRange(
+                ip_sec_range = cyperf.models.ip_sec_range.IPSecRange(
                     auth_settings = null, 
                     ike_phase1_config = null, 
                     ike_phase2_config = null, 
@@ -138,7 +138,7 @@ class TestIPSecStack(unittest.TestCase):
                 log_keys = True,
                 max_initiation_rate = 56,
                 max_pending = 56,
-                outer_ip_range = openapi_client.models.ip_range.IPRange(
+                outer_ip_range = cyperf.models.ip_range.IPRange(
                     automatic_ip_type = null, 
                     count = 56, 
                     gw_auto = True, 
@@ -171,63 +171,16 @@ class TestIPSecStack(unittest.TestCase):
             )
         else:
             return IPSecStack(
-                emulated_sub_config = openapi_client.models.emulated_subnet_config.EmulatedSubnetConfig(
-                    host_count_per_tunnel = 56, 
-                    hosts_increment = '::02:84:9:0cc0:F:CCf', 
-                    hosts_prefix = 56, 
-                    increment = '::02:84:9:0cc0:F:CCf', 
-                    prefix = 56, 
-                    start = '::02:84:9:0cc0:F:CCf', 
-                    total_host_count = '', 
-                    network_tags = [
-                        ''
-                        ], ),
                 enable_rekey = True,
-                ip_sec_range = openapi_client.models.ip_sec_range.IPSecRange(
-                    auth_settings = null, 
-                    ike_phase1_config = null, 
-                    ike_phase2_config = null, 
-                    ip_sec_range_name = 'YBuLd', 
-                    multi_p2_over_p1 = True, 
-                    protected_sub_config = null, 
-                    public_peer = '02::84', 
-                    public_peer_increment = '02::84', 
-                    remote_access = null, 
-                    test_scenario = 'REMOTE-ACCESS', 
-                    timers = null, 
-                    tunnel_count_per_outer_ip = 56, 
-                    id = '', ),
                 ip_sec_stack_name = 'YBuLd',
                 log_keys = True,
                 max_initiation_rate = 56,
                 max_pending = 56,
-                outer_ip_range = openapi_client.models.ip_range.IPRange(
-                    automatic_ip_type = null, 
-                    count = 56, 
-                    gw_auto = True, 
-                    gw_start = '::02:84:9:0cc0:F:CCf', 
-                    inner_vlan_range = null, 
-                    ip_auto = True, 
-                    ip_incr = '::02:84:9:0cc0:F:CCf', 
-                    ip_range_name = 'YBuLd', 
-                    ip_start = '::02:84:9:0cc0:F:CCf', 
-                    ip_ver = null, 
-                    is_emulated_router = True, 
-                    mss = 56, 
-                    mss_auto = True, 
-                    net_mask = 56, 
-                    net_mask_auto = True, 
-                    id = '', 
-                    max_count_per_agent = 56, 
-                    network_tags = [
-                        ''
-                        ], ),
                 rekey_margin = 56,
                 rekey_retry_count = 56,
                 retransmission_timeout = 56,
                 retry_count = 56,
                 retry_interval = 56,
-                retry_interval_increment = 56,
                 setup_timeout = 56,
                 stack_role = 'INITIATOR',
                 id = '',

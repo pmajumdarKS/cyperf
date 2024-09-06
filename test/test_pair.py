@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.pair import Pair
+from cyperf.models.pair import Pair
 
 class TestPair(unittest.TestCase):
     """Pair unit test stubs"""

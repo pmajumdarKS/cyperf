@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.type_media_metadata import TypeMediaMetadata
+from cyperf.models.type_media_metadata import TypeMediaMetadata
 
 class TestTypeMediaMetadata(unittest.TestCase):
     """TypeMediaMetadata unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.entitlement_code_info import EntitlementCodeInfo
+from cyperf.models.entitlement_code_info import EntitlementCodeInfo
 
 class TestEntitlementCodeInfo(unittest.TestCase):
     """EntitlementCodeInfo unit test stubs"""
@@ -36,7 +36,7 @@ class TestEntitlementCodeInfo(unittest.TestCase):
         if include_optional:
             return EntitlementCodeInfo(
                 activation_codes = [
-                    openapi_client.models.activation_code_info.activation-code-info(
+                    cyperf.models.activation_code_info.activation-code-info(
                         activation_code = '', 
                         available_quantity = 56, 
                         description = '', 
@@ -48,7 +48,7 @@ class TestEntitlementCodeInfo(unittest.TestCase):
         else:
             return EntitlementCodeInfo(
                 activation_codes = [
-                    openapi_client.models.activation_code_info.activation-code-info(
+                    cyperf.models.activation_code_info.activation-code-info(
                         activation_code = '', 
                         available_quantity = 56, 
                         description = '', 

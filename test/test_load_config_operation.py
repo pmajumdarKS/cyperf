@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.load_config_operation import LoadConfigOperation
+from cyperf.models.load_config_operation import LoadConfigOperation
 
 class TestLoadConfigOperation(unittest.TestCase):
     """LoadConfigOperation unit test stubs"""

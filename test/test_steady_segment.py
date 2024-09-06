@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.steady_segment import SteadySegment
+from cyperf.models.steady_segment import SteadySegment
 
 class TestSteadySegment(unittest.TestCase):
     """SteadySegment unit test stubs"""

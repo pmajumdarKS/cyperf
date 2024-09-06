@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.name_id_format import NameIdFormat
+from cyperf.models.name_id_format import NameIdFormat
 
 class TestNameIdFormat(unittest.TestCase):
     """NameIdFormat unit test stubs"""

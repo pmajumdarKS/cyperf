@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.licensing_api import LicensingApi
+from cyperf.api.licensing_api import LicensingApi
 
 
 class TestLicensingApi(unittest.TestCase):

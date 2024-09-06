@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent import Agent
+from cyperf.models.agent import Agent
 
 class TestAgent(unittest.TestCase):
     """Agent unit test stubs"""
@@ -40,10 +40,10 @@ class TestAgent(unittest.TestCase):
                     ],
                 ip = '',
                 interfaces = [
-                    openapi_client.models.interface.Interface(
+                    cyperf.models.interface.Interface(
                         gateway = '', 
                         ip = [
-                            openapi_client.models.ip_mask.IpMask(
+                            cyperf.models.ip_mask.IpMask(
                                 net_mask = 56, )
                             ], 
                         mtu = 56, 
@@ -52,13 +52,13 @@ class TestAgent(unittest.TestCase):
                     ],
                 last_update = 56,
                 reservation_id = '',
-                selected_env = openapi_client.models.selected_env.SelectedEnv(
+                selected_env = cyperf.models.selected_env.SelectedEnv(
                     session_id = '', 
                     test_interface = [
-                        openapi_client.models.interface.Interface(
+                        cyperf.models.interface.Interface(
                             gateway = '', 
                             ip = [
-                                openapi_client.models.ip_mask.IpMask(
+                                cyperf.models.ip_mask.IpMask(
                                     net_mask = 56, )
                                 ], 
                             mtu = 56, 
@@ -70,7 +70,7 @@ class TestAgent(unittest.TestCase):
                 session_name = '',
                 status = '',
                 cpu_info = [
-                    openapi_client.models.agent_cpu_info.AgentCPUInfo(
+                    cyperf.models.agent_cpu_info.AgentCPUInfo(
                         cpu_core_count = 56, 
                         cpu_freq_mhz = 1.337, 
                         family = '', 
@@ -79,22 +79,22 @@ class TestAgent(unittest.TestCase):
                         vendor_id = '', )
                     ],
                 dpdk_enabled = True,
-                features = openapi_client.models.agent_features.AgentFeatures(
+                features = cyperf.models.agent_features.AgentFeatures(
                     dpdk_usage = '', 
                     update = '', ),
                 hostname = '',
                 id = '',
                 memory_mb = 1.337,
-                mgmt_interface = openapi_client.models.interface.Interface(
+                mgmt_interface = cyperf.models.interface.Interface(
                     gateway = '', 
                     ip = [
-                        openapi_client.models.ip_mask.IpMask(
+                        cyperf.models.ip_mask.IpMask(
                             net_mask = 56, )
                         ], 
                     mtu = 56, 
                     mac = '', 
                     name = '', ),
-                ntp_info = openapi_client.models.ntp_info.NtpInfo(
+                ntp_info = cyperf.models.ntp_info.NtpInfo(
                     active_server = '', 
                     servers = [
                         ''
@@ -105,12 +105,15 @@ class TestAgent(unittest.TestCase):
                 owner_id = '',
                 package_version_status = '',
                 requires_updating = True,
-                system_info = openapi_client.models.system_info.SystemInfo(
+                system_info = cyperf.models.system_info.SystemInfo(
+                    chassis_info = cyperf.models.chassis_info.ChassisInfo(
+                        compute_node_id = '', 
+                        port_id = '', ), 
                     kernel_version = '', 
                     os_name = '', 
                     port_manager_version = '', 
                     traffic_agent_info = [
-                        openapi_client.models.traffic_agent_info.TrafficAgentInfo(
+                        cyperf.models.traffic_agent_info.TrafficAgentInfo(
                             type = '', 
                             version = '', )
                         ], )

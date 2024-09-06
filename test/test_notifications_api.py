@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.notifications_api import NotificationsApi
+from cyperf.api.notifications_api import NotificationsApi
 
 
 class TestNotificationsApi(unittest.TestCase):
@@ -26,50 +26,50 @@ class TestNotificationsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_notification_counts_get(self) -> None:
-        """Test case for api_v2_notification_counts_get
+    def test_delete_notifications(self) -> None:
+        """Test case for delete_notifications
 
         """
         pass
 
-    def test_api_v2_notifications_get(self) -> None:
-        """Test case for api_v2_notifications_get
+    def test_get_notification_counts(self) -> None:
+        """Test case for get_notification_counts
 
         """
         pass
 
-    def test_api_v2_notifications_notification_id_delete(self) -> None:
-        """Test case for api_v2_notifications_notification_id_delete
+    def test_get_notifications(self) -> None:
+        """Test case for get_notifications
 
         """
         pass
 
-    def test_api_v2_notifications_notification_id_get(self) -> None:
-        """Test case for api_v2_notifications_notification_id_get
+    def test_get_notifications_by_id(self) -> None:
+        """Test case for get_notifications_by_id
 
         """
         pass
 
-    def test_api_v2_notifications_operations_cleanup_id_get(self) -> None:
-        """Test case for api_v2_notifications_operations_cleanup_id_get
+    def test_poll_notifications_cleanup(self) -> None:
+        """Test case for poll_notifications_cleanup
 
         """
         pass
 
-    def test_api_v2_notifications_operations_cleanup_post(self) -> None:
-        """Test case for api_v2_notifications_operations_cleanup_post
+    def test_poll_notifications_dismiss(self) -> None:
+        """Test case for poll_notifications_dismiss
 
         """
         pass
 
-    def test_api_v2_notifications_operations_dismiss_id_get(self) -> None:
-        """Test case for api_v2_notifications_operations_dismiss_id_get
+    def test_start_notifications_cleanup(self) -> None:
+        """Test case for start_notifications_cleanup
 
         """
         pass
 
-    def test_api_v2_notifications_operations_dismiss_post(self) -> None:
-        """Test case for api_v2_notifications_operations_dismiss_post
+    def test_start_notifications_dismiss(self) -> None:
+        """Test case for start_notifications_dismiss
 
         """
         pass

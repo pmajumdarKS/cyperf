@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.sort_body_field import SortBodyField
+from cyperf.models.sort_body_field import SortBodyField
 
 class TestSortBodyField(unittest.TestCase):
     """SortBodyField unit test stubs"""

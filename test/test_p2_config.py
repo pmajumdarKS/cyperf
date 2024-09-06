@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.p2_config import P2Config
+from cyperf.models.p2_config import P2Config
 
 class TestP2Config(unittest.TestCase):
     """P2Config unit test stubs"""

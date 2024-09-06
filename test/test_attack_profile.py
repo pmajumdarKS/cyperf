@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.attack_profile import AttackProfile
+from cyperf.models.attack_profile import AttackProfile
 
 class TestAttackProfile(unittest.TestCase):
     """AttackProfile unit test stubs"""
@@ -36,13 +36,13 @@ class TestAttackProfile(unittest.TestCase):
         if include_optional:
             return AttackProfile(
                 active = True,
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
+                traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
                     default_transport_profile = null, ),
                 id = '',
                 attacks = [
                     null
                     ],
-                default_network_mapping = openapi_client.models.network_mapping.NetworkMapping(
+                default_network_mapping = cyperf.models.network_mapping.NetworkMapping(
                     client_network_tags = [
                         ''
                         ], 
@@ -53,16 +53,16 @@ class TestAttackProfile(unittest.TestCase):
                         ''
                         ], ),
                 name = '',
-                objectives_and_timeline = openapi_client.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
+                objectives_and_timeline = cyperf.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
                     timeline_segments = [
                         null
                         ], ),
                 add_attacks = [
-                    openapi_client.models.external_resource_info.ExternalResourceInfo(
+                    cyperf.models.external_resource_info.ExternalResourceInfo(
                         external_resource_url = '', )
                     ],
                 modify_excluded_dut_recursively = [
-                    openapi_client.models.update_network_mapping.UpdateNetworkMapping(
+                    cyperf.models.update_network_mapping.UpdateNetworkMapping(
                         client_network_tags = [
                             ''
                             ], 
@@ -75,7 +75,7 @@ class TestAttackProfile(unittest.TestCase):
                             ], )
                     ],
                 modify_tags_recursively = [
-                    openapi_client.models.update_network_mapping.UpdateNetworkMapping(
+                    cyperf.models.update_network_mapping.UpdateNetworkMapping(
                         client_network_tags = [
                             ''
                             ], 
@@ -93,27 +93,7 @@ class TestAttackProfile(unittest.TestCase):
             )
         else:
             return AttackProfile(
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
-                id = '',
-                attacks = [
-                    null
-                    ],
-                default_network_mapping = openapi_client.models.network_mapping.NetworkMapping(
-                    client_network_tags = [
-                        ''
-                        ], 
-                    excluded_dut_list = [
-                        ''
-                        ], 
-                    server_network_tags = [
-                        ''
-                        ], ),
                 name = '',
-                objectives_and_timeline = openapi_client.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
-                    timeline_segments = [
-                        null
-                        ], ),
         )
         """
 

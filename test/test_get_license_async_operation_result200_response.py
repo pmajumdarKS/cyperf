@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_license_async_operation_result200_response import GetLicenseAsyncOperationResult200Response
+from cyperf.models.get_license_async_operation_result200_response import GetLicenseAsyncOperationResult200Response
 
 class TestGetLicenseAsyncOperationResult200Response(unittest.TestCase):
     """GetLicenseAsyncOperationResult200Response unit test stubs"""
@@ -39,12 +39,12 @@ class TestGetLicenseAsyncOperationResult200Response(unittest.TestCase):
                 days_left_to_expire = 56,
                 expiry_date = '',
                 features = [
-                    openapi_client.models.feature.feature(
+                    cyperf.models.feature.feature(
                         count = 56, 
                         feature_type = 'nodeLocked', 
                         is_uncounted = True, 
                         name = '', 
-                        reservation = openapi_client.models.feature_reservation.feature_reservation(
+                        reservation = cyperf.models.feature_reservation.feature_reservation(
                             available_count = 56, 
                             is_allowed = True, 
                             reserved_count = 56, 
@@ -52,7 +52,7 @@ class TestGetLicenseAsyncOperationResult200Response(unittest.TestCase):
                     ],
                 is_expired = True,
                 links = [
-                    openapi_client.models.link.link(
+                    cyperf.models.link.link(
                         href = '', 
                         method = '', 
                         type = '', )
@@ -69,12 +69,12 @@ class TestGetLicenseAsyncOperationResult200Response(unittest.TestCase):
                 days_left_to_expire = 56,
                 expiry_date = '',
                 features = [
-                    openapi_client.models.feature.feature(
+                    cyperf.models.feature.feature(
                         count = 56, 
                         feature_type = 'nodeLocked', 
                         is_uncounted = True, 
                         name = '', 
-                        reservation = openapi_client.models.feature_reservation.feature_reservation(
+                        reservation = cyperf.models.feature_reservation.feature_reservation(
                             available_count = 56, 
                             is_allowed = True, 
                             reserved_count = 56, 
@@ -82,7 +82,7 @@ class TestGetLicenseAsyncOperationResult200Response(unittest.TestCase):
                     ],
                 is_expired = True,
                 links = [
-                    openapi_client.models.link.link(
+                    cyperf.models.link.link(
                         href = '', 
                         method = '', 
                         type = '', )

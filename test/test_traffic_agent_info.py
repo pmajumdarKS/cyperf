@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.traffic_agent_info import TrafficAgentInfo
+from cyperf.models.traffic_agent_info import TrafficAgentInfo
 
 class TestTrafficAgentInfo(unittest.TestCase):
     """TrafficAgentInfo unit test stubs"""

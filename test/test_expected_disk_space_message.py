@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.expected_disk_space_message import ExpectedDiskSpaceMessage
+from cyperf.models.expected_disk_space_message import ExpectedDiskSpaceMessage
 
 class TestExpectedDiskSpaceMessage(unittest.TestCase):
     """ExpectedDiskSpaceMessage unit test stubs"""

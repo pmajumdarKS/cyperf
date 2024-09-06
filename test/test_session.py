@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.session import Session
+from cyperf.models.session import Session
 
 class TestSession(unittest.TestCase):
     """Session unit test stubs"""
@@ -45,7 +45,7 @@ class TestSession(unittest.TestCase):
                 index = 56,
                 last_visited = 56,
                 meta = [
-                    openapi_client.models.pair.Pair(
+                    cyperf.models.pair.Pair(
                         id = 56, 
                         key = '', 
                         value = '', )
@@ -55,9 +55,9 @@ class TestSession(unittest.TestCase):
                 owner_id = '',
                 pinned = True,
                 state = '',
-                test = openapi_client.models.test_info.TestInfo(
+                test = cyperf.models.test_info.TestInfo(
                     dashboards = [
-                        openapi_client.models.dashboard.Dashboard(
+                        cyperf.models.dashboard.Dashboard(
                             id = '', 
                             name = '', )
                         ], 

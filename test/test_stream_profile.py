@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.stream_profile import StreamProfile
+from cyperf.models.stream_profile import StreamProfile
 
 class TestStreamProfile(unittest.TestCase):
     """StreamProfile unit test stubs"""

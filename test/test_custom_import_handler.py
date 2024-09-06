@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.custom_import_handler import CustomImportHandler
+from cyperf.models.custom_import_handler import CustomImportHandler
 
 class TestCustomImportHandler(unittest.TestCase):
     """CustomImportHandler unit test stubs"""
@@ -35,7 +35,7 @@ class TestCustomImportHandler(unittest.TestCase):
         model = CustomImportHandler()
         if include_optional:
             return CustomImportHandler(
-                link = openapi_client.models.api_link.APILink(
+                link = cyperf.models.api_link.APILink(
                     content_type = '', 
                     href = '', 
                     id = '', 

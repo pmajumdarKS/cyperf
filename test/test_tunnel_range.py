@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.tunnel_range import TunnelRange
+from cyperf.models.tunnel_range import TunnelRange
 
 class TestTunnelRange(unittest.TestCase):
     """TunnelRange unit test stubs"""
@@ -37,11 +37,11 @@ class TestTunnelRange(unittest.TestCase):
             return TunnelRange(
                 cisco_any_connect_settings = None,
                 dcp_request_timeout = 56,
-                dns_resolver = openapi_client.models.dns_resolver.DNSResolver(
+                dns_resolver = cyperf.models.dns_resolver.DNSResolver(
                     cache_timeout = 56, 
                     enable_perconnect = True, 
                     name_servers = [
-                        openapi_client.models.name_server.NameServer(
+                        cyperf.models.name_server.NameServer(
                             name = '4.207.188.200', )
                         ], ),
                 f5_settings = None,
@@ -54,11 +54,6 @@ class TestTunnelRange(unittest.TestCase):
             )
         else:
             return TunnelRange(
-                cisco_any_connect_settings = None,
-                dcp_request_timeout = 56,
-                f5_settings = None,
-                fortinet_settings = None,
-                pangp_settings = None,
                 tcp_dst_port = 56,
                 tunnel_count_per_outer_ip = 56,
                 vendor_type = 'CISCO_ANY_CONNECT',

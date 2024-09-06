@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.api_relationship import APIRelationship
+from cyperf.models.api_relationship import APIRelationship
 
 class TestAPIRelationship(unittest.TestCase):
     """APIRelationship unit test stubs"""

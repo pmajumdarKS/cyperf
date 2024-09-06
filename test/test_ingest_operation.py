@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ingest_operation import IngestOperation
+from cyperf.models.ingest_operation import IngestOperation
 
 class TestIngestOperation(unittest.TestCase):
     """IngestOperation unit test stubs"""
@@ -35,7 +35,7 @@ class TestIngestOperation(unittest.TestCase):
         model = IngestOperation()
         if include_optional:
             return IngestOperation(
-                plugin_stats = openapi_client.models.plugin_stats.PluginStats(
+                plugin_stats = cyperf.models.plugin_stats.PluginStats(
                     plugin = '', 
                     stats = [
                         {

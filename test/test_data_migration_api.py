@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.data_migration_api import DataMigrationApi
+from cyperf.api.data_migration_api import DataMigrationApi
 
 
 class TestDataMigrationApi(unittest.TestCase):
@@ -26,26 +26,26 @@ class TestDataMigrationApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_controller_migration_operations_export_id_get(self) -> None:
-        """Test case for api_v2_controller_migration_operations_export_id_get
+    def test_poll_root_export(self) -> None:
+        """Test case for poll_root_export
 
         """
         pass
 
-    def test_api_v2_controller_migration_operations_export_post(self) -> None:
-        """Test case for api_v2_controller_migration_operations_export_post
+    def test_poll_root_import(self) -> None:
+        """Test case for poll_root_import
 
         """
         pass
 
-    def test_api_v2_controller_migration_operations_import_id_get(self) -> None:
-        """Test case for api_v2_controller_migration_operations_import_id_get
+    def test_start_root_export(self) -> None:
+        """Test case for start_root_export
 
         """
         pass
 
-    def test_api_v2_controller_migration_operations_import_post(self) -> None:
-        """Test case for api_v2_controller_migration_operations_import_post
+    def test_start_root_import(self) -> None:
+        """Test case for start_root_import
 
         """
         pass

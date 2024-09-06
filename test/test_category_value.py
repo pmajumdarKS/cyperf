@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.category_value import CategoryValue
+from cyperf.models.category_value import CategoryValue
 
 class TestCategoryValue(unittest.TestCase):
     """CategoryValue unit test stubs"""

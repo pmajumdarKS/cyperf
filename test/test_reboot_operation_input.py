@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.reboot_operation_input import RebootOperationInput
+from cyperf.models.reboot_operation_input import RebootOperationInput
 
 class TestRebootOperationInput(unittest.TestCase):
     """RebootOperationInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestRebootOperationInput(unittest.TestCase):
         if include_optional:
             return RebootOperationInput(
                 agents = [
-                    openapi_client.models.agent_to_be_rebooted.AgentToBeRebooted(
+                    cyperf.models.agent_to_be_rebooted.AgentToBeRebooted(
                         agent_id = '', )
                     ],
                 soft_reboot = True

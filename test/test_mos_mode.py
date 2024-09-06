@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.mos_mode import MosMode
+from cyperf.models.mos_mode import MosMode
 
 class TestMosMode(unittest.TestCase):
     """MosMode unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.eth_range import EthRange
+from cyperf.models.eth_range import EthRange
 
 class TestEthRange(unittest.TestCase):
     """EthRange unit test stubs"""
@@ -41,7 +41,7 @@ class TestEthRange(unittest.TestCase):
                 mac_start = '2E-B0-08-29:0c:01',
                 one_mac_per_ip = True,
                 static_arp_table = [
-                    openapi_client.models.static_arp_entry.StaticARPEntry(
+                    cyperf.models.static_arp_entry.StaticARPEntry(
                         count = 56, 
                         remote_ip = '::02:84:9:0cc0:F:CCf', 
                         remote_ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -55,7 +55,6 @@ class TestEthRange(unittest.TestCase):
         else:
             return EthRange(
                 mac_auto = True,
-                one_mac_per_ip = True,
         )
         """
 

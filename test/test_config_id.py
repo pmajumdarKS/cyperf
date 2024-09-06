@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.config_id import ConfigId
+from cyperf.models.config_id import ConfigId
 
 class TestConfigId(unittest.TestCase):
     """ConfigId unit test stubs"""

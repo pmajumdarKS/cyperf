@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.esp_over_udp_settings import ESPOverUDPSettings
+from cyperf.models.esp_over_udp_settings import ESPOverUDPSettings
 
 class TestESPOverUDPSettings(unittest.TestCase):
     """ESPOverUDPSettings unit test stubs"""
@@ -35,7 +35,7 @@ class TestESPOverUDPSettings(unittest.TestCase):
         model = ESPOverUDPSettings()
         if include_optional:
             return ESPOverUDPSettings(
-                udp_profile = openapi_client.models.udp_profile.UdpProfile(
+                udp_profile = cyperf.models.udp_profile.UdpProfile(
                     max_src_port = 56, 
                     min_src_port = 56, 
                     recv_buff_size_ini = 56, 
@@ -46,14 +46,6 @@ class TestESPOverUDPSettings(unittest.TestCase):
             )
         else:
             return ESPOverUDPSettings(
-                udp_profile = openapi_client.models.udp_profile.UdpProfile(
-                    max_src_port = 56, 
-                    min_src_port = 56, 
-                    recv_buff_size_ini = 56, 
-                    recv_buff_size_res = 56, 
-                    rx_buffer = 56, 
-                    sock_group = '', 
-                    tx_buffer = 56, ),
         )
         """
 

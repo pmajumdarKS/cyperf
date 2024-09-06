@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.plugin import Plugin
+from cyperf.models.plugin import Plugin
 
 class TestPlugin(unittest.TestCase):
     """Plugin unit test stubs"""

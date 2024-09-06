@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dtls_settings import DTLSSettings
+from cyperf.models.dtls_settings import DTLSSettings
 
 class TestDTLSSettings(unittest.TestCase):
     """DTLSSettings unit test stubs"""
@@ -35,7 +35,7 @@ class TestDTLSSettings(unittest.TestCase):
         model = DTLSSettings()
         if include_optional:
             return DTLSSettings(
-                tls_client_profile = openapi_client.models.tls_profile.TLSProfile(
+                tls_client_profile = cyperf.models.tls_profile.TLSProfile(
                     certificate_file = null, 
                     cipher = null, 
                     cipher12 = null, 
@@ -56,7 +56,7 @@ class TestDTLSSettings(unittest.TestCase):
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [
-                        openapi_client.models.conflict.Conflict(
+                        cyperf.models.conflict.Conflict(
                             name = '', 
                             path_to_target = '', 
                             path_vars = {
@@ -69,23 +69,37 @@ class TestDTLSSettings(unittest.TestCase):
                     session_reuse_method12 = null, 
                     session_reuse_method13 = null, 
                     sni_cert_configs = [
-                        openapi_client.models.cert_config.CertConfig(
+                        cyperf.models.cert_config.CertConfig(
                             certificate_file = null, 
                             dh_file = null, 
+                            get_sni_conflicts = [
+                                'YQ=='
+                                ], 
                             id = '', 
                             is_playlist = True, 
                             key_file = null, 
                             key_file_password = '', 
                             playlist_column_name = '', 
                             playlist_filename = '', 
+                            resolve_sni_conflicts = [
+                                cyperf.models.conflict.Conflict(
+                                    name = '', 
+                                    path_to_target = '', 
+                                    path_vars = {
+                                        'key' : ''
+                                        }, )
+                                ], 
                             sni_hostname = '', )
                         ], 
                     sni_enabled = True, 
+                    supported_groups13 = [
+                        'P-256'
+                        ], 
                     tls12_enabled = True, 
                     tls13_enabled = True, 
                     use_tls_profile = True, 
                     version = 'NONE', ),
-                udp_profile = openapi_client.models.udp_profile.UdpProfile(
+                udp_profile = cyperf.models.udp_profile.UdpProfile(
                     max_src_port = 56, 
                     min_src_port = 56, 
                     recv_buff_size_ini = 56, 
@@ -96,64 +110,6 @@ class TestDTLSSettings(unittest.TestCase):
             )
         else:
             return DTLSSettings(
-                tls_client_profile = openapi_client.models.tls_profile.TLSProfile(
-                    certificate_file = null, 
-                    cipher = null, 
-                    cipher12 = null, 
-                    cipher13 = null, 
-                    ciphers12 = [
-                        'ECDHE-RSA-AES256-GCM-SHA384'
-                        ], 
-                    ciphers13 = [
-                        'AES-256-GCM-SHA384'
-                        ], 
-                    dh_file = null, 
-                    get_tls_conflicts = [
-                        'YQ=='
-                        ], 
-                    immediate_close = True, 
-                    key_file = null, 
-                    key_file_password = '', 
-                    middle_box_enabled = True, 
-                    profile_id = '', 
-                    resolve_tls_conflicts = [
-                        openapi_client.models.conflict.Conflict(
-                            name = '', 
-                            path_to_target = '', 
-                            path_vars = {
-                                'key' : ''
-                                }, )
-                        ], 
-                    send_close_notify = True, 
-                    session_reuse_count = 56, 
-                    session_reuse_method = null, 
-                    session_reuse_method12 = null, 
-                    session_reuse_method13 = null, 
-                    sni_cert_configs = [
-                        openapi_client.models.cert_config.CertConfig(
-                            certificate_file = null, 
-                            dh_file = null, 
-                            id = '', 
-                            is_playlist = True, 
-                            key_file = null, 
-                            key_file_password = '', 
-                            playlist_column_name = '', 
-                            playlist_filename = '', 
-                            sni_hostname = '', )
-                        ], 
-                    sni_enabled = True, 
-                    tls12_enabled = True, 
-                    tls13_enabled = True, 
-                    use_tls_profile = True, 
-                    version = 'NONE', ),
-                udp_profile = openapi_client.models.udp_profile.UdpProfile(
-                    max_src_port = 56, 
-                    min_src_port = 56, 
-                    recv_buff_size_ini = 56, 
-                    recv_buff_size_res = 56, 
-                    rx_buffer = 56, 
-                    sock_group = '', 
-                    tx_buffer = 56, ),
         )
         """
 

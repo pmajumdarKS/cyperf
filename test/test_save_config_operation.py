@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.save_config_operation import SaveConfigOperation
+from cyperf.models.save_config_operation import SaveConfigOperation
 
 class TestSaveConfigOperation(unittest.TestCase):
     """SaveConfigOperation unit test stubs"""

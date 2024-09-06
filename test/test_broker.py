@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.broker import Broker
+from cyperf.models.broker import Broker
 
 class TestBroker(unittest.TestCase):
     """Broker unit test stubs"""

@@ -5373,7 +5373,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_generate(
+    def start_root_generate_certificate(
         self,
         certificate: Optional[Certificate] = None,
         _request_timeout: Union[
@@ -5389,7 +5389,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AsyncContext:
-        """start_root_generate
+        """start_root_generate_certificate
 
         Generate a certificate.
 
@@ -5417,7 +5417,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_generate_serialize(
+        _param = self._start_root_generate_certificate_serialize(
             certificate=certificate,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -5440,7 +5440,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_generate_with_http_info(
+    def start_root_generate_certificate_with_http_info(
         self,
         certificate: Optional[Certificate] = None,
         _request_timeout: Union[
@@ -5456,7 +5456,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AsyncContext]:
-        """start_root_generate
+        """start_root_generate_certificate
 
         Generate a certificate.
 
@@ -5484,7 +5484,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_generate_serialize(
+        _param = self._start_root_generate_certificate_serialize(
             certificate=certificate,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -5507,7 +5507,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_generate_without_preload_content(
+    def start_root_generate_certificate_without_preload_content(
         self,
         certificate: Optional[Certificate] = None,
         _request_timeout: Union[
@@ -5523,7 +5523,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """start_root_generate
+        """start_root_generate_certificate
 
         Generate a certificate.
 
@@ -5551,7 +5551,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_generate_serialize(
+        _param = self._start_root_generate_certificate_serialize(
             certificate=certificate,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -5569,7 +5569,7 @@ class UtilsApi:
         return response_data.response
 
 
-    def _start_root_generate_serialize(
+    def _start_root_generate_certificate_serialize(
         self,
         certificate,
         _request_auth,
@@ -5646,7 +5646,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_upload(
+    def start_root_upload_certificate(
         self,
         _request_timeout: Union[
             None,
@@ -5661,7 +5661,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AsyncContext:
-        """start_root_upload
+        """start_root_upload_certificate
 
         Upload a certificate/key pair that will replace the system certificate.
 
@@ -5687,7 +5687,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_upload_serialize(
+        _param = self._start_root_upload_certificate_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5709,7 +5709,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_upload_with_http_info(
+    def start_root_upload_certificate_with_http_info(
         self,
         _request_timeout: Union[
             None,
@@ -5724,7 +5724,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AsyncContext]:
-        """start_root_upload
+        """start_root_upload_certificate
 
         Upload a certificate/key pair that will replace the system certificate.
 
@@ -5750,7 +5750,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_upload_serialize(
+        _param = self._start_root_upload_certificate_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5772,7 +5772,7 @@ class UtilsApi:
 
 
     @validate_call
-    def start_root_upload_without_preload_content(
+    def start_root_upload_certificate_without_preload_content(
         self,
         _request_timeout: Union[
             None,
@@ -5787,7 +5787,7 @@ class UtilsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """start_root_upload
+        """start_root_upload_certificate
 
         Upload a certificate/key pair that will replace the system certificate.
 
@@ -5813,7 +5813,7 @@ class UtilsApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._start_root_upload_serialize(
+        _param = self._start_root_upload_certificate_serialize(
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -5830,7 +5830,7 @@ class UtilsApi:
         return response_data.response
 
 
-    def _start_root_upload_serialize(
+    def _start_root_upload_certificate_serialize(
         self,
         _request_auth,
         _content_type,

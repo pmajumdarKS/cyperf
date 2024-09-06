@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.emulated_router import EmulatedRouter
+from cyperf.models.emulated_router import EmulatedRouter
 
 class TestEmulatedRouter(unittest.TestCase):
     """EmulatedRouter unit test stubs"""
@@ -42,9 +42,6 @@ class TestEmulatedRouter(unittest.TestCase):
             )
         else:
             return EmulatedRouter(
-                emulated_router_ranges = [
-                    null
-                    ],
                 enabled = True,
         )
         """

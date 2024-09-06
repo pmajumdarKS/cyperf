@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.config_category import ConfigCategory
+from cyperf.models.config_category import ConfigCategory
 
 class TestConfigCategory(unittest.TestCase):
     """ConfigCategory unit test stubs"""

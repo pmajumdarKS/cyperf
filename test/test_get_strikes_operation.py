@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_strikes_operation import GetStrikesOperation
+from cyperf.models.get_strikes_operation import GetStrikesOperation
 
 class TestGetStrikesOperation(unittest.TestCase):
     """GetStrikesOperation unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetStrikesOperation(unittest.TestCase):
         if include_optional:
             return GetStrikesOperation(
                 categories = [
-                    openapi_client.models.category_filter.CategoryFilter(
+                    cyperf.models.category_filter.CategoryFilter(
                         category = '', 
                         values = [
                             ''
@@ -52,7 +52,7 @@ class TestGetStrikesOperation(unittest.TestCase):
                     ],
                 skip = '',
                 sort = [
-                    openapi_client.models.sort_body_field.SortBodyField(
+                    cyperf.models.sort_body_field.SortBodyField(
                         field = '', 
                         order = '', )
                     ],

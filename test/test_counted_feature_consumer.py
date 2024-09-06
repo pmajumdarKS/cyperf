@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.counted_feature_consumer import CountedFeatureConsumer
+from cyperf.models.counted_feature_consumer import CountedFeatureConsumer
 
 class TestCountedFeatureConsumer(unittest.TestCase):
     """CountedFeatureConsumer unit test stubs"""

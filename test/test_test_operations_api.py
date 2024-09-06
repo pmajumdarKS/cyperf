@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.test_operations_api import TestOperationsApi
+from cyperf.api.test_operations_api import TestOperationsApi
 
 
 class TestTestOperationsApi(unittest.TestCase):
@@ -26,62 +26,62 @@ class TestTestOperationsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_sessions_session_id_test_calibrate_operations_start_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_calibrate_operations_start_id_get
+    def test_poll_root_abort(self) -> None:
+        """Test case for poll_root_abort
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_calibrate_operations_start_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_calibrate_operations_start_post
+    def test_poll_root_start_calibration(self) -> None:
+        """Test case for poll_root_start_calibration
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_calibrate_operations_stop_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_calibrate_operations_stop_id_get
+    def test_poll_root_start_test(self) -> None:
+        """Test case for poll_root_start_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_calibrate_operations_stop_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_calibrate_operations_stop_post
+    def test_poll_root_stop_calibration(self) -> None:
+        """Test case for poll_root_stop_calibration
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_abort_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_abort_id_get
+    def test_poll_root_stop_test(self) -> None:
+        """Test case for poll_root_stop_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_abort_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_abort_post
+    def test_start_root_abort_test(self) -> None:
+        """Test case for start_root_abort_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_start_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_start_id_get
+    def test_start_root_start_calibration(self) -> None:
+        """Test case for start_root_start_calibration
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_start_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_start_post
+    def test_start_root_start_test(self) -> None:
+        """Test case for start_root_start_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_stop_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_stop_id_get
+    def test_start_root_stop_calibration(self) -> None:
+        """Test case for start_root_stop_calibration
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_run_operations_stop_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_run_operations_stop_post
+    def test_start_root_stop_test(self) -> None:
+        """Test case for start_root_stop_test
 
         """
         pass

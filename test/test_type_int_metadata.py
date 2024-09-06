@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.type_int_metadata import TypeIntMetadata
+from cyperf.models.type_int_metadata import TypeIntMetadata
 
 class TestTypeIntMetadata(unittest.TestCase):
     """TypeIntMetadata unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.utils_api import UtilsApi
+from cyperf.api.utils_api import UtilsApi
 
 
 class TestUtilsApi(unittest.TestCase):
@@ -26,116 +26,146 @@ class TestUtilsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_disk_usage_consumers_consumer_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_consumers_consumer_id_get
+    def test_get_certificate(self) -> None:
+        """Test case for get_certificate
 
         """
         pass
 
-    def test_api_v2_disk_usage_consumers_get(self) -> None:
-        """Test case for api_v2_disk_usage_consumers_get
+    def test_get_consumers(self) -> None:
+        """Test case for get_consumers
 
         """
         pass
 
-    def test_api_v2_disk_usage_get(self) -> None:
-        """Test case for api_v2_disk_usage_get
+    def test_get_consumers_by_id(self) -> None:
+        """Test case for get_consumers_by_id
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_diagnostics_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_diagnostics_id_get
+    def test_get_disk_usage(self) -> None:
+        """Test case for get_disk_usage
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_diagnostics_post(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_diagnostics_post
+    def test_get_docs(self) -> None:
+        """Test case for get_docs
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_logs_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_logs_id_get
+    def test_get_docs_json(self) -> None:
+        """Test case for get_docs_json
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_logs_post(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_logs_post
+    def test_get_docs_yaml(self) -> None:
+        """Test case for get_docs_yaml
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_migration_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_migration_id_get
+    def test_get_log_config(self) -> None:
+        """Test case for get_log_config
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_migration_post(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_migration_post
+    def test_get_time(self) -> None:
+        """Test case for get_time
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_notifications_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_notifications_id_get
+    def test_poll_disk_usage_cleanup_diagnostics(self) -> None:
+        """Test case for poll_disk_usage_cleanup_diagnostics
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_notifications_post(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_notifications_post
+    def test_poll_disk_usage_cleanup_logs(self) -> None:
+        """Test case for poll_disk_usage_cleanup_logs
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_results_id_get(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_results_id_get
+    def test_poll_disk_usage_cleanup_migration(self) -> None:
+        """Test case for poll_disk_usage_cleanup_migration
 
         """
         pass
 
-    def test_api_v2_disk_usage_operations_cleanup_results_post(self) -> None:
-        """Test case for api_v2_disk_usage_operations_cleanup_results_post
+    def test_poll_disk_usage_cleanup_notifications(self) -> None:
+        """Test case for poll_disk_usage_cleanup_notifications
 
         """
         pass
 
-    def test_api_v2_docs_get(self) -> None:
-        """Test case for api_v2_docs_get
+    def test_poll_disk_usage_cleanup_results(self) -> None:
+        """Test case for poll_disk_usage_cleanup_results
 
         """
         pass
 
-    def test_api_v2_docs_json_get(self) -> None:
-        """Test case for api_v2_docs_json_get
+    def test_poll_root_generate(self) -> None:
+        """Test case for poll_root_generate
 
         """
         pass
 
-    def test_api_v2_docs_yaml_get(self) -> None:
-        """Test case for api_v2_docs_yaml_get
+    def test_poll_root_upload(self) -> None:
+        """Test case for poll_root_upload
 
         """
         pass
 
-    def test_api_v2_log_config_get(self) -> None:
-        """Test case for api_v2_log_config_get
+    def test_start_disk_usage_cleanup_diagnostics(self) -> None:
+        """Test case for start_disk_usage_cleanup_diagnostics
 
         """
         pass
 
-    def test_api_v2_log_config_put(self) -> None:
-        """Test case for api_v2_log_config_put
+    def test_start_disk_usage_cleanup_logs(self) -> None:
+        """Test case for start_disk_usage_cleanup_logs
 
         """
         pass
 
-    def test_api_v2_time_get(self) -> None:
-        """Test case for api_v2_time_get
+    def test_start_disk_usage_cleanup_migration(self) -> None:
+        """Test case for start_disk_usage_cleanup_migration
+
+        """
+        pass
+
+    def test_start_disk_usage_cleanup_notifications(self) -> None:
+        """Test case for start_disk_usage_cleanup_notifications
+
+        """
+        pass
+
+    def test_start_disk_usage_cleanup_results(self) -> None:
+        """Test case for start_disk_usage_cleanup_results
+
+        """
+        pass
+
+    def test_start_root_generate_certificate(self) -> None:
+        """Test case for start_root_generate_certificate
+
+        """
+        pass
+
+    def test_start_root_upload_certificate(self) -> None:
+        """Test case for start_root_upload_certificate
+
+        """
+        pass
+
+    def test_update_log_config(self) -> None:
+        """Test case for update_log_config
 
         """
         pass

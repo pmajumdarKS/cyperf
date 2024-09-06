@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.host_id import HostID
+from cyperf.models.host_id import HostID
 
 class TestHostID(unittest.TestCase):
     """HostID unit test stubs"""

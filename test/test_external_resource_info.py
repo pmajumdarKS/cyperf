@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.external_resource_info import ExternalResourceInfo
+from cyperf.models.external_resource_info import ExternalResourceInfo
 
 class TestExternalResourceInfo(unittest.TestCase):
     """ExternalResourceInfo unit test stubs"""

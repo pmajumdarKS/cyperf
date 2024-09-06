@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.action import Action
+from cyperf.models.action import Action
 
 class TestAction(unittest.TestCase):
     """Action unit test stubs"""
@@ -37,7 +37,7 @@ class TestAction(unittest.TestCase):
             return Action(
                 dst_host = '252.7.188.200',
                 exchanges = [
-                    openapi_client.models.exchange.Exchange(
+                    cyperf.models.exchange.Exchange(
                         client_endpoint = '', 
                         name = '', 
                         server_endpoint = '', 
@@ -50,7 +50,7 @@ class TestAction(unittest.TestCase):
                 is_strike = True,
                 name = '',
                 params = [
-                    openapi_client.models.params.Params(
+                    cyperf.models.params.Params(
                         array_element_type = '', 
                         array_elements = [
                             {
@@ -64,9 +64,9 @@ class TestAction(unittest.TestCase):
                         dictionary_value = {
                             'key' : ''
                             }, 
-                        enum = openapi_client.models.params_enum.Params_Enum(
+                        enum = cyperf.models.params_enum.Params_Enum(
                             choices = [
-                                openapi_client.models.choice.Choice(
+                                cyperf.models.choice.Choice(
                                     description = '', 
                                     hidden = True, 
                                     name = '', 
@@ -77,10 +77,10 @@ class TestAction(unittest.TestCase):
                         is_deprecated = True, 
                         is_modified = True, 
                         media_files = [
-                            openapi_client.models.media_file.MediaFile(
+                            cyperf.models.media_file.MediaFile(
                                 file_value = null, 
                                 media_tracks = [
-                                    openapi_client.models.media_track.MediaTrack(
+                                    cyperf.models.media_track.MediaTrack(
                                         bitrate = 56, 
                                         bitrate_kbps = 56, 
                                         codec = '', 
@@ -91,20 +91,20 @@ class TestAction(unittest.TestCase):
                                     ], 
                                 id = '', )
                             ], 
-                        metadata = openapi_client.models.param_metadata.ParamMetadata(
-                            type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                        metadata = cyperf.models.param_metadata.ParamMetadata(
+                            type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                     elements = [
-                                        openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                             type = '', )
                                         ], ), 
-                                int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                     max_value = 56, 
                                     min_value = 56, ), 
-                                media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                     track_id = '', 
                                     track_type = '', ), 
-                                string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                     charset = '', 
                                     max_length = 56, 
                                     min_length = 56, ), ), ), 
@@ -131,16 +131,6 @@ class TestAction(unittest.TestCase):
             )
         else:
             return Action(
-                exchanges = [
-                    openapi_client.models.exchange.Exchange(
-                        client_endpoint = '', 
-                        name = '', 
-                        server_endpoint = '', 
-                        id = '', )
-                    ],
-                is_strike = True,
-                protocol_id = '',
-                id = '',
         )
         """
 

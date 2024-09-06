@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.capture_settings import CaptureSettings
+from cyperf.models.capture_settings import CaptureSettings
 
 class TestCaptureSettings(unittest.TestCase):
     """CaptureSettings unit test stubs"""

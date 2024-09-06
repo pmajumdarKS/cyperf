@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agents_group import AgentsGroup
+from cyperf.models.agents_group import AgentsGroup
 
 class TestAgentsGroup(unittest.TestCase):
     """AgentsGroup unit test stubs"""

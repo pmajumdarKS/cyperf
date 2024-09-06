@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.selected_env import SelectedEnv
+from cyperf.models.selected_env import SelectedEnv
 
 class TestSelectedEnv(unittest.TestCase):
     """SelectedEnv unit test stubs"""
@@ -37,10 +37,10 @@ class TestSelectedEnv(unittest.TestCase):
             return SelectedEnv(
                 session_id = '',
                 test_interface = [
-                    openapi_client.models.interface.Interface(
+                    cyperf.models.interface.Interface(
                         gateway = '', 
                         ip = [
-                            openapi_client.models.ip_mask.IpMask(
+                            cyperf.models.ip_mask.IpMask(
                                 net_mask = 56, )
                             ], 
                         mtu = 56, 

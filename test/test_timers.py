@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.timers import Timers
+from cyperf.models.timers import Timers
 
 class TestTimers(unittest.TestCase):
     """Timers unit test stubs"""

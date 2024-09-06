@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.diagnostic_component_context import DiagnosticComponentContext
+from cyperf.models.diagnostic_component_context import DiagnosticComponentContext
 
 class TestDiagnosticComponentContext(unittest.TestCase):
     """DiagnosticComponentContext unit test stubs"""
@@ -36,20 +36,20 @@ class TestDiagnosticComponentContext(unittest.TestCase):
         if include_optional:
             return DiagnosticComponentContext(
                 component_list = [
-                    openapi_client.models.diagnostic_component.DiagnosticComponent(
+                    cyperf.models.diagnostic_component.DiagnosticComponent(
                         component_name = '', 
                         options = [
-                            openapi_client.models.diagnostic_options.DiagnosticOptions(
+                            cyperf.models.diagnostic_options.DiagnosticOptions(
                                 name = '', 
                                 value = '', )
                             ], 
                         sub_components = [
-                            openapi_client.models.diagnostic_component.DiagnosticComponent(
+                            cyperf.models.diagnostic_component.DiagnosticComponent(
                                 component_name = '', )
                             ], )
                     ],
                 context = [
-                    openapi_client.models.diagnostic_options.DiagnosticOptions(
+                    cyperf.models.diagnostic_options.DiagnosticOptions(
                         name = '', 
                         value = '', )
                     ]
@@ -57,15 +57,15 @@ class TestDiagnosticComponentContext(unittest.TestCase):
         else:
             return DiagnosticComponentContext(
                 component_list = [
-                    openapi_client.models.diagnostic_component.DiagnosticComponent(
+                    cyperf.models.diagnostic_component.DiagnosticComponent(
                         component_name = '', 
                         options = [
-                            openapi_client.models.diagnostic_options.DiagnosticOptions(
+                            cyperf.models.diagnostic_options.DiagnosticOptions(
                                 name = '', 
                                 value = '', )
                             ], 
                         sub_components = [
-                            openapi_client.models.diagnostic_component.DiagnosticComponent(
+                            cyperf.models.diagnostic_component.DiagnosticComponent(
                                 component_name = '', )
                             ], )
                     ],

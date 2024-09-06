@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.category_filter import CategoryFilter
+from cyperf.models.category_filter import CategoryFilter
 
 class TestCategoryFilter(unittest.TestCase):
     """CategoryFilter unit test stubs"""

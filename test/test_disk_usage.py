@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.disk_usage import DiskUsage
+from cyperf.models.disk_usage import DiskUsage
 
 class TestDiskUsage(unittest.TestCase):
     """DiskUsage unit test stubs"""
@@ -37,7 +37,7 @@ class TestDiskUsage(unittest.TestCase):
             return DiskUsage(
                 available = 56,
                 consumers = [
-                    openapi_client.models.consumer.Consumer(
+                    cyperf.models.consumer.Consumer(
                         id = '', 
                         pretty_size = '', 
                         size = 56, )

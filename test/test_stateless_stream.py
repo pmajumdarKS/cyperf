@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.stateless_stream import StatelessStream
+from cyperf.models.stateless_stream import StatelessStream
 
 class TestStatelessStream(unittest.TestCase):
     """StatelessStream unit test stubs"""
@@ -35,7 +35,7 @@ class TestStatelessStream(unittest.TestCase):
         model = StatelessStream()
         if include_optional:
             return StatelessStream(
-                client_stream_profile = openapi_client.models.stream_profile.StreamProfile(
+                client_stream_profile = cyperf.models.stream_profile.StreamProfile(
                     packet_rate = 56, 
                     payload_size = 56, 
                     payload_type = null, 
@@ -44,7 +44,7 @@ class TestStatelessStream(unittest.TestCase):
                     unique_pool_size = 56, ),
                 direction = 'ClientToServer',
                 is_flood_stream = True,
-                server_stream_profile = openapi_client.models.stream_profile.StreamProfile(
+                server_stream_profile = cyperf.models.stream_profile.StreamProfile(
                     packet_rate = 56, 
                     payload_size = 56, 
                     payload_type = null, 
@@ -54,7 +54,6 @@ class TestStatelessStream(unittest.TestCase):
             )
         else:
             return StatelessStream(
-                direction = 'ClientToServer',
         )
         """
 

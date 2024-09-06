@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dh_p1_group import DhP1Group
+from cyperf.models.dh_p1_group import DhP1Group
 
 class TestDhP1Group(unittest.TestCase):
     """DhP1Group unit test stubs"""

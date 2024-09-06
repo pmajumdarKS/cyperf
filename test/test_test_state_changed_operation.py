@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.test_state_changed_operation import TestStateChangedOperation
+from cyperf.models.test_state_changed_operation import TestStateChangedOperation
 
 class TestTestStateChangedOperation(unittest.TestCase):
     """TestStateChangedOperation unit test stubs"""

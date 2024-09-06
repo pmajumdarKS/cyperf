@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.file_value import FileValue
+from cyperf.models.file_value import FileValue
 
 class TestFileValue(unittest.TestCase):
     """FileValue unit test stubs"""

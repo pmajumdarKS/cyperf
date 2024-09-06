@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.error_description import ErrorDescription
+from cyperf.models.error_description import ErrorDescription
 
 class TestErrorDescription(unittest.TestCase):
     """ErrorDescription unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_categories_operation import GetCategoriesOperation
+from cyperf.models.get_categories_operation import GetCategoriesOperation
 
 class TestGetCategoriesOperation(unittest.TestCase):
     """GetCategoriesOperation unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetCategoriesOperation(unittest.TestCase):
         if include_optional:
             return GetCategoriesOperation(
                 filter = [
-                    openapi_client.models.category_filter.CategoryFilter(
+                    cyperf.models.category_filter.CategoryFilter(
                         category = '', 
                         values = [
                             ''

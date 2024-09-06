@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.import_offline_license_result import ImportOfflineLicenseResult
+from cyperf.models.import_offline_license_result import ImportOfflineLicenseResult
 
 class TestImportOfflineLicenseResult(unittest.TestCase):
     """ImportOfflineLicenseResult unit test stubs"""
@@ -37,19 +37,19 @@ class TestImportOfflineLicenseResult(unittest.TestCase):
             return ImportOfflineLicenseResult(
                 confirmation_code = '',
                 is_deactivation = True,
-                receipt = openapi_client.models.license_receipt.license-receipt(
+                receipt = cyperf.models.license_receipt.license-receipt(
                     changed_licenses = [
-                        openapi_client.models.license.license(
+                        cyperf.models.license.license(
                             activation_code = '', 
                             days_left_to_expire = 56, 
                             expiry_date = '', 
                             features = [
-                                openapi_client.models.feature.feature(
+                                cyperf.models.feature.feature(
                                     count = 56, 
                                     feature_type = 'nodeLocked', 
                                     is_uncounted = True, 
                                     name = '', 
-                                    reservation = openapi_client.models.feature_reservation.feature_reservation(
+                                    reservation = cyperf.models.feature_reservation.feature_reservation(
                                         available_count = 56, 
                                         is_allowed = True, 
                                         reserved_count = 56, 
@@ -57,7 +57,7 @@ class TestImportOfflineLicenseResult(unittest.TestCase):
                                 ], 
                             is_expired = True, 
                             links = [
-                                openapi_client.models.link.link(
+                                cyperf.models.link.link(
                                     href = '', 
                                     method = '', 
                                     type = '', )
@@ -75,19 +75,19 @@ class TestImportOfflineLicenseResult(unittest.TestCase):
             return ImportOfflineLicenseResult(
                 confirmation_code = '',
                 is_deactivation = True,
-                receipt = openapi_client.models.license_receipt.license-receipt(
+                receipt = cyperf.models.license_receipt.license-receipt(
                     changed_licenses = [
-                        openapi_client.models.license.license(
+                        cyperf.models.license.license(
                             activation_code = '', 
                             days_left_to_expire = 56, 
                             expiry_date = '', 
                             features = [
-                                openapi_client.models.feature.feature(
+                                cyperf.models.feature.feature(
                                     count = 56, 
                                     feature_type = 'nodeLocked', 
                                     is_uncounted = True, 
                                     name = '', 
-                                    reservation = openapi_client.models.feature_reservation.feature_reservation(
+                                    reservation = cyperf.models.feature_reservation.feature_reservation(
                                         available_count = 56, 
                                         is_allowed = True, 
                                         reserved_count = 56, 
@@ -95,7 +95,7 @@ class TestImportOfflineLicenseResult(unittest.TestCase):
                                 ], 
                             is_expired = True, 
                             links = [
-                                openapi_client.models.link.link(
+                                cyperf.models.link.link(
                                     href = '', 
                                     method = '', 
                                     type = '', )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.param_source_type import ParamSourceType
+from cyperf.models.param_source_type import ParamSourceType
 
 class TestParamSourceType(unittest.TestCase):
     """ParamSourceType unit test stubs"""

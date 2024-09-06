@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
+from cyperf.models.get_async_operation_result200_response import GetAsyncOperationResult200Response
 
 class TestGetAsyncOperationResult200Response(unittest.TestCase):
     """GetAsyncOperationResult200Response unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetAsyncOperationResult200Response(unittest.TestCase):
         if include_optional:
             return GetAsyncOperationResult200Response(
                 activation_codes = [
-                    openapi_client.models.activation_code_info.activation-code-info(
+                    cyperf.models.activation_code_info.activation-code-info(
                         activation_code = '', 
                         available_quantity = 56, 
                         description = '', 
@@ -51,7 +51,7 @@ class TestGetAsyncOperationResult200Response(unittest.TestCase):
                 total_quantity = 56,
                 available_count = 56,
                 consumers = [
-                    openapi_client.models.counted_feature_consumer.counted-feature-consumer(
+                    cyperf.models.counted_feature_consumer.counted-feature-consumer(
                         app = '', 
                         client = '', 
                         consumed_count = 56, 
@@ -65,7 +65,7 @@ class TestGetAsyncOperationResult200Response(unittest.TestCase):
         else:
             return GetAsyncOperationResult200Response(
                 activation_codes = [
-                    openapi_client.models.activation_code_info.activation-code-info(
+                    cyperf.models.activation_code_info.activation-code-info(
                         activation_code = '', 
                         available_quantity = 56, 
                         description = '', 
@@ -80,7 +80,7 @@ class TestGetAsyncOperationResult200Response(unittest.TestCase):
                 total_quantity = 56,
                 available_count = 56,
                 consumers = [
-                    openapi_client.models.counted_feature_consumer.counted-feature-consumer(
+                    cyperf.models.counted_feature_consumer.counted-feature-consumer(
                         app = '', 
                         client = '', 
                         consumed_count = 56, 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.hash_p1_algorithm import HashP1Algorithm
+from cyperf.models.hash_p1_algorithm import HashP1Algorithm
 
 class TestHashP1Algorithm(unittest.TestCase):
     """HashP1Algorithm unit test stubs"""

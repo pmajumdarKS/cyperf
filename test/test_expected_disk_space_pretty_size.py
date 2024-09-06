@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.expected_disk_space_pretty_size import ExpectedDiskSpacePrettySize
+from cyperf.models.expected_disk_space_pretty_size import ExpectedDiskSpacePrettySize
 
 class TestExpectedDiskSpacePrettySize(unittest.TestCase):
     """ExpectedDiskSpacePrettySize unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.application_resources_api import ApplicationResourcesApi
+from cyperf.api.application_resources_api import ApplicationResourcesApi
 
 
 class TestApplicationResourcesApi(unittest.TestCase):
@@ -26,770 +26,806 @@ class TestApplicationResourcesApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_resources_application_types_application_type_id_get(self) -> None:
-        """Test case for api_v2_resources_application_types_application_type_id_get
+    def test_create_resources_captures_operations_upload_file(self) -> None:
+        """Test case for create_resources_captures_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_application_types_get(self) -> None:
-        """Test case for api_v2_resources_application_types_get
+    def test_create_resources_certificates_operations_upload_file(self) -> None:
+        """Test case for create_resources_certificates_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_apps_app_id_get(self) -> None:
-        """Test case for api_v2_resources_apps_app_id_get
+    def test_create_resources_flow_library_operations_upload_file(self) -> None:
+        """Test case for create_resources_flow_library_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_apps_get(self) -> None:
-        """Test case for api_v2_resources_apps_get
+    def test_create_resources_global_playlists_operations_upload_file(self) -> None:
+        """Test case for create_resources_global_playlists_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_attack_categories_get(self) -> None:
-        """Test case for api_v2_resources_attack_categories_get
+    def test_create_resources_http_library_operations_upload_file(self) -> None:
+        """Test case for create_resources_http_library_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_attacks_attack_id_get(self) -> None:
-        """Test case for api_v2_resources_attacks_attack_id_get
+    def test_create_resources_media_files_operations_upload_file(self) -> None:
+        """Test case for create_resources_media_files_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_attacks_get(self) -> None:
-        """Test case for api_v2_resources_attacks_get
+    def test_create_resources_media_library_operations_upload_file(self) -> None:
+        """Test case for create_resources_media_library_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_auth_profiles_auth_profile_id_get(self) -> None:
-        """Test case for api_v2_resources_auth_profiles_auth_profile_id_get
+    def test_create_resources_other_library_operations_upload_file(self) -> None:
+        """Test case for create_resources_other_library_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_auth_profiles_get(self) -> None:
-        """Test case for api_v2_resources_auth_profiles_get
+    def test_create_resources_payloads_operations_upload_file(self) -> None:
+        """Test case for create_resources_payloads_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_certificate_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_certificates_certificate_id_content_file_get
+    def test_create_resources_pcaps_operations_upload_file(self) -> None:
+        """Test case for create_resources_pcaps_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_certificate_id_delete(self) -> None:
-        """Test case for api_v2_resources_certificates_certificate_id_delete
+    def test_create_resources_playlists_operations_upload_file(self) -> None:
+        """Test case for create_resources_playlists_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_certificate_id_get(self) -> None:
-        """Test case for api_v2_resources_certificates_certificate_id_get
+    def test_create_resources_sip_library_operations_upload_file(self) -> None:
+        """Test case for create_resources_sip_library_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_get(self) -> None:
-        """Test case for api_v2_resources_certificates_get
+    def test_create_resources_stats_profile_operations_upload_file(self) -> None:
+        """Test case for create_resources_stats_profile_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_certificates_operations_upload_file_post
+    def test_create_resources_tls_certificates_operations_upload_file(self) -> None:
+        """Test case for create_resources_tls_certificates_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_certificates_operations_upload_file_upload_file_id_get
+    def test_create_resources_tls_dhs_operations_upload_file(self) -> None:
+        """Test case for create_resources_tls_dhs_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_certificates_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_certificates_operations_upload_file_upload_file_id_result_get
+    def test_create_resources_tls_keys_operations_upload_file(self) -> None:
+        """Test case for create_resources_tls_keys_operations_upload_file
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_flow_library_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_flow_library_flow_library_id_content_file_get
+    def test_delete_captures(self) -> None:
+        """Test case for delete_captures
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_flow_library_id_delete(self) -> None:
-        """Test case for api_v2_resources_flow_library_flow_library_id_delete
+    def test_delete_certificates(self) -> None:
+        """Test case for delete_certificates
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_flow_library_id_get(self) -> None:
-        """Test case for api_v2_resources_flow_library_flow_library_id_get
+    def test_delete_flow_library(self) -> None:
+        """Test case for delete_flow_library
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_get(self) -> None:
-        """Test case for api_v2_resources_flow_library_get
+    def test_delete_global_playlists(self) -> None:
+        """Test case for delete_global_playlists
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_flow_library_operations_upload_file_post
+    def test_delete_http_library(self) -> None:
+        """Test case for delete_http_library
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_flow_library_operations_upload_file_upload_file_id_get
+    def test_delete_media_files(self) -> None:
+        """Test case for delete_media_files
 
         """
         pass
 
-    def test_api_v2_resources_flow_library_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_flow_library_operations_upload_file_upload_file_id_result_get
+    def test_delete_media_library(self) -> None:
+        """Test case for delete_media_library
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_get(self) -> None:
-        """Test case for api_v2_resources_global_playlists_get
+    def test_delete_other_library(self) -> None:
+        """Test case for delete_other_library
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_global_playlist_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_global_playlists_global_playlist_id_content_file_get
+    def test_delete_payloads(self) -> None:
+        """Test case for delete_payloads
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_global_playlist_id_delete(self) -> None:
-        """Test case for api_v2_resources_global_playlists_global_playlist_id_delete
+    def test_delete_pcaps(self) -> None:
+        """Test case for delete_pcaps
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_global_playlist_id_get(self) -> None:
-        """Test case for api_v2_resources_global_playlists_global_playlist_id_get
+    def test_delete_playlists(self) -> None:
+        """Test case for delete_playlists
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_global_playlists_operations_upload_file_post
+    def test_delete_sip_library(self) -> None:
+        """Test case for delete_sip_library
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_global_playlists_operations_upload_file_upload_file_id_get
+    def test_delete_stats_profile(self) -> None:
+        """Test case for delete_stats_profile
 
         """
         pass
 
-    def test_api_v2_resources_global_playlists_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_global_playlists_operations_upload_file_upload_file_id_result_get
+    def test_delete_tls_certificates(self) -> None:
+        """Test case for delete_tls_certificates
 
         """
         pass
 
-    def test_api_v2_resources_http_library_get(self) -> None:
-        """Test case for api_v2_resources_http_library_get
+    def test_delete_tls_dhs(self) -> None:
+        """Test case for delete_tls_dhs
 
         """
         pass
 
-    def test_api_v2_resources_http_library_http_library_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_http_library_http_library_id_content_file_get
+    def test_delete_tls_keys(self) -> None:
+        """Test case for delete_tls_keys
 
         """
         pass
 
-    def test_api_v2_resources_http_library_http_library_id_delete(self) -> None:
-        """Test case for api_v2_resources_http_library_http_library_id_delete
+    def test_get_application_types(self) -> None:
+        """Test case for get_application_types
 
         """
         pass
 
-    def test_api_v2_resources_http_library_http_library_id_get(self) -> None:
-        """Test case for api_v2_resources_http_library_http_library_id_get
+    def test_get_application_types_by_id(self) -> None:
+        """Test case for get_application_types_by_id
 
         """
         pass
 
-    def test_api_v2_resources_http_library_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_http_library_operations_upload_file_post
+    def test_get_apps(self) -> None:
+        """Test case for get_apps
 
         """
         pass
 
-    def test_api_v2_resources_http_library_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_http_library_operations_upload_file_upload_file_id_get
+    def test_get_apps_by_id(self) -> None:
+        """Test case for get_apps_by_id
 
         """
         pass
 
-    def test_api_v2_resources_http_library_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_http_library_operations_upload_file_upload_file_id_result_get
+    def test_get_attack_categories(self) -> None:
+        """Test case for get_attack_categories
 
         """
         pass
 
-    def test_api_v2_resources_http_profiles_get(self) -> None:
-        """Test case for api_v2_resources_http_profiles_get
+    def test_get_attacks(self) -> None:
+        """Test case for get_attacks
 
         """
         pass
 
-    def test_api_v2_resources_http_profiles_http_profile_id_get(self) -> None:
-        """Test case for api_v2_resources_http_profiles_http_profile_id_get
+    def test_get_attacks_by_id(self) -> None:
+        """Test case for get_attacks_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_files_get(self) -> None:
-        """Test case for api_v2_resources_media_files_get
+    def test_get_auth_profiles(self) -> None:
+        """Test case for get_auth_profiles
 
         """
         pass
 
-    def test_api_v2_resources_media_files_media_file_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_media_files_media_file_id_content_file_get
+    def test_get_auth_profiles_by_id(self) -> None:
+        """Test case for get_auth_profiles_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_files_media_file_id_delete(self) -> None:
-        """Test case for api_v2_resources_media_files_media_file_id_delete
+    def test_get_captures(self) -> None:
+        """Test case for get_captures
 
         """
         pass
 
-    def test_api_v2_resources_media_files_media_file_id_get(self) -> None:
-        """Test case for api_v2_resources_media_files_media_file_id_get
+    def test_get_captures_by_id(self) -> None:
+        """Test case for get_captures_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_files_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_media_files_operations_upload_file_post
+    def test_get_certificates(self) -> None:
+        """Test case for get_certificates
 
         """
         pass
 
-    def test_api_v2_resources_media_files_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_media_files_operations_upload_file_upload_file_id_get
+    def test_get_certificates_by_id(self) -> None:
+        """Test case for get_certificates_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_files_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_media_files_operations_upload_file_upload_file_id_result_get
+    def test_get_flow_library(self) -> None:
+        """Test case for get_flow_library
 
         """
         pass
 
-    def test_api_v2_resources_media_library_get(self) -> None:
-        """Test case for api_v2_resources_media_library_get
+    def test_get_flow_library_by_id(self) -> None:
+        """Test case for get_flow_library_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_library_media_library_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_media_library_media_library_id_content_file_get
+    def test_get_global_playlists(self) -> None:
+        """Test case for get_global_playlists
 
         """
         pass
 
-    def test_api_v2_resources_media_library_media_library_id_delete(self) -> None:
-        """Test case for api_v2_resources_media_library_media_library_id_delete
+    def test_get_global_playlists_by_id(self) -> None:
+        """Test case for get_global_playlists_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_library_media_library_id_get(self) -> None:
-        """Test case for api_v2_resources_media_library_media_library_id_get
+    def test_get_http_library(self) -> None:
+        """Test case for get_http_library
 
         """
         pass
 
-    def test_api_v2_resources_media_library_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_media_library_operations_upload_file_post
+    def test_get_http_library_by_id(self) -> None:
+        """Test case for get_http_library_by_id
 
         """
         pass
 
-    def test_api_v2_resources_media_library_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_media_library_operations_upload_file_upload_file_id_get
+    def test_get_http_profiles(self) -> None:
+        """Test case for get_http_profiles
 
         """
         pass
 
-    def test_api_v2_resources_media_library_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_media_library_operations_upload_file_upload_file_id_result_get
+    def test_get_http_profiles_by_id(self) -> None:
+        """Test case for get_http_profiles_by_id
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_attack_categories_id_get(self) -> None:
-        """Test case for api_v2_resources_operations_get_attack_categories_id_get
+    def test_get_media_files(self) -> None:
+        """Test case for get_media_files
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_attack_categories_post(self) -> None:
-        """Test case for api_v2_resources_operations_get_attack_categories_post
+    def test_get_media_files_by_id(self) -> None:
+        """Test case for get_media_files_by_id
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_attacks_id_get(self) -> None:
-        """Test case for api_v2_resources_operations_get_attacks_id_get
+    def test_get_media_library(self) -> None:
+        """Test case for get_media_library
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_attacks_post(self) -> None:
-        """Test case for api_v2_resources_operations_get_attacks_post
+    def test_get_media_library_by_id(self) -> None:
+        """Test case for get_media_library_by_id
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_strike_categories_id_get(self) -> None:
-        """Test case for api_v2_resources_operations_get_strike_categories_id_get
+    def test_get_other_library(self) -> None:
+        """Test case for get_other_library
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_strike_categories_post(self) -> None:
-        """Test case for api_v2_resources_operations_get_strike_categories_post
+    def test_get_other_library_by_id(self) -> None:
+        """Test case for get_other_library_by_id
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_strikes_id_get(self) -> None:
-        """Test case for api_v2_resources_operations_get_strikes_id_get
+    def test_get_payloads(self) -> None:
+        """Test case for get_payloads
 
         """
         pass
 
-    def test_api_v2_resources_operations_get_strikes_post(self) -> None:
-        """Test case for api_v2_resources_operations_get_strikes_post
+    def test_get_payloads_by_id(self) -> None:
+        """Test case for get_payloads_by_id
 
         """
         pass
 
-    def test_api_v2_resources_other_library_get(self) -> None:
-        """Test case for api_v2_resources_other_library_get
+    def test_get_pcaps(self) -> None:
+        """Test case for get_pcaps
 
         """
         pass
 
-    def test_api_v2_resources_other_library_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_other_library_operations_upload_file_post
+    def test_get_pcaps_by_id(self) -> None:
+        """Test case for get_pcaps_by_id
 
         """
         pass
 
-    def test_api_v2_resources_other_library_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_other_library_operations_upload_file_upload_file_id_get
+    def test_get_playlists(self) -> None:
+        """Test case for get_playlists
 
         """
         pass
 
-    def test_api_v2_resources_other_library_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_other_library_operations_upload_file_upload_file_id_result_get
+    def test_get_playlists_by_id(self) -> None:
+        """Test case for get_playlists_by_id
 
         """
         pass
 
-    def test_api_v2_resources_other_library_other_library_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_other_library_other_library_id_content_file_get
+    def test_get_resources_certificates_certificates_id_content_file(self) -> None:
+        """Test case for get_resources_certificates_certificates_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_other_library_other_library_id_delete(self) -> None:
-        """Test case for api_v2_resources_other_library_other_library_id_delete
+    def test_get_resources_certificates_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_certificates_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_other_library_other_library_id_get(self) -> None:
-        """Test case for api_v2_resources_other_library_other_library_id_get
+    def test_get_resources_certificates_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_certificates_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_payloads_get(self) -> None:
-        """Test case for api_v2_resources_payloads_get
+    def test_get_resources_flow_library_flow_library_id_content_file(self) -> None:
+        """Test case for get_resources_flow_library_flow_library_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_payloads_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_payloads_operations_upload_file_post
+    def test_get_resources_flow_library_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_flow_library_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_payloads_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_payloads_operations_upload_file_upload_file_id_get
+    def test_get_resources_flow_library_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_flow_library_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_payloads_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_payloads_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_global_playlists_global_playlists_id_content_file(self) -> None:
+        """Test case for get_resources_global_playlists_global_playlists_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_payloads_payload_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_payloads_payload_id_content_file_get
+    def test_get_resources_global_playlists_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_global_playlists_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_payloads_payload_id_delete(self) -> None:
-        """Test case for api_v2_resources_payloads_payload_id_delete
+    def test_get_resources_global_playlists_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_global_playlists_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_payloads_payload_id_get(self) -> None:
-        """Test case for api_v2_resources_payloads_payload_id_get
+    def test_get_resources_http_library_http_library_id_content_file(self) -> None:
+        """Test case for get_resources_http_library_http_library_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_get(self) -> None:
-        """Test case for api_v2_resources_pcaps_get
+    def test_get_resources_http_library_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_http_library_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_pcaps_operations_upload_file_post
+    def test_get_resources_http_library_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_http_library_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_pcaps_operations_upload_file_upload_file_id_get
+    def test_get_resources_media_files_media_files_id_content_file(self) -> None:
+        """Test case for get_resources_media_files_media_files_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_pcaps_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_media_files_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_media_files_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_pcap_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_pcaps_pcap_id_content_file_get
+    def test_get_resources_media_files_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_media_files_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_pcap_id_delete(self) -> None:
-        """Test case for api_v2_resources_pcaps_pcap_id_delete
+    def test_get_resources_media_library_media_library_id_content_file(self) -> None:
+        """Test case for get_resources_media_library_media_library_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_pcaps_pcap_id_get(self) -> None:
-        """Test case for api_v2_resources_pcaps_pcap_id_get
+    def test_get_resources_media_library_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_media_library_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_playlists_get(self) -> None:
-        """Test case for api_v2_resources_playlists_get
+    def test_get_resources_media_library_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_media_library_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_playlists_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_playlists_operations_upload_file_post
+    def test_get_resources_other_library_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_other_library_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_playlists_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_playlists_operations_upload_file_upload_file_id_get
+    def test_get_resources_other_library_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_other_library_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_playlists_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_playlists_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_other_library_other_library_id_content_file(self) -> None:
+        """Test case for get_resources_other_library_other_library_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_playlists_playlist_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_playlists_playlist_id_content_file_get
+    def test_get_resources_payloads_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_payloads_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_playlists_playlist_id_delete(self) -> None:
-        """Test case for api_v2_resources_playlists_playlist_id_delete
+    def test_get_resources_payloads_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_payloads_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_playlists_playlist_id_get(self) -> None:
-        """Test case for api_v2_resources_playlists_playlist_id_get
+    def test_get_resources_payloads_payloads_id_content_file(self) -> None:
+        """Test case for get_resources_payloads_payloads_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_playlists_playlist_id_values_get(self) -> None:
-        """Test case for api_v2_resources_playlists_playlist_id_values_get
+    def test_get_resources_pcaps_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_pcaps_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_get(self) -> None:
-        """Test case for api_v2_resources_sip_library_get
+    def test_get_resources_pcaps_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_pcaps_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_sip_library_operations_upload_file_post
+    def test_get_resources_pcaps_pcaps_id_content_file(self) -> None:
+        """Test case for get_resources_pcaps_pcaps_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_sip_library_operations_upload_file_upload_file_id_get
+    def test_get_resources_playlists_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_playlists_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_sip_library_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_playlists_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_playlists_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_sip_library_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_sip_library_sip_library_id_content_file_get
+    def test_get_resources_playlists_playlists_id_content_file(self) -> None:
+        """Test case for get_resources_playlists_playlists_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_sip_library_id_delete(self) -> None:
-        """Test case for api_v2_resources_sip_library_sip_library_id_delete
+    def test_get_resources_playlists_playlists_id_values(self) -> None:
+        """Test case for get_resources_playlists_playlists_id_values
 
         """
         pass
 
-    def test_api_v2_resources_sip_library_sip_library_id_get(self) -> None:
-        """Test case for api_v2_resources_sip_library_sip_library_id_get
+    def test_get_resources_sip_library_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_sip_library_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_get(self) -> None:
-        """Test case for api_v2_resources_stats_profile_get
+    def test_get_resources_sip_library_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_sip_library_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_stats_profile_operations_upload_file_post
+    def test_get_resources_sip_library_sip_library_id_content_file(self) -> None:
+        """Test case for get_resources_sip_library_sip_library_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_stats_profile_operations_upload_file_upload_file_id_get
+    def test_get_resources_stats_profile_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_stats_profile_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_stats_profile_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_stats_profile_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_stats_profile_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_stats_profile_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_stats_profile_stats_profile_id_content_file_get
+    def test_get_resources_stats_profile_stats_profile_id_content_file(self) -> None:
+        """Test case for get_resources_stats_profile_stats_profile_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_stats_profile_id_delete(self) -> None:
-        """Test case for api_v2_resources_stats_profile_stats_profile_id_delete
+    def test_get_resources_tls_certificates_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_tls_certificates_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_stats_profile_stats_profile_id_get(self) -> None:
-        """Test case for api_v2_resources_stats_profile_stats_profile_id_get
+    def test_get_resources_tls_certificates_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_tls_certificates_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_strike_categories_get(self) -> None:
-        """Test case for api_v2_resources_strike_categories_get
+    def test_get_resources_tls_certificates_tls_certificates_id_content_file(self) -> None:
+        """Test case for get_resources_tls_certificates_tls_certificates_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_strikes_get(self) -> None:
-        """Test case for api_v2_resources_strikes_get
+    def test_get_resources_tls_dhs_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_tls_dhs_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_strikes_strike_id_get(self) -> None:
-        """Test case for api_v2_resources_strikes_strike_id_get
+    def test_get_resources_tls_dhs_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_tls_dhs_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_get(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_get
+    def test_get_resources_tls_dhs_tls_dhs_id_content_file(self) -> None:
+        """Test case for get_resources_tls_dhs_tls_dhs_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_operations_upload_file_post
+    def test_get_resources_tls_keys_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_tls_keys_operations_upload_file_operation_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_operations_upload_file_upload_file_id_get
+    def test_get_resources_tls_keys_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_tls_keys_operations_upload_file_operation_id_result
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_operations_upload_file_upload_file_id_result_get
+    def test_get_resources_tls_keys_tls_keys_id_content_file(self) -> None:
+        """Test case for get_resources_tls_keys_tls_keys_id_content_file
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_tls_certificate_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_tls_certificate_id_content_file_get
+    def test_get_sip_library(self) -> None:
+        """Test case for get_sip_library
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_tls_certificate_id_delete(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_tls_certificate_id_delete
+    def test_get_sip_library_by_id(self) -> None:
+        """Test case for get_sip_library_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_certificates_tls_certificate_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_certificates_tls_certificate_id_get
+    def test_get_stats_profile(self) -> None:
+        """Test case for get_stats_profile
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_get(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_get
+    def test_get_stats_profile_by_id(self) -> None:
+        """Test case for get_stats_profile_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_operations_upload_file_post
+    def test_get_strike_categories(self) -> None:
+        """Test case for get_strike_categories
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_operations_upload_file_upload_file_id_get
+    def test_get_strikes(self) -> None:
+        """Test case for get_strikes
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_operations_upload_file_upload_file_id_result_get
+    def test_get_strikes_by_id(self) -> None:
+        """Test case for get_strikes_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_tls_dh_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_tls_dh_id_content_file_get
+    def test_get_tls_certificates(self) -> None:
+        """Test case for get_tls_certificates
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_tls_dh_id_delete(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_tls_dh_id_delete
+    def test_get_tls_certificates_by_id(self) -> None:
+        """Test case for get_tls_certificates_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_dhs_tls_dh_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_dhs_tls_dh_id_get
+    def test_get_tls_dhs(self) -> None:
+        """Test case for get_tls_dhs
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_get(self) -> None:
-        """Test case for api_v2_resources_tls_keys_get
+    def test_get_tls_dhs_by_id(self) -> None:
+        """Test case for get_tls_dhs_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_operations_upload_file_post(self) -> None:
-        """Test case for api_v2_resources_tls_keys_operations_upload_file_post
+    def test_get_tls_keys(self) -> None:
+        """Test case for get_tls_keys
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_operations_upload_file_upload_file_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_keys_operations_upload_file_upload_file_id_get
+    def test_get_tls_keys_by_id(self) -> None:
+        """Test case for get_tls_keys_by_id
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_operations_upload_file_upload_file_id_result_get(self) -> None:
-        """Test case for api_v2_resources_tls_keys_operations_upload_file_upload_file_id_result_get
+    def test_poll_root_create_app(self) -> None:
+        """Test case for poll_root_create_app
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_tls_key_id_content_file_get(self) -> None:
-        """Test case for api_v2_resources_tls_keys_tls_key_id_content_file_get
+    def test_poll_root_get_attack_categories(self) -> None:
+        """Test case for poll_root_get_attack_categories
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_tls_key_id_delete(self) -> None:
-        """Test case for api_v2_resources_tls_keys_tls_key_id_delete
+    def test_poll_root_get_attacks(self) -> None:
+        """Test case for poll_root_get_attacks
 
         """
         pass
 
-    def test_api_v2_resources_tls_keys_tls_key_id_get(self) -> None:
-        """Test case for api_v2_resources_tls_keys_tls_key_id_get
+    def test_poll_root_get_strike_categories(self) -> None:
+        """Test case for poll_root_get_strike_categories
+
+        """
+        pass
+
+    def test_poll_root_get_strikes(self) -> None:
+        """Test case for poll_root_get_strikes
+
+        """
+        pass
+
+    def test_start_root_create_app(self) -> None:
+        """Test case for start_root_create_app
+
+        """
+        pass
+
+    def test_start_root_get_attack_categories(self) -> None:
+        """Test case for start_root_get_attack_categories
+
+        """
+        pass
+
+    def test_start_root_get_attacks(self) -> None:
+        """Test case for start_root_get_attacks
+
+        """
+        pass
+
+    def test_start_root_get_strike_categories(self) -> None:
+        """Test case for start_root_get_strike_categories
+
+        """
+        pass
+
+    def test_start_root_get_strikes(self) -> None:
+        """Test case for start_root_get_strikes
 
         """
         pass

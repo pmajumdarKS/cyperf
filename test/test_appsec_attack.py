@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.appsec_attack import AppsecAttack
+from cyperf.models.appsec_attack import AppsecAttack
 
 class TestAppsecAttack(unittest.TestCase):
     """AppsecAttack unit test stubs"""
@@ -37,10 +37,10 @@ class TestAppsecAttack(unittest.TestCase):
             return AppsecAttack(
                 attack = None,
                 description = '',
-                metadata = openapi_client.models.metadata.Metadata(
-                    auth_method = openapi_client.models.enum.Enum(
+                metadata = cyperf.models.metadata.Metadata(
+                    auth_method = cyperf.models.enum.Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -48,7 +48,7 @@ class TestAppsecAttack(unittest.TestCase):
                             ], 
                         default = '', ), 
                     explicit_proxy = True, 
-                    idp_type = openapi_client.models.enum.Enum(
+                    idp_type = cyperf.models.enum.Enum(
                         default = '', ), 
                     sgw_name = '', 
                     sgw_type = '', 

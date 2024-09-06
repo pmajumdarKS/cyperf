@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.appsec_app import AppsecApp
+from cyperf.models.appsec_app import AppsecApp
 
 class TestAppsecApp(unittest.TestCase):
     """AppsecApp unit test stubs"""
@@ -39,6 +39,7 @@ class TestAppsecApp(unittest.TestCase):
                 description = '',
                 name = '',
                 static = True,
+                user_defined = True,
                 id = '',
                 owner = '',
                 owner_id = ''

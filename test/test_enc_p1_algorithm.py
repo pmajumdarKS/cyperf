@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.enc_p1_algorithm import EncP1Algorithm
+from cyperf.models.enc_p1_algorithm import EncP1Algorithm
 
 class TestEncP1Algorithm(unittest.TestCase):
     """EncP1Algorithm unit test stubs"""

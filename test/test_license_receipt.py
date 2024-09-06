@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.license_receipt import LicenseReceipt
+from cyperf.models.license_receipt import LicenseReceipt
 
 class TestLicenseReceipt(unittest.TestCase):
     """LicenseReceipt unit test stubs"""
@@ -36,17 +36,17 @@ class TestLicenseReceipt(unittest.TestCase):
         if include_optional:
             return LicenseReceipt(
                 changed_licenses = [
-                    openapi_client.models.license.license(
+                    cyperf.models.license.license(
                         activation_code = '', 
                         days_left_to_expire = 56, 
                         expiry_date = '', 
                         features = [
-                            openapi_client.models.feature.feature(
+                            cyperf.models.feature.feature(
                                 count = 56, 
                                 feature_type = 'nodeLocked', 
                                 is_uncounted = True, 
                                 name = '', 
-                                reservation = openapi_client.models.feature_reservation.feature_reservation(
+                                reservation = cyperf.models.feature_reservation.feature_reservation(
                                     available_count = 56, 
                                     is_allowed = True, 
                                     reserved_count = 56, 
@@ -54,7 +54,7 @@ class TestLicenseReceipt(unittest.TestCase):
                             ], 
                         is_expired = True, 
                         links = [
-                            openapi_client.models.link.link(
+                            cyperf.models.link.link(
                                 href = '', 
                                 method = '', 
                                 type = '', )
@@ -71,17 +71,17 @@ class TestLicenseReceipt(unittest.TestCase):
         else:
             return LicenseReceipt(
                 changed_licenses = [
-                    openapi_client.models.license.license(
+                    cyperf.models.license.license(
                         activation_code = '', 
                         days_left_to_expire = 56, 
                         expiry_date = '', 
                         features = [
-                            openapi_client.models.feature.feature(
+                            cyperf.models.feature.feature(
                                 count = 56, 
                                 feature_type = 'nodeLocked', 
                                 is_uncounted = True, 
                                 name = '', 
-                                reservation = openapi_client.models.feature_reservation.feature_reservation(
+                                reservation = cyperf.models.feature_reservation.feature_reservation(
                                     available_count = 56, 
                                     is_allowed = True, 
                                     reserved_count = 56, 
@@ -89,7 +89,7 @@ class TestLicenseReceipt(unittest.TestCase):
                             ], 
                         is_expired = True, 
                         links = [
-                            openapi_client.models.link.link(
+                            cyperf.models.link.link(
                                 href = '', 
                                 method = '', 
                                 type = '', )

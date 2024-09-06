@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.attack_objectives_and_timeline import AttackObjectivesAndTimeline
+from cyperf.models.attack_objectives_and_timeline import AttackObjectivesAndTimeline
 
 class TestAttackObjectivesAndTimeline(unittest.TestCase):
     """AttackObjectivesAndTimeline unit test stubs"""
@@ -41,9 +41,6 @@ class TestAttackObjectivesAndTimeline(unittest.TestCase):
             )
         else:
             return AttackObjectivesAndTimeline(
-                timeline_segments = [
-                    null
-                    ],
         )
         """
 

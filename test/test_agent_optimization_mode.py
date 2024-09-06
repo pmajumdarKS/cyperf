@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_optimization_mode import AgentOptimizationMode
+from cyperf.models.agent_optimization_mode import AgentOptimizationMode
 
 class TestAgentOptimizationMode(unittest.TestCase):
     """AgentOptimizationMode unit test stubs"""

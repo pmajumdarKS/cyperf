@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.export_all_operation import ExportAllOperation
+from cyperf.models.export_all_operation import ExportAllOperation
 
 class TestExportAllOperation(unittest.TestCase):
     """ExportAllOperation unit test stubs"""
@@ -36,7 +36,7 @@ class TestExportAllOperation(unittest.TestCase):
         if include_optional:
             return ExportAllOperation(
                 config_ids = [
-                    openapi_client.models.config_id.ConfigId(
+                    cyperf.models.config_id.ConfigId(
                         id = '', )
                     ]
             )

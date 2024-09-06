@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.reserve_operation_input import ReserveOperationInput
+from cyperf.models.reserve_operation_input import ReserveOperationInput
 
 class TestReserveOperationInput(unittest.TestCase):
     """ReserveOperationInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestReserveOperationInput(unittest.TestCase):
         if include_optional:
             return ReserveOperationInput(
                 agents_data = [
-                    openapi_client.models.agent_reservation.AgentReservation(
+                    cyperf.models.agent_reservation.AgentReservation(
                         agent_id = '', 
                         agent_payload_names = [
                             ''
@@ -52,7 +52,7 @@ class TestReserveOperationInput(unittest.TestCase):
                 owner = '',
                 owner_id = '',
                 payloads = {
-                    'key' : openapi_client.models.payload_meta.PayloadMeta(
+                    'key' : cyperf.models.payload_meta.PayloadMeta(
                         byte_size = 56, 
                         content_file_url = '', 
                         file_name = '', 

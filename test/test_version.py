@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.version import Version
+from cyperf.models.version import Version
 
 class TestVersion(unittest.TestCase):
     """Version unit test stubs"""

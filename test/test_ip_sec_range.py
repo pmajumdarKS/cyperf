@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_sec_range import IPSecRange
+from cyperf.models.ip_sec_range import IPSecRange
 
 class TestIPSecRange(unittest.TestCase):
     """IPSecRange unit test stubs"""
@@ -35,20 +35,20 @@ class TestIPSecRange(unittest.TestCase):
         model = IPSecRange()
         if include_optional:
             return IPSecRange(
-                var_auth_settings = openapi_client.models.authentication_settings.AuthenticationSettings(
+                var_auth_settings = cyperf.models.authentication_settings.AuthenticationSettings(
                     auth_method = 'PRE-SHARED-KEY', 
                     certificate_file = null, 
                     key_file = null, 
                     key_file_password = '', 
                     shared_key = '', ),
-                ike_phase1_config = openapi_client.models.p1_config.P1Config(
+                ike_phase1_config = cyperf.models.p1_config.P1Config(
                     dh_group = null, 
                     enc_algorithm = null, 
                     hash_algorithm = null, 
                     initial_contact = True, 
                     lifetime = 56, 
                     prf_algorithm = null, ),
-                ike_phase2_config = openapi_client.models.p2_config.P2Config(
+                ike_phase2_config = cyperf.models.p2_config.P2Config(
                     enc_algorithm = null, 
                     hash_algorithm = null, 
                     lifetime = 56, 
@@ -57,7 +57,7 @@ class TestIPSecRange(unittest.TestCase):
                     pfs_group = null, ),
                 ip_sec_range_name = 'YBuLd',
                 multi_p2_over_p1 = True,
-                protected_sub_config = openapi_client.models.protected_subnet_config.ProtectedSubnetConfig(
+                protected_sub_config = cyperf.models.protected_subnet_config.ProtectedSubnetConfig(
                     automatic = True, 
                     hosts_increment = '::02:84:9:0cc0:F:CCf', 
                     hosts_prefix = 56, 
@@ -67,12 +67,12 @@ class TestIPSecRange(unittest.TestCase):
                     start = '::02:84:9:0cc0:F:CCf', ),
                 public_peer = '02::84',
                 public_peer_increment = '02::84',
-                remote_access = openapi_client.models.remote_access.RemoteAccess(
+                remote_access = cyperf.models.remote_access.RemoteAccess(
                     mode_cfg_increment = '::02:84:9:0cc0:F:CCf', 
                     mode_cfg_start = '::02:84:9:0cc0:F:CCf', 
                     mode_cfg_suffix = 56, ),
                 test_scenario = 'REMOTE-ACCESS',
-                timers = openapi_client.models.timers.Timers(
+                timers = cyperf.models.timers.Timers(
                     dpd_enabled = True, 
                     dpd_idle_period = 56, 
                     dpd_timeout = 56, ),
@@ -81,47 +81,11 @@ class TestIPSecRange(unittest.TestCase):
             )
         else:
             return IPSecRange(
-                var_auth_settings = openapi_client.models.authentication_settings.AuthenticationSettings(
-                    auth_method = 'PRE-SHARED-KEY', 
-                    certificate_file = null, 
-                    key_file = null, 
-                    key_file_password = '', 
-                    shared_key = '', ),
-                ike_phase1_config = openapi_client.models.p1_config.P1Config(
-                    dh_group = null, 
-                    enc_algorithm = null, 
-                    hash_algorithm = null, 
-                    initial_contact = True, 
-                    lifetime = 56, 
-                    prf_algorithm = null, ),
-                ike_phase2_config = openapi_client.models.p2_config.P2Config(
-                    enc_algorithm = null, 
-                    hash_algorithm = null, 
-                    lifetime = 56, 
-                    nat_enabled = True, 
-                    pfs_enabled = True, 
-                    pfs_group = null, ),
                 ip_sec_range_name = 'YBuLd',
                 multi_p2_over_p1 = True,
-                protected_sub_config = openapi_client.models.protected_subnet_config.ProtectedSubnetConfig(
-                    automatic = True, 
-                    hosts_increment = '::02:84:9:0cc0:F:CCf', 
-                    hosts_prefix = 56, 
-                    increment = '::02:84:9:0cc0:F:CCf', 
-                    prefix = 56, 
-                    single_protected_subnet = True, 
-                    start = '::02:84:9:0cc0:F:CCf', ),
                 public_peer = '02::84',
                 public_peer_increment = '02::84',
-                remote_access = openapi_client.models.remote_access.RemoteAccess(
-                    mode_cfg_increment = '::02:84:9:0cc0:F:CCf', 
-                    mode_cfg_start = '::02:84:9:0cc0:F:CCf', 
-                    mode_cfg_suffix = 56, ),
                 test_scenario = 'REMOTE-ACCESS',
-                timers = openapi_client.models.timers.Timers(
-                    dpd_enabled = True, 
-                    dpd_idle_period = 56, 
-                    dpd_timeout = 56, ),
                 tunnel_count_per_outer_ip = 56,
                 id = '',
         )

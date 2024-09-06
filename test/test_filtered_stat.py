@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.filtered_stat import FilteredStat
+from cyperf.models.filtered_stat import FilteredStat
 
 class TestFilteredStat(unittest.TestCase):
     """FilteredStat unit test stubs"""
@@ -36,7 +36,7 @@ class TestFilteredStat(unittest.TestCase):
         if include_optional:
             return FilteredStat(
                 filters = [
-                    openapi_client.models.filter.Filter(
+                    cyperf.models.filter.Filter(
                         name = '', 
                         value = '', )
                     ],

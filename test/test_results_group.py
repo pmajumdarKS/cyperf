@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.results_group import ResultsGroup
+from cyperf.models.results_group import ResultsGroup
 
 class TestResultsGroup(unittest.TestCase):
     """ResultsGroup unit test stubs"""

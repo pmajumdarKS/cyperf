@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.param_metadata_type_info_array_v2_elements_inner import ParamMetadataTypeInfoArrayV2ElementsInner
+from cyperf.models.param_metadata_type_info_array_v2_elements_inner import ParamMetadataTypeInfoArrayV2ElementsInner
 
 class TestParamMetadataTypeInfoArrayV2ElementsInner(unittest.TestCase):
     """ParamMetadataTypeInfoArrayV2ElementsInner unit test stubs"""

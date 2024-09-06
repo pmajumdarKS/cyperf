@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.scenario import Scenario
+from cyperf.models.scenario import Scenario
 
 class TestScenario(unittest.TestCase):
     """Scenario unit test stubs"""
@@ -37,7 +37,7 @@ class TestScenario(unittest.TestCase):
             return Scenario(
                 action_timeout = 56,
                 active = True,
-                client_http_profile = openapi_client.models.http_profile.HTTPProfile(
+                client_http_profile = cyperf.models.http_profile.HTTPProfile(
                     additional_headers = null, 
                     connection_persistence = null, 
                     connections_max_transactions = 56, 
@@ -48,7 +48,7 @@ class TestScenario(unittest.TestCase):
                     is_modified = True, 
                     name = '', 
                     params = [
-                        openapi_client.models.params.Params(
+                        cyperf.models.params.Params(
                             array_element_type = '', 
                             array_elements = [
                                 {
@@ -62,9 +62,9 @@ class TestScenario(unittest.TestCase):
                             dictionary_value = {
                                 'key' : ''
                                 }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
+                            enum = cyperf.models.params_enum.Params_Enum(
                                 choices = [
-                                    openapi_client.models.choice.Choice(
+                                    cyperf.models.choice.Choice(
                                         description = '', 
                                         hidden = True, 
                                         name = '', 
@@ -75,10 +75,10 @@ class TestScenario(unittest.TestCase):
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
-                                openapi_client.models.media_file.MediaFile(
+                                cyperf.models.media_file.MediaFile(
                                     file_value = null, 
                                     media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
+                                        cyperf.models.media_track.MediaTrack(
                                             bitrate = 56, 
                                             bitrate_kbps = 56, 
                                             codec = '', 
@@ -89,20 +89,20 @@ class TestScenario(unittest.TestCase):
                                         ], 
                                     id = '', )
                                 ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                            metadata = cyperf.models.param_metadata.ParamMetadata(
+                                type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                    array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                                 type = '', )
                                             ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                    int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
                                         min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                    media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                         track_id = '', 
                                         track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                    string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                         charset = '', 
                                         max_length = 56, 
                                         min_length = 56, ), ), ), 
@@ -124,7 +124,7 @@ class TestScenario(unittest.TestCase):
                         ], 
                     use_application_server_headers = True, ),
                 connections = [
-                    openapi_client.models.connection.Connection(
+                    cyperf.models.connection.Connection(
                         client_endpoint = '', 
                         client_port = 56, 
                         closing_end = '', 
@@ -151,7 +151,7 @@ class TestScenario(unittest.TestCase):
                 dnn_id = '',
                 end_point_id = 56,
                 endpoints = [
-                    openapi_client.models.endpoint.Endpoint(
+                    cyperf.models.endpoint.Endpoint(
                         name = '', 
                         network_mapping = null, 
                         type = 'Client', 
@@ -165,7 +165,7 @@ class TestScenario(unittest.TestCase):
                 iteration_count = 56,
                 max_active_limit = 56,
                 name = 'YBuLd',
-                network_mapping = openapi_client.models.network_mapping.NetworkMapping(
+                network_mapping = cyperf.models.network_mapping.NetworkMapping(
                     client_network_tags = [
                         ''
                         ], 
@@ -176,7 +176,7 @@ class TestScenario(unittest.TestCase):
                         ''
                         ], ),
                 params = [
-                    openapi_client.models.params.Params(
+                    cyperf.models.params.Params(
                         array_element_type = '', 
                         array_elements = [
                             {
@@ -190,9 +190,9 @@ class TestScenario(unittest.TestCase):
                         dictionary_value = {
                             'key' : ''
                             }, 
-                        enum = openapi_client.models.params_enum.Params_Enum(
+                        enum = cyperf.models.params_enum.Params_Enum(
                             choices = [
-                                openapi_client.models.choice.Choice(
+                                cyperf.models.choice.Choice(
                                     description = '', 
                                     hidden = True, 
                                     name = '', 
@@ -203,10 +203,10 @@ class TestScenario(unittest.TestCase):
                         is_deprecated = True, 
                         is_modified = True, 
                         media_files = [
-                            openapi_client.models.media_file.MediaFile(
+                            cyperf.models.media_file.MediaFile(
                                 file_value = null, 
                                 media_tracks = [
-                                    openapi_client.models.media_track.MediaTrack(
+                                    cyperf.models.media_track.MediaTrack(
                                         bitrate = 56, 
                                         bitrate_kbps = 56, 
                                         codec = '', 
@@ -217,20 +217,20 @@ class TestScenario(unittest.TestCase):
                                     ], 
                                 id = '', )
                             ], 
-                        metadata = openapi_client.models.param_metadata.ParamMetadata(
-                            type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                        metadata = cyperf.models.param_metadata.ParamMetadata(
+                            type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                     elements = [
-                                        openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                             type = '', )
                                         ], ), 
-                                int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                     max_value = 56, 
                                     min_value = 56, ), 
-                                media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                     track_id = '', 
                                     track_type = '', ), 
-                                string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                     charset = '', 
                                     max_length = 56, 
                                     min_length = 56, ), ), ), 
@@ -253,7 +253,7 @@ class TestScenario(unittest.TestCase):
                 protocol_id = '',
                 qos_flow_id = '',
                 readonly_max_trans = True,
-                server_http_profile = openapi_client.models.http_profile.HTTPProfile(
+                server_http_profile = cyperf.models.http_profile.HTTPProfile(
                     additional_headers = null, 
                     connection_persistence = null, 
                     connections_max_transactions = 56, 
@@ -264,7 +264,7 @@ class TestScenario(unittest.TestCase):
                     is_modified = True, 
                     name = '', 
                     params = [
-                        openapi_client.models.params.Params(
+                        cyperf.models.params.Params(
                             array_element_type = '', 
                             array_elements = [
                                 {
@@ -278,9 +278,9 @@ class TestScenario(unittest.TestCase):
                             dictionary_value = {
                                 'key' : ''
                                 }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
+                            enum = cyperf.models.params_enum.Params_Enum(
                                 choices = [
-                                    openapi_client.models.choice.Choice(
+                                    cyperf.models.choice.Choice(
                                         description = '', 
                                         hidden = True, 
                                         name = '', 
@@ -291,10 +291,10 @@ class TestScenario(unittest.TestCase):
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
-                                openapi_client.models.media_file.MediaFile(
+                                cyperf.models.media_file.MediaFile(
                                     file_value = null, 
                                     media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
+                                        cyperf.models.media_track.MediaTrack(
                                             bitrate = 56, 
                                             bitrate_kbps = 56, 
                                             codec = '', 
@@ -305,20 +305,20 @@ class TestScenario(unittest.TestCase):
                                         ], 
                                     id = '', )
                                 ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                            metadata = cyperf.models.param_metadata.ParamMetadata(
+                                type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                    array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                                 type = '', )
                                             ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                    int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
                                         min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                    media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                         track_id = '', 
                                         track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                    string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                         charset = '', 
                                         max_length = 56, 
                                         min_length = 56, ), ), ), 
@@ -346,199 +346,6 @@ class TestScenario(unittest.TestCase):
             )
         else:
             return Scenario(
-                client_http_profile = openapi_client.models.http_profile.HTTPProfile(
-                    additional_headers = null, 
-                    connection_persistence = null, 
-                    connections_max_transactions = 56, 
-                    description = '', 
-                    external_resource_url = '', 
-                    http_version = null, 
-                    headers = null, 
-                    is_modified = True, 
-                    name = '', 
-                    params = [
-                        openapi_client.models.params.Params(
-                            array_element_type = '', 
-                            array_elements = [
-                                {
-                                    'key' : ''
-                                    }
-                                ], 
-                            category = '', 
-                            category_index = 56, 
-                            deprecated_previous_source = '', 
-                            description = '', 
-                            dictionary_value = {
-                                'key' : ''
-                                }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
-                                choices = [
-                                    openapi_client.models.choice.Choice(
-                                        description = '', 
-                                        hidden = True, 
-                                        name = '', 
-                                        value = '', )
-                                    ], ), 
-                            file_value = null, 
-                            flow_identifier = True, 
-                            is_deprecated = True, 
-                            is_modified = True, 
-                            media_files = [
-                                openapi_client.models.media_file.MediaFile(
-                                    file_value = null, 
-                                    media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
-                                            bitrate = 56, 
-                                            bitrate_kbps = 56, 
-                                            codec = '', 
-                                            codec_description = '', 
-                                            track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
-                                ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
-                                        elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
-                                            ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
-                                        max_value = 56, 
-                                        min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
-                                        track_id = '', 
-                                        track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
-                                        charset = '', 
-                                        max_length = 56, 
-                                        min_length = 56, ), ), ), 
-                            name = '', 
-                            param_id = '', 
-                            readonly = True, 
-                            source = '', 
-                            supported_sources = [
-                                ''
-                                ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
-                            supports_dynamic_payload = True, 
-                            upload_url = '', )
-                        ], 
-                    use_application_server_headers = True, ),
-                endpoints = [
-                    openapi_client.models.endpoint.Endpoint(
-                        name = '', 
-                        network_mapping = null, 
-                        type = 'Client', 
-                        id = '', )
-                    ],
-                inherit_http_profile = True,
-                name = 'YBuLd',
-                network_mapping = openapi_client.models.network_mapping.NetworkMapping(
-                    client_network_tags = [
-                        ''
-                        ], 
-                    excluded_dut_list = [
-                        ''
-                        ], 
-                    server_network_tags = [
-                        ''
-                        ], ),
-                server_http_profile = openapi_client.models.http_profile.HTTPProfile(
-                    additional_headers = null, 
-                    connection_persistence = null, 
-                    connections_max_transactions = 56, 
-                    description = '', 
-                    external_resource_url = '', 
-                    http_version = null, 
-                    headers = null, 
-                    is_modified = True, 
-                    name = '', 
-                    params = [
-                        openapi_client.models.params.Params(
-                            array_element_type = '', 
-                            array_elements = [
-                                {
-                                    'key' : ''
-                                    }
-                                ], 
-                            category = '', 
-                            category_index = 56, 
-                            deprecated_previous_source = '', 
-                            description = '', 
-                            dictionary_value = {
-                                'key' : ''
-                                }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
-                                choices = [
-                                    openapi_client.models.choice.Choice(
-                                        description = '', 
-                                        hidden = True, 
-                                        name = '', 
-                                        value = '', )
-                                    ], ), 
-                            file_value = null, 
-                            flow_identifier = True, 
-                            is_deprecated = True, 
-                            is_modified = True, 
-                            media_files = [
-                                openapi_client.models.media_file.MediaFile(
-                                    file_value = null, 
-                                    media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
-                                            bitrate = 56, 
-                                            bitrate_kbps = 56, 
-                                            codec = '', 
-                                            codec_description = '', 
-                                            track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
-                                ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
-                                        elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
-                                            ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
-                                        max_value = 56, 
-                                        min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
-                                        track_id = '', 
-                                        track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
-                                        charset = '', 
-                                        max_length = 56, 
-                                        min_length = 56, ), ), ), 
-                            name = '', 
-                            param_id = '', 
-                            readonly = True, 
-                            source = '', 
-                            supported_sources = [
-                                ''
-                                ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
-                            supports_dynamic_payload = True, 
-                            upload_url = '', )
-                        ], 
-                    use_application_server_headers = True, ),
-                supports_http_profiles = True,
-                id = '',
         )
         """
 

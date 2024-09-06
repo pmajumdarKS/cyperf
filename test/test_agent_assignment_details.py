@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_assignment_details import AgentAssignmentDetails
+from cyperf.models.agent_assignment_details import AgentAssignmentDetails
 
 class TestAgentAssignmentDetails(unittest.TestCase):
     """AgentAssignmentDetails unit test stubs"""
@@ -36,7 +36,7 @@ class TestAgentAssignmentDetails(unittest.TestCase):
         if include_optional:
             return AgentAssignmentDetails(
                 agent_id = '',
-                capture_settings = openapi_client.models.capture_settings.CaptureSettings(
+                capture_settings = cyperf.models.capture_settings.CaptureSettings(
                     capture_enabled = True, 
                     capture_latest_packets = True, 
                     log_level = null, 
@@ -50,9 +50,6 @@ class TestAgentAssignmentDetails(unittest.TestCase):
             return AgentAssignmentDetails(
                 agent_id = '',
                 id = '',
-                interfaces = [
-                    ''
-                    ],
         )
         """
 

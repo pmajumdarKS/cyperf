@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.result_metadata import ResultMetadata
+from cyperf.models.result_metadata import ResultMetadata
 
 class TestResultMetadata(unittest.TestCase):
     """ResultMetadata unit test stubs"""
@@ -43,7 +43,7 @@ class TestResultMetadata(unittest.TestCase):
                 download_diagnostic = None,
                 end_time = 56,
                 files = [
-                    openapi_client.models.result_file_metadata.ResultFileMetadata(
+                    cyperf.models.result_file_metadata.ResultFileMetadata(
                         file_id = '', 
                         file_name = '', 
                         id = '', 
@@ -53,7 +53,7 @@ class TestResultMetadata(unittest.TestCase):
                     ],
                 id = '',
                 last_modified = 56,
-                marked_as_deleted = openapi_client.models.marked_as_deleted.MarkedAsDeleted(
+                marked_as_deleted = cyperf.models.marked_as_deleted.MarkedAsDeleted(
                     delete_progress = 56, 
                     value = True, ),
                 owner = '',
@@ -61,7 +61,7 @@ class TestResultMetadata(unittest.TestCase):
                 pdf_url = '',
                 pinned = True,
                 reporting_links = [
-                    openapi_client.models.api_link.APILink(
+                    cyperf.models.api_link.APILink(
                         content_type = '', 
                         href = '', 
                         id = '', 

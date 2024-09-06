@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.specific_objective import SpecificObjective
+from cyperf.models.specific_objective import SpecificObjective
 
 class TestSpecificObjective(unittest.TestCase):
     """SpecificObjective unit test stubs"""
@@ -47,9 +47,6 @@ class TestSpecificObjective(unittest.TestCase):
         else:
             return SpecificObjective(
                 max_pending_simulated_users = '80728',
-                timeline = [
-                    null
-                    ],
                 type = 'Simulated users',
                 unit = '',
                 id = '',

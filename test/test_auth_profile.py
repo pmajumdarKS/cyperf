@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.auth_profile import AuthProfile
+from cyperf.models.auth_profile import AuthProfile
 
 class TestAuthProfile(unittest.TestCase):
     """AuthProfile unit test stubs"""
@@ -36,7 +36,7 @@ class TestAuthProfile(unittest.TestCase):
         if include_optional:
             return AuthProfile(
                 connections = [
-                    openapi_client.models.connection.Connection(
+                    cyperf.models.connection.Connection(
                         client_endpoint = '', 
                         client_port = 56, 
                         closing_end = '', 
@@ -58,26 +58,26 @@ class TestAuthProfile(unittest.TestCase):
                         id = '', )
                     ],
                 data_types = [
-                    openapi_client.models.data_type.DataType(
+                    cyperf.models.data_type.DataType(
                         values = [
-                            openapi_client.models.data_type_values_inner.DataType_Values_inner(
+                            cyperf.models.data_type_values_inner.DataType_Values_inner(
                                 id = '', 
                                 value_type = '', )
                             ], 
                         id = '', )
                     ],
                 endpoints = [
-                    openapi_client.models.endpoint.Endpoint(
+                    cyperf.models.endpoint.Endpoint(
                         name = '', 
                         network_mapping = null, 
                         type = 'Client', 
                         id = '', )
                     ],
                 file_name = '',
-                metadata = openapi_client.models.metadata.Metadata(
-                    auth_method = openapi_client.models.enum.Enum(
+                metadata = cyperf.models.metadata.Metadata(
+                    auth_method = cyperf.models.enum.Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -85,13 +85,13 @@ class TestAuthProfile(unittest.TestCase):
                             ], 
                         default = '', ), 
                     explicit_proxy = True, 
-                    idp_type = openapi_client.models.enum.Enum(
+                    idp_type = cyperf.models.enum.Enum(
                         default = '', ), 
                     sgw_name = '', 
                     sgw_type = '', 
                     sgw_type_value = '', ),
                 parameters = [
-                    openapi_client.models.parameter.Parameter(
+                    cyperf.models.parameter.Parameter(
                         default_array_elements = [
                             {
                                 'key' : ''
@@ -100,15 +100,15 @@ class TestAuthProfile(unittest.TestCase):
                         default_source = '', 
                         default_value = '', 
                         element_type = '', 
-                        metadata = openapi_client.models.parameter_metadata.ParameterMetadata(
+                        metadata = cyperf.models.parameter_metadata.ParameterMetadata(
                             category = '', 
                             category_index = 56, 
                             default = '', 
                             description = '', 
                             display_name = '', 
-                            enum = openapi_client.models.enum.Enum(
+                            enum = cyperf.models.enum.Enum(
                                 choices = [
-                                    openapi_client.models.choice.Choice(
+                                    cyperf.models.choice.Choice(
                                         description = '', 
                                         hidden = True, 
                                         name = '', 
@@ -121,27 +121,28 @@ class TestAuthProfile(unittest.TestCase):
                                 ''
                                 ], 
                             mandatory = True, 
-                            payload = openapi_client.models.payload_metadata.PayloadMetadata(
+                            payload = cyperf.models.payload_metadata.PayloadMetadata(
                                 file_extension = '', 
                                 file_name = '', 
-                                file_type = '', ), 
+                                file_type = '', 
+                                file_url = '', ), 
                             readonly = True, 
                             shared = True, 
                             type = '', 
-                            type_info = openapi_client.models.type_info_metadata.TypeInfoMetadata(
-                                array_v2 = openapi_client.models.type_array_v2_metadata.TypeArrayV2Metadata(
+                            type_info = cyperf.models.type_info_metadata.TypeInfoMetadata(
+                                array_v2 = cyperf.models.type_array_v2_metadata.TypeArrayV2Metadata(
                                     elements = [
-                                        openapi_client.models.array_v2_element_metadata.ArrayV2ElementMetadata(
+                                        cyperf.models.array_v2_element_metadata.ArrayV2ElementMetadata(
                                             id = '', 
                                             type = '', )
                                         ], ), 
-                                int = openapi_client.models.type_int_metadata.TypeIntMetadata(
+                                int = cyperf.models.type_int_metadata.TypeIntMetadata(
                                     max_value = 56, 
                                     min_value = 56, ), 
-                                media = openapi_client.models.type_media_metadata.TypeMediaMetadata(
+                                media = cyperf.models.type_media_metadata.TypeMediaMetadata(
                                     track_id = '', 
                                     track_type = '', ), 
-                                string = openapi_client.models.type_string_metadata.TypeStringMetadata(
+                                string = cyperf.models.type_string_metadata.TypeStringMetadata(
                                     charset = '', 
                                     max_length = 56, 
                                     min_length = 56, ), ), 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.custom_dashboards import CustomDashboards
+from cyperf.models.custom_dashboards import CustomDashboards
 
 class TestCustomDashboards(unittest.TestCase):
     """CustomDashboards unit test stubs"""
@@ -37,7 +37,7 @@ class TestCustomDashboards(unittest.TestCase):
             return CustomDashboards(
                 active = True,
                 links = [
-                    openapi_client.models.api_link.APILink(
+                    cyperf.models.api_link.APILink(
                         content_type = '', 
                         href = '', 
                         id = '', 
@@ -51,17 +51,6 @@ class TestCustomDashboards(unittest.TestCase):
         else:
             return CustomDashboards(
                 active = True,
-                links = [
-                    openapi_client.models.api_link.APILink(
-                        content_type = '', 
-                        href = '', 
-                        id = '', 
-                        method = '', 
-                        name = '', 
-                        references_count = 56, 
-                        rel = 'self', 
-                        type = 'self', )
-                    ],
         )
         """
 

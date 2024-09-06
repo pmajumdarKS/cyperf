@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.file_metadata import FileMetadata
+from cyperf.models.file_metadata import FileMetadata
 
 class TestFileMetadata(unittest.TestCase):
     """FileMetadata unit test stubs"""
@@ -35,6 +35,7 @@ class TestFileMetadata(unittest.TestCase):
         model = FileMetadata()
         if include_optional:
             return FileMetadata(
+                default = True,
                 user_visible = True
             )
         else:

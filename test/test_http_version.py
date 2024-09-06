@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.http_version import HTTPVersion
+from cyperf.models.http_version import HTTPVersion
 
 class TestHTTPVersion(unittest.TestCase):
     """HTTPVersion unit test stubs"""

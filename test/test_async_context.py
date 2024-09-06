@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.async_context import AsyncContext
+from cyperf.models.async_context import AsyncContext
 
 class TestAsyncContext(unittest.TestCase):
     """AsyncContext unit test stubs"""

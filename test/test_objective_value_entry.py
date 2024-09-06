@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.objective_value_entry import ObjectiveValueEntry
+from cyperf.models.objective_value_entry import ObjectiveValueEntry
 
 class TestObjectiveValueEntry(unittest.TestCase):
     """ObjectiveValueEntry unit test stubs"""

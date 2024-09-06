@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.generate_csv_reports_operation import GenerateCSVReportsOperation
+from cyperf.models.generate_csv_reports_operation import GenerateCSVReportsOperation
 
 class TestGenerateCSVReportsOperation(unittest.TestCase):
     """GenerateCSVReportsOperation unit test stubs"""
@@ -39,9 +39,9 @@ class TestGenerateCSVReportsOperation(unittest.TestCase):
                 var_from = '',
                 interval = '',
                 stats = [
-                    openapi_client.models.filtered_stat.FilteredStat(
+                    cyperf.models.filtered_stat.FilteredStat(
                         filters = [
-                            openapi_client.models.filter.Filter(
+                            cyperf.models.filter.Filter(
                                 name = '', 
                                 value = '', )
                             ], 

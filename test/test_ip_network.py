@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_network import IPNetwork
+from cyperf.models.ip_network import IPNetwork
 
 class TestIPNetwork(unittest.TestCase):
     """IPNetwork unit test stubs"""
@@ -40,14 +40,14 @@ class TestIPNetwork(unittest.TestCase):
                 network_tags = [
                     ''
                     ],
-                dns_resolver = openapi_client.models.dns_resolver.DNSResolver(
+                dns_resolver = cyperf.models.dns_resolver.DNSResolver(
                     cache_timeout = 56, 
                     enable_perconnect = True, 
                     name_servers = [
-                        openapi_client.models.name_server.NameServer(
+                        cyperf.models.name_server.NameServer(
                             name = '4.207.188.200', )
                         ], ),
-                dns_server = openapi_client.models.dns_server.DNSServer(
+                dns_server = cyperf.models.dns_server.DNSServer(
                     enabled = True, 
                     port = 56, ),
                 dut_connections = [
@@ -56,7 +56,7 @@ class TestIPNetwork(unittest.TestCase):
                 emulated_router = None,
                 eth_range = None,
                 ip_ranges = [
-                    openapi_client.models.ip_range.IPRange(
+                    cyperf.models.ip_range.IPRange(
                         automatic_ip_type = null, 
                         count = 56, 
                         gw_auto = True, 
@@ -79,7 +79,7 @@ class TestIPNetwork(unittest.TestCase):
                             ], )
                     ],
                 ip_sec_stacks = [
-                    openapi_client.models.ip_sec_stack.IPSecStack(
+                    cyperf.models.ip_sec_stack.IPSecStack(
                         ca_certificate_file = null, 
                         emulated_sub_config = null, 
                         enable_rekey = True, 
@@ -100,7 +100,7 @@ class TestIPNetwork(unittest.TestCase):
                         id = '', )
                     ],
                 tunnel_stacks = [
-                    openapi_client.models.tunnel_stack.TunnelStack(
+                    cyperf.models.tunnel_stack.TunnelStack(
                         inner_ip_range = null, 
                         outer_ip_range = null, 
                         tunnel_range = null, 
@@ -108,8 +108,11 @@ class TestIPNetwork(unittest.TestCase):
                         id = '', )
                     ],
                 active = True,
-                agent_assignments = openapi_client.models.agent_assignments.AgentAssignments(
+                agent_assignments = cyperf.models.agent_assignments.AgentAssignments(
                     by_id = [
+                        null
+                        ], 
+                    by_port = [
                         null
                         ], 
                     by_tag = [
@@ -121,59 +124,6 @@ class TestIPNetwork(unittest.TestCase):
             return IPNetwork(
                 name = 'YBuLd',
                 id = '',
-                emulated_router = None,
-                ip_ranges = [
-                    openapi_client.models.ip_range.IPRange(
-                        automatic_ip_type = null, 
-                        count = 56, 
-                        gw_auto = True, 
-                        gw_start = '::02:84:9:0cc0:F:CCf', 
-                        inner_vlan_range = null, 
-                        ip_auto = True, 
-                        ip_incr = '::02:84:9:0cc0:F:CCf', 
-                        ip_range_name = 'YBuLd', 
-                        ip_start = '::02:84:9:0cc0:F:CCf', 
-                        ip_ver = null, 
-                        is_emulated_router = True, 
-                        mss = 56, 
-                        mss_auto = True, 
-                        net_mask = 56, 
-                        net_mask_auto = True, 
-                        id = '', 
-                        max_count_per_agent = 56, 
-                        network_tags = [
-                            ''
-                            ], )
-                    ],
-                ip_sec_stacks = [
-                    openapi_client.models.ip_sec_stack.IPSecStack(
-                        ca_certificate_file = null, 
-                        emulated_sub_config = null, 
-                        enable_rekey = True, 
-                        ip_sec_range = null, 
-                        ip_sec_stack_name = 'YBuLd', 
-                        log_keys = True, 
-                        max_initiation_rate = 56, 
-                        max_pending = 56, 
-                        outer_ip_range = null, 
-                        rekey_margin = 56, 
-                        rekey_retry_count = 56, 
-                        retransmission_timeout = 56, 
-                        retry_count = 56, 
-                        retry_interval = 56, 
-                        retry_interval_increment = 56, 
-                        setup_timeout = 56, 
-                        stack_role = 'INITIATOR', 
-                        id = '', )
-                    ],
-                tunnel_stacks = [
-                    openapi_client.models.tunnel_stack.TunnelStack(
-                        inner_ip_range = null, 
-                        outer_ip_range = null, 
-                        tunnel_range = null, 
-                        tunnel_stack_name = 'YBuLd', 
-                        id = '', )
-                    ],
         )
         """
 

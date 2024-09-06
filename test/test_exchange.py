@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.exchange import Exchange
+from cyperf.models.exchange import Exchange
 
 class TestExchange(unittest.TestCase):
     """Exchange unit test stubs"""

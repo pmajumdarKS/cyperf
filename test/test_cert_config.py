@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.cert_config import CertConfig
+from cyperf.models.cert_config import CertConfig
 
 class TestCertConfig(unittest.TestCase):
     """CertConfig unit test stubs"""
@@ -35,7 +35,7 @@ class TestCertConfig(unittest.TestCase):
         model = CertConfig()
         if include_optional:
             return CertConfig(
-                certificate_file = openapi_client.models.params.Params(
+                certificate_file = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -49,9 +49,9 @@ class TestCertConfig(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -62,10 +62,10 @@ class TestCertConfig(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -76,20 +76,20 @@ class TestCertConfig(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -108,7 +108,7 @@ class TestCertConfig(unittest.TestCase):
                     id = , 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
-                dh_file = openapi_client.models.params.Params(
+                dh_file = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -122,9 +122,9 @@ class TestCertConfig(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -135,10 +135,10 @@ class TestCertConfig(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -149,20 +149,20 @@ class TestCertConfig(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -181,9 +181,12 @@ class TestCertConfig(unittest.TestCase):
                     id = , 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
+                get_sni_conflicts = [
+                    'YQ=='
+                    ],
                 id = '',
                 is_playlist = True,
-                key_file = openapi_client.models.params.Params(
+                key_file = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -197,9 +200,9 @@ class TestCertConfig(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -210,10 +213,10 @@ class TestCertConfig(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -224,20 +227,20 @@ class TestCertConfig(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -259,230 +262,19 @@ class TestCertConfig(unittest.TestCase):
                 key_file_password = '',
                 playlist_column_name = '',
                 playlist_filename = '',
+                resolve_sni_conflicts = [
+                    cyperf.models.conflict.Conflict(
+                        name = '', 
+                        path_to_target = '', 
+                        path_vars = {
+                            'key' : ''
+                            }, )
+                    ],
                 sni_hostname = ''
             )
         else:
             return CertConfig(
-                certificate_file = openapi_client.models.params.Params(
-                    array_element_type = '', 
-                    array_elements = [
-                        {
-                            'key' : ''
-                            }
-                        ], 
-                    category = '', 
-                    category_index = 56, 
-                    deprecated_previous_source = '', 
-                    description = '', 
-                    dictionary_value = {
-                        'key' : ''
-                        }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
-                        choices = [
-                            openapi_client.models.choice.Choice(
-                                description = '', 
-                                hidden = True, 
-                                name = '', 
-                                value = '', )
-                            ], ), 
-                    file_value = null, 
-                    flow_identifier = True, 
-                    is_deprecated = True, 
-                    is_modified = True, 
-                    media_files = [
-                        openapi_client.models.media_file.MediaFile(
-                            file_value = null, 
-                            media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
-                                    bitrate = 56, 
-                                    bitrate_kbps = 56, 
-                                    codec = '', 
-                                    codec_description = '', 
-                                    track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
-                        ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
-                                elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        type = '', )
-                                    ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
-                                max_value = 56, 
-                                min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
-                                track_id = '', 
-                                track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
-                                charset = '', 
-                                max_length = 56, 
-                                min_length = 56, ), ), ), 
-                    name = '', 
-                    param_id = '', 
-                    readonly = True, 
-                    source = '', 
-                    supported_sources = [
-                        ''
-                        ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
-                    supports_dynamic_payload = True, 
-                    upload_url = '', ),
-                dh_file = openapi_client.models.params.Params(
-                    array_element_type = '', 
-                    array_elements = [
-                        {
-                            'key' : ''
-                            }
-                        ], 
-                    category = '', 
-                    category_index = 56, 
-                    deprecated_previous_source = '', 
-                    description = '', 
-                    dictionary_value = {
-                        'key' : ''
-                        }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
-                        choices = [
-                            openapi_client.models.choice.Choice(
-                                description = '', 
-                                hidden = True, 
-                                name = '', 
-                                value = '', )
-                            ], ), 
-                    file_value = null, 
-                    flow_identifier = True, 
-                    is_deprecated = True, 
-                    is_modified = True, 
-                    media_files = [
-                        openapi_client.models.media_file.MediaFile(
-                            file_value = null, 
-                            media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
-                                    bitrate = 56, 
-                                    bitrate_kbps = 56, 
-                                    codec = '', 
-                                    codec_description = '', 
-                                    track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
-                        ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
-                                elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        type = '', )
-                                    ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
-                                max_value = 56, 
-                                min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
-                                track_id = '', 
-                                track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
-                                charset = '', 
-                                max_length = 56, 
-                                min_length = 56, ), ), ), 
-                    name = '', 
-                    param_id = '', 
-                    readonly = True, 
-                    source = '', 
-                    supported_sources = [
-                        ''
-                        ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
-                    supports_dynamic_payload = True, 
-                    upload_url = '', ),
                 id = '',
-                key_file = openapi_client.models.params.Params(
-                    array_element_type = '', 
-                    array_elements = [
-                        {
-                            'key' : ''
-                            }
-                        ], 
-                    category = '', 
-                    category_index = 56, 
-                    deprecated_previous_source = '', 
-                    description = '', 
-                    dictionary_value = {
-                        'key' : ''
-                        }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
-                        choices = [
-                            openapi_client.models.choice.Choice(
-                                description = '', 
-                                hidden = True, 
-                                name = '', 
-                                value = '', )
-                            ], ), 
-                    file_value = null, 
-                    flow_identifier = True, 
-                    is_deprecated = True, 
-                    is_modified = True, 
-                    media_files = [
-                        openapi_client.models.media_file.MediaFile(
-                            file_value = null, 
-                            media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
-                                    bitrate = 56, 
-                                    bitrate_kbps = 56, 
-                                    codec = '', 
-                                    codec_description = '', 
-                                    track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
-                        ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
-                                elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        type = '', )
-                                    ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
-                                max_value = 56, 
-                                min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
-                                track_id = '', 
-                                track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
-                                charset = '', 
-                                max_length = 56, 
-                                min_length = 56, ), ), ), 
-                    name = '', 
-                    param_id = '', 
-                    readonly = True, 
-                    source = '', 
-                    supported_sources = [
-                        ''
-                        ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
-                    supports_dynamic_payload = True, 
-                    upload_url = '', ),
                 sni_hostname = '',
         )
         """

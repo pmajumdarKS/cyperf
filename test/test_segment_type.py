@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.segment_type import SegmentType
+from cyperf.models.segment_type import SegmentType
 
 class TestSegmentType(unittest.TestCase):
     """SegmentType unit test stubs"""

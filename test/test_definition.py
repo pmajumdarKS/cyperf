@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.definition import Definition
+from cyperf.models.definition import Definition
 
 class TestDefinition(unittest.TestCase):
     """Definition unit test stubs"""

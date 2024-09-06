@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.stream_payload_type import StreamPayloadType
+from cyperf.models.stream_payload_type import StreamPayloadType
 
 class TestStreamPayloadType(unittest.TestCase):
     """StreamPayloadType unit test stubs"""

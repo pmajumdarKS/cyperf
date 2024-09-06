@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.port_settings import PortSettings
+from cyperf.models.port_settings import PortSettings
 
 class TestPortSettings(unittest.TestCase):
     """PortSettings unit test stubs"""
@@ -39,7 +39,7 @@ class TestPortSettings(unittest.TestCase):
                 automatic_destination_port = True,
                 automatic_forward_proxy_port = True,
                 destination_port = 56,
-                effective_ports = openapi_client.models.effective_ports.EffectivePorts(
+                effective_ports = cyperf.models.effective_ports.EffectivePorts(
                     effective_destination_port = '', 
                     effective_forward_proxy_port = '', 
                     effective_server_port = '', ),
@@ -54,7 +54,6 @@ class TestPortSettings(unittest.TestCase):
                 automatic_forward_proxy_port = True,
                 destination_port = 56,
                 forward_proxy_port = 56,
-                readonly = True,
                 server_listen_port = 56,
         )
         """

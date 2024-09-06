@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.remote_access import RemoteAccess
+from cyperf.models.remote_access import RemoteAccess
 
 class TestRemoteAccess(unittest.TestCase):
     """RemoteAccess unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.license_servers_api import LicenseServersApi
+from cyperf.api.license_servers_api import LicenseServersApi
 
 
 class TestLicenseServersApi(unittest.TestCase):
@@ -26,32 +26,32 @@ class TestLicenseServersApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_license_servers_get(self) -> None:
-        """Test case for api_v2_license_servers_get
+    def test_create_license_servers(self) -> None:
+        """Test case for create_license_servers
 
         """
         pass
 
-    def test_api_v2_license_servers_license_server_id_delete(self) -> None:
-        """Test case for api_v2_license_servers_license_server_id_delete
+    def test_delete_license_servers(self) -> None:
+        """Test case for delete_license_servers
 
         """
         pass
 
-    def test_api_v2_license_servers_license_server_id_get(self) -> None:
-        """Test case for api_v2_license_servers_license_server_id_get
+    def test_get_license_servers(self) -> None:
+        """Test case for get_license_servers
 
         """
         pass
 
-    def test_api_v2_license_servers_license_server_id_patch(self) -> None:
-        """Test case for api_v2_license_servers_license_server_id_patch
+    def test_get_license_servers_by_id(self) -> None:
+        """Test case for get_license_servers_by_id
 
         """
         pass
 
-    def test_api_v2_license_servers_post(self) -> None:
-        """Test case for api_v2_license_servers_post
+    def test_patch_license_servers(self) -> None:
+        """Test case for patch_license_servers
 
         """
         pass

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.stream_direction import StreamDirection
+from cyperf.models.stream_direction import StreamDirection
 
 class TestStreamDirection(unittest.TestCase):
     """StreamDirection unit test stubs"""

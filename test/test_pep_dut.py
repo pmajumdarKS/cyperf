@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.pep_dut import PepDUT
+from cyperf.models.pep_dut import PepDUT
 
 class TestPepDUT(unittest.TestCase):
     """PepDUT unit test stubs"""
@@ -35,7 +35,7 @@ class TestPepDUT(unittest.TestCase):
         model = PepDUT()
         if include_optional:
             return PepDUT(
-                auth_method = openapi_client.models.params.Params(
+                auth_method = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -49,9 +49,9 @@ class TestPepDUT(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -62,10 +62,10 @@ class TestPepDUT(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -76,21 +76,21 @@ class TestPepDUT(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         id = '', 
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -110,7 +110,7 @@ class TestPepDUT(unittest.TestCase):
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
                 auth_profile_params = [
-                    openapi_client.models.params.Params(
+                    cyperf.models.params.Params(
                         array_element_type = '', 
                         array_elements = [
                             {
@@ -124,9 +124,9 @@ class TestPepDUT(unittest.TestCase):
                         dictionary_value = {
                             'key' : ''
                             }, 
-                        enum = openapi_client.models.params_enum.Params_Enum(
+                        enum = cyperf.models.params_enum.Params_Enum(
                             choices = [
-                                openapi_client.models.choice.Choice(
+                                cyperf.models.choice.Choice(
                                     description = '', 
                                     hidden = True, 
                                     name = '', 
@@ -137,10 +137,10 @@ class TestPepDUT(unittest.TestCase):
                         is_deprecated = True, 
                         is_modified = True, 
                         media_files = [
-                            openapi_client.models.media_file.MediaFile(
+                            cyperf.models.media_file.MediaFile(
                                 file_value = null, 
                                 media_tracks = [
-                                    openapi_client.models.media_track.MediaTrack(
+                                    cyperf.models.media_track.MediaTrack(
                                         bitrate = 56, 
                                         bitrate_kbps = 56, 
                                         codec = '', 
@@ -151,21 +151,21 @@ class TestPepDUT(unittest.TestCase):
                                     ], 
                                 id = '', )
                             ], 
-                        metadata = openapi_client.models.param_metadata.ParamMetadata(
-                            type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                        metadata = cyperf.models.param_metadata.ParamMetadata(
+                            type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                     elements = [
-                                        openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                             id = '', 
                                             type = '', )
                                         ], ), 
-                                int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                     max_value = 56, 
                                     min_value = 56, ), 
-                                media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                     track_id = '', 
                                     track_type = '', ), 
-                                string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                     charset = '', 
                                     max_length = 56, 
                                     min_length = 56, ), ), ), 
@@ -187,7 +187,7 @@ class TestPepDUT(unittest.TestCase):
                     ],
                 auth_profile_type = '',
                 hostname_suffix = '252.7.188.200',
-                idp_type = openapi_client.models.params.Params(
+                idp_type = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -201,9 +201,9 @@ class TestPepDUT(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -214,10 +214,10 @@ class TestPepDUT(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -228,21 +228,21 @@ class TestPepDUT(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         id = '', 
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -264,7 +264,7 @@ class TestPepDUT(unittest.TestCase):
                 is_explicit_proxy = True,
                 pep_host = '252.7.188.200',
                 pep_port = 56,
-                simulated_id_p = openapi_client.models.simulated_id_p.SimulatedIdP(
+                simulated_id_p = cyperf.models.simulated_id_p.SimulatedIdP(
                     assertion_signature = True, 
                     audience_uri = '', 
                     cert_config = null, 
@@ -278,7 +278,6 @@ class TestPepDUT(unittest.TestCase):
             )
         else:
             return PepDUT(
-                auth_profile_type = '',
         )
         """
 

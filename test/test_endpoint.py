@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.endpoint import Endpoint
+from cyperf.models.endpoint import Endpoint
 
 class TestEndpoint(unittest.TestCase):
     """Endpoint unit test stubs"""
@@ -36,7 +36,7 @@ class TestEndpoint(unittest.TestCase):
         if include_optional:
             return Endpoint(
                 name = '',
-                network_mapping = openapi_client.models.network_mapping.NetworkMapping(
+                network_mapping = cyperf.models.network_mapping.NetworkMapping(
                     client_network_tags = [
                         ''
                         ], 
@@ -52,16 +52,6 @@ class TestEndpoint(unittest.TestCase):
         else:
             return Endpoint(
                 name = '',
-                network_mapping = openapi_client.models.network_mapping.NetworkMapping(
-                    client_network_tags = [
-                        ''
-                        ], 
-                    excluded_dut_list = [
-                        ''
-                        ], 
-                    server_network_tags = [
-                        ''
-                        ], ),
                 type = 'Client',
                 id = '',
         )

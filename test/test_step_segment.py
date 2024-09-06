@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.step_segment import StepSegment
+from cyperf.models.step_segment import StepSegment
 
 class TestStepSegment(unittest.TestCase):
     """StepSegment unit test stubs"""

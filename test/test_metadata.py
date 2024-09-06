@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.metadata import Metadata
+from cyperf.models.metadata import Metadata
 
 class TestMetadata(unittest.TestCase):
     """Metadata unit test stubs"""
@@ -35,9 +35,9 @@ class TestMetadata(unittest.TestCase):
         model = Metadata()
         if include_optional:
             return Metadata(
-                auth_method = openapi_client.models.enum.Enum(
+                auth_method = cyperf.models.enum.Enum(
                     choices = [
-                        openapi_client.models.choice.Choice(
+                        cyperf.models.choice.Choice(
                             description = '', 
                             hidden = True, 
                             name = '', 
@@ -45,9 +45,9 @@ class TestMetadata(unittest.TestCase):
                         ], 
                     default = '', ),
                 explicit_proxy = True,
-                idp_type = openapi_client.models.enum.Enum(
+                idp_type = cyperf.models.enum.Enum(
                     choices = [
-                        openapi_client.models.choice.Choice(
+                        cyperf.models.choice.Choice(
                             description = '', 
                             hidden = True, 
                             name = '', 

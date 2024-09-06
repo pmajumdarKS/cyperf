@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.generic_file import GenericFile
+from cyperf.models.generic_file import GenericFile
 
 class TestGenericFile(unittest.TestCase):
     """GenericFile unit test stubs"""
@@ -38,7 +38,8 @@ class TestGenericFile(unittest.TestCase):
                 content = 'YQ==',
                 id = '',
                 md5 = '',
-                metadata = openapi_client.models.file_metadata.FileMetadata(
+                metadata = cyperf.models.file_metadata.FileMetadata(
+                    default = True, 
                     user_visible = True, ),
                 name = '',
                 options = {

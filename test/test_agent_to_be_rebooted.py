@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_to_be_rebooted import AgentToBeRebooted
+from cyperf.models.agent_to_be_rebooted import AgentToBeRebooted
 
 class TestAgentToBeRebooted(unittest.TestCase):
     """AgentToBeRebooted unit test stubs"""

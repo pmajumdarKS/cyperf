@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.array_v2_element_metadata import ArrayV2ElementMetadata
+from cyperf.models.array_v2_element_metadata import ArrayV2ElementMetadata
 
 class TestArrayV2ElementMetadata(unittest.TestCase):
     """ArrayV2ElementMetadata unit test stubs"""

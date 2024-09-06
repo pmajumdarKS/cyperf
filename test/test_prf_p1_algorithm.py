@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.prf_p1_algorithm import PrfP1Algorithm
+from cyperf.models.prf_p1_algorithm import PrfP1Algorithm
 
 class TestPrfP1Algorithm(unittest.TestCase):
     """PrfP1Algorithm unit test stubs"""

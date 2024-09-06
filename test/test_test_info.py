@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.test_info import TestInfo
+from cyperf.models.test_info import TestInfo
 
 class TestTestInfo(unittest.TestCase):
     """TestInfo unit test stubs"""
@@ -36,7 +36,7 @@ class TestTestInfo(unittest.TestCase):
         if include_optional:
             return TestInfo(
                 dashboards = [
-                    openapi_client.models.dashboard.Dashboard(
+                    cyperf.models.dashboard.Dashboard(
                         id = '', 
                         name = '', )
                     ],

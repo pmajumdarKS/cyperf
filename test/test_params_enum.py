@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.params_enum import ParamsEnum
+from cyperf.models.params_enum import ParamsEnum
 
 class TestParamsEnum(unittest.TestCase):
     """ParamsEnum unit test stubs"""
@@ -36,7 +36,7 @@ class TestParamsEnum(unittest.TestCase):
         if include_optional:
             return ParamsEnum(
                 choices = [
-                    openapi_client.models.choice.Choice(
+                    cyperf.models.choice.Choice(
                         description = '', 
                         hidden = True, 
                         name = '', 

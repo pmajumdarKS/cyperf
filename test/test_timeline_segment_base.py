@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.timeline_segment_base import TimelineSegmentBase
+from cyperf.models.timeline_segment_base import TimelineSegmentBase
 
 class TestTimelineSegmentBase(unittest.TestCase):
     """TimelineSegmentBase unit test stubs"""

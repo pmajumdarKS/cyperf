@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.udp_profile import UdpProfile
+from cyperf.models.udp_profile import UdpProfile
 
 class TestUdpProfile(unittest.TestCase):
     """UdpProfile unit test stubs"""

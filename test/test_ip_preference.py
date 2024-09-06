@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_preference import IpPreference
+from cyperf.models.ip_preference import IpPreference
 
 class TestIpPreference(unittest.TestCase):
     """IpPreference unit test stubs"""

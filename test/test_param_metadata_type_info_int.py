@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.param_metadata_type_info_int import ParamMetadataTypeInfoInt
+from cyperf.models.param_metadata_type_info_int import ParamMetadataTypeInfoInt
 
 class TestParamMetadataTypeInfoInt(unittest.TestCase):
     """ParamMetadataTypeInfoInt unit test stubs"""

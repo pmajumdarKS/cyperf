@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.test_results_api import TestResultsApi
+from cyperf.api.test_results_api import TestResultsApi
 
 
 class TestTestResultsApi(unittest.TestCase):
@@ -26,110 +26,110 @@ class TestTestResultsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_results_get(self) -> None:
-        """Test case for api_v2_results_get
+    def test_delete_files(self) -> None:
+        """Test case for delete_files
 
         """
         pass
 
-    def test_api_v2_results_operations_batch_delete_id_get(self) -> None:
-        """Test case for api_v2_results_operations_batch_delete_id_get
+    def test_delete_results(self) -> None:
+        """Test case for delete_results
 
         """
         pass
 
-    def test_api_v2_results_operations_batch_delete_post(self) -> None:
-        """Test case for api_v2_results_operations_batch_delete_post
+    def test_get_download_all_by_id(self) -> None:
+        """Test case for get_download_all_by_id
 
         """
         pass
 
-    def test_api_v2_results_result_id_delete(self) -> None:
-        """Test case for api_v2_results_result_id_delete
+    def test_get_download_result_config(self) -> None:
+        """Test case for get_download_result_config
 
         """
         pass
 
-    def test_api_v2_results_result_id_download_all_download_all_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_download_all_download_all_id_get
+    def test_get_files(self) -> None:
+        """Test case for get_files
 
         """
         pass
 
-    def test_api_v2_results_result_id_download_result_config_get(self) -> None:
-        """Test case for api_v2_results_result_id_download_result_config_get
+    def test_get_files_by_id(self) -> None:
+        """Test case for get_files_by_id
 
         """
         pass
 
-    def test_api_v2_results_result_id_files_file_id_content_get(self) -> None:
-        """Test case for api_v2_results_result_id_files_file_id_content_get
+    def test_get_result_tags(self) -> None:
+        """Test case for get_result_tags
 
         """
         pass
 
-    def test_api_v2_results_result_id_files_file_id_delete(self) -> None:
-        """Test case for api_v2_results_result_id_files_file_id_delete
+    def test_get_results(self) -> None:
+        """Test case for get_results
 
         """
         pass
 
-    def test_api_v2_results_result_id_files_file_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_files_file_id_get
+    def test_get_results_by_id(self) -> None:
+        """Test case for get_results_by_id
 
         """
         pass
 
-    def test_api_v2_results_result_id_files_get(self) -> None:
-        """Test case for api_v2_results_result_id_files_get
+    def test_get_results_results_id_files_files_id_content(self) -> None:
+        """Test case for get_results_results_id_files_files_id_content
 
         """
         pass
 
-    def test_api_v2_results_result_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_get
+    def test_poll_results_batch_delete(self) -> None:
+        """Test case for poll_results_batch_delete
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_all_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_all_id_get
+    def test_poll_results_generate_all(self) -> None:
+        """Test case for poll_results_generate_all
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_all_post(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_all_post
+    def test_poll_results_generate_results(self) -> None:
+        """Test case for poll_results_generate_results
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_results_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_results_id_get
+    def test_poll_results_load(self) -> None:
+        """Test case for poll_results_load
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_results_post(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_results_post
+    def test_start_results_batch_delete(self) -> None:
+        """Test case for start_results_batch_delete
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_load_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_operations_load_id_get
+    def test_start_results_generate_all(self) -> None:
+        """Test case for start_results_generate_all
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_load_post(self) -> None:
-        """Test case for api_v2_results_result_id_operations_load_post
+    def test_start_results_generate_results(self) -> None:
+        """Test case for start_results_generate_results
 
         """
         pass
 
-    def test_api_v2_results_tags_get(self) -> None:
-        """Test case for api_v2_results_tags_get
+    def test_start_results_load(self) -> None:
+        """Test case for start_results_load
 
         """
         pass

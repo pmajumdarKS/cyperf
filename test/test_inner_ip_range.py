@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.inner_ip_range import InnerIPRange
+from cyperf.models.inner_ip_range import InnerIPRange
 
 class TestInnerIPRange(unittest.TestCase):
     """InnerIPRange unit test stubs"""

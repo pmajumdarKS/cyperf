@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.pangp_encapsulation import PANGPEncapsulation
+from cyperf.models.pangp_encapsulation import PANGPEncapsulation
 
 class TestPANGPEncapsulation(unittest.TestCase):
     """PANGPEncapsulation unit test stubs"""
@@ -36,7 +36,7 @@ class TestPANGPEncapsulation(unittest.TestCase):
         if include_optional:
             return PANGPEncapsulation(
                 esp_over_udp_enabled = True,
-                esp_over_udp_settings = openapi_client.models.esp_over_udp_settings.ESPOverUDPSettings(
+                esp_over_udp_settings = cyperf.models.esp_over_udp_settings.ESPOverUDPSettings(
                     udp_profile = null, ),
                 encapsulation_mode = 'ESP_OVER_UDP',
                 udp_port = 56
@@ -44,8 +44,6 @@ class TestPANGPEncapsulation(unittest.TestCase):
         else:
             return PANGPEncapsulation(
                 esp_over_udp_enabled = True,
-                esp_over_udp_settings = openapi_client.models.esp_over_udp_settings.ESPOverUDPSettings(
-                    udp_profile = null, ),
                 encapsulation_mode = 'ESP_OVER_UDP',
                 udp_port = 56,
         )

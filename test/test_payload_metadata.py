@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.payload_metadata import PayloadMetadata
+from cyperf.models.payload_metadata import PayloadMetadata
 
 class TestPayloadMetadata(unittest.TestCase):
     """PayloadMetadata unit test stubs"""
@@ -37,7 +37,8 @@ class TestPayloadMetadata(unittest.TestCase):
             return PayloadMetadata(
                 file_extension = '',
                 file_name = '',
-                file_type = ''
+                file_type = '',
+                file_url = ''
             )
         else:
             return PayloadMetadata(

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.id_p_signature_algo import IdPSignatureAlgo
+from cyperf.models.id_p_signature_algo import IdPSignatureAlgo
 
 class TestIdPSignatureAlgo(unittest.TestCase):
     """IdPSignatureAlgo unit test stubs"""

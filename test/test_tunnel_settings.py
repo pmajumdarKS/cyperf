@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.tunnel_settings import TunnelSettings
+from cyperf.models.tunnel_settings import TunnelSettings
 
 class TestTunnelSettings(unittest.TestCase):
     """TunnelSettings unit test stubs"""
@@ -35,7 +35,7 @@ class TestTunnelSettings(unittest.TestCase):
         model = TunnelSettings()
         if include_optional:
             return TunnelSettings(
-                var_auth_settings = openapi_client.models.auth_settings.AuthSettings(
+                var_auth_settings = cyperf.models.auth_settings.AuthSettings(
                     auth_method = null, 
                     auth_param = null, 
                     certificate_file = null, 
@@ -49,7 +49,7 @@ class TestTunnelSettings(unittest.TestCase):
                         ''
                         ], 
                     usernames_param = null, ),
-                outer_tcp_profile = openapi_client.models.tcp_profile.TcpProfile(
+                outer_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
                     ecn_enabled = True, 
@@ -72,40 +72,6 @@ class TestTunnelSettings(unittest.TestCase):
             )
         else:
             return TunnelSettings(
-                var_auth_settings = openapi_client.models.auth_settings.AuthSettings(
-                    auth_method = null, 
-                    auth_param = null, 
-                    certificate_file = null, 
-                    key_file = null, 
-                    key_file_password = '', 
-                    passwords = [
-                        ''
-                        ], 
-                    passwords_param = null, 
-                    usernames = [
-                        ''
-                        ], 
-                    usernames_param = null, ),
-                outer_tcp_profile = openapi_client.models.tcp_profile.TcpProfile(
-                    close_with_reset = True, 
-                    defer_accept = True, 
-                    ecn_enabled = True, 
-                    max_rto = 56, 
-                    max_src_port = 56, 
-                    min_rto = 56, 
-                    min_src_port = 56, 
-                    ping_pong = True, 
-                    pmtu_disc_disabled = True, 
-                    recycle_tw_enabled = True, 
-                    reordering = True, 
-                    reuse_tw_enabled = True, 
-                    rx_buffer = 56, 
-                    sack_enabled = True, 
-                    sock_group = '', 
-                    timestamp_hdr_enabled = True, 
-                    tx_buffer = 56, 
-                    user_mss = 56, 
-                    wscale_enabled = True, ),
         )
         """
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.network_segment_base import NetworkSegmentBase
+from cyperf.models.network_segment_base import NetworkSegmentBase
 
 class TestNetworkSegmentBase(unittest.TestCase):
     """NetworkSegmentBase unit test stubs"""

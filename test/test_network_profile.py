@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.network_profile import NetworkProfile
+from cyperf.models.network_profile import NetworkProfile
 
 class TestNetworkProfile(unittest.TestCase):
     """NetworkProfile unit test stubs"""
@@ -45,12 +45,6 @@ class TestNetworkProfile(unittest.TestCase):
             )
         else:
             return NetworkProfile(
-                dut_network_segment = [
-                    null
-                    ],
-                ip_network_segment = [
-                    null
-                    ],
                 id = '',
         )
         """

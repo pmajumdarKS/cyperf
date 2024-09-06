@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.advanced_settings import AdvancedSettings
+from cyperf.models.advanced_settings import AdvancedSettings
 
 class TestAdvancedSettings(unittest.TestCase):
     """AdvancedSettings unit test stubs"""

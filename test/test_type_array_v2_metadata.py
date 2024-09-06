@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.type_array_v2_metadata import TypeArrayV2Metadata
+from cyperf.models.type_array_v2_metadata import TypeArrayV2Metadata
 
 class TestTypeArrayV2Metadata(unittest.TestCase):
     """TypeArrayV2Metadata unit test stubs"""
@@ -36,7 +36,7 @@ class TestTypeArrayV2Metadata(unittest.TestCase):
         if include_optional:
             return TypeArrayV2Metadata(
                 elements = [
-                    openapi_client.models.array_v2_element_metadata.ArrayV2ElementMetadata(
+                    cyperf.models.array_v2_element_metadata.ArrayV2ElementMetadata(
                         id = '', 
                         type = '', )
                     ]

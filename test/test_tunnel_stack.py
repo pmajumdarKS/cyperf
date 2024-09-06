@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.tunnel_stack import TunnelStack
+from cyperf.models.tunnel_stack import TunnelStack
 
 class TestTunnelStack(unittest.TestCase):
     """TunnelStack unit test stubs"""
@@ -35,11 +35,11 @@ class TestTunnelStack(unittest.TestCase):
         model = TunnelStack()
         if include_optional:
             return TunnelStack(
-                inner_ip_range = openapi_client.models.inner_ip_range.InnerIPRange(
+                inner_ip_range = cyperf.models.inner_ip_range.InnerIPRange(
                     network_tags = [
                         ''
                         ], ),
-                outer_ip_range = openapi_client.models.ip_range.IPRange(
+                outer_ip_range = cyperf.models.ip_range.IPRange(
                     automatic_ip_type = null, 
                     count = 56, 
                     gw_auto = True, 
@@ -60,7 +60,7 @@ class TestTunnelStack(unittest.TestCase):
                     network_tags = [
                         ''
                         ], ),
-                tunnel_range = openapi_client.models.tunnel_range.TunnelRange(
+                tunnel_range = cyperf.models.tunnel_range.TunnelRange(
                     cisco_any_connect_settings = null, 
                     dcp_request_timeout = 56, 
                     dns_resolver = null, 
@@ -76,42 +76,6 @@ class TestTunnelStack(unittest.TestCase):
             )
         else:
             return TunnelStack(
-                inner_ip_range = openapi_client.models.inner_ip_range.InnerIPRange(
-                    network_tags = [
-                        ''
-                        ], ),
-                outer_ip_range = openapi_client.models.ip_range.IPRange(
-                    automatic_ip_type = null, 
-                    count = 56, 
-                    gw_auto = True, 
-                    gw_start = '::02:84:9:0cc0:F:CCf', 
-                    inner_vlan_range = null, 
-                    ip_auto = True, 
-                    ip_incr = '::02:84:9:0cc0:F:CCf', 
-                    ip_range_name = 'YBuLd', 
-                    ip_start = '::02:84:9:0cc0:F:CCf', 
-                    ip_ver = null, 
-                    is_emulated_router = True, 
-                    mss = 56, 
-                    mss_auto = True, 
-                    net_mask = 56, 
-                    net_mask_auto = True, 
-                    id = '', 
-                    max_count_per_agent = 56, 
-                    network_tags = [
-                        ''
-                        ], ),
-                tunnel_range = openapi_client.models.tunnel_range.TunnelRange(
-                    cisco_any_connect_settings = null, 
-                    dcp_request_timeout = 56, 
-                    dns_resolver = null, 
-                    f5_settings = null, 
-                    fortinet_settings = null, 
-                    pangp_settings = null, 
-                    tcp_dst_port = 56, 
-                    tunnel_count_per_outer_ip = 56, 
-                    tunnel_establishment_timeout = 56, 
-                    vendor_type = 'CISCO_ANY_CONNECT', ),
                 tunnel_stack_name = 'YBuLd',
                 id = '',
         )

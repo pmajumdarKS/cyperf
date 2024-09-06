@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.async_operation_response import AsyncOperationResponse
+from cyperf.models.async_operation_response import AsyncOperationResponse
 
 class TestAsyncOperationResponse(unittest.TestCase):
     """AsyncOperationResponse unit test stubs"""

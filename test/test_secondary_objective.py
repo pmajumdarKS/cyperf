@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.secondary_objective import SecondaryObjective
+from cyperf.models.secondary_objective import SecondaryObjective
 
 class TestSecondaryObjective(unittest.TestCase):
     """SecondaryObjective unit test stubs"""

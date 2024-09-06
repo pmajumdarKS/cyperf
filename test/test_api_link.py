@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.api_link import APILink
+from cyperf.models.api_link import APILink
 
 class TestAPILink(unittest.TestCase):
     """APILink unit test stubs"""
@@ -47,8 +47,6 @@ class TestAPILink(unittest.TestCase):
         else:
             return APILink(
                 href = '',
-                id = '',
-                name = '',
                 rel = 'self',
                 type = 'self',
         )

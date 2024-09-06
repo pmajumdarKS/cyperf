@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.static_arp_entry import StaticARPEntry
+from cyperf.models.static_arp_entry import StaticARPEntry
 
 class TestStaticARPEntry(unittest.TestCase):
     """StaticARPEntry unit test stubs"""

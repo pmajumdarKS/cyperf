@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.feature_reservation import FeatureReservation
+from cyperf.models.feature_reservation import FeatureReservation
 
 class TestFeatureReservation(unittest.TestCase):
     """FeatureReservation unit test stubs"""

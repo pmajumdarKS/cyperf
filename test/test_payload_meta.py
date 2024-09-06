@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.payload_meta import PayloadMeta
+from cyperf.models.payload_meta import PayloadMeta
 
 class TestPayloadMeta(unittest.TestCase):
     """PayloadMeta unit test stubs"""

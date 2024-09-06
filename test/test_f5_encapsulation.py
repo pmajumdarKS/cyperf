@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.f5_encapsulation import F5Encapsulation
+from cyperf.models.f5_encapsulation import F5Encapsulation
 
 class TestF5Encapsulation(unittest.TestCase):
     """F5Encapsulation unit test stubs"""
@@ -37,7 +37,7 @@ class TestF5Encapsulation(unittest.TestCase):
             return F5Encapsulation(
                 encapsulation_mode = 'PPP_OVER_DTLS',
                 ppp_over_dtls_enabled = True,
-                ppp_over_dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
+                ppp_over_dtls_settings = cyperf.models.dtls_settings.DTLSSettings(
                     tls_client_profile = null, 
                     udp_profile = null, ),
                 udp_port = 56
@@ -46,9 +46,6 @@ class TestF5Encapsulation(unittest.TestCase):
             return F5Encapsulation(
                 encapsulation_mode = 'PPP_OVER_DTLS',
                 ppp_over_dtls_enabled = True,
-                ppp_over_dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
-                    tls_client_profile = null, 
-                    udp_profile = null, ),
                 udp_port = 56,
         )
         """

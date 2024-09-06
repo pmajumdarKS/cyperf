@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.conflict import Conflict
+from cyperf.models.conflict import Conflict
 
 class TestConflict(unittest.TestCase):
     """Conflict unit test stubs"""

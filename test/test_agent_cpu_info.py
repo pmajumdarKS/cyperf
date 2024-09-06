@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_cpu_info import AgentCPUInfo
+from cyperf.models.agent_cpu_info import AgentCPUInfo
 
 class TestAgentCPUInfo(unittest.TestCase):
     """AgentCPUInfo unit test stubs"""

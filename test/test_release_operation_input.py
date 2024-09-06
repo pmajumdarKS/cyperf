@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.release_operation_input import ReleaseOperationInput
+from cyperf.models.release_operation_input import ReleaseOperationInput
 
 class TestReleaseOperationInput(unittest.TestCase):
     """ReleaseOperationInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestReleaseOperationInput(unittest.TestCase):
         if include_optional:
             return ReleaseOperationInput(
                 agents_data = [
-                    openapi_client.models.agent_release.AgentRelease(
+                    cyperf.models.agent_release.AgentRelease(
                         agent_id = '', )
                     ],
                 session_id = ''

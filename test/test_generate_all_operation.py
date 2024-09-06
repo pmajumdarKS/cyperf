@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.generate_all_operation import GenerateAllOperation
+from cyperf.models.generate_all_operation import GenerateAllOperation
 
 class TestGenerateAllOperation(unittest.TestCase):
     """GenerateAllOperation unit test stubs"""

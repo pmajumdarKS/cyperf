@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.feature import Feature
+from cyperf.models.feature import Feature
 
 class TestFeature(unittest.TestCase):
     """Feature unit test stubs"""
@@ -39,7 +39,7 @@ class TestFeature(unittest.TestCase):
                 feature_type = 'nodeLocked',
                 is_uncounted = True,
                 name = '',
-                reservation = openapi_client.models.feature_reservation.feature_reservation(
+                reservation = cyperf.models.feature_reservation.feature_reservation(
                     available_count = 56, 
                     is_allowed = True, 
                     reserved_count = 56, 
@@ -51,7 +51,7 @@ class TestFeature(unittest.TestCase):
                 feature_type = 'nodeLocked',
                 is_uncounted = True,
                 name = '',
-                reservation = openapi_client.models.feature_reservation.feature_reservation(
+                reservation = cyperf.models.feature_reservation.feature_reservation(
                     available_count = 56, 
                     is_allowed = True, 
                     reserved_count = 56, 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.config import Config
+from cyperf.models.config import Config
 
 class TestConfig(unittest.TestCase):
     """Config unit test stubs"""
@@ -38,10 +38,17 @@ class TestConfig(unittest.TestCase):
                 attack_profiles = [
                     null
                     ],
-                custom_dashboards = openapi_client.models.custom_dashboards.CustomDashboards(
+                config_validation = cyperf.models.config_validation.ConfigValidation(
+                    is_validated = True, 
+                    validation_messages = [
+                        cyperf.models.validation_message.ValidationMessage(
+                            message = '', 
+                            severity = 'WARNING', )
+                        ], ),
+                custom_dashboards = cyperf.models.custom_dashboards.CustomDashboards(
                     active = True, 
                     links = [
-                        openapi_client.models.api_link.APILink(
+                        cyperf.models.api_link.APILink(
                             content_type = '', 
                             href = '', 
                             id = '', 
@@ -52,22 +59,22 @@ class TestConfig(unittest.TestCase):
                             type = 'self', )
                         ], ),
                 expected_disk_space = [
-                    openapi_client.models.expected_disk_space.ExpectedDiskSpace(
-                        message = openapi_client.models.expected_disk_space_message.ExpectedDiskSpace_message(
+                    cyperf.models.expected_disk_space.ExpectedDiskSpace(
+                        message = cyperf.models.expected_disk_space_message.ExpectedDiskSpace_message(
                             per_minute = '', 
                             per_second = '', 
                             total = '', ), 
-                        pretty_size = openapi_client.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
+                        pretty_size = cyperf.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
                             per_minute = '', 
                             per_second = '', 
                             total = '', ), 
-                        size = openapi_client.models.expected_disk_space_size.ExpectedDiskSpace_size(
+                        size = cyperf.models.expected_disk_space_size.ExpectedDiskSpace_size(
                             per_minute = 56, 
                             per_second = 56, 
                             total = 56, ), )
                     ],
                 network_profiles = [
-                    openapi_client.models.network_profile.NetworkProfile(
+                    cyperf.models.network_profile.NetworkProfile(
                         dut_network_segment = [
                             null
                             ], 
@@ -78,54 +85,13 @@ class TestConfig(unittest.TestCase):
                     ],
                 traffic_profiles = [
                     null
+                    ],
+                validate = [
+                    'YQ=='
                     ]
             )
         else:
             return Config(
-                attack_profiles = [
-                    null
-                    ],
-                custom_dashboards = openapi_client.models.custom_dashboards.CustomDashboards(
-                    active = True, 
-                    links = [
-                        openapi_client.models.api_link.APILink(
-                            content_type = '', 
-                            href = '', 
-                            id = '', 
-                            method = '', 
-                            name = '', 
-                            references_count = 56, 
-                            rel = 'self', 
-                            type = 'self', )
-                        ], ),
-                expected_disk_space = [
-                    openapi_client.models.expected_disk_space.ExpectedDiskSpace(
-                        message = openapi_client.models.expected_disk_space_message.ExpectedDiskSpace_message(
-                            per_minute = '', 
-                            per_second = '', 
-                            total = '', ), 
-                        pretty_size = openapi_client.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
-                            per_minute = '', 
-                            per_second = '', 
-                            total = '', ), 
-                        size = openapi_client.models.expected_disk_space_size.ExpectedDiskSpace_size(
-                            per_minute = 56, 
-                            per_second = 56, 
-                            total = 56, ), )
-                    ],
-                network_profiles = [
-                    openapi_client.models.network_profile.NetworkProfile(
-                        dut_network_segment = [
-                            null
-                            ], 
-                        ip_network_segment = [
-                            null
-                            ], 
-                        id = '', )
-                    ],
-                traffic_profiles = [
-                    null
-                    ],
         )
         """
 

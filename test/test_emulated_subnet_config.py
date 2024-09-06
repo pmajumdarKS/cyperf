@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.emulated_subnet_config import EmulatedSubnetConfig
+from cyperf.models.emulated_subnet_config import EmulatedSubnetConfig
 
 class TestEmulatedSubnetConfig(unittest.TestCase):
     """EmulatedSubnetConfig unit test stubs"""

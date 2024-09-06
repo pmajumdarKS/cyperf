@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.set_dpdk_mode_operation_input import SetDpdkModeOperationInput
+from cyperf.models.set_dpdk_mode_operation_input import SetDpdkModeOperationInput
 
 class TestSetDpdkModeOperationInput(unittest.TestCase):
     """SetDpdkModeOperationInput unit test stubs"""

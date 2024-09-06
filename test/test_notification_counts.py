@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.notification_counts import NotificationCounts
+from cyperf.models.notification_counts import NotificationCounts
 
 class TestNotificationCounts(unittest.TestCase):
     """NotificationCounts unit test stubs"""

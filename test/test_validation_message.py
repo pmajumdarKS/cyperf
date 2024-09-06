@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.validation_message import ValidationMessage
+from cyperf.models.validation_message import ValidationMessage
 
 class TestValidationMessage(unittest.TestCase):
     """ValidationMessage unit test stubs"""
@@ -36,14 +36,12 @@ class TestValidationMessage(unittest.TestCase):
         if include_optional:
             return ValidationMessage(
                 message = '',
-                severity = 'INFO',
-                timestamp = 56
+                severity = 'WARNING'
             )
         else:
             return ValidationMessage(
                 message = '',
-                severity = 'INFO',
-                timestamp = 56,
+                severity = 'WARNING',
         )
         """
 

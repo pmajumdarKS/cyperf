@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.traffic_settings import TrafficSettings
+from cyperf.models.traffic_settings import TrafficSettings
 
 class TestTrafficSettings(unittest.TestCase):
     """TrafficSettings unit test stubs"""
@@ -39,7 +39,6 @@ class TestTrafficSettings(unittest.TestCase):
             )
         else:
             return TrafficSettings(
-                default_transport_profile = None,
         )
         """
 

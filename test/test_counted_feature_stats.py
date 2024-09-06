@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.counted_feature_stats import CountedFeatureStats
+from cyperf.models.counted_feature_stats import CountedFeatureStats
 
 class TestCountedFeatureStats(unittest.TestCase):
     """CountedFeatureStats unit test stubs"""
@@ -37,7 +37,7 @@ class TestCountedFeatureStats(unittest.TestCase):
             return CountedFeatureStats(
                 available_count = 56,
                 consumers = [
-                    openapi_client.models.counted_feature_consumer.counted-feature-consumer(
+                    cyperf.models.counted_feature_consumer.counted-feature-consumer(
                         app = '', 
                         client = '', 
                         consumed_count = 56, 
@@ -52,7 +52,7 @@ class TestCountedFeatureStats(unittest.TestCase):
             return CountedFeatureStats(
                 available_count = 56,
                 consumers = [
-                    openapi_client.models.counted_feature_consumer.counted-feature-consumer(
+                    cyperf.models.counted_feature_consumer.counted-feature-consumer(
                         app = '', 
                         client = '', 
                         consumed_count = 56, 

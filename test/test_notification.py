@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.notification import Notification
+from cyperf.models.notification import Notification
 
 class TestNotification(unittest.TestCase):
     """Notification unit test stubs"""

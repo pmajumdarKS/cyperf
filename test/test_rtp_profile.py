@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.rtp_profile import RTPProfile
+from cyperf.models.rtp_profile import RTPProfile
 
 class TestRTPProfile(unittest.TestCase):
     """RTPProfile unit test stubs"""

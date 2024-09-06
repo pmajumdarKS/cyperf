@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.tcp_profile import TcpProfile
+from cyperf.models.tcp_profile import TcpProfile
 
 class TestTcpProfile(unittest.TestCase):
     """TcpProfile unit test stubs"""

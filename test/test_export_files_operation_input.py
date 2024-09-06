@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.export_files_operation_input import ExportFilesOperationInput
+from cyperf.models.export_files_operation_input import ExportFilesOperationInput
 
 class TestExportFilesOperationInput(unittest.TestCase):
     """ExportFilesOperationInput unit test stubs"""
@@ -37,9 +37,9 @@ class TestExportFilesOperationInput(unittest.TestCase):
             return ExportFilesOperationInput(
                 export_files_requests_by_agent = {
                     'key' : [
-                        openapi_client.models.export_files_request.ExportFilesRequest(
+                        cyperf.models.export_files_request.ExportFilesRequest(
                             agent_id = '', 
-                            required_file_types = openapi_client.models.required_file_types.RequiredFileTypes(
+                            required_file_types = cyperf.models.required_file_types.RequiredFileTypes(
                                 csvs = True, 
                                 packet_capture = True, 
                                 syslog = True, 

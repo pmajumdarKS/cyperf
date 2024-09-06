@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.cisco_encapsulation import CiscoEncapsulation
+from cyperf.models.cisco_encapsulation import CiscoEncapsulation
 
 class TestCiscoEncapsulation(unittest.TestCase):
     """CiscoEncapsulation unit test stubs"""
@@ -36,7 +36,7 @@ class TestCiscoEncapsulation(unittest.TestCase):
         if include_optional:
             return CiscoEncapsulation(
                 dtls_enabled = True,
-                dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
+                dtls_settings = cyperf.models.dtls_settings.DTLSSettings(
                     tls_client_profile = null, 
                     udp_profile = null, ),
                 encapsulation_mode = 'DTLS',
@@ -45,9 +45,6 @@ class TestCiscoEncapsulation(unittest.TestCase):
         else:
             return CiscoEncapsulation(
                 dtls_enabled = True,
-                dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
-                    tls_client_profile = null, 
-                    udp_profile = null, ),
                 encapsulation_mode = 'DTLS',
                 udp_port = 56,
         )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.automatic_ip_type import AutomaticIpType
+from cyperf.models.automatic_ip_type import AutomaticIpType
 
 class TestAutomaticIpType(unittest.TestCase):
     """AutomaticIpType unit test stubs"""

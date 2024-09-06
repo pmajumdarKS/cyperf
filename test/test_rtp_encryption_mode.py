@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.rtp_encryption_mode import RTPEncryptionMode
+from cyperf.models.rtp_encryption_mode import RTPEncryptionMode
 
 class TestRTPEncryptionMode(unittest.TestCase):
     """RTPEncryptionMode unit test stubs"""

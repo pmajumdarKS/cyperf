@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.result_file_metadata import ResultFileMetadata
+from cyperf.models.result_file_metadata import ResultFileMetadata
 
 class TestResultFileMetadata(unittest.TestCase):
     """ResultFileMetadata unit test stubs"""

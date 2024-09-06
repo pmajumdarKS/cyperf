@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.log_level import LogLevel
+from cyperf.models.log_level import LogLevel
 
 class TestLogLevel(unittest.TestCase):
     """LogLevel unit test stubs"""

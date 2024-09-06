@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.objective_unit import ObjectiveUnit
+from cyperf.models.objective_unit import ObjectiveUnit
 
 class TestObjectiveUnit(unittest.TestCase):
     """ObjectiveUnit unit test stubs"""

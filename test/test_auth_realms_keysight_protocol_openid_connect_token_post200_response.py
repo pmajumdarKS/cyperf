@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
+from cyperf.models.auth_realms_keysight_protocol_openid_connect_token_post200_response import AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response
 
 class TestAuthRealmsKeysightProtocolOpenidConnectTokenPost200Response(unittest.TestCase):
     """AuthRealmsKeysightProtocolOpenidConnectTokenPost200Response unit test stubs"""

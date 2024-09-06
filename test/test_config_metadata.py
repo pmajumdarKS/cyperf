@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.config_metadata import ConfigMetadata
+from cyperf.models.config_metadata import ConfigMetadata
 
 class TestConfigMetadata(unittest.TestCase):
     """ConfigMetadata unit test stubs"""
@@ -47,7 +47,7 @@ class TestConfigMetadata(unittest.TestCase):
                 last_accessed = 56,
                 last_modified = 56,
                 linked_resources = [
-                    openapi_client.models.api_link.APILink(
+                    cyperf.models.api_link.APILink(
                         content_type = '', 
                         href = '', 
                         id = '', 
@@ -64,7 +64,7 @@ class TestConfigMetadata(unittest.TestCase):
                     'key' : ''
                     },
                 type = '',
-                version = openapi_client.models.version.Version(
+                version = cyperf.models.version.Version(
                     config_service_version = '', 
                     data_model_version = '', )
             )

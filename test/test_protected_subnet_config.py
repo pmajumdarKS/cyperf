@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.protected_subnet_config import ProtectedSubnetConfig
+from cyperf.models.protected_subnet_config import ProtectedSubnetConfig
 
 class TestProtectedSubnetConfig(unittest.TestCase):
     """ProtectedSubnetConfig unit test stubs"""

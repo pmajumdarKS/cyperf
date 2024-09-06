@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.attack_track import AttackTrack
+from cyperf.models.attack_track import AttackTrack
 
 class TestAttackTrack(unittest.TestCase):
     """AttackTrack unit test stubs"""
@@ -45,9 +45,6 @@ class TestAttackTrack(unittest.TestCase):
             )
         else:
             return AttackTrack(
-                actions = [
-                    null
-                    ],
                 id = '',
         )
         """

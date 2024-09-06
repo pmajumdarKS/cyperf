@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.fulfillment_request import FulfillmentRequest
+from cyperf.models.fulfillment_request import FulfillmentRequest
 
 class TestFulfillmentRequest(unittest.TestCase):
     """FulfillmentRequest unit test stubs"""

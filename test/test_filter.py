@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.filter import Filter
+from cyperf.models.filter import Filter
 
 class TestFilter(unittest.TestCase):
     """Filter unit test stubs"""

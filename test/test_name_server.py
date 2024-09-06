@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.name_server import NameServer
+from cyperf.models.name_server import NameServer
 
 class TestNameServer(unittest.TestCase):
     """NameServer unit test stubs"""

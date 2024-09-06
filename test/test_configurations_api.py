@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.configurations_api import ConfigurationsApi
+from cyperf.api.configurations_api import ConfigurationsApi
 
 
 class TestConfigurationsApi(unittest.TestCase):
@@ -26,98 +26,98 @@ class TestConfigurationsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_config_categories_get(self) -> None:
-        """Test case for api_v2_config_categories_get
+    def test_create_configs(self) -> None:
+        """Test case for create_configs
 
         """
         pass
 
-    def test_api_v2_configs_config_id_delete(self) -> None:
-        """Test case for api_v2_configs_config_id_delete
+    def test_delete_configs(self) -> None:
+        """Test case for delete_configs
 
         """
         pass
 
-    def test_api_v2_configs_config_id_get(self) -> None:
-        """Test case for api_v2_configs_config_id_get
+    def test_get_config_categories(self) -> None:
+        """Test case for get_config_categories
 
         """
         pass
 
-    def test_api_v2_configs_config_id_patch(self) -> None:
-        """Test case for api_v2_configs_config_id_patch
+    def test_get_configs(self) -> None:
+        """Test case for get_configs
 
         """
         pass
 
-    def test_api_v2_configs_config_id_put(self) -> None:
-        """Test case for api_v2_configs_config_id_put
+    def test_get_configs_by_id(self) -> None:
+        """Test case for get_configs_by_id
 
         """
         pass
 
-    def test_api_v2_configs_get(self) -> None:
-        """Test case for api_v2_configs_get
+    def test_get_custom_import_operations(self) -> None:
+        """Test case for get_custom_import_operations
 
         """
         pass
 
-    def test_api_v2_configs_operations_batch_delete_id_get(self) -> None:
-        """Test case for api_v2_configs_operations_batch_delete_id_get
+    def test_patch_configs(self) -> None:
+        """Test case for patch_configs
 
         """
         pass
 
-    def test_api_v2_configs_operations_batch_delete_post(self) -> None:
-        """Test case for api_v2_configs_operations_batch_delete_post
+    def test_poll_configs_batch_delete(self) -> None:
+        """Test case for poll_configs_batch_delete
 
         """
         pass
 
-    def test_api_v2_configs_operations_export_all_id_get(self) -> None:
-        """Test case for api_v2_configs_operations_export_all_id_get
+    def test_poll_configs_export_all(self) -> None:
+        """Test case for poll_configs_export_all
 
         """
         pass
 
-    def test_api_v2_configs_operations_export_all_post(self) -> None:
-        """Test case for api_v2_configs_operations_export_all_post
+    def test_poll_configs_import(self) -> None:
+        """Test case for poll_configs_import
 
         """
         pass
 
-    def test_api_v2_configs_operations_import_all_id_get(self) -> None:
-        """Test case for api_v2_configs_operations_import_all_id_get
+    def test_poll_configs_import_all(self) -> None:
+        """Test case for poll_configs_import_all
 
         """
         pass
 
-    def test_api_v2_configs_operations_import_all_post(self) -> None:
-        """Test case for api_v2_configs_operations_import_all_post
+    def test_start_configs_batch_delete(self) -> None:
+        """Test case for start_configs_batch_delete
 
         """
         pass
 
-    def test_api_v2_configs_operations_import_id_get(self) -> None:
-        """Test case for api_v2_configs_operations_import_id_get
+    def test_start_configs_export_all(self) -> None:
+        """Test case for start_configs_export_all
 
         """
         pass
 
-    def test_api_v2_configs_operations_import_post(self) -> None:
-        """Test case for api_v2_configs_operations_import_post
+    def test_start_configs_import(self) -> None:
+        """Test case for start_configs_import
 
         """
         pass
 
-    def test_api_v2_configs_post(self) -> None:
-        """Test case for api_v2_configs_post
+    def test_start_configs_import_all(self) -> None:
+        """Test case for start_configs_import_all
 
         """
         pass
 
-    def test_api_v2_resources_custom_import_operations_get(self) -> None:
-        """Test case for api_v2_resources_custom_import_operations_get
+    def test_update_configs(self) -> None:
+        """Test case for update_configs
 
         """
         pass

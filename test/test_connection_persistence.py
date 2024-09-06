@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.connection_persistence import ConnectionPersistence
+from cyperf.models.connection_persistence import ConnectionPersistence
 
 class TestConnectionPersistence(unittest.TestCase):
     """ConnectionPersistence unit test stubs"""

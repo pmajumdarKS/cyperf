@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_ver import IpVer
+from cyperf.models.ip_ver import IpVer
 
 class TestIpVer(unittest.TestCase):
     """IpVer unit test stubs"""

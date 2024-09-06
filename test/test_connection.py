@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.connection import Connection
+from cyperf.models.connection import Connection
 
 class TestConnection(unittest.TestCase):
     """Connection unit test stubs"""
@@ -40,7 +40,7 @@ class TestConnection(unittest.TestCase):
                 closing_end = '',
                 disable_encryption = True,
                 hostname = '',
-                hostname_param = openapi_client.models.params.Params(
+                hostname_param = cyperf.models.params.Params(
                     array_element_type = '', 
                     array_elements = [
                         {
@@ -54,9 +54,9 @@ class TestConnection(unittest.TestCase):
                     dictionary_value = {
                         'key' : ''
                         }, 
-                    enum = openapi_client.models.params_enum.Params_Enum(
+                    enum = cyperf.models.params_enum.Params_Enum(
                         choices = [
-                            openapi_client.models.choice.Choice(
+                            cyperf.models.choice.Choice(
                                 description = '', 
                                 hidden = True, 
                                 name = '', 
@@ -67,10 +67,10 @@ class TestConnection(unittest.TestCase):
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
-                        openapi_client.models.media_file.MediaFile(
+                        cyperf.models.media_file.MediaFile(
                             file_value = null, 
                             media_tracks = [
-                                openapi_client.models.media_track.MediaTrack(
+                                cyperf.models.media_track.MediaTrack(
                                     bitrate = 56, 
                                     bitrate_kbps = 56, 
                                     codec = '', 
@@ -81,20 +81,20 @@ class TestConnection(unittest.TestCase):
                                 ], 
                             id = '', )
                         ], 
-                    metadata = openapi_client.models.param_metadata.ParamMetadata(
-                        type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                            array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                    metadata = cyperf.models.param_metadata.ParamMetadata(
+                        type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                            array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                         type = '', )
                                     ], ), 
-                            int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                            int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
                                 min_value = 56, ), 
-                            media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                            media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                 track_id = '', 
                                 track_type = '', ), 
-                            string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                            string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                 charset = '', 
                                 max_length = 56, 
                                 min_length = 56, ), ), ), 
@@ -117,12 +117,12 @@ class TestConnection(unittest.TestCase):
                 is_deprecated = True,
                 max_transactions = 56,
                 name = '',
-                port_settings = openapi_client.models.port_settings.PortSettings(
+                port_settings = cyperf.models.port_settings.PortSettings(
                     automatic = True, 
                     automatic_destination_port = True, 
                     automatic_forward_proxy_port = True, 
                     destination_port = 56, 
-                    effective_ports = openapi_client.models.effective_ports.EffectivePorts(), 
+                    effective_ports = cyperf.models.effective_ports.EffectivePorts(), 
                     forward_proxy_port = 56, 
                     readonly = True, 
                     server_listen_port = 56, ),
@@ -140,8 +140,6 @@ class TestConnection(unittest.TestCase):
                 client_endpoint = '',
                 client_port = 56,
                 max_transactions = 56,
-                name = '',
-                server_endpoint = '',
                 server_port = 56,
                 id = '',
         )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.set_ntp_operation_input import SetNtpOperationInput
+from cyperf.models.set_ntp_operation_input import SetNtpOperationInput
 
 class TestSetNtpOperationInput(unittest.TestCase):
     """SetNtpOperationInput unit test stubs"""

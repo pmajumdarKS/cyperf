@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.params import Params
+from cyperf.models.params import Params
 
 class TestParams(unittest.TestCase):
     """Params unit test stubs"""
@@ -48,15 +48,15 @@ class TestParams(unittest.TestCase):
                 dictionary_value = {
                     'key' : ''
                     },
-                enum = openapi_client.models.params_enum.Params_Enum(
+                enum = cyperf.models.params_enum.Params_Enum(
                     choices = [
-                        openapi_client.models.choice.Choice(
+                        cyperf.models.choice.Choice(
                             description = '', 
                             hidden = True, 
                             name = '', 
                             value = '', )
                         ], ),
-                file_value = openapi_client.models.file_value.FileValue(
+                file_value = cyperf.models.file_value.FileValue(
                     file_name = '', 
                     payload = [
                         'YQ=='
@@ -67,10 +67,10 @@ class TestParams(unittest.TestCase):
                 is_deprecated = True,
                 is_modified = True,
                 media_files = [
-                    openapi_client.models.media_file.MediaFile(
+                    cyperf.models.media_file.MediaFile(
                         file_value = null, 
                         media_tracks = [
-                            openapi_client.models.media_track.MediaTrack(
+                            cyperf.models.media_track.MediaTrack(
                                 bitrate = 56, 
                                 bitrate_kbps = 56, 
                                 codec = '', 
@@ -81,21 +81,21 @@ class TestParams(unittest.TestCase):
                             ], 
                         id = '', )
                     ],
-                metadata = openapi_client.models.param_metadata.ParamMetadata(
-                    type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                        array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                metadata = cyperf.models.param_metadata.ParamMetadata(
+                    type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                        array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                             elements = [
-                                openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                                cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                     id = '', 
                                     type = '', )
                                 ], ), 
-                        int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                        int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                             max_value = 56, 
                             min_value = 56, ), 
-                        media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                        media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                             track_id = '', 
                             track_type = '', ), 
-                        string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                        string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                             charset = '', 
                             max_length = 56, 
                             min_length = 56, ), ), ),
@@ -117,8 +117,6 @@ class TestParams(unittest.TestCase):
             )
         else:
             return Params(
-                is_deprecated = True,
-                readonly = True,
                 id = '',
         )
         """

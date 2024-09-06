@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.session_reuse_method_tls13 import SessionReuseMethodTLS13
+from cyperf.models.session_reuse_method_tls13 import SessionReuseMethodTLS13
 
 class TestSessionReuseMethodTLS13(unittest.TestCase):
     """SessionReuseMethodTLS13 unit test stubs"""

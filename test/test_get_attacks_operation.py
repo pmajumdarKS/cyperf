@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.get_attacks_operation import GetAttacksOperation
+from cyperf.models.get_attacks_operation import GetAttacksOperation
 
 class TestGetAttacksOperation(unittest.TestCase):
     """GetAttacksOperation unit test stubs"""
@@ -36,7 +36,7 @@ class TestGetAttacksOperation(unittest.TestCase):
         if include_optional:
             return GetAttacksOperation(
                 categories = [
-                    openapi_client.models.category_filter.CategoryFilter(
+                    cyperf.models.category_filter.CategoryFilter(
                         category = '', 
                         values = [
                             ''
@@ -51,7 +51,7 @@ class TestGetAttacksOperation(unittest.TestCase):
                     ],
                 skip = '',
                 sort = [
-                    openapi_client.models.sort_body_field.SortBodyField(
+                    cyperf.models.sort_body_field.SortBodyField(
                         field = '', 
                         order = '', )
                     ],

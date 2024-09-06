@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.application_profile import ApplicationProfile
+from cyperf.models.application_profile import ApplicationProfile
 
 class TestApplicationProfile(unittest.TestCase):
     """ApplicationProfile unit test stubs"""
@@ -36,13 +36,13 @@ class TestApplicationProfile(unittest.TestCase):
         if include_optional:
             return ApplicationProfile(
                 active = True,
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
+                traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
                     default_transport_profile = null, ),
                 id = '',
                 applications = [
                     null
                     ],
-                default_network_mapping = openapi_client.models.network_mapping.NetworkMapping(
+                default_network_mapping = cyperf.models.network_mapping.NetworkMapping(
                     client_network_tags = [
                         ''
                         ], 
@@ -53,12 +53,12 @@ class TestApplicationProfile(unittest.TestCase):
                         ''
                         ], ),
                 name = '',
-                objectives_and_timeline = openapi_client.models.objectives_and_timeline.ObjectivesAndTimeline(
+                objectives_and_timeline = cyperf.models.objectives_and_timeline.ObjectivesAndTimeline(
                     advanced_settings = null, 
                     primary_objective = null, 
                     secondary_objective = null, 
                     secondary_objectives = [
-                        openapi_client.models.specific_objective.SpecificObjective(
+                        cyperf.models.specific_objective.SpecificObjective(
                             max_pending_simulated_users = '80728', 
                             max_simulated_users_per_interval = 56, 
                             timeline = [
@@ -72,11 +72,11 @@ class TestApplicationProfile(unittest.TestCase):
                         null
                         ], ),
                 add_applications = [
-                    openapi_client.models.external_resource_info.ExternalResourceInfo(
+                    cyperf.models.external_resource_info.ExternalResourceInfo(
                         external_resource_url = '', )
                     ],
                 modify_excluded_dut_recursively = [
-                    openapi_client.models.update_network_mapping.UpdateNetworkMapping(
+                    cyperf.models.update_network_mapping.UpdateNetworkMapping(
                         client_network_tags = [
                             ''
                             ], 
@@ -89,7 +89,7 @@ class TestApplicationProfile(unittest.TestCase):
                             ], )
                     ],
                 modify_tags_recursively = [
-                    openapi_client.models.update_network_mapping.UpdateNetworkMapping(
+                    cyperf.models.update_network_mapping.UpdateNetworkMapping(
                         client_network_tags = [
                             ''
                             ], 
@@ -107,41 +107,7 @@ class TestApplicationProfile(unittest.TestCase):
             )
         else:
             return ApplicationProfile(
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
-                id = '',
-                applications = [
-                    null
-                    ],
-                default_network_mapping = openapi_client.models.network_mapping.NetworkMapping(
-                    client_network_tags = [
-                        ''
-                        ], 
-                    excluded_dut_list = [
-                        ''
-                        ], 
-                    server_network_tags = [
-                        ''
-                        ], ),
                 name = '',
-                objectives_and_timeline = openapi_client.models.objectives_and_timeline.ObjectivesAndTimeline(
-                    advanced_settings = null, 
-                    primary_objective = null, 
-                    secondary_objective = null, 
-                    secondary_objectives = [
-                        openapi_client.models.specific_objective.SpecificObjective(
-                            max_pending_simulated_users = '80728', 
-                            max_simulated_users_per_interval = 56, 
-                            timeline = [
-                                null
-                                ], 
-                            type = null, 
-                            unit = null, 
-                            id = '', )
-                        ], 
-                    timeline_segments = [
-                        null
-                        ], ),
         )
         """
 

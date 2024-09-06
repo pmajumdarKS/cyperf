@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.export_package_operation import ExportPackageOperation
+from cyperf.models.export_package_operation import ExportPackageOperation
 
 class TestExportPackageOperation(unittest.TestCase):
     """ExportPackageOperation unit test stubs"""

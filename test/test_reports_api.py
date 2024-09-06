@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.reports_api import ReportsApi
+from cyperf.api.reports_api import ReportsApi
 
 
 class TestReportsApi(unittest.TestCase):
@@ -26,38 +26,38 @@ class TestReportsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_results_result_id_download_csv_download_csv_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_download_csv_download_csv_id_get
+    def test_download_pdf(self) -> None:
+        """Test case for download_pdf
 
         """
         pass
 
-    def test_api_v2_results_result_id_download_pdf_pdf_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_download_pdf_pdf_id_get
+    def test_get_download_csv_by_id(self) -> None:
+        """Test case for get_download_csv_by_id
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_csv_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_csv_id_get
+    def test_poll_results_generate_csv(self) -> None:
+        """Test case for poll_results_generate_csv
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_csv_post(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_csv_post
+    def test_poll_results_generate_pdf(self) -> None:
+        """Test case for poll_results_generate_pdf
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_pdf_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_pdf_id_get
+    def test_start_results_generate_csv(self) -> None:
+        """Test case for start_results_generate_csv
 
         """
         pass
 
-    def test_api_v2_results_result_id_operations_generate_pdf_post(self) -> None:
-        """Test case for api_v2_results_result_id_operations_generate_pdf_post
+    def test_start_results_generate_pdf(self) -> None:
+        """Test case for start_results_generate_pdf
 
         """
         pass

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.marked_as_deleted import MarkedAsDeleted
+from cyperf.models.marked_as_deleted import MarkedAsDeleted
 
 class TestMarkedAsDeleted(unittest.TestCase):
     """MarkedAsDeleted unit test stubs"""

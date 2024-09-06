@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.activation_code_info import ActivationCodeInfo
+from cyperf.models.activation_code_info import ActivationCodeInfo
 
 class TestActivationCodeInfo(unittest.TestCase):
     """ActivationCodeInfo unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.required_file_types import RequiredFileTypes
+from cyperf.models.required_file_types import RequiredFileTypes
 
 class TestRequiredFileTypes(unittest.TestCase):
     """RequiredFileTypes unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.archive_info import ArchiveInfo
+from cyperf.models.archive_info import ArchiveInfo
 
 class TestArchiveInfo(unittest.TestCase):
     """ArchiveInfo unit test stubs"""

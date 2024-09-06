@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.diagnostic_options import DiagnosticOptions
+from cyperf.models.diagnostic_options import DiagnosticOptions
 
 class TestDiagnosticOptions(unittest.TestCase):
     """DiagnosticOptions unit test stubs"""

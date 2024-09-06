@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.agents_api import AgentsApi
+from cyperf.api.agents_api import AgentsApi
 
 
 class TestAgentsApi(unittest.TestCase):
@@ -26,128 +26,152 @@ class TestAgentsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_agents_agent_id_delete(self) -> None:
-        """Test case for api_v2_agents_agent_id_delete
+    def test_delete_agents(self) -> None:
+        """Test case for delete_agents
 
         """
         pass
 
-    def test_api_v2_agents_agent_id_get(self) -> None:
-        """Test case for api_v2_agents_agent_id_get
+    def test_get_agent_tags(self) -> None:
+        """Test case for get_agent_tags
 
         """
         pass
 
-    def test_api_v2_agents_agent_id_patch(self) -> None:
-        """Test case for api_v2_agents_agent_id_patch
+    def test_get_agents(self) -> None:
+        """Test case for get_agents
 
         """
         pass
 
-    def test_api_v2_agents_get(self) -> None:
-        """Test case for api_v2_agents_get
+    def test_get_agents_by_id(self) -> None:
+        """Test case for get_agents_by_id
 
         """
         pass
 
-    def test_api_v2_agents_operations_batch_delete_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_batch_delete_id_get
+    def test_get_controllers(self) -> None:
+        """Test case for get_controllers
 
         """
         pass
 
-    def test_api_v2_agents_operations_batch_delete_post(self) -> None:
-        """Test case for api_v2_agents_operations_batch_delete_post
+    def test_get_controllers_by_id(self) -> None:
+        """Test case for get_controllers_by_id
 
         """
         pass
 
-    def test_api_v2_agents_operations_export_files_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_export_files_id_get
+    def test_patch_agents(self) -> None:
+        """Test case for patch_agents
 
         """
         pass
 
-    def test_api_v2_agents_operations_export_files_post(self) -> None:
-        """Test case for api_v2_agents_operations_export_files_post
+    def test_poll_controllers_switch_app(self) -> None:
+        """Test case for poll_controllers_switch_app
 
         """
         pass
 
-    def test_api_v2_agents_operations_reboot_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_reboot_id_get
+    def test_poll_root_batch_delete(self) -> None:
+        """Test case for poll_root_batch_delete
 
         """
         pass
 
-    def test_api_v2_agents_operations_reboot_post(self) -> None:
-        """Test case for api_v2_agents_operations_reboot_post
+    def test_poll_root_export_files(self) -> None:
+        """Test case for poll_root_export_files
 
         """
         pass
 
-    def test_api_v2_agents_operations_release_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_release_id_get
+    def test_poll_root_reboot(self) -> None:
+        """Test case for poll_root_reboot
 
         """
         pass
 
-    def test_api_v2_agents_operations_release_post(self) -> None:
-        """Test case for api_v2_agents_operations_release_post
+    def test_poll_root_release(self) -> None:
+        """Test case for poll_root_release
 
         """
         pass
 
-    def test_api_v2_agents_operations_reserve_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_reserve_id_get
+    def test_poll_root_reserve(self) -> None:
+        """Test case for poll_root_reserve
 
         """
         pass
 
-    def test_api_v2_agents_operations_reserve_post(self) -> None:
-        """Test case for api_v2_agents_operations_reserve_post
+    def test_poll_root_set_dpdk_mode(self) -> None:
+        """Test case for poll_root_set_dpdk_mode
 
         """
         pass
 
-    def test_api_v2_agents_operations_set_dpdk_mode_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_set_dpdk_mode_id_get
+    def test_poll_root_set_ntp(self) -> None:
+        """Test case for poll_root_set_ntp
 
         """
         pass
 
-    def test_api_v2_agents_operations_set_dpdk_mode_post(self) -> None:
-        """Test case for api_v2_agents_operations_set_dpdk_mode_post
+    def test_poll_root_update(self) -> None:
+        """Test case for poll_root_update
 
         """
         pass
 
-    def test_api_v2_agents_operations_set_ntp_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_set_ntp_id_get
+    def test_start_controllers_switch_app(self) -> None:
+        """Test case for start_controllers_switch_app
 
         """
         pass
 
-    def test_api_v2_agents_operations_set_ntp_post(self) -> None:
-        """Test case for api_v2_agents_operations_set_ntp_post
+    def test_start_root_batch_delete(self) -> None:
+        """Test case for start_root_batch_delete
 
         """
         pass
 
-    def test_api_v2_agents_operations_update_id_get(self) -> None:
-        """Test case for api_v2_agents_operations_update_id_get
+    def test_start_root_export_files(self) -> None:
+        """Test case for start_root_export_files
 
         """
         pass
 
-    def test_api_v2_agents_operations_update_post(self) -> None:
-        """Test case for api_v2_agents_operations_update_post
+    def test_start_root_reboot(self) -> None:
+        """Test case for start_root_reboot
 
         """
         pass
 
-    def test_api_v2_tags_get(self) -> None:
-        """Test case for api_v2_tags_get
+    def test_start_root_release(self) -> None:
+        """Test case for start_root_release
+
+        """
+        pass
+
+    def test_start_root_reserve(self) -> None:
+        """Test case for start_root_reserve
+
+        """
+        pass
+
+    def test_start_root_set_dpdk_mode(self) -> None:
+        """Test case for start_root_set_dpdk_mode
+
+        """
+        pass
+
+    def test_start_root_set_ntp(self) -> None:
+        """Test case for start_root_set_ntp
+
+        """
+        pass
+
+    def test_start_root_update_agents(self) -> None:
+        """Test case for start_root_update_agents
 
         """
         pass

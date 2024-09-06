@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.media_file import MediaFile
+from cyperf.models.media_file import MediaFile
 
 class TestMediaFile(unittest.TestCase):
     """MediaFile unit test stubs"""
@@ -35,7 +35,7 @@ class TestMediaFile(unittest.TestCase):
         model = MediaFile()
         if include_optional:
             return MediaFile(
-                file_value = openapi_client.models.file_value.FileValue(
+                file_value = cyperf.models.file_value.FileValue(
                     file_name = '', 
                     payload = [
                         'YQ=='
@@ -43,7 +43,7 @@ class TestMediaFile(unittest.TestCase):
                     resource_url = '', 
                     value = '', ),
                 media_tracks = [
-                    openapi_client.models.media_track.MediaTrack(
+                    cyperf.models.media_track.MediaTrack(
                         bitrate = 56, 
                         bitrate_kbps = 56, 
                         codec = '', 
@@ -56,14 +56,6 @@ class TestMediaFile(unittest.TestCase):
             )
         else:
             return MediaFile(
-                file_value = openapi_client.models.file_value.FileValue(
-                    file_name = '', 
-                    payload = [
-                        'YQ=='
-                        ], 
-                    resource_url = '', 
-                    value = '', ),
-                id = '',
         )
         """
 

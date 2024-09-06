@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_range import IPRange
+from cyperf.models.ip_range import IPRange
 
 class TestIPRange(unittest.TestCase):
     """IPRange unit test stubs"""
@@ -39,13 +39,13 @@ class TestIPRange(unittest.TestCase):
                 count = 56,
                 gw_auto = True,
                 gw_start = '::02:84:9:0cc0:F:CCf',
-                inner_vlan_range = openapi_client.models.vlan_range.VLANRange(
+                inner_vlan_range = cyperf.models.vlan_range.VLANRange(
                     count = 56, 
                     count_per_agent = 56, 
                     max_count_per_agent = 56, 
                     priority = 56, 
                     static_arp_table = [
-                        openapi_client.models.static_arp_entry.StaticARPEntry(
+                        cyperf.models.static_arp_entry.StaticARPEntry(
                             count = 56, 
                             remote_ip = '::02:84:9:0cc0:F:CCf', 
                             remote_ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -81,10 +81,8 @@ class TestIPRange(unittest.TestCase):
                 ip_auto = True,
                 ip_range_name = 'YBuLd',
                 ip_ver = 'IPV4',
-                mss = 56,
                 mss_auto = True,
                 net_mask_auto = True,
-                id = '',
         )
         """
 

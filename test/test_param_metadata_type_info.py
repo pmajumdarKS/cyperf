@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.param_metadata_type_info import ParamMetadataTypeInfo
+from cyperf.models.param_metadata_type_info import ParamMetadataTypeInfo
 
 class TestParamMetadataTypeInfo(unittest.TestCase):
     """ParamMetadataTypeInfo unit test stubs"""
@@ -35,19 +35,19 @@ class TestParamMetadataTypeInfo(unittest.TestCase):
         model = ParamMetadataTypeInfo()
         if include_optional:
             return ParamMetadataTypeInfo(
-                array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                     elements = [
-                        openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
+                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                             id = '', 
                             type = '', )
                         ], ),
-                int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                     max_value = 56, 
                     min_value = 56, ),
-                media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                     track_id = '', 
                     track_type = '', ),
-                string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                     charset = '', 
                     max_length = 56, 
                     min_length = 56, )

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.network_mapping import NetworkMapping
+from cyperf.models.network_mapping import NetworkMapping
 
 class TestNetworkMapping(unittest.TestCase):
     """NetworkMapping unit test stubs"""

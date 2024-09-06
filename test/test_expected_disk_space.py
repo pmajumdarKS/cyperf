@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.expected_disk_space import ExpectedDiskSpace
+from cyperf.models.expected_disk_space import ExpectedDiskSpace
 
 class TestExpectedDiskSpace(unittest.TestCase):
     """ExpectedDiskSpace unit test stubs"""
@@ -35,30 +35,30 @@ class TestExpectedDiskSpace(unittest.TestCase):
         model = ExpectedDiskSpace()
         if include_optional:
             return ExpectedDiskSpace(
-                message = openapi_client.models.expected_disk_space_message.ExpectedDiskSpace_message(
+                message = cyperf.models.expected_disk_space_message.ExpectedDiskSpace_message(
                     per_minute = '', 
                     per_second = '', 
                     total = '', ),
-                pretty_size = openapi_client.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
+                pretty_size = cyperf.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
                     per_minute = '', 
                     per_second = '', 
                     total = '', ),
-                size = openapi_client.models.expected_disk_space_size.ExpectedDiskSpace_size(
+                size = cyperf.models.expected_disk_space_size.ExpectedDiskSpace_size(
                     per_minute = 56, 
                     per_second = 56, 
                     total = 56, )
             )
         else:
             return ExpectedDiskSpace(
-                message = openapi_client.models.expected_disk_space_message.ExpectedDiskSpace_message(
+                message = cyperf.models.expected_disk_space_message.ExpectedDiskSpace_message(
                     per_minute = '', 
                     per_second = '', 
                     total = '', ),
-                pretty_size = openapi_client.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
+                pretty_size = cyperf.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
                     per_minute = '', 
                     per_second = '', 
                     total = '', ),
-                size = openapi_client.models.expected_disk_space_size.ExpectedDiskSpace_size(
+                size = cyperf.models.expected_disk_space_size.ExpectedDiskSpace_size(
                     per_minute = 56, 
                     per_second = 56, 
                     total = 56, ),

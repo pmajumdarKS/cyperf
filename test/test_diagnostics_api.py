@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.diagnostics_api import DiagnosticsApi
+from cyperf.api.diagnostics_api import DiagnosticsApi
 
 
 class TestDiagnosticsApi(unittest.TestCase):

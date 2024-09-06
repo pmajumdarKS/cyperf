@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.entitlement_code_request import EntitlementCodeRequest
+from cyperf.models.entitlement_code_request import EntitlementCodeRequest
 
 class TestEntitlementCodeRequest(unittest.TestCase):
     """EntitlementCodeRequest unit test stubs"""

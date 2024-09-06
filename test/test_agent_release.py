@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_release import AgentRelease
+from cyperf.models.agent_release import AgentRelease
 
 class TestAgentRelease(unittest.TestCase):
     """AgentRelease unit test stubs"""

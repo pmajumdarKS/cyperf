@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.pfs_p2_group import PfsP2Group
+from cyperf.models.pfs_p2_group import PfsP2Group
 
 class TestPfsP2Group(unittest.TestCase):
     """PfsP2Group unit test stubs"""

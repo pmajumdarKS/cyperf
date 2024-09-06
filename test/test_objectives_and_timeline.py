@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.objectives_and_timeline import ObjectivesAndTimeline
+from cyperf.models.objectives_and_timeline import ObjectivesAndTimeline
 
 class TestObjectivesAndTimeline(unittest.TestCase):
     """ObjectivesAndTimeline unit test stubs"""
@@ -35,13 +35,13 @@ class TestObjectivesAndTimeline(unittest.TestCase):
         model = ObjectivesAndTimeline()
         if include_optional:
             return ObjectivesAndTimeline(
-                advanced_settings = openapi_client.models.advanced_settings.AdvancedSettings(
+                advanced_settings = cyperf.models.advanced_settings.AdvancedSettings(
                     agent_optimization_mode = null, 
                     agent_streaming_purpose_cpu_percent = 56, 
                     automatic_cpu_percent = True, 
                     connection_graceful_stop_timeout = 56, 
                     warm_up_period = 56, ),
-                primary_objective = openapi_client.models.specific_objective.SpecificObjective(
+                primary_objective = cyperf.models.specific_objective.SpecificObjective(
                     max_pending_simulated_users = '80728', 
                     max_simulated_users_per_interval = 56, 
                     timeline = [
@@ -50,7 +50,7 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                     type = null, 
                     unit = null, 
                     id = '', ),
-                secondary_objective = openapi_client.models.secondary_objective.SecondaryObjective(
+                secondary_objective = cyperf.models.secondary_objective.SecondaryObjective(
                     enabled = True, 
                     max_pending_simulated_users = '4', 
                     max_simulated_users_per_interval = 56, 
@@ -58,7 +58,7 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                     objective_value = 1.337, 
                     type = null, ),
                 secondary_objectives = [
-                    openapi_client.models.specific_objective.SpecificObjective(
+                    cyperf.models.specific_objective.SpecificObjective(
                         max_pending_simulated_users = '80728', 
                         max_simulated_users_per_interval = 56, 
                         timeline = [
@@ -74,22 +74,6 @@ class TestObjectivesAndTimeline(unittest.TestCase):
             )
         else:
             return ObjectivesAndTimeline(
-                primary_objective = openapi_client.models.specific_objective.SpecificObjective(
-                    max_pending_simulated_users = '80728', 
-                    max_simulated_users_per_interval = 56, 
-                    timeline = [
-                        null
-                        ], 
-                    type = null, 
-                    unit = null, 
-                    id = '', ),
-                secondary_objective = openapi_client.models.secondary_objective.SecondaryObjective(
-                    enabled = True, 
-                    max_pending_simulated_users = '4', 
-                    max_simulated_users_per_interval = 56, 
-                    objective_unit = '', 
-                    objective_value = 1.337, 
-                    type = null, ),
         )
         """
 

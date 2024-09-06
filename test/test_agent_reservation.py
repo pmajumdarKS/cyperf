@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_reservation import AgentReservation
+from cyperf.models.agent_reservation import AgentReservation
 
 class TestAgentReservation(unittest.TestCase):
     """AgentReservation unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dns_resolver import DNSResolver
+from cyperf.models.dns_resolver import DNSResolver
 
 class TestDNSResolver(unittest.TestCase):
     """DNSResolver unit test stubs"""
@@ -38,7 +38,7 @@ class TestDNSResolver(unittest.TestCase):
                 cache_timeout = 56,
                 enable_perconnect = True,
                 name_servers = [
-                    openapi_client.models.name_server.NameServer(
+                    cyperf.models.name_server.NameServer(
                         name = '4.207.188.200', )
                     ]
             )

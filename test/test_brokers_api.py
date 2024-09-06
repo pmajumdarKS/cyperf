@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.brokers_api import BrokersApi
+from cyperf.api.brokers_api import BrokersApi
 
 
 class TestBrokersApi(unittest.TestCase):
@@ -26,32 +26,32 @@ class TestBrokersApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_brokers_broker_id_delete(self) -> None:
-        """Test case for api_v2_brokers_broker_id_delete
+    def test_create_brokers(self) -> None:
+        """Test case for create_brokers
 
         """
         pass
 
-    def test_api_v2_brokers_broker_id_get(self) -> None:
-        """Test case for api_v2_brokers_broker_id_get
+    def test_delete_brokers(self) -> None:
+        """Test case for delete_brokers
 
         """
         pass
 
-    def test_api_v2_brokers_broker_id_patch(self) -> None:
-        """Test case for api_v2_brokers_broker_id_patch
+    def test_get_brokers(self) -> None:
+        """Test case for get_brokers
 
         """
         pass
 
-    def test_api_v2_brokers_get(self) -> None:
-        """Test case for api_v2_brokers_get
+    def test_get_brokers_by_id(self) -> None:
+        """Test case for get_brokers_by_id
 
         """
         pass
 
-    def test_api_v2_brokers_post(self) -> None:
-        """Test case for api_v2_brokers_post
+    def test_patch_brokers(self) -> None:
+        """Test case for patch_brokers
 
         """
         pass

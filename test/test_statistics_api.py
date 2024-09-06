@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.statistics_api import StatisticsApi
+from cyperf.api.statistics_api import StatisticsApi
 
 
 class TestStatisticsApi(unittest.TestCase):
@@ -26,44 +26,44 @@ class TestStatisticsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_results_result_id_stats_get(self) -> None:
-        """Test case for api_v2_results_result_id_stats_get
+    def test_create_plugins(self) -> None:
+        """Test case for create_plugins
 
         """
         pass
 
-    def test_api_v2_results_result_id_stats_stat_id_get(self) -> None:
-        """Test case for api_v2_results_result_id_stats_stat_id_get
+    def test_delete_plugins(self) -> None:
+        """Test case for delete_plugins
 
         """
         pass
 
-    def test_api_v2_stats_plugins_get(self) -> None:
-        """Test case for api_v2_stats_plugins_get
+    def test_get_plugins(self) -> None:
+        """Test case for get_plugins
 
         """
         pass
 
-    def test_api_v2_stats_plugins_operations_ingest_id_get(self) -> None:
-        """Test case for api_v2_stats_plugins_operations_ingest_id_get
+    def test_get_stats(self) -> None:
+        """Test case for get_stats
 
         """
         pass
 
-    def test_api_v2_stats_plugins_operations_ingest_post(self) -> None:
-        """Test case for api_v2_stats_plugins_operations_ingest_post
+    def test_get_stats_by_id(self) -> None:
+        """Test case for get_stats_by_id
 
         """
         pass
 
-    def test_api_v2_stats_plugins_plugin_id_delete(self) -> None:
-        """Test case for api_v2_stats_plugins_plugin_id_delete
+    def test_poll_plugins_ingest(self) -> None:
+        """Test case for poll_plugins_ingest
 
         """
         pass
 
-    def test_api_v2_stats_plugins_post(self) -> None:
-        """Test case for api_v2_stats_plugins_post
+    def test_start_plugins_ingest(self) -> None:
+        """Test case for start_plugins_ingest
 
         """
         pass

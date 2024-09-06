@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.transport_profile_base import TransportProfileBase
+from cyperf.models.transport_profile_base import TransportProfileBase
 
 class TestTransportProfileBase(unittest.TestCase):
     """TransportProfileBase unit test stubs"""
@@ -35,7 +35,7 @@ class TestTransportProfileBase(unittest.TestCase):
         model = TransportProfileBase()
         if include_optional:
             return TransportProfileBase(
-                client_http_profile = openapi_client.models.http_profile.HTTPProfile(
+                client_http_profile = cyperf.models.http_profile.HTTPProfile(
                     additional_headers = null, 
                     connection_persistence = null, 
                     connections_max_transactions = 56, 
@@ -46,7 +46,7 @@ class TestTransportProfileBase(unittest.TestCase):
                     is_modified = True, 
                     name = '', 
                     params = [
-                        openapi_client.models.params.Params(
+                        cyperf.models.params.Params(
                             array_element_type = '', 
                             array_elements = [
                                 {
@@ -60,9 +60,9 @@ class TestTransportProfileBase(unittest.TestCase):
                             dictionary_value = {
                                 'key' : ''
                                 }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
+                            enum = cyperf.models.params_enum.Params_Enum(
                                 choices = [
-                                    openapi_client.models.choice.Choice(
+                                    cyperf.models.choice.Choice(
                                         description = '', 
                                         hidden = True, 
                                         name = '', 
@@ -73,10 +73,10 @@ class TestTransportProfileBase(unittest.TestCase):
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
-                                openapi_client.models.media_file.MediaFile(
+                                cyperf.models.media_file.MediaFile(
                                     file_value = null, 
                                     media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
+                                        cyperf.models.media_track.MediaTrack(
                                             bitrate = 56, 
                                             bitrate_kbps = 56, 
                                             codec = '', 
@@ -87,21 +87,20 @@ class TestTransportProfileBase(unittest.TestCase):
                                         ], 
                                     id = '', )
                                 ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                            metadata = cyperf.models.param_metadata.ParamMetadata(
+                                type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                    array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                id = '', 
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                                 type = '', )
                                             ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                    int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
                                         min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                    media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                         track_id = '', 
                                         track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                    string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                         charset = '', 
                                         max_length = 56, 
                                         min_length = 56, ), ), ), 
@@ -117,12 +116,12 @@ class TestTransportProfileBase(unittest.TestCase):
                             file_upload = [
                                 'YQ=='
                                 ], 
-                            id = '', 
+                            id = , 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
                     use_application_server_headers = True, ),
-                client_tls_profile = openapi_client.models.tls_profile.TLSProfile(
+                client_tls_profile = cyperf.models.tls_profile.TLSProfile(
                     certificate_file = null, 
                     cipher = null, 
                     cipher12 = null, 
@@ -143,7 +142,7 @@ class TestTransportProfileBase(unittest.TestCase):
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [
-                        openapi_client.models.conflict.Conflict(
+                        cyperf.models.conflict.Conflict(
                             name = '', 
                             path_to_target = '', 
                             path_vars = {
@@ -156,23 +155,37 @@ class TestTransportProfileBase(unittest.TestCase):
                     session_reuse_method12 = null, 
                     session_reuse_method13 = null, 
                     sni_cert_configs = [
-                        openapi_client.models.cert_config.CertConfig(
+                        cyperf.models.cert_config.CertConfig(
                             certificate_file = null, 
                             dh_file = null, 
+                            get_sni_conflicts = [
+                                'YQ=='
+                                ], 
                             id = '', 
                             is_playlist = True, 
                             key_file = null, 
                             key_file_password = '', 
                             playlist_column_name = '', 
                             playlist_filename = '', 
+                            resolve_sni_conflicts = [
+                                cyperf.models.conflict.Conflict(
+                                    name = '', 
+                                    path_to_target = '', 
+                                    path_vars = {
+                                        'key' : ''
+                                        }, )
+                                ], 
                             sni_hostname = '', )
                         ], 
                     sni_enabled = True, 
+                    supported_groups13 = [
+                        'P-256'
+                        ], 
                     tls12_enabled = True, 
                     tls13_enabled = True, 
                     use_tls_profile = True, 
                     version = 'NONE', ),
-                client_tcp_profile = openapi_client.models.tcp_profile.TcpProfile(
+                client_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
                     ecn_enabled = True, 
@@ -193,11 +206,11 @@ class TestTransportProfileBase(unittest.TestCase):
                     user_mss = 56, 
                     wscale_enabled = True, ),
                 ip_tos = 56,
-                rtp_profile = openapi_client.models.rtp_profile.RTPProfile(
+                rtp_profile = cyperf.models.rtp_profile.RTPProfile(
                     encryption_mode = null, 
                     mos_mode = null, 
                     profile_id = '', ),
-                server_http_profile = openapi_client.models.http_profile.HTTPProfile(
+                server_http_profile = cyperf.models.http_profile.HTTPProfile(
                     additional_headers = null, 
                     connection_persistence = null, 
                     connections_max_transactions = 56, 
@@ -208,7 +221,7 @@ class TestTransportProfileBase(unittest.TestCase):
                     is_modified = True, 
                     name = '', 
                     params = [
-                        openapi_client.models.params.Params(
+                        cyperf.models.params.Params(
                             array_element_type = '', 
                             array_elements = [
                                 {
@@ -222,9 +235,9 @@ class TestTransportProfileBase(unittest.TestCase):
                             dictionary_value = {
                                 'key' : ''
                                 }, 
-                            enum = openapi_client.models.params_enum.Params_Enum(
+                            enum = cyperf.models.params_enum.Params_Enum(
                                 choices = [
-                                    openapi_client.models.choice.Choice(
+                                    cyperf.models.choice.Choice(
                                         description = '', 
                                         hidden = True, 
                                         name = '', 
@@ -235,10 +248,10 @@ class TestTransportProfileBase(unittest.TestCase):
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
-                                openapi_client.models.media_file.MediaFile(
+                                cyperf.models.media_file.MediaFile(
                                     file_value = null, 
                                     media_tracks = [
-                                        openapi_client.models.media_track.MediaTrack(
+                                        cyperf.models.media_track.MediaTrack(
                                             bitrate = 56, 
                                             bitrate_kbps = 56, 
                                             codec = '', 
@@ -249,21 +262,20 @@ class TestTransportProfileBase(unittest.TestCase):
                                         ], 
                                     id = '', )
                                 ], 
-                            metadata = openapi_client.models.param_metadata.ParamMetadata(
-                                type_info = openapi_client.models.param_metadata_type_info.ParamMetadata_TypeInfo(
-                                    array_v2 = openapi_client.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
+                            metadata = cyperf.models.param_metadata.ParamMetadata(
+                                type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
+                                    array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            openapi_client.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                id = '', 
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
                                                 type = '', )
                                             ], ), 
-                                    int = openapi_client.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
+                                    int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
                                         min_value = 56, ), 
-                                    media = openapi_client.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
+                                    media = cyperf.models.param_metadata_type_info_media.ParamMetadata_TypeInfo_media(
                                         track_id = '', 
                                         track_type = '', ), 
-                                    string = openapi_client.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
+                                    string = cyperf.models.param_metadata_type_info_string.ParamMetadata_TypeInfo_string(
                                         charset = '', 
                                         max_length = 56, 
                                         min_length = 56, ), ), ), 
@@ -279,12 +291,12 @@ class TestTransportProfileBase(unittest.TestCase):
                             file_upload = [
                                 'YQ=='
                                 ], 
-                            id = '', 
+                            id = , 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
                     use_application_server_headers = True, ),
-                server_tls_profile = openapi_client.models.tls_profile.TLSProfile(
+                server_tls_profile = cyperf.models.tls_profile.TLSProfile(
                     certificate_file = null, 
                     cipher = null, 
                     cipher12 = null, 
@@ -305,7 +317,7 @@ class TestTransportProfileBase(unittest.TestCase):
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [
-                        openapi_client.models.conflict.Conflict(
+                        cyperf.models.conflict.Conflict(
                             name = '', 
                             path_to_target = '', 
                             path_vars = {
@@ -318,23 +330,37 @@ class TestTransportProfileBase(unittest.TestCase):
                     session_reuse_method12 = null, 
                     session_reuse_method13 = null, 
                     sni_cert_configs = [
-                        openapi_client.models.cert_config.CertConfig(
+                        cyperf.models.cert_config.CertConfig(
                             certificate_file = null, 
                             dh_file = null, 
+                            get_sni_conflicts = [
+                                'YQ=='
+                                ], 
                             id = '', 
                             is_playlist = True, 
                             key_file = null, 
                             key_file_password = '', 
                             playlist_column_name = '', 
                             playlist_filename = '', 
+                            resolve_sni_conflicts = [
+                                cyperf.models.conflict.Conflict(
+                                    name = '', 
+                                    path_to_target = '', 
+                                    path_vars = {
+                                        'key' : ''
+                                        }, )
+                                ], 
                             sni_hostname = '', )
                         ], 
                     sni_enabled = True, 
+                    supported_groups13 = [
+                        'P-256'
+                        ], 
                     tls12_enabled = True, 
                     tls13_enabled = True, 
                     use_tls_profile = True, 
                     version = 'NONE', ),
-                server_tcp_profile = openapi_client.models.tcp_profile.TcpProfile(
+                server_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
                     ecn_enabled = True, 
@@ -354,7 +380,7 @@ class TestTransportProfileBase(unittest.TestCase):
                     tx_buffer = 56, 
                     user_mss = 56, 
                     wscale_enabled = True, ),
-                udp_profile = openapi_client.models.udp_profile.UdpProfile(
+                udp_profile = cyperf.models.udp_profile.UdpProfile(
                     max_src_port = 56, 
                     min_src_port = 56, 
                     recv_buff_size_ini = 56, 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dashboard import Dashboard
+from cyperf.models.dashboard import Dashboard
 
 class TestDashboard(unittest.TestCase):
     """Dashboard unit test stubs"""

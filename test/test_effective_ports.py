@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.effective_ports import EffectivePorts
+from cyperf.models.effective_ports import EffectivePorts
 
 class TestEffectivePorts(unittest.TestCase):
     """EffectivePorts unit test stubs"""

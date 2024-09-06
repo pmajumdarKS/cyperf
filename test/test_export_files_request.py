@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.export_files_request import ExportFilesRequest
+from cyperf.models.export_files_request import ExportFilesRequest
 
 class TestExportFilesRequest(unittest.TestCase):
     """ExportFilesRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestExportFilesRequest(unittest.TestCase):
         if include_optional:
             return ExportFilesRequest(
                 agent_id = '',
-                required_file_types = openapi_client.models.required_file_types.RequiredFileTypes(
+                required_file_types = cyperf.models.required_file_types.RequiredFileTypes(
                     csvs = True, 
                     packet_capture = True, 
                     syslog = True, 

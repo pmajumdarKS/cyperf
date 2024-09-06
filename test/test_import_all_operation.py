@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.import_all_operation import ImportAllOperation
+from cyperf.models.import_all_operation import ImportAllOperation
 
 class TestImportAllOperation(unittest.TestCase):
     """ImportAllOperation unit test stubs"""
@@ -36,7 +36,7 @@ class TestImportAllOperation(unittest.TestCase):
         if include_optional:
             return ImportAllOperation(
                 configs = [
-                    openapi_client.models.config_metadata.ConfigMetadata(
+                    cyperf.models.config_metadata.ConfigMetadata(
                         application = '', 
                         config_data = {
                             'key' : null
@@ -49,7 +49,7 @@ class TestImportAllOperation(unittest.TestCase):
                         last_accessed = 56, 
                         last_modified = 56, 
                         linked_resources = [
-                            openapi_client.models.api_link.APILink(
+                            cyperf.models.api_link.APILink(
                                 content_type = '', 
                                 href = '', 
                                 id = '', 
@@ -66,7 +66,7 @@ class TestImportAllOperation(unittest.TestCase):
                             'key' : ''
                             }, 
                         type = '', 
-                        version = openapi_client.models.version.Version(
+                        version = cyperf.models.version.Version(
                             config_service_version = '', 
                             data_model_version = '', ), )
                     ]

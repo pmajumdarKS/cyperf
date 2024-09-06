@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.log_config import LogConfig
+from cyperf.models.log_config import LogConfig
 
 class TestLogConfig(unittest.TestCase):
     """LogConfig unit test stubs"""

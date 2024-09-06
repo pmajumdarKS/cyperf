@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.interface import Interface
+from cyperf.models.interface import Interface
 
 class TestInterface(unittest.TestCase):
     """Interface unit test stubs"""
@@ -37,7 +37,7 @@ class TestInterface(unittest.TestCase):
             return Interface(
                 gateway = '',
                 ip = [
-                    openapi_client.models.ip_mask.IpMask(
+                    cyperf.models.ip_mask.IpMask(
                         net_mask = 56, )
                     ],
                 mtu = 56,

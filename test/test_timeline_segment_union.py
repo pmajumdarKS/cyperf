@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.timeline_segment_union import TimelineSegmentUnion
+from cyperf.models.timeline_segment_union import TimelineSegmentUnion
 
 class TestTimelineSegmentUnion(unittest.TestCase):
     """TimelineSegmentUnion unit test stubs"""

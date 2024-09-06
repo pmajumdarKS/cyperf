@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.dns_server import DNSServer
+from cyperf.models.dns_server import DNSServer
 
 class TestDNSServer(unittest.TestCase):
     """DNSServer unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.parameter_metadata import ParameterMetadata
+from cyperf.models.parameter_metadata import ParameterMetadata
 
 class TestParameterMetadata(unittest.TestCase):
     """ParameterMetadata unit test stubs"""
@@ -40,9 +40,9 @@ class TestParameterMetadata(unittest.TestCase):
                 default = '',
                 description = '',
                 display_name = '',
-                enum = openapi_client.models.enum.Enum(
+                enum = cyperf.models.enum.Enum(
                     choices = [
-                        openapi_client.models.choice.Choice(
+                        cyperf.models.choice.Choice(
                             description = '', 
                             hidden = True, 
                             name = '', 
@@ -55,27 +55,28 @@ class TestParameterMetadata(unittest.TestCase):
                     ''
                     ],
                 mandatory = True,
-                payload = openapi_client.models.payload_metadata.PayloadMetadata(
+                payload = cyperf.models.payload_metadata.PayloadMetadata(
                     file_extension = '', 
                     file_name = '', 
-                    file_type = '', ),
+                    file_type = '', 
+                    file_url = '', ),
                 readonly = True,
                 shared = True,
                 type = '',
-                type_info = openapi_client.models.type_info_metadata.TypeInfoMetadata(
-                    array_v2 = openapi_client.models.type_array_v2_metadata.TypeArrayV2Metadata(
+                type_info = cyperf.models.type_info_metadata.TypeInfoMetadata(
+                    array_v2 = cyperf.models.type_array_v2_metadata.TypeArrayV2Metadata(
                         elements = [
-                            openapi_client.models.array_v2_element_metadata.ArrayV2ElementMetadata(
+                            cyperf.models.array_v2_element_metadata.ArrayV2ElementMetadata(
                                 id = '', 
                                 type = '', )
                             ], ), 
-                    int = openapi_client.models.type_int_metadata.TypeIntMetadata(
+                    int = cyperf.models.type_int_metadata.TypeIntMetadata(
                         max_value = 56, 
                         min_value = 56, ), 
-                    media = openapi_client.models.type_media_metadata.TypeMediaMetadata(
+                    media = cyperf.models.type_media_metadata.TypeMediaMetadata(
                         track_id = '', 
                         track_type = '', ), 
-                    string = openapi_client.models.type_string_metadata.TypeStringMetadata(
+                    string = cyperf.models.type_string_metadata.TypeStringMetadata(
                         charset = '', 
                         max_length = 56, 
                         min_length = 56, ), ),

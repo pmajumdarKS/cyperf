@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.cipher_tls13 import CipherTLS13
+from cyperf.models.cipher_tls13 import CipherTLS13
 
 class TestCipherTLS13(unittest.TestCase):
     """CipherTLS13 unit test stubs"""

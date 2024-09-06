@@ -5,11 +5,11 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_agents**](AgentsApi.md#delete_agents) | **DELETE** /api/v2/agents/{agentId} | 
+[**get_agent_tags**](AgentsApi.md#get_agent_tags) | **GET** /api/v2/tags | 
 [**get_agents**](AgentsApi.md#get_agents) | **GET** /api/v2/agents | 
 [**get_agents_by_id**](AgentsApi.md#get_agents_by_id) | **GET** /api/v2/agents/{agentId} | 
 [**get_controllers**](AgentsApi.md#get_controllers) | **GET** /api/v2/controllers | 
 [**get_controllers_by_id**](AgentsApi.md#get_controllers_by_id) | **GET** /api/v2/controllers/{controllerId} | 
-[**get_tags**](AgentsApi.md#get_tags) | **GET** /api/v2/tags | 
 [**patch_agents**](AgentsApi.md#patch_agents) | **PATCH** /api/v2/agents/{agentId} | 
 [**poll_controllers_switch_app**](AgentsApi.md#poll_controllers_switch_app) | **GET** /api/v2/controllers/{controllerId}/operations/switch-app/{id} | 
 [**poll_root_batch_delete**](AgentsApi.md#poll_root_batch_delete) | **GET** /api/v2/agents/operations/batch-delete/{id} | 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 [**start_root_reserve**](AgentsApi.md#start_root_reserve) | **POST** /api/v2/agents/operations/reserve | 
 [**start_root_set_dpdk_mode**](AgentsApi.md#start_root_set_dpdk_mode) | **POST** /api/v2/agents/operations/set-dpdk-mode | 
 [**start_root_set_ntp**](AgentsApi.md#start_root_set_ntp) | **POST** /api/v2/agents/operations/set-ntp | 
-[**start_root_update**](AgentsApi.md#start_root_update) | **POST** /api/v2/agents/operations/update | 
+[**start_root_update_agents**](AgentsApi.md#start_root_update_agents) | **POST** /api/v2/agents/operations/update | 
 
 
 # **delete_agents**
@@ -103,6 +103,86 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | The agent was successfully removed. |  -  |
 **404** | An agent with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_agent_tags**
+> GetAgentTags200Response get_agent_tags(take=take, skip=skip)
+
+
+
+Get all the currently available agent groups.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_agent_tags200_response import GetAgentTags200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.AgentsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_agent_tags(take=take, skip=skip)
+        print("The response of AgentsApi->get_agent_tags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AgentsApi->get_agent_tags: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetAgentTags200Response**](GetAgentTags200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of agent groups |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -430,86 +510,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The controller chain. |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_tags**
-> GetTags200Response get_tags(take=take, skip=skip)
-
-
-
-Get all the currently available agent groups.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.get_tags200_response import GetTags200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.AgentsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.get_tags(take=take, skip=skip)
-        print("The response of AgentsApi->get_tags:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AgentsApi->get_tags: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**GetTags200Response**](GetTags200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of agent groups |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1914,8 +1914,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **start_root_update**
-> AsyncContext start_root_update()
+# **start_root_update_agents**
+> AsyncContext start_root_update_agents()
 
 
 
@@ -1953,11 +1953,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.AgentsApi(api_client)
 
     try:
-        api_response = api_instance.start_root_update()
-        print("The response of AgentsApi->start_root_update:\n")
+        api_response = api_instance.start_root_update_agents()
+        print("The response of AgentsApi->start_root_update_agents:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AgentsApi->start_root_update: %s\n" % e)
+        print("Exception when calling AgentsApi->start_root_update_agents: %s\n" % e)
 ```
 
 

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.traffic_profile_base import TrafficProfileBase
+from cyperf.models.traffic_profile_base import TrafficProfileBase
 
 class TestTrafficProfileBase(unittest.TestCase):
     """TrafficProfileBase unit test stubs"""
@@ -36,15 +36,12 @@ class TestTrafficProfileBase(unittest.TestCase):
         if include_optional:
             return TrafficProfileBase(
                 active = True,
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
+                traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
                     default_transport_profile = null, ),
                 id = ''
             )
         else:
             return TrafficProfileBase(
-                traffic_settings = openapi_client.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
-                id = '',
         )
         """
 

@@ -71,13 +71,14 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 # Enter a context with an instance of the API client
 with cyperf.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = cyperf.AgentsApi(api_client)
-    agent_id = 'agent_id_example' # str | The ID of the agent.
+    api_instance = cyperf.AgentAssignmentApi(api_client)
+    session_id = 'session_id_example' # str | The ID of the session.
+    net_profile_id = 'net_profile_id_example' # str | The ID of the network segment. Note: this might be an INT or a STRING that holds an int value. Defaulting to string for now.
 
     try:
-        api_instance.delete_agents(agent_id)
+        api_instance.patch_agent_assignments_for_net_segment(session_id, net_profile_id)
     except ApiException as e:
-        print("Exception when calling AgentsApi->delete_agents: %s\n" % e)
+        print("Exception when calling AgentAssignmentApi->patch_agent_assignments_for_net_segment: %s\n" % e)
 
 ```
 
@@ -87,12 +88,14 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AgentAssignmentApi* | [**patch_agent_assignments_for_net_segment**](docs/AgentAssignmentApi.md#patch_agent_assignments_for_net_segment) | **PATCH** /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments | 
+*AgentAssignmentApi* | [**put_agent_assignments_by_id_for_net_segment**](docs/AgentAssignmentApi.md#put_agent_assignments_by_id_for_net_segment) | **PUT** /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments/ByID | 
 *AgentsApi* | [**delete_agents**](docs/AgentsApi.md#delete_agents) | **DELETE** /api/v2/agents/{agentId} | 
+*AgentsApi* | [**get_agent_tags**](docs/AgentsApi.md#get_agent_tags) | **GET** /api/v2/tags | 
 *AgentsApi* | [**get_agents**](docs/AgentsApi.md#get_agents) | **GET** /api/v2/agents | 
 *AgentsApi* | [**get_agents_by_id**](docs/AgentsApi.md#get_agents_by_id) | **GET** /api/v2/agents/{agentId} | 
 *AgentsApi* | [**get_controllers**](docs/AgentsApi.md#get_controllers) | **GET** /api/v2/controllers | 
 *AgentsApi* | [**get_controllers_by_id**](docs/AgentsApi.md#get_controllers_by_id) | **GET** /api/v2/controllers/{controllerId} | 
-*AgentsApi* | [**get_tags**](docs/AgentsApi.md#get_tags) | **GET** /api/v2/tags | 
 *AgentsApi* | [**patch_agents**](docs/AgentsApi.md#patch_agents) | **PATCH** /api/v2/agents/{agentId} | 
 *AgentsApi* | [**poll_controllers_switch_app**](docs/AgentsApi.md#poll_controllers_switch_app) | **GET** /api/v2/controllers/{controllerId}/operations/switch-app/{id} | 
 *AgentsApi* | [**poll_root_batch_delete**](docs/AgentsApi.md#poll_root_batch_delete) | **GET** /api/v2/agents/operations/batch-delete/{id} | 
@@ -111,7 +114,7 @@ Class | Method | HTTP request | Description
 *AgentsApi* | [**start_root_reserve**](docs/AgentsApi.md#start_root_reserve) | **POST** /api/v2/agents/operations/reserve | 
 *AgentsApi* | [**start_root_set_dpdk_mode**](docs/AgentsApi.md#start_root_set_dpdk_mode) | **POST** /api/v2/agents/operations/set-dpdk-mode | 
 *AgentsApi* | [**start_root_set_ntp**](docs/AgentsApi.md#start_root_set_ntp) | **POST** /api/v2/agents/operations/set-ntp | 
-*AgentsApi* | [**start_root_update**](docs/AgentsApi.md#start_root_update) | **POST** /api/v2/agents/operations/update | 
+*AgentsApi* | [**start_root_update_agents**](docs/AgentsApi.md#start_root_update_agents) | **POST** /api/v2/agents/operations/update | 
 *ApplicationResourcesApi* | [**create_resources_captures_operations_upload_file**](docs/ApplicationResourcesApi.md#create_resources_captures_operations_upload_file) | **POST** /api/v2/resources/captures/operations/uploadFile | 
 *ApplicationResourcesApi* | [**create_resources_certificates_operations_upload_file**](docs/ApplicationResourcesApi.md#create_resources_certificates_operations_upload_file) | **POST** /api/v2/resources/certificates/operations/uploadFile | 
 *ApplicationResourcesApi* | [**create_resources_flow_library_operations_upload_file**](docs/ApplicationResourcesApi.md#create_resources_flow_library_operations_upload_file) | **POST** /api/v2/resources/flow-library/operations/uploadFile | 
@@ -361,16 +364,16 @@ Class | Method | HTTP request | Description
 *StatisticsApi* | [**get_stats_by_id**](docs/StatisticsApi.md#get_stats_by_id) | **GET** /api/v2/results/{resultId}/stats/{statId} | 
 *StatisticsApi* | [**poll_plugins_ingest**](docs/StatisticsApi.md#poll_plugins_ingest) | **GET** /api/v2/stats/plugins/operations/ingest/{id} | 
 *StatisticsApi* | [**start_plugins_ingest**](docs/StatisticsApi.md#start_plugins_ingest) | **POST** /api/v2/stats/plugins/operations/ingest | 
-*TestOperationsApi* | [**poll_calibration_start**](docs/TestOperationsApi.md#poll_calibration_start) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id} | 
-*TestOperationsApi* | [**poll_calibration_stop**](docs/TestOperationsApi.md#poll_calibration_stop) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id} | 
 *TestOperationsApi* | [**poll_root_abort**](docs/TestOperationsApi.md#poll_root_abort) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/abort/{id} | 
-*TestOperationsApi* | [**poll_root_start**](docs/TestOperationsApi.md#poll_root_start) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/start/{id} | 
-*TestOperationsApi* | [**poll_root_stop**](docs/TestOperationsApi.md#poll_root_stop) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/stop/{id} | 
-*TestOperationsApi* | [**start_calibration_start**](docs/TestOperationsApi.md#start_calibration_start) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/start | 
-*TestOperationsApi* | [**start_calibration_stop**](docs/TestOperationsApi.md#start_calibration_stop) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop | 
-*TestOperationsApi* | [**start_root_abort**](docs/TestOperationsApi.md#start_root_abort) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/abort | 
-*TestOperationsApi* | [**start_root_start**](docs/TestOperationsApi.md#start_root_start) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/start | 
-*TestOperationsApi* | [**start_root_stop**](docs/TestOperationsApi.md#start_root_stop) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/stop | 
+*TestOperationsApi* | [**poll_root_start_calibration**](docs/TestOperationsApi.md#poll_root_start_calibration) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id} | 
+*TestOperationsApi* | [**poll_root_start_test**](docs/TestOperationsApi.md#poll_root_start_test) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/start/{id} | 
+*TestOperationsApi* | [**poll_root_stop_calibration**](docs/TestOperationsApi.md#poll_root_stop_calibration) | **GET** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id} | 
+*TestOperationsApi* | [**poll_root_stop_test**](docs/TestOperationsApi.md#poll_root_stop_test) | **GET** /api/v2/sessions/{sessionId}/test-run/operations/stop/{id} | 
+*TestOperationsApi* | [**start_root_abort_test**](docs/TestOperationsApi.md#start_root_abort_test) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/abort | 
+*TestOperationsApi* | [**start_root_start_calibration**](docs/TestOperationsApi.md#start_root_start_calibration) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/start | 
+*TestOperationsApi* | [**start_root_start_test**](docs/TestOperationsApi.md#start_root_start_test) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/start | 
+*TestOperationsApi* | [**start_root_stop_calibration**](docs/TestOperationsApi.md#start_root_stop_calibration) | **POST** /api/v2/sessions/{sessionId}/test-calibrate/operations/stop | 
+*TestOperationsApi* | [**start_root_stop_test**](docs/TestOperationsApi.md#start_root_stop_test) | **POST** /api/v2/sessions/{sessionId}/test-run/operations/stop | 
 *TestResultsApi* | [**delete_files**](docs/TestResultsApi.md#delete_files) | **DELETE** /api/v2/results/{resultId}/files/{fileId} | 
 *TestResultsApi* | [**delete_results**](docs/TestResultsApi.md#delete_results) | **DELETE** /api/v2/results/{resultId} | 
 *TestResultsApi* | [**get_download_all_by_id**](docs/TestResultsApi.md#get_download_all_by_id) | **GET** /api/v2/results/{resultId}/download-all/{downloadAllId} | 
@@ -410,8 +413,8 @@ Class | Method | HTTP request | Description
 *UtilsApi* | [**start_disk_usage_cleanup_migration**](docs/UtilsApi.md#start_disk_usage_cleanup_migration) | **POST** /api/v2/disk-usage/operations/cleanup-migration | 
 *UtilsApi* | [**start_disk_usage_cleanup_notifications**](docs/UtilsApi.md#start_disk_usage_cleanup_notifications) | **POST** /api/v2/disk-usage/operations/cleanup-notifications | 
 *UtilsApi* | [**start_disk_usage_cleanup_results**](docs/UtilsApi.md#start_disk_usage_cleanup_results) | **POST** /api/v2/disk-usage/operations/cleanup-results | 
-*UtilsApi* | [**start_root_generate**](docs/UtilsApi.md#start_root_generate) | **POST** /api/v2/cert-manager/operations/generate | 
-*UtilsApi* | [**start_root_upload**](docs/UtilsApi.md#start_root_upload) | **POST** /api/v2/cert-manager/operations/upload | 
+*UtilsApi* | [**start_root_generate_certificate**](docs/UtilsApi.md#start_root_generate_certificate) | **POST** /api/v2/cert-manager/operations/generate | 
+*UtilsApi* | [**start_root_upload_certificate**](docs/UtilsApi.md#start_root_upload_certificate) | **POST** /api/v2/cert-manager/operations/upload | 
 *UtilsApi* | [**update_log_config**](docs/UtilsApi.md#update_log_config) | **PUT** /api/v2/log-config | 
 
 
@@ -547,6 +550,8 @@ Class | Method | HTTP request | Description
  - [GenerateCSVReportsOperation](docs/GenerateCSVReportsOperation.md)
  - [GeneratePDFReportOperation](docs/GeneratePDFReportOperation.md)
  - [GenericFile](docs/GenericFile.md)
+ - [GetAgentTags200Response](docs/GetAgentTags200Response.md)
+ - [GetAgentTags200ResponseOneOf](docs/GetAgentTags200ResponseOneOf.md)
  - [GetAgents200Response](docs/GetAgents200Response.md)
  - [GetAgents200ResponseOneOf](docs/GetAgents200ResponseOneOf.md)
  - [GetApplicationTypes200Response](docs/GetApplicationTypes200Response.md)
@@ -596,8 +601,6 @@ Class | Method | HTTP request | Description
  - [GetStats200Response](docs/GetStats200Response.md)
  - [GetStats200ResponseOneOf](docs/GetStats200ResponseOneOf.md)
  - [GetStrikesOperation](docs/GetStrikesOperation.md)
- - [GetTags200Response](docs/GetTags200Response.md)
- - [GetTags200ResponseOneOf](docs/GetTags200ResponseOneOf.md)
  - [HTTPProfile](docs/HTTPProfile.md)
  - [HTTPVersion](docs/HTTPVersion.md)
  - [HashP1Algorithm](docs/HashP1Algorithm.md)

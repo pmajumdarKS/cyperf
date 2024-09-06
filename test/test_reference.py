@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.reference import Reference
+from cyperf.models.reference import Reference
 
 class TestReference(unittest.TestCase):
     """Reference unit test stubs"""

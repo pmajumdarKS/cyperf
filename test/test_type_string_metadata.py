@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.type_string_metadata import TypeStringMetadata
+from cyperf.models.type_string_metadata import TypeStringMetadata
 
 class TestTypeStringMetadata(unittest.TestCase):
     """TypeStringMetadata unit test stubs"""

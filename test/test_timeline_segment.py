@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.timeline_segment import TimelineSegment
+from cyperf.models.timeline_segment import TimelineSegment
 
 class TestTimelineSegment(unittest.TestCase):
     """TimelineSegment unit test stubs"""
@@ -44,7 +44,7 @@ class TestTimelineSegment(unittest.TestCase):
                 primary_objective_unit = '',
                 primary_objective_value = 1.337,
                 secondary_objective_values = [
-                    openapi_client.models.objective_value_entry.ObjectiveValueEntry(
+                    cyperf.models.objective_value_entry.ObjectiveValueEntry(
                         unit = '', 
                         value = 1.337, 
                         id = '', )
@@ -57,12 +57,6 @@ class TestTimelineSegment(unittest.TestCase):
                 id = '',
                 primary_objective_unit = '',
                 primary_objective_value = 1.337,
-                secondary_objective_values = [
-                    openapi_client.models.objective_value_entry.ObjectiveValueEntry(
-                        unit = '', 
-                        value = 1.337, 
-                        id = '', )
-                    ],
         )
         """
 

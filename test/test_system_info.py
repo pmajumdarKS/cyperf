@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.system_info import SystemInfo
+from cyperf.models.system_info import SystemInfo
 
 class TestSystemInfo(unittest.TestCase):
     """SystemInfo unit test stubs"""
@@ -35,11 +35,14 @@ class TestSystemInfo(unittest.TestCase):
         model = SystemInfo()
         if include_optional:
             return SystemInfo(
+                chassis_info = cyperf.models.chassis_info.ChassisInfo(
+                    compute_node_id = '', 
+                    port_id = '', ),
                 kernel_version = '',
                 os_name = '',
                 port_manager_version = '',
                 traffic_agent_info = [
-                    openapi_client.models.traffic_agent_info.TrafficAgentInfo(
+                    cyperf.models.traffic_agent_info.TrafficAgentInfo(
                         type = '', 
                         version = '', )
                     ]

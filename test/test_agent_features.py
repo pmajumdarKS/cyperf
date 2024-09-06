@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_features import AgentFeatures
+from cyperf.models.agent_features import AgentFeatures
 
 class TestAgentFeatures(unittest.TestCase):
     """AgentFeatures unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.media_track import MediaTrack
+from cyperf.models.media_track import MediaTrack
 
 class TestMediaTrack(unittest.TestCase):
     """MediaTrack unit test stubs"""

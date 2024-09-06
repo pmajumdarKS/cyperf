@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.custom_stat import CustomStat
+from cyperf.models.custom_stat import CustomStat
 
 class TestCustomStat(unittest.TestCase):
     """CustomStat unit test stubs"""

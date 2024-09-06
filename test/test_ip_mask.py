@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ip_mask import IpMask
+from cyperf.models.ip_mask import IpMask
 
 class TestIpMask(unittest.TestCase):
     """IpMask unit test stubs"""

@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.category import Category
+from cyperf.models.category import Category
 
 class TestCategory(unittest.TestCase):
     """Category unit test stubs"""
@@ -35,9 +35,10 @@ class TestCategory(unittest.TestCase):
         model = Category()
         if include_optional:
             return Category(
+                index = 56,
                 name = '',
                 values = [
-                    openapi_client.models.category_value.CategoryValue(
+                    cyperf.models.category_value.CategoryValue(
                         items_count = 56, 
                         value = '', )
                     ]

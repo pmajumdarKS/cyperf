@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.ntp_info import NtpInfo
+from cyperf.models.ntp_info import NtpInfo
 
 class TestNtpInfo(unittest.TestCase):
     """NtpInfo unit test stubs"""

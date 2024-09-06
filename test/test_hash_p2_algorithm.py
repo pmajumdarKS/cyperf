@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.hash_p2_algorithm import HashP2Algorithm
+from cyperf.models.hash_p2_algorithm import HashP2Algorithm
 
 class TestHashP2Algorithm(unittest.TestCase):
     """HashP2Algorithm unit test stubs"""

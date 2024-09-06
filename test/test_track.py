@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.track import Track
+from cyperf.models.track import Track
 
 class TestTrack(unittest.TestCase):
     """Track unit test stubs"""
@@ -45,9 +45,6 @@ class TestTrack(unittest.TestCase):
             )
         else:
             return Track(
-                actions = [
-                    null
-                    ],
                 id = '',
         )
         """

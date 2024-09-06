@@ -5855,7 +5855,7 @@ components:
       enum:
       - RANDOM
       - PSEUDORANDOM
-      - <nil>
+      - 'null'
       type: string
     StreamProfile:
       properties:
@@ -7609,7 +7609,7 @@ paths:
   /api/v2/agents/operations/update:
     post:
       description: Update agents to the recommended version.
-      operationId: startRootUpdate
+      operationId: startRootUpdateAgents
       responses:
         '202':
           content:
@@ -7933,7 +7933,7 @@ paths:
   /api/v2/cert-manager/operations/generate:
     post:
       description: Generate a certificate.
-      operationId: startRootGenerate
+      operationId: startRootGenerateCertificate
       requestBody:
         content:
           application/json:
@@ -7971,7 +7971,7 @@ paths:
   /api/v2/cert-manager/operations/upload:
     post:
       description: Upload a certificate/key pair that will replace the system certificate.
-      operationId: startRootUpload
+      operationId: startRootUploadCertificate
       responses:
         '202':
           content:
@@ -15514,6 +15514,64 @@ paths:
       required: 'true'
       schema:
         type: string
+  /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments:
+    parameters:
+    - description: The ID of the session.
+      in: path
+      name: sessionId
+      required: 'true'
+      schema:
+        type: string
+    - description: 'The ID of the network segment. Note: this might be an INT or a
+        STRING that holds an int value. Defaulting to string for now.'
+      in: path
+      name: netProfileId
+      required: 'true'
+      schema:
+        type: string
+    patch:
+      description: Update the agent assignments for a network group.
+      operationId: patchAgentAssignmentsForNetSegment
+      responses:
+        '204':
+          description: The agent assignments were successfully updated.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Agent assignment
+  /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments/ByID:
+    parameters:
+    - description: The ID of the session.
+      in: path
+      name: sessionId
+      required: 'true'
+      schema:
+        type: string
+    - description: 'The ID of the network segment. Note: this might be an INT or a
+        STRING that holds an int value. Defaulting to string for now.'
+      in: path
+      name: netProfileId
+      required: 'true'
+      schema:
+        type: string
+    put:
+      description: Update the list of agent IDs assigned to this network segment.
+      operationId: putAgentAssignmentsByIdForNetSegment
+      responses:
+        '204':
+          description: The agent assignments were successfully updated.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Agent assignment
   /api/v2/sessions/{sessionId}/config/granular-stats:
     get:
       description: Get granular statistics based on the session configuration.
@@ -16215,7 +16273,7 @@ paths:
         type: string
     post:
       description: Start calibration for the test configured in the current session.
-      operationId: startCalibrationStart
+      operationId: startRootStartCalibration
       responses:
         '202':
           content:
@@ -16228,7 +16286,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollCalibrationStart
+      operationId: pollRootStartCalibration
       responses:
         '200':
           content:
@@ -16261,7 +16319,7 @@ paths:
         type: string
     post:
       description: Stop calibration for the test configured in the current session.
-      operationId: startCalibrationStop
+      operationId: startRootStopCalibration
       responses:
         '202':
           content:
@@ -16274,7 +16332,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollCalibrationStop
+      operationId: pollRootStopCalibration
       responses:
         '200':
           content:
@@ -16307,7 +16365,7 @@ paths:
         type: string
     post:
       description: Abort traffic for the test configured in the current session.
-      operationId: startRootAbort
+      operationId: startRootAbortTest
       responses:
         '202':
           content:
@@ -16353,7 +16411,7 @@ paths:
         type: string
     post:
       description: Start traffic for the test configured in the current session.
-      operationId: startRootStart
+      operationId: startRootStartTest
       responses:
         '202':
           content:
@@ -16366,7 +16424,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStart
+      operationId: pollRootStartTest
       responses:
         '200':
           content:
@@ -16399,7 +16457,7 @@ paths:
         type: string
     post:
       description: Stop traffic for the test configured in the current session.
-      operationId: startRootStop
+      operationId: startRootStopTest
       responses:
         '202':
           content:
@@ -16412,7 +16470,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStop
+      operationId: pollRootStopTest
       responses:
         '200':
           content:
@@ -16572,7 +16630,7 @@ paths:
   /api/v2/tags:
     get:
       description: Get all the currently available agent groups.
-      operationId: getTags
+      operationId: getAgentTags
       parameters:
       - description: The number of search results to return
         in: query

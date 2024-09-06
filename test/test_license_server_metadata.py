@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.license_server_metadata import LicenseServerMetadata
+from cyperf.models.license_server_metadata import LicenseServerMetadata
 
 class TestLicenseServerMetadata(unittest.TestCase):
     """LicenseServerMetadata unit test stubs"""

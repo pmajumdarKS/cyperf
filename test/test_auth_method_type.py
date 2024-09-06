@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.auth_method_type import AuthMethodType
+from cyperf.models.auth_method_type import AuthMethodType
 
 class TestAuthMethodType(unittest.TestCase):
     """AuthMethodType unit test stubs"""

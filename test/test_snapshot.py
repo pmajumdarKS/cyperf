@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.snapshot import Snapshot
+from cyperf.models.snapshot import Snapshot
 
 class TestSnapshot(unittest.TestCase):
     """Snapshot unit test stubs"""

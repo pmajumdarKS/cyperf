@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.time_value import TimeValue
+from cyperf.models.time_value import TimeValue
 
 class TestTimeValue(unittest.TestCase):
     """TimeValue unit test stubs"""

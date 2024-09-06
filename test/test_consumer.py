@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.consumer import Consumer
+from cyperf.models.consumer import Consumer
 
 class TestConsumer(unittest.TestCase):
     """Consumer unit test stubs"""

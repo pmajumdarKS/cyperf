@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.attack_timeline_segment import AttackTimelineSegment
+from cyperf.models.attack_timeline_segment import AttackTimelineSegment
 
 class TestAttackTimelineSegment(unittest.TestCase):
     """AttackTimelineSegment unit test stubs"""

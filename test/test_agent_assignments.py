@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.agent_assignments import AgentAssignments
+from cyperf.models.agent_assignments import AgentAssignments
 
 class TestAgentAssignments(unittest.TestCase):
     """AgentAssignments unit test stubs"""
@@ -38,15 +38,15 @@ class TestAgentAssignments(unittest.TestCase):
                 by_id = [
                     null
                     ],
+                by_port = [
+                    null
+                    ],
                 by_tag = [
                     ''
                     ]
             )
         else:
             return AgentAssignments(
-                by_id = [
-                    null
-                    ],
                 by_tag = [
                     ''
                     ],

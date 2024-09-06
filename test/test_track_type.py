@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.track_type import TrackType
+from cyperf.models.track_type import TrackType
 
 class TestTrackType(unittest.TestCase):
     """TrackType unit test stubs"""

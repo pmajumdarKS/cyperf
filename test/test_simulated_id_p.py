@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.simulated_id_p import SimulatedIdP
+from cyperf.models.simulated_id_p import SimulatedIdP
 
 class TestSimulatedIdP(unittest.TestCase):
     """SimulatedIdP unit test stubs"""
@@ -37,15 +37,26 @@ class TestSimulatedIdP(unittest.TestCase):
             return SimulatedIdP(
                 assertion_signature = True,
                 audience_uri = '',
-                cert_config = openapi_client.models.cert_config.CertConfig(
+                cert_config = cyperf.models.cert_config.CertConfig(
                     certificate_file = null, 
                     dh_file = null, 
+                    get_sni_conflicts = [
+                        'YQ=='
+                        ], 
                     id = '', 
                     is_playlist = True, 
                     key_file = null, 
                     key_file_password = '', 
                     playlist_column_name = '', 
                     playlist_filename = '', 
+                    resolve_sni_conflicts = [
+                        cyperf.models.conflict.Conflict(
+                            name = '', 
+                            path_to_target = '', 
+                            path_vars = {
+                                'key' : ''
+                                }, )
+                        ], 
                     sni_hostname = '', ),
                 name_id_format = 'emailAddress',
                 response_signature = True,
@@ -59,19 +70,8 @@ class TestSimulatedIdP(unittest.TestCase):
             return SimulatedIdP(
                 assertion_signature = True,
                 audience_uri = '',
-                cert_config = openapi_client.models.cert_config.CertConfig(
-                    certificate_file = null, 
-                    dh_file = null, 
-                    id = '', 
-                    is_playlist = True, 
-                    key_file = null, 
-                    key_file_password = '', 
-                    playlist_column_name = '', 
-                    playlist_filename = '', 
-                    sni_hostname = '', ),
                 name_id_format = 'emailAddress',
                 response_signature = True,
-                signature_algorithm = 'SHA256_SIGN',
                 single_sign_on_url = '',
         )
         """

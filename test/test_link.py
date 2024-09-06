@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.link import Link
+from cyperf.models.link import Link
 
 class TestLink(unittest.TestCase):
     """Link unit test stubs"""

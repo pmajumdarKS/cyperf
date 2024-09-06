@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.choice import Choice
+from cyperf.models.choice import Choice
 
 class TestChoice(unittest.TestCase):
     """Choice unit test stubs"""

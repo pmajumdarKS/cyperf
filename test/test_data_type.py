@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.data_type import DataType
+from cyperf.models.data_type import DataType
 
 class TestDataType(unittest.TestCase):
     """DataType unit test stubs"""
@@ -36,7 +36,7 @@ class TestDataType(unittest.TestCase):
         if include_optional:
             return DataType(
                 values = [
-                    openapi_client.models.data_type_values_inner.DataType_Values_inner(
+                    cyperf.models.data_type_values_inner.DataType_Values_inner(
                         id = '', 
                         value_type = '', )
                     ],

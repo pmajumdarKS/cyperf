@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.api.sessions_api import SessionsApi
+from cyperf.api.sessions_api import SessionsApi
 
 
 class TestSessionsApi(unittest.TestCase):
@@ -26,212 +26,224 @@ class TestSessionsApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_api_v2_appsec_ui_metadata_get(self) -> None:
-        """Test case for api_v2_appsec_ui_metadata_get
+    def test_create_meta(self) -> None:
+        """Test case for create_meta
 
         """
         pass
 
-    def test_api_v2_sessions_get(self) -> None:
-        """Test case for api_v2_sessions_get
+    def test_create_sessions(self) -> None:
+        """Test case for create_sessions
 
         """
         pass
 
-    def test_api_v2_sessions_operations_batch_delete_id_get(self) -> None:
-        """Test case for api_v2_sessions_operations_batch_delete_id_get
+    def test_delete_meta(self) -> None:
+        """Test case for delete_meta
 
         """
         pass
 
-    def test_api_v2_sessions_operations_batch_delete_post(self) -> None:
-        """Test case for api_v2_sessions_operations_batch_delete_post
+    def test_delete_sessions(self) -> None:
+        """Test case for delete_sessions
 
         """
         pass
 
-    def test_api_v2_sessions_post(self) -> None:
-        """Test case for api_v2_sessions_post
+    def test_get_appsec_ui_metadata(self) -> None:
+        """Test case for get_appsec_ui_metadata
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_docs_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_docs_get
+    def test_get_config(self) -> None:
+        """Test case for get_config
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_get
+    def test_get_docs(self) -> None:
+        """Test case for get_docs
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_granular_stats_filters_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_granular_stats_filters_get
+    def test_get_granular_stats(self) -> None:
+        """Test case for get_granular_stats
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_granular_stats_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_granular_stats_get
+    def test_get_granular_stats_filters(self) -> None:
+        """Test case for get_granular_stats_filters
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_operations_granular_stats_default_dashboards_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_operations_granular_stats_default_dashboards_id_get
+    def test_get_meta(self) -> None:
+        """Test case for get_meta
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_operations_granular_stats_default_dashboards_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_operations_granular_stats_default_dashboards_post
+    def test_get_meta_by_id(self) -> None:
+        """Test case for get_meta_by_id
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_operations_save_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_operations_save_id_get
+    def test_get_sessions(self) -> None:
+        """Test case for get_sessions
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_operations_save_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_operations_save_post
+    def test_get_sessions_by_id(self) -> None:
+        """Test case for get_sessions_by_id
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_config_put(self) -> None:
-        """Test case for api_v2_sessions_session_id_config_put
+    def test_get_test(self) -> None:
+        """Test case for get_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_delete(self) -> None:
-        """Test case for api_v2_sessions_session_id_delete
+    def test_patch_meta(self) -> None:
+        """Test case for patch_meta
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_get
+    def test_patch_sessions(self) -> None:
+        """Test case for patch_sessions
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_get
+    def test_patch_test(self) -> None:
+        """Test case for patch_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_meta_id_delete(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_meta_id_delete
+    def test_poll_config_granular_stats_default_dashboards(self) -> None:
+        """Test case for poll_config_granular_stats_default_dashboards
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_meta_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_meta_id_get
+    def test_poll_config_save(self) -> None:
+        """Test case for poll_config_save
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_meta_id_patch(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_meta_id_patch
+    def test_poll_root_prepare_test(self) -> None:
+        """Test case for poll_root_prepare_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_post
+    def test_poll_root_test_end(self) -> None:
+        """Test case for poll_root_test_end
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_meta_put(self) -> None:
-        """Test case for api_v2_sessions_session_id_meta_put
+    def test_poll_root_test_init(self) -> None:
+        """Test case for poll_root_test_init
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_load_config_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_load_config_id_get
+    def test_poll_sessions_batch_delete(self) -> None:
+        """Test case for poll_sessions_batch_delete
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_load_config_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_load_config_post
+    def test_poll_sessions_load_config(self) -> None:
+        """Test case for poll_sessions_load_config
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_test_end_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_test_end_id_get
+    def test_poll_sessions_touch(self) -> None:
+        """Test case for poll_sessions_touch
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_test_end_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_test_end_post
+    def test_start_config_granular_stats_default_dashboards(self) -> None:
+        """Test case for start_config_granular_stats_default_dashboards
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_test_init_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_test_init_id_get
+    def test_start_config_save(self) -> None:
+        """Test case for start_config_save
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_test_init_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_test_init_post
+    def test_start_root_prepare_test(self) -> None:
+        """Test case for start_root_prepare_test
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_touch_id_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_touch_id_get
+    def test_start_root_test_end(self) -> None:
+        """Test case for start_root_test_end
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_operations_touch_post(self) -> None:
-        """Test case for api_v2_sessions_session_id_operations_touch_post
+    def test_start_root_test_init(self) -> None:
+        """Test case for start_root_test_init
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_patch(self) -> None:
-        """Test case for api_v2_sessions_session_id_patch
+    def test_start_sessions_batch_delete(self) -> None:
+        """Test case for start_sessions_batch_delete
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_put(self) -> None:
-        """Test case for api_v2_sessions_session_id_put
+    def test_start_sessions_load_config(self) -> None:
+        """Test case for start_sessions_load_config
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_get(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_get
+    def test_start_sessions_touch(self) -> None:
+        """Test case for start_sessions_touch
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_patch(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_patch
+    def test_update_config(self) -> None:
+        """Test case for update_config
 
         """
         pass
 
-    def test_api_v2_sessions_session_id_test_put(self) -> None:
-        """Test case for api_v2_sessions_session_id_test_put
+    def test_update_meta(self) -> None:
+        """Test case for update_meta
+
+        """
+        pass
+
+    def test_update_sessions(self) -> None:
+        """Test case for update_sessions
+
+        """
+        pass
+
+    def test_update_test(self) -> None:
+        """Test case for update_test
 
         """
         pass

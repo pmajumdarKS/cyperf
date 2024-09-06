@@ -14,7 +14,7 @@
 
 import unittest
 
-from openapi_client.models.fortinet_encapsulation import FortinetEncapsulation
+from cyperf.models.fortinet_encapsulation import FortinetEncapsulation
 
 class TestFortinetEncapsulation(unittest.TestCase):
     """FortinetEncapsulation unit test stubs"""
@@ -37,7 +37,7 @@ class TestFortinetEncapsulation(unittest.TestCase):
             return FortinetEncapsulation(
                 encapsulation_mode = 'PPP_OVER_DTLS',
                 ppp_over_dtls_enabled = True,
-                ppp_over_dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
+                ppp_over_dtls_settings = cyperf.models.dtls_settings.DTLSSettings(
                     tls_client_profile = null, 
                     udp_profile = null, ),
                 udp_port = 56
@@ -46,9 +46,6 @@ class TestFortinetEncapsulation(unittest.TestCase):
             return FortinetEncapsulation(
                 encapsulation_mode = 'PPP_OVER_DTLS',
                 ppp_over_dtls_enabled = True,
-                ppp_over_dtls_settings = openapi_client.models.dtls_settings.DTLSSettings(
-                    tls_client_profile = null, 
-                    udp_profile = null, ),
                 udp_port = 56,
         )
         """
