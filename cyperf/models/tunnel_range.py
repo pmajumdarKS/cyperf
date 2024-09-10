@@ -24,8 +24,13 @@ from cyperf.models.dns_resolver import DNSResolver
 from cyperf.models.f5_settings import F5Settings
 from cyperf.models.fortinet_settings import FortinetSettings
 from cyperf.models.pangp_settings import PANGPSettings
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "TunnelRange" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class TunnelRange(BaseModel):
     """
@@ -41,6 +46,8 @@ class TunnelRange(BaseModel):
     tunnel_count_per_outer_ip: StrictInt = Field(alias="TunnelCountPerOuterIP")
     tunnel_establishment_timeout: Optional[StrictInt] = Field(default=None, alias="TunnelEstablishmentTimeout")
     vendor_type: StrictStr = Field(alias="VendorType")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["CiscoAnyConnectSettings", "DCPRequestTimeout", "DNSResolver", "F5Settings", "FortinetSettings", "PANGPSettings", "TcpDstPort", "TunnelCountPerOuterIP", "TunnelEstablishmentTimeout", "VendorType"]
 
     @field_validator('vendor_type')
@@ -55,6 +62,158 @@ class TunnelRange(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_cisco_any_connect_settings(self):
+#        if self.cisco_any_connect_settings is not None:
+#            return self.cisco_any_connect_settings
+#        field_info = self.__class__.__fields__["cisco_any_connect_settings"]
+#        try:
+#            self.cisco_any_connect_settings =  self.link_based_request(field_info.alias, "GET", return_type="CiscoAnyConnectSettings")
+#        except LinkNameException as e:
+#            self.cisco_any_connect_settings =  self.link_based_request("cisco_any_connect_settings", "GET", return_type="CiscoAnyConnectSettings")
+#        return self.cisco_any_connect_settings
+#
+#    @rest_cisco_any_connect_settings.setter
+#    def rest_cisco_any_connect_settings(self, value):
+#        self.cisco_any_connect_settings = value
+
+#    @property
+#    def rest_dcp_request_timeout(self):
+#        if self.dcp_request_timeout is not None:
+#            return self.dcp_request_timeout
+#        field_info = self.__class__.__fields__["dcp_request_timeout"]
+#        try:
+#            self.dcp_request_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.dcp_request_timeout =  self.link_based_request("dcp_request_timeout", "GET", return_type="int")
+#        return self.dcp_request_timeout
+#
+#    @rest_dcp_request_timeout.setter
+#    def rest_dcp_request_timeout(self, value):
+#        self.dcp_request_timeout = value
+
+#    @property
+#    def rest_dns_resolver(self):
+#        if self.dns_resolver is not None:
+#            return self.dns_resolver
+#        field_info = self.__class__.__fields__["dns_resolver"]
+#        try:
+#            self.dns_resolver =  self.link_based_request(field_info.alias, "GET", return_type="DNSResolver")
+#        except LinkNameException as e:
+#            self.dns_resolver =  self.link_based_request("dns_resolver", "GET", return_type="DNSResolver")
+#        return self.dns_resolver
+#
+#    @rest_dns_resolver.setter
+#    def rest_dns_resolver(self, value):
+#        self.dns_resolver = value
+
+#    @property
+#    def rest_f5_settings(self):
+#        if self.f5_settings is not None:
+#            return self.f5_settings
+#        field_info = self.__class__.__fields__["f5_settings"]
+#        try:
+#            self.f5_settings =  self.link_based_request(field_info.alias, "GET", return_type="F5Settings")
+#        except LinkNameException as e:
+#            self.f5_settings =  self.link_based_request("f5_settings", "GET", return_type="F5Settings")
+#        return self.f5_settings
+#
+#    @rest_f5_settings.setter
+#    def rest_f5_settings(self, value):
+#        self.f5_settings = value
+
+#    @property
+#    def rest_fortinet_settings(self):
+#        if self.fortinet_settings is not None:
+#            return self.fortinet_settings
+#        field_info = self.__class__.__fields__["fortinet_settings"]
+#        try:
+#            self.fortinet_settings =  self.link_based_request(field_info.alias, "GET", return_type="FortinetSettings")
+#        except LinkNameException as e:
+#            self.fortinet_settings =  self.link_based_request("fortinet_settings", "GET", return_type="FortinetSettings")
+#        return self.fortinet_settings
+#
+#    @rest_fortinet_settings.setter
+#    def rest_fortinet_settings(self, value):
+#        self.fortinet_settings = value
+
+#    @property
+#    def rest_pangp_settings(self):
+#        if self.pangp_settings is not None:
+#            return self.pangp_settings
+#        field_info = self.__class__.__fields__["pangp_settings"]
+#        try:
+#            self.pangp_settings =  self.link_based_request(field_info.alias, "GET", return_type="PANGPSettings")
+#        except LinkNameException as e:
+#            self.pangp_settings =  self.link_based_request("pangp_settings", "GET", return_type="PANGPSettings")
+#        return self.pangp_settings
+#
+#    @rest_pangp_settings.setter
+#    def rest_pangp_settings(self, value):
+#        self.pangp_settings = value
+
+#    @property
+#    def rest_tcp_dst_port(self):
+#        if self.tcp_dst_port is not None:
+#            return self.tcp_dst_port
+#        field_info = self.__class__.__fields__["tcp_dst_port"]
+#        try:
+#            self.tcp_dst_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.tcp_dst_port =  self.link_based_request("tcp_dst_port", "GET", return_type="int")
+#        return self.tcp_dst_port
+#
+#    @rest_tcp_dst_port.setter
+#    def rest_tcp_dst_port(self, value):
+#        self.tcp_dst_port = value
+
+#    @property
+#    def rest_tunnel_count_per_outer_ip(self):
+#        if self.tunnel_count_per_outer_ip is not None:
+#            return self.tunnel_count_per_outer_ip
+#        field_info = self.__class__.__fields__["tunnel_count_per_outer_ip"]
+#        try:
+#            self.tunnel_count_per_outer_ip =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.tunnel_count_per_outer_ip =  self.link_based_request("tunnel_count_per_outer_ip", "GET", return_type="int")
+#        return self.tunnel_count_per_outer_ip
+#
+#    @rest_tunnel_count_per_outer_ip.setter
+#    def rest_tunnel_count_per_outer_ip(self, value):
+#        self.tunnel_count_per_outer_ip = value
+
+#    @property
+#    def rest_tunnel_establishment_timeout(self):
+#        if self.tunnel_establishment_timeout is not None:
+#            return self.tunnel_establishment_timeout
+#        field_info = self.__class__.__fields__["tunnel_establishment_timeout"]
+#        try:
+#            self.tunnel_establishment_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.tunnel_establishment_timeout =  self.link_based_request("tunnel_establishment_timeout", "GET", return_type="int")
+#        return self.tunnel_establishment_timeout
+#
+#    @rest_tunnel_establishment_timeout.setter
+#    def rest_tunnel_establishment_timeout(self, value):
+#        self.tunnel_establishment_timeout = value
+
+#    @property
+#    def rest_vendor_type(self):
+#        if self.vendor_type is not None:
+#            return self.vendor_type
+#        field_info = self.__class__.__fields__["vendor_type"]
+#        try:
+#            self.vendor_type =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.vendor_type =  self.link_based_request("vendor_type", "GET", return_type="str")
+#        return self.vendor_type
+#
+#    @rest_vendor_type.setter
+#    def rest_vendor_type(self, value):
+#        self.vendor_type = value
+
 
 
     def to_str(self) -> str:
@@ -113,20 +272,92 @@ class TunnelRange(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "CiscoAnyConnectSettings": CiscoAnyConnectSettings.from_dict(obj["CiscoAnyConnectSettings"]) if obj.get("CiscoAnyConnectSettings") is not None else None,
-            "DCPRequestTimeout": obj.get("DCPRequestTimeout"),
-            "DNSResolver": DNSResolver.from_dict(obj["DNSResolver"]) if obj.get("DNSResolver") is not None else None,
-            "F5Settings": F5Settings.from_dict(obj["F5Settings"]) if obj.get("F5Settings") is not None else None,
-            "FortinetSettings": FortinetSettings.from_dict(obj["FortinetSettings"]) if obj.get("FortinetSettings") is not None else None,
-            "PANGPSettings": PANGPSettings.from_dict(obj["PANGPSettings"]) if obj.get("PANGPSettings") is not None else None,
-            "TcpDstPort": obj.get("TcpDstPort"),
-            "TunnelCountPerOuterIP": obj.get("TunnelCountPerOuterIP"),
-            "TunnelEstablishmentTimeout": obj.get("TunnelEstablishmentTimeout"),
-            "VendorType": obj.get("VendorType")
+                        "DCPRequestTimeout": obj.get("DCPRequestTimeout"),
+                        "DNSResolver": DNSResolver.from_dict(obj["DNSResolver"]) if obj.get("DNSResolver") is not None else None,
+                        "F5Settings": F5Settings.from_dict(obj["F5Settings"]) if obj.get("F5Settings") is not None else None,
+                        "FortinetSettings": FortinetSettings.from_dict(obj["FortinetSettings"]) if obj.get("FortinetSettings") is not None else None,
+                        "PANGPSettings": PANGPSettings.from_dict(obj["PANGPSettings"]) if obj.get("PANGPSettings") is not None else None,
+                        "TcpDstPort": obj.get("TcpDstPort"),
+                        "TunnelCountPerOuterIP": obj.get("TunnelCountPerOuterIP"),
+                        "TunnelEstablishmentTimeout": obj.get("TunnelEstablishmentTimeout"),
+                        "VendorType": obj.get("VendorType")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

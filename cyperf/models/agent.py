@@ -25,8 +25,13 @@ from cyperf.models.interface import Interface
 from cyperf.models.ntp_info import NtpInfo
 from cyperf.models.selected_env import SelectedEnv
 from cyperf.models.system_info import SystemInfo
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Agent" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Agent(BaseModel):
     """
@@ -55,6 +60,8 @@ class Agent(BaseModel):
     package_version_status: Optional[StrictStr] = Field(default=None, description="A message with information about the current software version and user recommendations.", alias="packageVersionStatus")
     requires_updating: Optional[StrictBool] = Field(default=None, description="A flag indicating whether the agent is not using the recommended version", alias="requiresUpdating")
     system_info: Optional[SystemInfo] = Field(default=None, alias="systemInfo")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["AgentTags", "IP", "Interfaces", "LastUpdate", "ReservationID", "SelectedEnv", "SelectionStatus", "SessionName", "Status", "cpuInfo", "dpdkEnabled", "features", "hostname", "id", "memoryMB", "mgmtInterface", "ntpInfo", "offline", "owner", "ownerId", "packageVersionStatus", "requiresUpdating", "systemInfo"]
 
     model_config = ConfigDict(
@@ -62,6 +69,353 @@ class Agent(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_agent_tags(self):
+#        if self.agent_tags is not None:
+#            return self.agent_tags
+#        field_info = self.__class__.__fields__["agent_tags"]
+#        try:
+#            self.agent_tags =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
+#        except LinkNameException as e:
+#            self.agent_tags =  self.link_based_request("agent_tags", "GET", return_type="List[str]")
+#        return self.agent_tags
+#
+#    @rest_agent_tags.setter
+#    def rest_agent_tags(self, value):
+#        self.agent_tags = value
+
+#    @property
+#    def rest_ip(self):
+#        if self.ip is not None:
+#            return self.ip
+#        field_info = self.__class__.__fields__["ip"]
+#        try:
+#            self.ip =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.ip =  self.link_based_request("ip", "GET", return_type="str")
+#        return self.ip
+#
+#    @rest_ip.setter
+#    def rest_ip(self, value):
+#        self.ip = value
+
+#    @property
+#    def rest_interfaces(self):
+#        if self.interfaces is not None:
+#            return self.interfaces
+#        field_info = self.__class__.__fields__["interfaces"]
+#        try:
+#            self.interfaces =  self.link_based_request(field_info.alias, "GET", return_type="List[Interface]")
+#        except LinkNameException as e:
+#            self.interfaces =  self.link_based_request("interfaces", "GET", return_type="List[Interface]")
+#        return self.interfaces
+#
+#    @rest_interfaces.setter
+#    def rest_interfaces(self, value):
+#        self.interfaces = value
+
+#    @property
+#    def rest_last_update(self):
+#        if self.last_update is not None:
+#            return self.last_update
+#        field_info = self.__class__.__fields__["last_update"]
+#        try:
+#            self.last_update =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.last_update =  self.link_based_request("last_update", "GET", return_type="int")
+#        return self.last_update
+#
+#    @rest_last_update.setter
+#    def rest_last_update(self, value):
+#        self.last_update = value
+
+#    @property
+#    def rest_reservation_id(self):
+#        if self.reservation_id is not None:
+#            return self.reservation_id
+#        field_info = self.__class__.__fields__["reservation_id"]
+#        try:
+#            self.reservation_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.reservation_id =  self.link_based_request("reservation_id", "GET", return_type="str")
+#        return self.reservation_id
+#
+#    @rest_reservation_id.setter
+#    def rest_reservation_id(self, value):
+#        self.reservation_id = value
+
+#    @property
+#    def rest_selected_env(self):
+#        if self.selected_env is not None:
+#            return self.selected_env
+#        field_info = self.__class__.__fields__["selected_env"]
+#        try:
+#            self.selected_env =  self.link_based_request(field_info.alias, "GET", return_type="SelectedEnv")
+#        except LinkNameException as e:
+#            self.selected_env =  self.link_based_request("selected_env", "GET", return_type="SelectedEnv")
+#        return self.selected_env
+#
+#    @rest_selected_env.setter
+#    def rest_selected_env(self, value):
+#        self.selected_env = value
+
+#    @property
+#    def rest_selection_status(self):
+#        if self.selection_status is not None:
+#            return self.selection_status
+#        field_info = self.__class__.__fields__["selection_status"]
+#        try:
+#            self.selection_status =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.selection_status =  self.link_based_request("selection_status", "GET", return_type="str")
+#        return self.selection_status
+#
+#    @rest_selection_status.setter
+#    def rest_selection_status(self, value):
+#        self.selection_status = value
+
+#    @property
+#    def rest_session_name(self):
+#        if self.session_name is not None:
+#            return self.session_name
+#        field_info = self.__class__.__fields__["session_name"]
+#        try:
+#            self.session_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.session_name =  self.link_based_request("session_name", "GET", return_type="str")
+#        return self.session_name
+#
+#    @rest_session_name.setter
+#    def rest_session_name(self, value):
+#        self.session_name = value
+
+#    @property
+#    def rest_status(self):
+#        if self.status is not None:
+#            return self.status
+#        field_info = self.__class__.__fields__["status"]
+#        try:
+#            self.status =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.status =  self.link_based_request("status", "GET", return_type="str")
+#        return self.status
+#
+#    @rest_status.setter
+#    def rest_status(self, value):
+#        self.status = value
+
+#    @property
+#    def rest_cpu_info(self):
+#        if self.cpu_info is not None:
+#            return self.cpu_info
+#        field_info = self.__class__.__fields__["cpu_info"]
+#        try:
+#            self.cpu_info =  self.link_based_request(field_info.alias, "GET", return_type="List[AgentCPUInfo]")
+#        except LinkNameException as e:
+#            self.cpu_info =  self.link_based_request("cpu_info", "GET", return_type="List[AgentCPUInfo]")
+#        return self.cpu_info
+#
+#    @rest_cpu_info.setter
+#    def rest_cpu_info(self, value):
+#        self.cpu_info = value
+
+#    @property
+#    def rest_dpdk_enabled(self):
+#        if self.dpdk_enabled is not None:
+#            return self.dpdk_enabled
+#        field_info = self.__class__.__fields__["dpdk_enabled"]
+#        try:
+#            self.dpdk_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.dpdk_enabled =  self.link_based_request("dpdk_enabled", "GET", return_type="bool")
+#        return self.dpdk_enabled
+#
+#    @rest_dpdk_enabled.setter
+#    def rest_dpdk_enabled(self, value):
+#        self.dpdk_enabled = value
+
+#    @property
+#    def rest_features(self):
+#        if self.features is not None:
+#            return self.features
+#        field_info = self.__class__.__fields__["features"]
+#        try:
+#            self.features =  self.link_based_request(field_info.alias, "GET", return_type="AgentFeatures")
+#        except LinkNameException as e:
+#            self.features =  self.link_based_request("features", "GET", return_type="AgentFeatures")
+#        return self.features
+#
+#    @rest_features.setter
+#    def rest_features(self, value):
+#        self.features = value
+
+#    @property
+#    def rest_hostname(self):
+#        if self.hostname is not None:
+#            return self.hostname
+#        field_info = self.__class__.__fields__["hostname"]
+#        try:
+#            self.hostname =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.hostname =  self.link_based_request("hostname", "GET", return_type="str")
+#        return self.hostname
+#
+#    @rest_hostname.setter
+#    def rest_hostname(self, value):
+#        self.hostname = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_memory_mb(self):
+#        if self.memory_mb is not None:
+#            return self.memory_mb
+#        field_info = self.__class__.__fields__["memory_mb"]
+#        try:
+#            self.memory_mb =  self.link_based_request(field_info.alias, "GET", return_type="float")
+#        except LinkNameException as e:
+#            self.memory_mb =  self.link_based_request("memory_mb", "GET", return_type="float")
+#        return self.memory_mb
+#
+#    @rest_memory_mb.setter
+#    def rest_memory_mb(self, value):
+#        self.memory_mb = value
+
+#    @property
+#    def rest_mgmt_interface(self):
+#        if self.mgmt_interface is not None:
+#            return self.mgmt_interface
+#        field_info = self.__class__.__fields__["mgmt_interface"]
+#        try:
+#            self.mgmt_interface =  self.link_based_request(field_info.alias, "GET", return_type="Interface")
+#        except LinkNameException as e:
+#            self.mgmt_interface =  self.link_based_request("mgmt_interface", "GET", return_type="Interface")
+#        return self.mgmt_interface
+#
+#    @rest_mgmt_interface.setter
+#    def rest_mgmt_interface(self, value):
+#        self.mgmt_interface = value
+
+#    @property
+#    def rest_ntp_info(self):
+#        if self.ntp_info is not None:
+#            return self.ntp_info
+#        field_info = self.__class__.__fields__["ntp_info"]
+#        try:
+#            self.ntp_info =  self.link_based_request(field_info.alias, "GET", return_type="NtpInfo")
+#        except LinkNameException as e:
+#            self.ntp_info =  self.link_based_request("ntp_info", "GET", return_type="NtpInfo")
+#        return self.ntp_info
+#
+#    @rest_ntp_info.setter
+#    def rest_ntp_info(self, value):
+#        self.ntp_info = value
+
+#    @property
+#    def rest_offline(self):
+#        if self.offline is not None:
+#            return self.offline
+#        field_info = self.__class__.__fields__["offline"]
+#        try:
+#            self.offline =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.offline =  self.link_based_request("offline", "GET", return_type="bool")
+#        return self.offline
+#
+#    @rest_offline.setter
+#    def rest_offline(self, value):
+#        self.offline = value
+
+#    @property
+#    def rest_owner(self):
+#        if self.owner is not None:
+#            return self.owner
+#        field_info = self.__class__.__fields__["owner"]
+#        try:
+#            self.owner =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner =  self.link_based_request("owner", "GET", return_type="str")
+#        return self.owner
+#
+#    @rest_owner.setter
+#    def rest_owner(self, value):
+#        self.owner = value
+
+#    @property
+#    def rest_owner_id(self):
+#        if self.owner_id is not None:
+#            return self.owner_id
+#        field_info = self.__class__.__fields__["owner_id"]
+#        try:
+#            self.owner_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner_id =  self.link_based_request("owner_id", "GET", return_type="str")
+#        return self.owner_id
+#
+#    @rest_owner_id.setter
+#    def rest_owner_id(self, value):
+#        self.owner_id = value
+
+#    @property
+#    def rest_package_version_status(self):
+#        if self.package_version_status is not None:
+#            return self.package_version_status
+#        field_info = self.__class__.__fields__["package_version_status"]
+#        try:
+#            self.package_version_status =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.package_version_status =  self.link_based_request("package_version_status", "GET", return_type="str")
+#        return self.package_version_status
+#
+#    @rest_package_version_status.setter
+#    def rest_package_version_status(self, value):
+#        self.package_version_status = value
+
+#    @property
+#    def rest_requires_updating(self):
+#        if self.requires_updating is not None:
+#            return self.requires_updating
+#        field_info = self.__class__.__fields__["requires_updating"]
+#        try:
+#            self.requires_updating =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.requires_updating =  self.link_based_request("requires_updating", "GET", return_type="bool")
+#        return self.requires_updating
+#
+#    @rest_requires_updating.setter
+#    def rest_requires_updating(self, value):
+#        self.requires_updating = value
+
+#    @property
+#    def rest_system_info(self):
+#        if self.system_info is not None:
+#            return self.system_info
+#        field_info = self.__class__.__fields__["system_info"]
+#        try:
+#            self.system_info =  self.link_based_request(field_info.alias, "GET", return_type="SystemInfo")
+#        except LinkNameException as e:
+#            self.system_info =  self.link_based_request("system_info", "GET", return_type="SystemInfo")
+#        return self.system_info
+#
+#    @rest_system_info.setter
+#    def rest_system_info(self, value):
+#        self.system_info = value
+
 
 
     def to_str(self) -> str:
@@ -127,9 +481,9 @@ class Agent(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in interfaces (list)
         _items = []
         if self.interfaces:
-            for _item_interfaces in self.interfaces:
-                if _item_interfaces:
-                    _items.append(_item_interfaces.to_dict())
+            for _item in self.interfaces:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Interfaces'] = _items
         # override the default output from pydantic by calling `to_dict()` of selected_env
         if self.selected_env:
@@ -137,9 +491,9 @@ class Agent(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in cpu_info (list)
         _items = []
         if self.cpu_info:
-            for _item_cpu_info in self.cpu_info:
-                if _item_cpu_info:
-                    _items.append(_item_cpu_info.to_dict())
+            for _item in self.cpu_info:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['cpuInfo'] = _items
         # override the default output from pydantic by calling `to_dict()` of features
         if self.features:
@@ -162,33 +516,105 @@ class Agent(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "AgentTags": obj.get("AgentTags"),
-            "IP": obj.get("IP"),
-            "Interfaces": [Interface.from_dict(_item) for _item in obj["Interfaces"]] if obj.get("Interfaces") is not None else None,
-            "LastUpdate": obj.get("LastUpdate"),
-            "ReservationID": obj.get("ReservationID"),
-            "SelectedEnv": SelectedEnv.from_dict(obj["SelectedEnv"]) if obj.get("SelectedEnv") is not None else None,
-            "SelectionStatus": obj.get("SelectionStatus"),
-            "SessionName": obj.get("SessionName"),
-            "Status": obj.get("Status"),
-            "cpuInfo": [AgentCPUInfo.from_dict(_item) for _item in obj["cpuInfo"]] if obj.get("cpuInfo") is not None else None,
-            "dpdkEnabled": obj.get("dpdkEnabled"),
-            "features": AgentFeatures.from_dict(obj["features"]) if obj.get("features") is not None else None,
-            "hostname": obj.get("hostname"),
-            "id": obj.get("id"),
-            "memoryMB": obj.get("memoryMB"),
-            "mgmtInterface": Interface.from_dict(obj["mgmtInterface"]) if obj.get("mgmtInterface") is not None else None,
-            "ntpInfo": NtpInfo.from_dict(obj["ntpInfo"]) if obj.get("ntpInfo") is not None else None,
-            "offline": obj.get("offline"),
-            "owner": obj.get("owner"),
-            "ownerId": obj.get("ownerId"),
-            "packageVersionStatus": obj.get("packageVersionStatus"),
-            "requiresUpdating": obj.get("requiresUpdating"),
-            "systemInfo": SystemInfo.from_dict(obj["systemInfo"]) if obj.get("systemInfo") is not None else None
+                        "IP": obj.get("IP"),
+                        "Interfaces": [Interface.from_dict(_item) for _item in obj["Interfaces"]] if obj.get("Interfaces") is not None else None,
+                        "LastUpdate": obj.get("LastUpdate"),
+                        "ReservationID": obj.get("ReservationID"),
+                        "SelectedEnv": SelectedEnv.from_dict(obj["SelectedEnv"]) if obj.get("SelectedEnv") is not None else None,
+                        "SelectionStatus": obj.get("SelectionStatus"),
+                        "SessionName": obj.get("SessionName"),
+                        "Status": obj.get("Status"),
+                        "cpuInfo": [AgentCPUInfo.from_dict(_item) for _item in obj["cpuInfo"]] if obj.get("cpuInfo") is not None else None,
+                        "dpdkEnabled": obj.get("dpdkEnabled"),
+                        "features": AgentFeatures.from_dict(obj["features"]) if obj.get("features") is not None else None,
+                        "hostname": obj.get("hostname"),
+                        "id": obj.get("id"),
+                        "memoryMB": obj.get("memoryMB"),
+                        "mgmtInterface": Interface.from_dict(obj["mgmtInterface"]) if obj.get("mgmtInterface") is not None else None,
+                        "ntpInfo": NtpInfo.from_dict(obj["ntpInfo"]) if obj.get("ntpInfo") is not None else None,
+                        "offline": obj.get("offline"),
+                        "owner": obj.get("owner"),
+                        "ownerId": obj.get("ownerId"),
+                        "packageVersionStatus": obj.get("packageVersionStatus"),
+                        "requiresUpdating": obj.get("requiresUpdating"),
+                        "systemInfo": SystemInfo.from_dict(obj["systemInfo"]) if obj.get("systemInfo") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

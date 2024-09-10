@@ -25,8 +25,13 @@ from cyperf.models.config_validation import ConfigValidation
 from cyperf.models.custom_dashboards import CustomDashboards
 from cyperf.models.expected_disk_space import ExpectedDiskSpace
 from cyperf.models.network_profile import NetworkProfile
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Config" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Config(BaseModel):
     """
@@ -39,6 +44,8 @@ class Config(BaseModel):
     network_profiles: Optional[List[NetworkProfile]] = Field(default=None, alias="NetworkProfiles")
     traffic_profiles: Optional[List[ApplicationProfile]] = Field(default=None, alias="TrafficProfiles")
     validate: Optional[List[Union[StrictBytes, StrictStr]]] = None
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["AttackProfiles", "ConfigValidation", "CustomDashboards", "ExpectedDiskSpace", "NetworkProfiles", "TrafficProfiles", "validate"]
 
     model_config = ConfigDict(
@@ -46,6 +53,113 @@ class Config(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_attack_profiles(self):
+#        if self.attack_profiles is not None:
+#            return self.attack_profiles
+#        field_info = self.__class__.__fields__["attack_profiles"]
+#        try:
+#            self.attack_profiles =  self.link_based_request(field_info.alias, "GET", return_type="List[AttackProfile]")
+#        except LinkNameException as e:
+#            self.attack_profiles =  self.link_based_request("attack_profiles", "GET", return_type="List[AttackProfile]")
+#        return self.attack_profiles
+#
+#    @rest_attack_profiles.setter
+#    def rest_attack_profiles(self, value):
+#        self.attack_profiles = value
+
+#    @property
+#    def rest_config_validation(self):
+#        if self.config_validation is not None:
+#            return self.config_validation
+#        field_info = self.__class__.__fields__["config_validation"]
+#        try:
+#            self.config_validation =  self.link_based_request(field_info.alias, "GET", return_type="ConfigValidation")
+#        except LinkNameException as e:
+#            self.config_validation =  self.link_based_request("config_validation", "GET", return_type="ConfigValidation")
+#        return self.config_validation
+#
+#    @rest_config_validation.setter
+#    def rest_config_validation(self, value):
+#        self.config_validation = value
+
+#    @property
+#    def rest_custom_dashboards(self):
+#        if self.custom_dashboards is not None:
+#            return self.custom_dashboards
+#        field_info = self.__class__.__fields__["custom_dashboards"]
+#        try:
+#            self.custom_dashboards =  self.link_based_request(field_info.alias, "GET", return_type="CustomDashboards")
+#        except LinkNameException as e:
+#            self.custom_dashboards =  self.link_based_request("custom_dashboards", "GET", return_type="CustomDashboards")
+#        return self.custom_dashboards
+#
+#    @rest_custom_dashboards.setter
+#    def rest_custom_dashboards(self, value):
+#        self.custom_dashboards = value
+
+#    @property
+#    def rest_expected_disk_space(self):
+#        if self.expected_disk_space is not None:
+#            return self.expected_disk_space
+#        field_info = self.__class__.__fields__["expected_disk_space"]
+#        try:
+#            self.expected_disk_space =  self.link_based_request(field_info.alias, "GET", return_type="List[ExpectedDiskSpace]")
+#        except LinkNameException as e:
+#            self.expected_disk_space =  self.link_based_request("expected_disk_space", "GET", return_type="List[ExpectedDiskSpace]")
+#        return self.expected_disk_space
+#
+#    @rest_expected_disk_space.setter
+#    def rest_expected_disk_space(self, value):
+#        self.expected_disk_space = value
+
+#    @property
+#    def rest_network_profiles(self):
+#        if self.network_profiles is not None:
+#            return self.network_profiles
+#        field_info = self.__class__.__fields__["network_profiles"]
+#        try:
+#            self.network_profiles =  self.link_based_request(field_info.alias, "GET", return_type="List[NetworkProfile]")
+#        except LinkNameException as e:
+#            self.network_profiles =  self.link_based_request("network_profiles", "GET", return_type="List[NetworkProfile]")
+#        return self.network_profiles
+#
+#    @rest_network_profiles.setter
+#    def rest_network_profiles(self, value):
+#        self.network_profiles = value
+
+#    @property
+#    def rest_traffic_profiles(self):
+#        if self.traffic_profiles is not None:
+#            return self.traffic_profiles
+#        field_info = self.__class__.__fields__["traffic_profiles"]
+#        try:
+#            self.traffic_profiles =  self.link_based_request(field_info.alias, "GET", return_type="List[ApplicationProfile]")
+#        except LinkNameException as e:
+#            self.traffic_profiles =  self.link_based_request("traffic_profiles", "GET", return_type="List[ApplicationProfile]")
+#        return self.traffic_profiles
+#
+#    @rest_traffic_profiles.setter
+#    def rest_traffic_profiles(self, value):
+#        self.traffic_profiles = value
+
+#    @property
+#    def rest_validate(self):
+#        if self.validate is not None:
+#            return self.validate
+#        field_info = self.__class__.__fields__["validate"]
+#        try:
+#            self.validate =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
+#        except LinkNameException as e:
+#            self.validate =  self.link_based_request("validate", "GET", return_type="List[bytearray]")
+#        return self.validate
+#
+#    @rest_validate.setter
+#    def rest_validate(self, value):
+#        self.validate = value
+
 
 
     def to_str(self) -> str:
@@ -83,9 +197,9 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in attack_profiles (list)
         _items = []
         if self.attack_profiles:
-            for _item_attack_profiles in self.attack_profiles:
-                if _item_attack_profiles:
-                    _items.append(_item_attack_profiles.to_dict())
+            for _item in self.attack_profiles:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['AttackProfiles'] = _items
         # override the default output from pydantic by calling `to_dict()` of config_validation
         if self.config_validation:
@@ -96,23 +210,23 @@ class Config(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in expected_disk_space (list)
         _items = []
         if self.expected_disk_space:
-            for _item_expected_disk_space in self.expected_disk_space:
-                if _item_expected_disk_space:
-                    _items.append(_item_expected_disk_space.to_dict())
+            for _item in self.expected_disk_space:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['ExpectedDiskSpace'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in network_profiles (list)
         _items = []
         if self.network_profiles:
-            for _item_network_profiles in self.network_profiles:
-                if _item_network_profiles:
-                    _items.append(_item_network_profiles.to_dict())
+            for _item in self.network_profiles:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['NetworkProfiles'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in traffic_profiles (list)
         _items = []
         if self.traffic_profiles:
-            for _item_traffic_profiles in self.traffic_profiles:
-                if _item_traffic_profiles:
-                    _items.append(_item_traffic_profiles.to_dict())
+            for _item in self.traffic_profiles:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['TrafficProfiles'] = _items
         return _dict
 
@@ -123,17 +237,89 @@ class Config(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "AttackProfiles": [AttackProfile.from_dict(_item) for _item in obj["AttackProfiles"]] if obj.get("AttackProfiles") is not None else None,
-            "ConfigValidation": ConfigValidation.from_dict(obj["ConfigValidation"]) if obj.get("ConfigValidation") is not None else None,
-            "CustomDashboards": CustomDashboards.from_dict(obj["CustomDashboards"]) if obj.get("CustomDashboards") is not None else None,
-            "ExpectedDiskSpace": [ExpectedDiskSpace.from_dict(_item) for _item in obj["ExpectedDiskSpace"]] if obj.get("ExpectedDiskSpace") is not None else None,
-            "NetworkProfiles": [NetworkProfile.from_dict(_item) for _item in obj["NetworkProfiles"]] if obj.get("NetworkProfiles") is not None else None,
-            "TrafficProfiles": [ApplicationProfile.from_dict(_item) for _item in obj["TrafficProfiles"]] if obj.get("TrafficProfiles") is not None else None,
-            "validate": obj.get("validate")
+                        "ConfigValidation": ConfigValidation.from_dict(obj["ConfigValidation"]) if obj.get("ConfigValidation") is not None else None,
+                        "CustomDashboards": CustomDashboards.from_dict(obj["CustomDashboards"]) if obj.get("CustomDashboards") is not None else None,
+                        "ExpectedDiskSpace": [ExpectedDiskSpace.from_dict(_item) for _item in obj["ExpectedDiskSpace"]] if obj.get("ExpectedDiskSpace") is not None else None,
+                        "NetworkProfiles": [NetworkProfile.from_dict(_item) for _item in obj["NetworkProfiles"]] if obj.get("NetworkProfiles") is not None else None,
+                        "TrafficProfiles": [ApplicationProfile.from_dict(_item) for _item in obj["TrafficProfiles"]] if obj.get("TrafficProfiles") is not None else None,
+                        "validate": obj.get("validate")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

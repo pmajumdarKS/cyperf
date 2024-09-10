@@ -13,6 +13,9 @@
 """  # noqa: E501
 
 
+class LinkNameException(Exception):
+    pass
+
 # import models into model package
 from cyperf.models.api_link import APILink
 from cyperf.models.api_relationship import APIRelationship

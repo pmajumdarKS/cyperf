@@ -21,8 +21,13 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.chassis_info import ChassisInfo
 from cyperf.models.traffic_agent_info import TrafficAgentInfo
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "SystemInfo" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class SystemInfo(BaseModel):
     """
@@ -33,6 +38,8 @@ class SystemInfo(BaseModel):
     os_name: Optional[StrictStr] = Field(default=None, alias="osName")
     port_manager_version: Optional[StrictStr] = Field(default=None, alias="portManagerVersion")
     traffic_agent_info: Optional[List[TrafficAgentInfo]] = Field(default=None, alias="trafficAgentInfo")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["chassisInfo", "kernelVersion", "osName", "portManagerVersion", "trafficAgentInfo"]
 
     model_config = ConfigDict(
@@ -40,6 +47,83 @@ class SystemInfo(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_chassis_info(self):
+#        if self.chassis_info is not None:
+#            return self.chassis_info
+#        field_info = self.__class__.__fields__["chassis_info"]
+#        try:
+#            self.chassis_info =  self.link_based_request(field_info.alias, "GET", return_type="ChassisInfo")
+#        except LinkNameException as e:
+#            self.chassis_info =  self.link_based_request("chassis_info", "GET", return_type="ChassisInfo")
+#        return self.chassis_info
+#
+#    @rest_chassis_info.setter
+#    def rest_chassis_info(self, value):
+#        self.chassis_info = value
+
+#    @property
+#    def rest_kernel_version(self):
+#        if self.kernel_version is not None:
+#            return self.kernel_version
+#        field_info = self.__class__.__fields__["kernel_version"]
+#        try:
+#            self.kernel_version =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.kernel_version =  self.link_based_request("kernel_version", "GET", return_type="str")
+#        return self.kernel_version
+#
+#    @rest_kernel_version.setter
+#    def rest_kernel_version(self, value):
+#        self.kernel_version = value
+
+#    @property
+#    def rest_os_name(self):
+#        if self.os_name is not None:
+#            return self.os_name
+#        field_info = self.__class__.__fields__["os_name"]
+#        try:
+#            self.os_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.os_name =  self.link_based_request("os_name", "GET", return_type="str")
+#        return self.os_name
+#
+#    @rest_os_name.setter
+#    def rest_os_name(self, value):
+#        self.os_name = value
+
+#    @property
+#    def rest_port_manager_version(self):
+#        if self.port_manager_version is not None:
+#            return self.port_manager_version
+#        field_info = self.__class__.__fields__["port_manager_version"]
+#        try:
+#            self.port_manager_version =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.port_manager_version =  self.link_based_request("port_manager_version", "GET", return_type="str")
+#        return self.port_manager_version
+#
+#    @rest_port_manager_version.setter
+#    def rest_port_manager_version(self, value):
+#        self.port_manager_version = value
+
+#    @property
+#    def rest_traffic_agent_info(self):
+#        if self.traffic_agent_info is not None:
+#            return self.traffic_agent_info
+#        field_info = self.__class__.__fields__["traffic_agent_info"]
+#        try:
+#            self.traffic_agent_info =  self.link_based_request(field_info.alias, "GET", return_type="List[TrafficAgentInfo]")
+#        except LinkNameException as e:
+#            self.traffic_agent_info =  self.link_based_request("traffic_agent_info", "GET", return_type="List[TrafficAgentInfo]")
+#        return self.traffic_agent_info
+#
+#    @rest_traffic_agent_info.setter
+#    def rest_traffic_agent_info(self, value):
+#        self.traffic_agent_info = value
+
 
 
     def to_str(self) -> str:
@@ -88,9 +172,9 @@ class SystemInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in traffic_agent_info (list)
         _items = []
         if self.traffic_agent_info:
-            for _item_traffic_agent_info in self.traffic_agent_info:
-                if _item_traffic_agent_info:
-                    _items.append(_item_traffic_agent_info.to_dict())
+            for _item in self.traffic_agent_info:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['trafficAgentInfo'] = _items
         return _dict
 
@@ -101,15 +185,87 @@ class SystemInfo(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "chassisInfo": ChassisInfo.from_dict(obj["chassisInfo"]) if obj.get("chassisInfo") is not None else None,
-            "kernelVersion": obj.get("kernelVersion"),
-            "osName": obj.get("osName"),
-            "portManagerVersion": obj.get("portManagerVersion"),
-            "trafficAgentInfo": [TrafficAgentInfo.from_dict(_item) for _item in obj["trafficAgentInfo"]] if obj.get("trafficAgentInfo") is not None else None
+                        "kernelVersion": obj.get("kernelVersion"),
+                        "osName": obj.get("osName"),
+                        "portManagerVersion": obj.get("portManagerVersion"),
+                        "trafficAgentInfo": [TrafficAgentInfo.from_dict(_item) for _item in obj["trafficAgentInfo"]] if obj.get("trafficAgentInfo") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

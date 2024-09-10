@@ -19,8 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Notification" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Notification(BaseModel):
     """
@@ -36,6 +41,8 @@ class Notification(BaseModel):
     sticky: Optional[StrictBool] = Field(default=None, description="A flag indicating that the current notification should not be automatically dismissed or hidden after a certain period")
     tags: Optional[Dict[str, StrictStr]] = Field(default=None, description="A list of custom tags that provide additional information about the notification")
     timestamp: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the notification was generated")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["alerting", "id", "message", "owner", "ownerId", "seen", "severity", "sticky", "tags", "timestamp"]
 
     model_config = ConfigDict(
@@ -43,6 +50,158 @@ class Notification(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_alerting(self):
+#        if self.alerting is not None:
+#            return self.alerting
+#        field_info = self.__class__.__fields__["alerting"]
+#        try:
+#            self.alerting =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.alerting =  self.link_based_request("alerting", "GET", return_type="bool")
+#        return self.alerting
+#
+#    @rest_alerting.setter
+#    def rest_alerting(self, value):
+#        self.alerting = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_message(self):
+#        if self.message is not None:
+#            return self.message
+#        field_info = self.__class__.__fields__["message"]
+#        try:
+#            self.message =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.message =  self.link_based_request("message", "GET", return_type="str")
+#        return self.message
+#
+#    @rest_message.setter
+#    def rest_message(self, value):
+#        self.message = value
+
+#    @property
+#    def rest_owner(self):
+#        if self.owner is not None:
+#            return self.owner
+#        field_info = self.__class__.__fields__["owner"]
+#        try:
+#            self.owner =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner =  self.link_based_request("owner", "GET", return_type="str")
+#        return self.owner
+#
+#    @rest_owner.setter
+#    def rest_owner(self, value):
+#        self.owner = value
+
+#    @property
+#    def rest_owner_id(self):
+#        if self.owner_id is not None:
+#            return self.owner_id
+#        field_info = self.__class__.__fields__["owner_id"]
+#        try:
+#            self.owner_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner_id =  self.link_based_request("owner_id", "GET", return_type="str")
+#        return self.owner_id
+#
+#    @rest_owner_id.setter
+#    def rest_owner_id(self, value):
+#        self.owner_id = value
+
+#    @property
+#    def rest_seen(self):
+#        if self.seen is not None:
+#            return self.seen
+#        field_info = self.__class__.__fields__["seen"]
+#        try:
+#            self.seen =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.seen =  self.link_based_request("seen", "GET", return_type="bool")
+#        return self.seen
+#
+#    @rest_seen.setter
+#    def rest_seen(self, value):
+#        self.seen = value
+
+#    @property
+#    def rest_severity(self):
+#        if self.severity is not None:
+#            return self.severity
+#        field_info = self.__class__.__fields__["severity"]
+#        try:
+#            self.severity =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.severity =  self.link_based_request("severity", "GET", return_type="str")
+#        return self.severity
+#
+#    @rest_severity.setter
+#    def rest_severity(self, value):
+#        self.severity = value
+
+#    @property
+#    def rest_sticky(self):
+#        if self.sticky is not None:
+#            return self.sticky
+#        field_info = self.__class__.__fields__["sticky"]
+#        try:
+#            self.sticky =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.sticky =  self.link_based_request("sticky", "GET", return_type="bool")
+#        return self.sticky
+#
+#    @rest_sticky.setter
+#    def rest_sticky(self, value):
+#        self.sticky = value
+
+#    @property
+#    def rest_tags(self):
+#        if self.tags is not None:
+#            return self.tags
+#        field_info = self.__class__.__fields__["tags"]
+#        try:
+#            self.tags =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, str]")
+#        except LinkNameException as e:
+#            self.tags =  self.link_based_request("tags", "GET", return_type="Dict[str, str]")
+#        return self.tags
+#
+#    @rest_tags.setter
+#    def rest_tags(self, value):
+#        self.tags = value
+
+#    @property
+#    def rest_timestamp(self):
+#        if self.timestamp is not None:
+#            return self.timestamp
+#        field_info = self.__class__.__fields__["timestamp"]
+#        try:
+#            self.timestamp =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.timestamp =  self.link_based_request("timestamp", "GET", return_type="int")
+#        return self.timestamp
+#
+#    @rest_timestamp.setter
+#    def rest_timestamp(self, value):
+#        self.timestamp = value
+
 
 
     def to_str(self) -> str:
@@ -106,20 +265,92 @@ class Notification(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "alerting": obj.get("alerting"),
-            "id": obj.get("id"),
-            "message": obj.get("message"),
-            "owner": obj.get("owner"),
-            "ownerId": obj.get("ownerId"),
-            "seen": obj.get("seen"),
-            "severity": obj.get("severity"),
-            "sticky": obj.get("sticky"),
-            "tags": obj.get("tags"),
-            "timestamp": obj.get("timestamp")
+                        "id": obj.get("id"),
+                        "message": obj.get("message"),
+                        "owner": obj.get("owner"),
+                        "ownerId": obj.get("ownerId"),
+                        "seen": obj.get("seen"),
+                        "severity": obj.get("severity"),
+                        "sticky": obj.get("sticky"),
+                        "tags": obj.get("tags"),
+                        "timestamp": obj.get("timestamp")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

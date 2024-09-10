@@ -24,8 +24,13 @@ from cyperf.models.auth_settings import AuthSettings
 from cyperf.models.pangp_encapsulation import PANGPEncapsulation
 from cyperf.models.tcp_profile import TcpProfile
 from cyperf.models.tls_profile import TLSProfile
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "PANGPSettings" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class PANGPSettings(BaseModel):
     """
@@ -41,6 +46,8 @@ class PANGPSettings(BaseModel):
     portal_hostname: Annotated[str, Field(strict=True)] = Field(alias="PortalHostname")
     vpn_gateway: Optional[StrictStr] = Field(default=None, alias="VPNGateway")
     vpn_gateways: List[StrictStr] = Field(alias="VPNGateways")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile", "ESPProbeRetryTimeout", "ESPProbeTimeout", "IsPortal", "OuterTLSClientProfile", "PANGPEncapsulation", "PortalHostname", "VPNGateway", "VPNGateways"]
 
     @field_validator('portal_hostname')
@@ -55,6 +62,158 @@ class PANGPSettings(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_var_auth_settings(self):
+#        if self.var_auth_settings is not None:
+#            return self.var_auth_settings
+#        field_info = self.__class__.__fields__["var_auth_settings"]
+#        try:
+#            self.var_auth_settings =  self.link_based_request(field_info.alias, "GET", return_type="AuthSettings")
+#        except LinkNameException as e:
+#            self.var_auth_settings =  self.link_based_request("var_auth_settings", "GET", return_type="AuthSettings")
+#        return self.var_auth_settings
+#
+#    @rest_var_auth_settings.setter
+#    def rest_var_auth_settings(self, value):
+#        self.var_auth_settings = value
+
+#    @property
+#    def rest_outer_tcp_profile(self):
+#        if self.outer_tcp_profile is not None:
+#            return self.outer_tcp_profile
+#        field_info = self.__class__.__fields__["outer_tcp_profile"]
+#        try:
+#            self.outer_tcp_profile =  self.link_based_request(field_info.alias, "GET", return_type="TcpProfile")
+#        except LinkNameException as e:
+#            self.outer_tcp_profile =  self.link_based_request("outer_tcp_profile", "GET", return_type="TcpProfile")
+#        return self.outer_tcp_profile
+#
+#    @rest_outer_tcp_profile.setter
+#    def rest_outer_tcp_profile(self, value):
+#        self.outer_tcp_profile = value
+
+#    @property
+#    def rest_esp_probe_retry_timeout(self):
+#        if self.esp_probe_retry_timeout is not None:
+#            return self.esp_probe_retry_timeout
+#        field_info = self.__class__.__fields__["esp_probe_retry_timeout"]
+#        try:
+#            self.esp_probe_retry_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.esp_probe_retry_timeout =  self.link_based_request("esp_probe_retry_timeout", "GET", return_type="int")
+#        return self.esp_probe_retry_timeout
+#
+#    @rest_esp_probe_retry_timeout.setter
+#    def rest_esp_probe_retry_timeout(self, value):
+#        self.esp_probe_retry_timeout = value
+
+#    @property
+#    def rest_esp_probe_timeout(self):
+#        if self.esp_probe_timeout is not None:
+#            return self.esp_probe_timeout
+#        field_info = self.__class__.__fields__["esp_probe_timeout"]
+#        try:
+#            self.esp_probe_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.esp_probe_timeout =  self.link_based_request("esp_probe_timeout", "GET", return_type="int")
+#        return self.esp_probe_timeout
+#
+#    @rest_esp_probe_timeout.setter
+#    def rest_esp_probe_timeout(self, value):
+#        self.esp_probe_timeout = value
+
+#    @property
+#    def rest_is_portal(self):
+#        if self.is_portal is not None:
+#            return self.is_portal
+#        field_info = self.__class__.__fields__["is_portal"]
+#        try:
+#            self.is_portal =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_portal =  self.link_based_request("is_portal", "GET", return_type="bool")
+#        return self.is_portal
+#
+#    @rest_is_portal.setter
+#    def rest_is_portal(self, value):
+#        self.is_portal = value
+
+#    @property
+#    def rest_outer_tls_client_profile(self):
+#        if self.outer_tls_client_profile is not None:
+#            return self.outer_tls_client_profile
+#        field_info = self.__class__.__fields__["outer_tls_client_profile"]
+#        try:
+#            self.outer_tls_client_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
+#        except LinkNameException as e:
+#            self.outer_tls_client_profile =  self.link_based_request("outer_tls_client_profile", "GET", return_type="TLSProfile")
+#        return self.outer_tls_client_profile
+#
+#    @rest_outer_tls_client_profile.setter
+#    def rest_outer_tls_client_profile(self, value):
+#        self.outer_tls_client_profile = value
+
+#    @property
+#    def rest_pangp_encapsulation(self):
+#        if self.pangp_encapsulation is not None:
+#            return self.pangp_encapsulation
+#        field_info = self.__class__.__fields__["pangp_encapsulation"]
+#        try:
+#            self.pangp_encapsulation =  self.link_based_request(field_info.alias, "GET", return_type="PANGPEncapsulation")
+#        except LinkNameException as e:
+#            self.pangp_encapsulation =  self.link_based_request("pangp_encapsulation", "GET", return_type="PANGPEncapsulation")
+#        return self.pangp_encapsulation
+#
+#    @rest_pangp_encapsulation.setter
+#    def rest_pangp_encapsulation(self, value):
+#        self.pangp_encapsulation = value
+
+#    @property
+#    def rest_portal_hostname(self):
+#        if self.portal_hostname is not None:
+#            return self.portal_hostname
+#        field_info = self.__class__.__fields__["portal_hostname"]
+#        try:
+#            self.portal_hostname =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.portal_hostname =  self.link_based_request("portal_hostname", "GET", return_type="str")
+#        return self.portal_hostname
+#
+#    @rest_portal_hostname.setter
+#    def rest_portal_hostname(self, value):
+#        self.portal_hostname = value
+
+#    @property
+#    def rest_vpn_gateway(self):
+#        if self.vpn_gateway is not None:
+#            return self.vpn_gateway
+#        field_info = self.__class__.__fields__["vpn_gateway"]
+#        try:
+#            self.vpn_gateway =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.vpn_gateway =  self.link_based_request("vpn_gateway", "GET", return_type="str")
+#        return self.vpn_gateway
+#
+#    @rest_vpn_gateway.setter
+#    def rest_vpn_gateway(self, value):
+#        self.vpn_gateway = value
+
+#    @property
+#    def rest_vpn_gateways(self):
+#        if self.vpn_gateways is not None:
+#            return self.vpn_gateways
+#        field_info = self.__class__.__fields__["vpn_gateways"]
+#        try:
+#            self.vpn_gateways =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
+#        except LinkNameException as e:
+#            self.vpn_gateways =  self.link_based_request("vpn_gateways", "GET", return_type="List[str]")
+#        return self.vpn_gateways
+#
+#    @rest_vpn_gateways.setter
+#    def rest_vpn_gateways(self, value):
+#        self.vpn_gateways = value
+
 
 
     def to_str(self) -> str:
@@ -110,20 +269,92 @@ class PANGPSettings(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "AuthSettings": AuthSettings.from_dict(obj["AuthSettings"]) if obj.get("AuthSettings") is not None else None,
-            "OuterTCPProfile": TcpProfile.from_dict(obj["OuterTCPProfile"]) if obj.get("OuterTCPProfile") is not None else None,
-            "ESPProbeRetryTimeout": obj.get("ESPProbeRetryTimeout"),
-            "ESPProbeTimeout": obj.get("ESPProbeTimeout"),
-            "IsPortal": obj.get("IsPortal"),
-            "OuterTLSClientProfile": TLSProfile.from_dict(obj["OuterTLSClientProfile"]) if obj.get("OuterTLSClientProfile") is not None else None,
-            "PANGPEncapsulation": PANGPEncapsulation.from_dict(obj["PANGPEncapsulation"]) if obj.get("PANGPEncapsulation") is not None else None,
-            "PortalHostname": obj.get("PortalHostname"),
-            "VPNGateway": obj.get("VPNGateway"),
-            "VPNGateways": obj.get("VPNGateways")
+                        "OuterTCPProfile": TcpProfile.from_dict(obj["OuterTCPProfile"]) if obj.get("OuterTCPProfile") is not None else None,
+                        "ESPProbeRetryTimeout": obj.get("ESPProbeRetryTimeout"),
+                        "ESPProbeTimeout": obj.get("ESPProbeTimeout"),
+                        "IsPortal": obj.get("IsPortal"),
+                        "OuterTLSClientProfile": TLSProfile.from_dict(obj["OuterTLSClientProfile"]) if obj.get("OuterTLSClientProfile") is not None else None,
+                        "PANGPEncapsulation": PANGPEncapsulation.from_dict(obj["PANGPEncapsulation"]) if obj.get("PANGPEncapsulation") is not None else None,
+                        "PortalHostname": obj.get("PortalHostname"),
+                        "VPNGateway": obj.get("VPNGateway"),
+                        "VPNGateways": obj.get("VPNGateways")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

@@ -20,8 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.dtls_settings import DTLSSettings
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "F5Encapsulation" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class F5Encapsulation(BaseModel):
     """
@@ -31,6 +36,8 @@ class F5Encapsulation(BaseModel):
     ppp_over_dtls_enabled: StrictBool = Field(alias="PPPOverDTLSEnabled")
     ppp_over_dtls_settings: Optional[DTLSSettings] = Field(default=None, alias="PPPOverDTLSSettings")
     udp_port: StrictInt = Field(alias="UdpPort")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["EncapsulationMode", "PPPOverDTLSEnabled", "PPPOverDTLSSettings", "UdpPort"]
 
     @field_validator('encapsulation_mode')
@@ -45,6 +52,68 @@ class F5Encapsulation(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_encapsulation_mode(self):
+#        if self.encapsulation_mode is not None:
+#            return self.encapsulation_mode
+#        field_info = self.__class__.__fields__["encapsulation_mode"]
+#        try:
+#            self.encapsulation_mode =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.encapsulation_mode =  self.link_based_request("encapsulation_mode", "GET", return_type="str")
+#        return self.encapsulation_mode
+#
+#    @rest_encapsulation_mode.setter
+#    def rest_encapsulation_mode(self, value):
+#        self.encapsulation_mode = value
+
+#    @property
+#    def rest_ppp_over_dtls_enabled(self):
+#        if self.ppp_over_dtls_enabled is not None:
+#            return self.ppp_over_dtls_enabled
+#        field_info = self.__class__.__fields__["ppp_over_dtls_enabled"]
+#        try:
+#            self.ppp_over_dtls_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.ppp_over_dtls_enabled =  self.link_based_request("ppp_over_dtls_enabled", "GET", return_type="bool")
+#        return self.ppp_over_dtls_enabled
+#
+#    @rest_ppp_over_dtls_enabled.setter
+#    def rest_ppp_over_dtls_enabled(self, value):
+#        self.ppp_over_dtls_enabled = value
+
+#    @property
+#    def rest_ppp_over_dtls_settings(self):
+#        if self.ppp_over_dtls_settings is not None:
+#            return self.ppp_over_dtls_settings
+#        field_info = self.__class__.__fields__["ppp_over_dtls_settings"]
+#        try:
+#            self.ppp_over_dtls_settings =  self.link_based_request(field_info.alias, "GET", return_type="DTLSSettings")
+#        except LinkNameException as e:
+#            self.ppp_over_dtls_settings =  self.link_based_request("ppp_over_dtls_settings", "GET", return_type="DTLSSettings")
+#        return self.ppp_over_dtls_settings
+#
+#    @rest_ppp_over_dtls_settings.setter
+#    def rest_ppp_over_dtls_settings(self, value):
+#        self.ppp_over_dtls_settings = value
+
+#    @property
+#    def rest_udp_port(self):
+#        if self.udp_port is not None:
+#            return self.udp_port
+#        field_info = self.__class__.__fields__["udp_port"]
+#        try:
+#            self.udp_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.udp_port =  self.link_based_request("udp_port", "GET", return_type="int")
+#        return self.udp_port
+#
+#    @rest_udp_port.setter
+#    def rest_udp_port(self, value):
+#        self.udp_port = value
+
 
 
     def to_str(self) -> str:
@@ -91,14 +160,86 @@ class F5Encapsulation(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "EncapsulationMode": obj.get("EncapsulationMode"),
-            "PPPOverDTLSEnabled": obj.get("PPPOverDTLSEnabled"),
-            "PPPOverDTLSSettings": DTLSSettings.from_dict(obj["PPPOverDTLSSettings"]) if obj.get("PPPOverDTLSSettings") is not None else None,
-            "UdpPort": obj.get("UdpPort")
+                        "PPPOverDTLSEnabled": obj.get("PPPOverDTLSEnabled"),
+                        "PPPOverDTLSSettings": DTLSSettings.from_dict(obj["PPPOverDTLSSettings"]) if obj.get("PPPOverDTLSSettings") is not None else None,
+                        "UdpPort": obj.get("UdpPort")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

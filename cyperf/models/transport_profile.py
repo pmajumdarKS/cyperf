@@ -24,8 +24,13 @@ from cyperf.models.rtp_profile import RTPProfile
 from cyperf.models.tcp_profile import TcpProfile
 from cyperf.models.tls_profile import TLSProfile
 from cyperf.models.udp_profile import UdpProfile
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "TransportProfile" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class TransportProfile(BaseModel):
     """
@@ -42,6 +47,8 @@ class TransportProfile(BaseModel):
     udp_profile: Optional[UdpProfile] = Field(default=None, alias="UdpProfile")
     vlan_prio: Optional[StrictInt] = Field(default=None, alias="VlanPrio")
     l4_profile_name: StrictStr = Field(alias="L4ProfileName")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["ClientHTTPProfile", "ClientTLSProfile", "ClientTcpProfile", "IpTos", "RTPProfile", "ServerHTTPProfile", "ServerTLSProfile", "ServerTcpProfile", "UdpProfile", "VlanPrio", "L4ProfileName"]
 
     model_config = ConfigDict(
@@ -49,6 +56,173 @@ class TransportProfile(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_client_http_profile(self):
+#        if self.client_http_profile is not None:
+#            return self.client_http_profile
+#        field_info = self.__class__.__fields__["client_http_profile"]
+#        try:
+#            self.client_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="HTTPProfile")
+#        except LinkNameException as e:
+#            self.client_http_profile =  self.link_based_request("client_http_profile", "GET", return_type="HTTPProfile")
+#        return self.client_http_profile
+#
+#    @rest_client_http_profile.setter
+#    def rest_client_http_profile(self, value):
+#        self.client_http_profile = value
+
+#    @property
+#    def rest_client_tls_profile(self):
+#        if self.client_tls_profile is not None:
+#            return self.client_tls_profile
+#        field_info = self.__class__.__fields__["client_tls_profile"]
+#        try:
+#            self.client_tls_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
+#        except LinkNameException as e:
+#            self.client_tls_profile =  self.link_based_request("client_tls_profile", "GET", return_type="TLSProfile")
+#        return self.client_tls_profile
+#
+#    @rest_client_tls_profile.setter
+#    def rest_client_tls_profile(self, value):
+#        self.client_tls_profile = value
+
+#    @property
+#    def rest_client_tcp_profile(self):
+#        if self.client_tcp_profile is not None:
+#            return self.client_tcp_profile
+#        field_info = self.__class__.__fields__["client_tcp_profile"]
+#        try:
+#            self.client_tcp_profile =  self.link_based_request(field_info.alias, "GET", return_type="TcpProfile")
+#        except LinkNameException as e:
+#            self.client_tcp_profile =  self.link_based_request("client_tcp_profile", "GET", return_type="TcpProfile")
+#        return self.client_tcp_profile
+#
+#    @rest_client_tcp_profile.setter
+#    def rest_client_tcp_profile(self, value):
+#        self.client_tcp_profile = value
+
+#    @property
+#    def rest_ip_tos(self):
+#        if self.ip_tos is not None:
+#            return self.ip_tos
+#        field_info = self.__class__.__fields__["ip_tos"]
+#        try:
+#            self.ip_tos =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.ip_tos =  self.link_based_request("ip_tos", "GET", return_type="int")
+#        return self.ip_tos
+#
+#    @rest_ip_tos.setter
+#    def rest_ip_tos(self, value):
+#        self.ip_tos = value
+
+#    @property
+#    def rest_rtp_profile(self):
+#        if self.rtp_profile is not None:
+#            return self.rtp_profile
+#        field_info = self.__class__.__fields__["rtp_profile"]
+#        try:
+#            self.rtp_profile =  self.link_based_request(field_info.alias, "GET", return_type="RTPProfile")
+#        except LinkNameException as e:
+#            self.rtp_profile =  self.link_based_request("rtp_profile", "GET", return_type="RTPProfile")
+#        return self.rtp_profile
+#
+#    @rest_rtp_profile.setter
+#    def rest_rtp_profile(self, value):
+#        self.rtp_profile = value
+
+#    @property
+#    def rest_server_http_profile(self):
+#        if self.server_http_profile is not None:
+#            return self.server_http_profile
+#        field_info = self.__class__.__fields__["server_http_profile"]
+#        try:
+#            self.server_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="HTTPProfile")
+#        except LinkNameException as e:
+#            self.server_http_profile =  self.link_based_request("server_http_profile", "GET", return_type="HTTPProfile")
+#        return self.server_http_profile
+#
+#    @rest_server_http_profile.setter
+#    def rest_server_http_profile(self, value):
+#        self.server_http_profile = value
+
+#    @property
+#    def rest_server_tls_profile(self):
+#        if self.server_tls_profile is not None:
+#            return self.server_tls_profile
+#        field_info = self.__class__.__fields__["server_tls_profile"]
+#        try:
+#            self.server_tls_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
+#        except LinkNameException as e:
+#            self.server_tls_profile =  self.link_based_request("server_tls_profile", "GET", return_type="TLSProfile")
+#        return self.server_tls_profile
+#
+#    @rest_server_tls_profile.setter
+#    def rest_server_tls_profile(self, value):
+#        self.server_tls_profile = value
+
+#    @property
+#    def rest_server_tcp_profile(self):
+#        if self.server_tcp_profile is not None:
+#            return self.server_tcp_profile
+#        field_info = self.__class__.__fields__["server_tcp_profile"]
+#        try:
+#            self.server_tcp_profile =  self.link_based_request(field_info.alias, "GET", return_type="TcpProfile")
+#        except LinkNameException as e:
+#            self.server_tcp_profile =  self.link_based_request("server_tcp_profile", "GET", return_type="TcpProfile")
+#        return self.server_tcp_profile
+#
+#    @rest_server_tcp_profile.setter
+#    def rest_server_tcp_profile(self, value):
+#        self.server_tcp_profile = value
+
+#    @property
+#    def rest_udp_profile(self):
+#        if self.udp_profile is not None:
+#            return self.udp_profile
+#        field_info = self.__class__.__fields__["udp_profile"]
+#        try:
+#            self.udp_profile =  self.link_based_request(field_info.alias, "GET", return_type="UdpProfile")
+#        except LinkNameException as e:
+#            self.udp_profile =  self.link_based_request("udp_profile", "GET", return_type="UdpProfile")
+#        return self.udp_profile
+#
+#    @rest_udp_profile.setter
+#    def rest_udp_profile(self, value):
+#        self.udp_profile = value
+
+#    @property
+#    def rest_vlan_prio(self):
+#        if self.vlan_prio is not None:
+#            return self.vlan_prio
+#        field_info = self.__class__.__fields__["vlan_prio"]
+#        try:
+#            self.vlan_prio =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.vlan_prio =  self.link_based_request("vlan_prio", "GET", return_type="int")
+#        return self.vlan_prio
+#
+#    @rest_vlan_prio.setter
+#    def rest_vlan_prio(self, value):
+#        self.vlan_prio = value
+
+#    @property
+#    def rest_l4_profile_name(self):
+#        if self.l4_profile_name is not None:
+#            return self.l4_profile_name
+#        field_info = self.__class__.__fields__["l4_profile_name"]
+#        try:
+#            self.l4_profile_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.l4_profile_name =  self.link_based_request("l4_profile_name", "GET", return_type="str")
+#        return self.l4_profile_name
+#
+#    @rest_l4_profile_name.setter
+#    def rest_l4_profile_name(self, value):
+#        self.l4_profile_name = value
+
 
 
     def to_str(self) -> str:
@@ -116,21 +290,93 @@ class TransportProfile(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "ClientHTTPProfile": HTTPProfile.from_dict(obj["ClientHTTPProfile"]) if obj.get("ClientHTTPProfile") is not None else None,
-            "ClientTLSProfile": TLSProfile.from_dict(obj["ClientTLSProfile"]) if obj.get("ClientTLSProfile") is not None else None,
-            "ClientTcpProfile": TcpProfile.from_dict(obj["ClientTcpProfile"]) if obj.get("ClientTcpProfile") is not None else None,
-            "IpTos": obj.get("IpTos"),
-            "RTPProfile": RTPProfile.from_dict(obj["RTPProfile"]) if obj.get("RTPProfile") is not None else None,
-            "ServerHTTPProfile": HTTPProfile.from_dict(obj["ServerHTTPProfile"]) if obj.get("ServerHTTPProfile") is not None else None,
-            "ServerTLSProfile": TLSProfile.from_dict(obj["ServerTLSProfile"]) if obj.get("ServerTLSProfile") is not None else None,
-            "ServerTcpProfile": TcpProfile.from_dict(obj["ServerTcpProfile"]) if obj.get("ServerTcpProfile") is not None else None,
-            "UdpProfile": UdpProfile.from_dict(obj["UdpProfile"]) if obj.get("UdpProfile") is not None else None,
-            "VlanPrio": obj.get("VlanPrio"),
-            "L4ProfileName": obj.get("L4ProfileName")
+                        "ClientTLSProfile": TLSProfile.from_dict(obj["ClientTLSProfile"]) if obj.get("ClientTLSProfile") is not None else None,
+                        "ClientTcpProfile": TcpProfile.from_dict(obj["ClientTcpProfile"]) if obj.get("ClientTcpProfile") is not None else None,
+                        "IpTos": obj.get("IpTos"),
+                        "RTPProfile": RTPProfile.from_dict(obj["RTPProfile"]) if obj.get("RTPProfile") is not None else None,
+                        "ServerHTTPProfile": HTTPProfile.from_dict(obj["ServerHTTPProfile"]) if obj.get("ServerHTTPProfile") is not None else None,
+                        "ServerTLSProfile": TLSProfile.from_dict(obj["ServerTLSProfile"]) if obj.get("ServerTLSProfile") is not None else None,
+                        "ServerTcpProfile": TcpProfile.from_dict(obj["ServerTcpProfile"]) if obj.get("ServerTcpProfile") is not None else None,
+                        "UdpProfile": UdpProfile.from_dict(obj["UdpProfile"]) if obj.get("UdpProfile") is not None else None,
+                        "VlanPrio": obj.get("VlanPrio"),
+                        "L4ProfileName": obj.get("L4ProfileName")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

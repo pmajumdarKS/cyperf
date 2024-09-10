@@ -85,6 +85,7 @@ class GetMeta200Response(BaseModel):
     def from_json(cls, json_str: str) -> Self:
         """Returns the object represented by the json string"""
         instance = cls.model_construct()
+#        instance.api_client = client
         error_messages = []
         match = 0
 

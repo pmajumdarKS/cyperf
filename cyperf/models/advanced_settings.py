@@ -20,8 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.agent_optimization_mode import AgentOptimizationMode
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "AdvancedSettings" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class AdvancedSettings(BaseModel):
     """
@@ -32,6 +37,8 @@ class AdvancedSettings(BaseModel):
     automatic_cpu_percent: Optional[StrictBool] = Field(default=None, description="Deprecated. Use the calibration operation to find the best value for AgentStreamingPurposeCPUPercent for the current assigned agents.", alias="AutomaticCPUPercent")
     connection_graceful_stop_timeout: Optional[StrictInt] = Field(default=None, description="The time the test will wait all connections to be graceful stopped (default: 15 seconds).", alias="ConnectionGracefulStopTimeout")
     warm_up_period: StrictInt = Field(description="The time that servers may need to warm up, when clients should wait (default: 0 seconds).", alias="WarmUpPeriod")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["AgentOptimizationMode", "AgentStreamingPurposeCPUPercent", "AutomaticCPUPercent", "ConnectionGracefulStopTimeout", "WarmUpPeriod"]
 
     model_config = ConfigDict(
@@ -39,6 +46,83 @@ class AdvancedSettings(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_agent_optimization_mode(self):
+#        if self.agent_optimization_mode is not None:
+#            return self.agent_optimization_mode
+#        field_info = self.__class__.__fields__["agent_optimization_mode"]
+#        try:
+#            self.agent_optimization_mode =  self.link_based_request(field_info.alias, "GET", return_type="AgentOptimizationMode")
+#        except LinkNameException as e:
+#            self.agent_optimization_mode =  self.link_based_request("agent_optimization_mode", "GET", return_type="AgentOptimizationMode")
+#        return self.agent_optimization_mode
+#
+#    @rest_agent_optimization_mode.setter
+#    def rest_agent_optimization_mode(self, value):
+#        self.agent_optimization_mode = value
+
+#    @property
+#    def rest_agent_streaming_purpose_cpu_percent(self):
+#        if self.agent_streaming_purpose_cpu_percent is not None:
+#            return self.agent_streaming_purpose_cpu_percent
+#        field_info = self.__class__.__fields__["agent_streaming_purpose_cpu_percent"]
+#        try:
+#            self.agent_streaming_purpose_cpu_percent =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.agent_streaming_purpose_cpu_percent =  self.link_based_request("agent_streaming_purpose_cpu_percent", "GET", return_type="int")
+#        return self.agent_streaming_purpose_cpu_percent
+#
+#    @rest_agent_streaming_purpose_cpu_percent.setter
+#    def rest_agent_streaming_purpose_cpu_percent(self, value):
+#        self.agent_streaming_purpose_cpu_percent = value
+
+#    @property
+#    def rest_automatic_cpu_percent(self):
+#        if self.automatic_cpu_percent is not None:
+#            return self.automatic_cpu_percent
+#        field_info = self.__class__.__fields__["automatic_cpu_percent"]
+#        try:
+#            self.automatic_cpu_percent =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.automatic_cpu_percent =  self.link_based_request("automatic_cpu_percent", "GET", return_type="bool")
+#        return self.automatic_cpu_percent
+#
+#    @rest_automatic_cpu_percent.setter
+#    def rest_automatic_cpu_percent(self, value):
+#        self.automatic_cpu_percent = value
+
+#    @property
+#    def rest_connection_graceful_stop_timeout(self):
+#        if self.connection_graceful_stop_timeout is not None:
+#            return self.connection_graceful_stop_timeout
+#        field_info = self.__class__.__fields__["connection_graceful_stop_timeout"]
+#        try:
+#            self.connection_graceful_stop_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.connection_graceful_stop_timeout =  self.link_based_request("connection_graceful_stop_timeout", "GET", return_type="int")
+#        return self.connection_graceful_stop_timeout
+#
+#    @rest_connection_graceful_stop_timeout.setter
+#    def rest_connection_graceful_stop_timeout(self, value):
+#        self.connection_graceful_stop_timeout = value
+
+#    @property
+#    def rest_warm_up_period(self):
+#        if self.warm_up_period is not None:
+#            return self.warm_up_period
+#        field_info = self.__class__.__fields__["warm_up_period"]
+#        try:
+#            self.warm_up_period =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.warm_up_period =  self.link_based_request("warm_up_period", "GET", return_type="int")
+#        return self.warm_up_period
+#
+#    @rest_warm_up_period.setter
+#    def rest_warm_up_period(self, value):
+#        self.warm_up_period = value
+
 
 
     def to_str(self) -> str:
@@ -82,15 +166,87 @@ class AdvancedSettings(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "AgentOptimizationMode": obj.get("AgentOptimizationMode"),
-            "AgentStreamingPurposeCPUPercent": obj.get("AgentStreamingPurposeCPUPercent"),
-            "AutomaticCPUPercent": obj.get("AutomaticCPUPercent"),
-            "ConnectionGracefulStopTimeout": obj.get("ConnectionGracefulStopTimeout"),
-            "WarmUpPeriod": obj.get("WarmUpPeriod")
+                        "AgentStreamingPurposeCPUPercent": obj.get("AgentStreamingPurposeCPUPercent"),
+                        "AutomaticCPUPercent": obj.get("AutomaticCPUPercent"),
+                        "ConnectionGracefulStopTimeout": obj.get("ConnectionGracefulStopTimeout"),
+                        "WarmUpPeriod": obj.get("WarmUpPeriod")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

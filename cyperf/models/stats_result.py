@@ -21,8 +21,13 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.parameter import Parameter
 from cyperf.models.snapshot import Snapshot
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "StatsResult" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class StatsResult(BaseModel):
     """
@@ -32,6 +37,8 @@ class StatsResult(BaseModel):
     columns: Optional[List[StrictStr]] = Field(default=None, description="The list of columns returned by the query")
     name: Optional[StrictStr] = Field(default=None, description="The name of the query")
     snapshots: Optional[List[Snapshot]] = Field(default=None, description="The list of snapshots returned by the query")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["availableFilters", "columns", "name", "snapshots"]
 
     model_config = ConfigDict(
@@ -39,6 +46,68 @@ class StatsResult(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_available_filters(self):
+#        if self.available_filters is not None:
+#            return self.available_filters
+#        field_info = self.__class__.__fields__["available_filters"]
+#        try:
+#            self.available_filters =  self.link_based_request(field_info.alias, "GET", return_type="List[Parameter]")
+#        except LinkNameException as e:
+#            self.available_filters =  self.link_based_request("available_filters", "GET", return_type="List[Parameter]")
+#        return self.available_filters
+#
+#    @rest_available_filters.setter
+#    def rest_available_filters(self, value):
+#        self.available_filters = value
+
+#    @property
+#    def rest_columns(self):
+#        if self.columns is not None:
+#            return self.columns
+#        field_info = self.__class__.__fields__["columns"]
+#        try:
+#            self.columns =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
+#        except LinkNameException as e:
+#            self.columns =  self.link_based_request("columns", "GET", return_type="List[str]")
+#        return self.columns
+#
+#    @rest_columns.setter
+#    def rest_columns(self, value):
+#        self.columns = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_snapshots(self):
+#        if self.snapshots is not None:
+#            return self.snapshots
+#        field_info = self.__class__.__fields__["snapshots"]
+#        try:
+#            self.snapshots =  self.link_based_request(field_info.alias, "GET", return_type="List[Snapshot]")
+#        except LinkNameException as e:
+#            self.snapshots =  self.link_based_request("snapshots", "GET", return_type="List[Snapshot]")
+#        return self.snapshots
+#
+#    @rest_snapshots.setter
+#    def rest_snapshots(self, value):
+#        self.snapshots = value
+
 
 
     def to_str(self) -> str:
@@ -76,16 +145,16 @@ class StatsResult(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in available_filters (list)
         _items = []
         if self.available_filters:
-            for _item_available_filters in self.available_filters:
-                if _item_available_filters:
-                    _items.append(_item_available_filters.to_dict())
+            for _item in self.available_filters:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['availableFilters'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in snapshots (list)
         _items = []
         if self.snapshots:
-            for _item_snapshots in self.snapshots:
-                if _item_snapshots:
-                    _items.append(_item_snapshots.to_dict())
+            for _item in self.snapshots:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['snapshots'] = _items
         return _dict
 
@@ -96,14 +165,86 @@ class StatsResult(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "availableFilters": [Parameter.from_dict(_item) for _item in obj["availableFilters"]] if obj.get("availableFilters") is not None else None,
-            "columns": obj.get("columns"),
-            "name": obj.get("name"),
-            "snapshots": [Snapshot.from_dict(_item) for _item in obj["snapshots"]] if obj.get("snapshots") is not None else None
+                        "columns": obj.get("columns"),
+                        "name": obj.get("name"),
+                        "snapshots": [Snapshot.from_dict(_item) for _item in obj["snapshots"]] if obj.get("snapshots") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

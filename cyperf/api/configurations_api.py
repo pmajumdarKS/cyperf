@@ -28,6 +28,7 @@ from cyperf.models.get_custom_import_operations200_response import GetCustomImpo
 from cyperf.models.import_all_operation import ImportAllOperation
 from cyperf.models.start_root_batch_delete_request_inner import StartRootBatchDeleteRequestInner
 
+from cyperf import DynamicModel
 from cyperf.api_client import ApiClient, RequestSerialized
 from cyperf.api_response import ApiResponse
 from cyperf.rest import RESTResponseType
@@ -109,10 +110,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -178,10 +179,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -246,7 +247,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _create_configs_serialize(
@@ -393,10 +394,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -463,10 +464,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -532,7 +533,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _delete_configs_serialize(
@@ -664,10 +665,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -736,10 +737,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -807,7 +808,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _get_config_categories_serialize(
@@ -962,10 +963,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -1050,10 +1051,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -1137,7 +1138,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _get_configs_serialize(
@@ -1301,10 +1302,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -1378,10 +1379,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -1454,7 +1455,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _get_configs_by_id_serialize(
@@ -1599,10 +1600,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -1671,10 +1672,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -1742,7 +1743,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _get_custom_import_operations_serialize(
@@ -1882,10 +1883,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -1955,10 +1956,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -2027,7 +2028,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _patch_configs_serialize(
@@ -2170,10 +2171,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -2237,10 +2238,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -2303,7 +2304,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _poll_configs_batch_delete_serialize(
@@ -2430,10 +2431,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -2497,10 +2498,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -2563,7 +2564,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _poll_configs_export_all_serialize(
@@ -2690,10 +2691,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -2757,10 +2758,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -2823,7 +2824,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _poll_configs_import_serialize(
@@ -2950,10 +2951,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -3017,10 +3018,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -3083,7 +3084,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _poll_configs_import_all_serialize(
@@ -3210,10 +3211,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -3277,10 +3278,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -3343,7 +3344,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _start_configs_batch_delete_serialize(
@@ -3484,10 +3485,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -3551,10 +3552,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -3617,7 +3618,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _start_configs_export_all_serialize(
@@ -3757,10 +3758,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -3824,10 +3825,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -3890,7 +3891,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _start_configs_import_serialize(
@@ -4037,10 +4038,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -4104,10 +4105,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -4170,7 +4171,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _start_configs_import_all_serialize(
@@ -4317,10 +4318,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        ).data
+        ).data, self.api_client)
 
 
     @validate_call
@@ -4391,10 +4392,10 @@ class ConfigurationsApi:
             _request_timeout=_request_timeout
         )
         response_data.read()
-        return self.api_client.response_deserialize(
+        return DynamicModel.dynamic_wrapper(self.api_client.response_deserialize(
             response_data=response_data,
             response_types_map=_response_types_map,
-        )
+        ), self.api_client)
 
 
     @validate_call
@@ -4464,7 +4465,7 @@ class ConfigurationsApi:
             *_param,
             _request_timeout=_request_timeout
         )
-        return response_data.response
+        return DynamicModel.dynamic_wrapper(response_data.response, self.api_client)
 
 
     def _update_configs_serialize(

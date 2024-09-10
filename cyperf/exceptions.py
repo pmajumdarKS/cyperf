@@ -187,6 +187,9 @@ class ForbiddenException(ApiException):
 class ServiceException(ApiException):
     pass
 
+class LinkNameException(Exception):
+    pass
+
 
 def render_path(path_to_item):
     """Returns a string representation of a path"""

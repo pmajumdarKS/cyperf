@@ -27,8 +27,13 @@ from cyperf.models.params import Params
 from cyperf.models.session_reuse_method_tls12 import SessionReuseMethodTLS12
 from cyperf.models.session_reuse_method_tls13 import SessionReuseMethodTLS13
 from cyperf.models.supported_group_tls13 import SupportedGroupTLS13
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "TLSProfile" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class TLSProfile(BaseModel):
     """
@@ -60,6 +65,8 @@ class TLSProfile(BaseModel):
     tls13_enabled: Optional[StrictBool] = Field(default=None, alias="tls13Enabled")
     use_tls_profile: Optional[StrictBool] = Field(default=None, description="When disabled, the connection is not TLS secured (default: true).", alias="useTlsProfile")
     version: StrictStr = Field(description="The version of the TLS profile (default: NONE). Must be one of: NONE or TLSv1.2 or TLSv1.3.")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["certificateFile", "cipher", "cipher12", "cipher13", "ciphers12", "ciphers13", "dhFile", "get-tls-conflicts", "immediateClose", "keyFile", "keyFilePassword", "middleBoxEnabled", "profileId", "resolve-tls-conflicts", "sendCloseNotify", "sessionReuseCount", "sessionReuseMethod", "sessionReuseMethod12", "sessionReuseMethod13", "sniCertConfigs", "sniEnabled", "supportedGroups13", "tls12Enabled", "tls13Enabled", "useTlsProfile", "version"]
 
     @field_validator('version')
@@ -74,6 +81,398 @@ class TLSProfile(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_certificate_file(self):
+#        if self.certificate_file is not None:
+#            return self.certificate_file
+#        field_info = self.__class__.__fields__["certificate_file"]
+#        try:
+#            self.certificate_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.certificate_file =  self.link_based_request("certificate_file", "GET", return_type="Params")
+#        return self.certificate_file
+#
+#    @rest_certificate_file.setter
+#    def rest_certificate_file(self, value):
+#        self.certificate_file = value
+
+#    @property
+#    def rest_cipher(self):
+#        if self.cipher is not None:
+#            return self.cipher
+#        field_info = self.__class__.__fields__["cipher"]
+#        try:
+#            self.cipher =  self.link_based_request(field_info.alias, "GET", return_type="CipherTLS12")
+#        except LinkNameException as e:
+#            self.cipher =  self.link_based_request("cipher", "GET", return_type="CipherTLS12")
+#        return self.cipher
+#
+#    @rest_cipher.setter
+#    def rest_cipher(self, value):
+#        self.cipher = value
+
+#    @property
+#    def rest_cipher12(self):
+#        if self.cipher12 is not None:
+#            return self.cipher12
+#        field_info = self.__class__.__fields__["cipher12"]
+#        try:
+#            self.cipher12 =  self.link_based_request(field_info.alias, "GET", return_type="CipherTLS12")
+#        except LinkNameException as e:
+#            self.cipher12 =  self.link_based_request("cipher12", "GET", return_type="CipherTLS12")
+#        return self.cipher12
+#
+#    @rest_cipher12.setter
+#    def rest_cipher12(self, value):
+#        self.cipher12 = value
+
+#    @property
+#    def rest_cipher13(self):
+#        if self.cipher13 is not None:
+#            return self.cipher13
+#        field_info = self.__class__.__fields__["cipher13"]
+#        try:
+#            self.cipher13 =  self.link_based_request(field_info.alias, "GET", return_type="CipherTLS13")
+#        except LinkNameException as e:
+#            self.cipher13 =  self.link_based_request("cipher13", "GET", return_type="CipherTLS13")
+#        return self.cipher13
+#
+#    @rest_cipher13.setter
+#    def rest_cipher13(self, value):
+#        self.cipher13 = value
+
+#    @property
+#    def rest_ciphers12(self):
+#        if self.ciphers12 is not None:
+#            return self.ciphers12
+#        field_info = self.__class__.__fields__["ciphers12"]
+#        try:
+#            self.ciphers12 =  self.link_based_request(field_info.alias, "GET", return_type="List[CipherTLS12]")
+#        except LinkNameException as e:
+#            self.ciphers12 =  self.link_based_request("ciphers12", "GET", return_type="List[CipherTLS12]")
+#        return self.ciphers12
+#
+#    @rest_ciphers12.setter
+#    def rest_ciphers12(self, value):
+#        self.ciphers12 = value
+
+#    @property
+#    def rest_ciphers13(self):
+#        if self.ciphers13 is not None:
+#            return self.ciphers13
+#        field_info = self.__class__.__fields__["ciphers13"]
+#        try:
+#            self.ciphers13 =  self.link_based_request(field_info.alias, "GET", return_type="List[CipherTLS13]")
+#        except LinkNameException as e:
+#            self.ciphers13 =  self.link_based_request("ciphers13", "GET", return_type="List[CipherTLS13]")
+#        return self.ciphers13
+#
+#    @rest_ciphers13.setter
+#    def rest_ciphers13(self, value):
+#        self.ciphers13 = value
+
+#    @property
+#    def rest_dh_file(self):
+#        if self.dh_file is not None:
+#            return self.dh_file
+#        field_info = self.__class__.__fields__["dh_file"]
+#        try:
+#            self.dh_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.dh_file =  self.link_based_request("dh_file", "GET", return_type="Params")
+#        return self.dh_file
+#
+#    @rest_dh_file.setter
+#    def rest_dh_file(self, value):
+#        self.dh_file = value
+
+#    @property
+#    def rest_get_tls_conflicts(self):
+#        if self.get_tls_conflicts is not None:
+#            return self.get_tls_conflicts
+#        field_info = self.__class__.__fields__["get_tls_conflicts"]
+#        try:
+#            self.get_tls_conflicts =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
+#        except LinkNameException as e:
+#            self.get_tls_conflicts =  self.link_based_request("get_tls_conflicts", "GET", return_type="List[bytearray]")
+#        return self.get_tls_conflicts
+#
+#    @rest_get_tls_conflicts.setter
+#    def rest_get_tls_conflicts(self, value):
+#        self.get_tls_conflicts = value
+
+#    @property
+#    def rest_immediate_close(self):
+#        if self.immediate_close is not None:
+#            return self.immediate_close
+#        field_info = self.__class__.__fields__["immediate_close"]
+#        try:
+#            self.immediate_close =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.immediate_close =  self.link_based_request("immediate_close", "GET", return_type="bool")
+#        return self.immediate_close
+#
+#    @rest_immediate_close.setter
+#    def rest_immediate_close(self, value):
+#        self.immediate_close = value
+
+#    @property
+#    def rest_key_file(self):
+#        if self.key_file is not None:
+#            return self.key_file
+#        field_info = self.__class__.__fields__["key_file"]
+#        try:
+#            self.key_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.key_file =  self.link_based_request("key_file", "GET", return_type="Params")
+#        return self.key_file
+#
+#    @rest_key_file.setter
+#    def rest_key_file(self, value):
+#        self.key_file = value
+
+#    @property
+#    def rest_key_file_password(self):
+#        if self.key_file_password is not None:
+#            return self.key_file_password
+#        field_info = self.__class__.__fields__["key_file_password"]
+#        try:
+#            self.key_file_password =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.key_file_password =  self.link_based_request("key_file_password", "GET", return_type="str")
+#        return self.key_file_password
+#
+#    @rest_key_file_password.setter
+#    def rest_key_file_password(self, value):
+#        self.key_file_password = value
+
+#    @property
+#    def rest_middle_box_enabled(self):
+#        if self.middle_box_enabled is not None:
+#            return self.middle_box_enabled
+#        field_info = self.__class__.__fields__["middle_box_enabled"]
+#        try:
+#            self.middle_box_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.middle_box_enabled =  self.link_based_request("middle_box_enabled", "GET", return_type="bool")
+#        return self.middle_box_enabled
+#
+#    @rest_middle_box_enabled.setter
+#    def rest_middle_box_enabled(self, value):
+#        self.middle_box_enabled = value
+
+#    @property
+#    def rest_profile_id(self):
+#        if self.profile_id is not None:
+#            return self.profile_id
+#        field_info = self.__class__.__fields__["profile_id"]
+#        try:
+#            self.profile_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.profile_id =  self.link_based_request("profile_id", "GET", return_type="str")
+#        return self.profile_id
+#
+#    @rest_profile_id.setter
+#    def rest_profile_id(self, value):
+#        self.profile_id = value
+
+#    @property
+#    def rest_resolve_tls_conflicts(self):
+#        if self.resolve_tls_conflicts is not None:
+#            return self.resolve_tls_conflicts
+#        field_info = self.__class__.__fields__["resolve_tls_conflicts"]
+#        try:
+#            self.resolve_tls_conflicts =  self.link_based_request(field_info.alias, "GET", return_type="List[Conflict]")
+#        except LinkNameException as e:
+#            self.resolve_tls_conflicts =  self.link_based_request("resolve_tls_conflicts", "GET", return_type="List[Conflict]")
+#        return self.resolve_tls_conflicts
+#
+#    @rest_resolve_tls_conflicts.setter
+#    def rest_resolve_tls_conflicts(self, value):
+#        self.resolve_tls_conflicts = value
+
+#    @property
+#    def rest_send_close_notify(self):
+#        if self.send_close_notify is not None:
+#            return self.send_close_notify
+#        field_info = self.__class__.__fields__["send_close_notify"]
+#        try:
+#            self.send_close_notify =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.send_close_notify =  self.link_based_request("send_close_notify", "GET", return_type="bool")
+#        return self.send_close_notify
+#
+#    @rest_send_close_notify.setter
+#    def rest_send_close_notify(self, value):
+#        self.send_close_notify = value
+
+#    @property
+#    def rest_session_reuse_count(self):
+#        if self.session_reuse_count is not None:
+#            return self.session_reuse_count
+#        field_info = self.__class__.__fields__["session_reuse_count"]
+#        try:
+#            self.session_reuse_count =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.session_reuse_count =  self.link_based_request("session_reuse_count", "GET", return_type="int")
+#        return self.session_reuse_count
+#
+#    @rest_session_reuse_count.setter
+#    def rest_session_reuse_count(self, value):
+#        self.session_reuse_count = value
+
+#    @property
+#    def rest_session_reuse_method(self):
+#        if self.session_reuse_method is not None:
+#            return self.session_reuse_method
+#        field_info = self.__class__.__fields__["session_reuse_method"]
+#        try:
+#            self.session_reuse_method =  self.link_based_request(field_info.alias, "GET", return_type="SessionReuseMethodTLS12")
+#        except LinkNameException as e:
+#            self.session_reuse_method =  self.link_based_request("session_reuse_method", "GET", return_type="SessionReuseMethodTLS12")
+#        return self.session_reuse_method
+#
+#    @rest_session_reuse_method.setter
+#    def rest_session_reuse_method(self, value):
+#        self.session_reuse_method = value
+
+#    @property
+#    def rest_session_reuse_method12(self):
+#        if self.session_reuse_method12 is not None:
+#            return self.session_reuse_method12
+#        field_info = self.__class__.__fields__["session_reuse_method12"]
+#        try:
+#            self.session_reuse_method12 =  self.link_based_request(field_info.alias, "GET", return_type="SessionReuseMethodTLS12")
+#        except LinkNameException as e:
+#            self.session_reuse_method12 =  self.link_based_request("session_reuse_method12", "GET", return_type="SessionReuseMethodTLS12")
+#        return self.session_reuse_method12
+#
+#    @rest_session_reuse_method12.setter
+#    def rest_session_reuse_method12(self, value):
+#        self.session_reuse_method12 = value
+
+#    @property
+#    def rest_session_reuse_method13(self):
+#        if self.session_reuse_method13 is not None:
+#            return self.session_reuse_method13
+#        field_info = self.__class__.__fields__["session_reuse_method13"]
+#        try:
+#            self.session_reuse_method13 =  self.link_based_request(field_info.alias, "GET", return_type="SessionReuseMethodTLS13")
+#        except LinkNameException as e:
+#            self.session_reuse_method13 =  self.link_based_request("session_reuse_method13", "GET", return_type="SessionReuseMethodTLS13")
+#        return self.session_reuse_method13
+#
+#    @rest_session_reuse_method13.setter
+#    def rest_session_reuse_method13(self, value):
+#        self.session_reuse_method13 = value
+
+#    @property
+#    def rest_sni_cert_configs(self):
+#        if self.sni_cert_configs is not None:
+#            return self.sni_cert_configs
+#        field_info = self.__class__.__fields__["sni_cert_configs"]
+#        try:
+#            self.sni_cert_configs =  self.link_based_request(field_info.alias, "GET", return_type="List[CertConfig]")
+#        except LinkNameException as e:
+#            self.sni_cert_configs =  self.link_based_request("sni_cert_configs", "GET", return_type="List[CertConfig]")
+#        return self.sni_cert_configs
+#
+#    @rest_sni_cert_configs.setter
+#    def rest_sni_cert_configs(self, value):
+#        self.sni_cert_configs = value
+
+#    @property
+#    def rest_sni_enabled(self):
+#        if self.sni_enabled is not None:
+#            return self.sni_enabled
+#        field_info = self.__class__.__fields__["sni_enabled"]
+#        try:
+#            self.sni_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.sni_enabled =  self.link_based_request("sni_enabled", "GET", return_type="bool")
+#        return self.sni_enabled
+#
+#    @rest_sni_enabled.setter
+#    def rest_sni_enabled(self, value):
+#        self.sni_enabled = value
+
+#    @property
+#    def rest_supported_groups13(self):
+#        if self.supported_groups13 is not None:
+#            return self.supported_groups13
+#        field_info = self.__class__.__fields__["supported_groups13"]
+#        try:
+#            self.supported_groups13 =  self.link_based_request(field_info.alias, "GET", return_type="List[SupportedGroupTLS13]")
+#        except LinkNameException as e:
+#            self.supported_groups13 =  self.link_based_request("supported_groups13", "GET", return_type="List[SupportedGroupTLS13]")
+#        return self.supported_groups13
+#
+#    @rest_supported_groups13.setter
+#    def rest_supported_groups13(self, value):
+#        self.supported_groups13 = value
+
+#    @property
+#    def rest_tls12_enabled(self):
+#        if self.tls12_enabled is not None:
+#            return self.tls12_enabled
+#        field_info = self.__class__.__fields__["tls12_enabled"]
+#        try:
+#            self.tls12_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.tls12_enabled =  self.link_based_request("tls12_enabled", "GET", return_type="bool")
+#        return self.tls12_enabled
+#
+#    @rest_tls12_enabled.setter
+#    def rest_tls12_enabled(self, value):
+#        self.tls12_enabled = value
+
+#    @property
+#    def rest_tls13_enabled(self):
+#        if self.tls13_enabled is not None:
+#            return self.tls13_enabled
+#        field_info = self.__class__.__fields__["tls13_enabled"]
+#        try:
+#            self.tls13_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.tls13_enabled =  self.link_based_request("tls13_enabled", "GET", return_type="bool")
+#        return self.tls13_enabled
+#
+#    @rest_tls13_enabled.setter
+#    def rest_tls13_enabled(self, value):
+#        self.tls13_enabled = value
+
+#    @property
+#    def rest_use_tls_profile(self):
+#        if self.use_tls_profile is not None:
+#            return self.use_tls_profile
+#        field_info = self.__class__.__fields__["use_tls_profile"]
+#        try:
+#            self.use_tls_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.use_tls_profile =  self.link_based_request("use_tls_profile", "GET", return_type="bool")
+#        return self.use_tls_profile
+#
+#    @rest_use_tls_profile.setter
+#    def rest_use_tls_profile(self, value):
+#        self.use_tls_profile = value
+
+#    @property
+#    def rest_version(self):
+#        if self.version is not None:
+#            return self.version
+#        field_info = self.__class__.__fields__["version"]
+#        try:
+#            self.version =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.version =  self.link_based_request("version", "GET", return_type="str")
+#        return self.version
+#
+#    @rest_version.setter
+#    def rest_version(self, value):
+#        self.version = value
+
 
 
     def to_str(self) -> str:
@@ -120,16 +519,16 @@ class TLSProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in resolve_tls_conflicts (list)
         _items = []
         if self.resolve_tls_conflicts:
-            for _item_resolve_tls_conflicts in self.resolve_tls_conflicts:
-                if _item_resolve_tls_conflicts:
-                    _items.append(_item_resolve_tls_conflicts.to_dict())
+            for _item in self.resolve_tls_conflicts:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['resolve-tls-conflicts'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in sni_cert_configs (list)
         _items = []
         if self.sni_cert_configs:
-            for _item_sni_cert_configs in self.sni_cert_configs:
-                if _item_sni_cert_configs:
-                    _items.append(_item_sni_cert_configs.to_dict())
+            for _item in self.sni_cert_configs:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['sniCertConfigs'] = _items
         return _dict
 
@@ -140,36 +539,108 @@ class TLSProfile(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "certificateFile": Params.from_dict(obj["certificateFile"]) if obj.get("certificateFile") is not None else None,
-            "cipher": obj.get("cipher"),
-            "cipher12": obj.get("cipher12"),
-            "cipher13": obj.get("cipher13"),
-            "ciphers12": obj.get("ciphers12"),
-            "ciphers13": obj.get("ciphers13"),
-            "dhFile": Params.from_dict(obj["dhFile"]) if obj.get("dhFile") is not None else None,
-            "get-tls-conflicts": obj.get("get-tls-conflicts"),
-            "immediateClose": obj.get("immediateClose"),
-            "keyFile": Params.from_dict(obj["keyFile"]) if obj.get("keyFile") is not None else None,
-            "keyFilePassword": obj.get("keyFilePassword"),
-            "middleBoxEnabled": obj.get("middleBoxEnabled"),
-            "profileId": obj.get("profileId"),
-            "resolve-tls-conflicts": [Conflict.from_dict(_item) for _item in obj["resolve-tls-conflicts"]] if obj.get("resolve-tls-conflicts") is not None else None,
-            "sendCloseNotify": obj.get("sendCloseNotify"),
-            "sessionReuseCount": obj.get("sessionReuseCount"),
-            "sessionReuseMethod": obj.get("sessionReuseMethod"),
-            "sessionReuseMethod12": obj.get("sessionReuseMethod12"),
-            "sessionReuseMethod13": obj.get("sessionReuseMethod13"),
-            "sniCertConfigs": [CertConfig.from_dict(_item) for _item in obj["sniCertConfigs"]] if obj.get("sniCertConfigs") is not None else None,
-            "sniEnabled": obj.get("sniEnabled"),
-            "supportedGroups13": obj.get("supportedGroups13"),
-            "tls12Enabled": obj.get("tls12Enabled"),
-            "tls13Enabled": obj.get("tls13Enabled"),
-            "useTlsProfile": obj.get("useTlsProfile"),
-            "version": obj.get("version")
+                        "cipher": obj.get("cipher"),
+                        "cipher12": obj.get("cipher12"),
+                        "cipher13": obj.get("cipher13"),
+                        "ciphers12": obj.get("ciphers12"),
+                        "ciphers13": obj.get("ciphers13"),
+                        "dhFile": Params.from_dict(obj["dhFile"]) if obj.get("dhFile") is not None else None,
+                        "get-tls-conflicts": obj.get("get-tls-conflicts"),
+                        "immediateClose": obj.get("immediateClose"),
+                        "keyFile": Params.from_dict(obj["keyFile"]) if obj.get("keyFile") is not None else None,
+                        "keyFilePassword": obj.get("keyFilePassword"),
+                        "middleBoxEnabled": obj.get("middleBoxEnabled"),
+                        "profileId": obj.get("profileId"),
+                        "resolve-tls-conflicts": [Conflict.from_dict(_item) for _item in obj["resolve-tls-conflicts"]] if obj.get("resolve-tls-conflicts") is not None else None,
+                        "sendCloseNotify": obj.get("sendCloseNotify"),
+                        "sessionReuseCount": obj.get("sessionReuseCount"),
+                        "sessionReuseMethod": obj.get("sessionReuseMethod"),
+                        "sessionReuseMethod12": obj.get("sessionReuseMethod12"),
+                        "sessionReuseMethod13": obj.get("sessionReuseMethod13"),
+                        "sniCertConfigs": [CertConfig.from_dict(_item) for _item in obj["sniCertConfigs"]] if obj.get("sniCertConfigs") is not None else None,
+                        "sniEnabled": obj.get("sniEnabled"),
+                        "supportedGroups13": obj.get("supportedGroups13"),
+                        "tls12Enabled": obj.get("tls12Enabled"),
+                        "tls13Enabled": obj.get("tls13Enabled"),
+                        "useTlsProfile": obj.get("useTlsProfile"),
+                        "version": obj.get("version")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

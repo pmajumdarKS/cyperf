@@ -20,8 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.ip_mask import IpMask
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Interface" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Interface(BaseModel):
     """
@@ -32,6 +37,8 @@ class Interface(BaseModel):
     mtu: Optional[StrictInt] = Field(default=None, description="The maximum transmission unit of the interface", alias="MTU")
     mac: Optional[StrictStr] = Field(default=None, description="The MAC address of the interface", alias="Mac")
     name: Optional[StrictStr] = Field(default=None, description="The name of the interface", alias="Name")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Gateway", "IP", "MTU", "Mac", "Name"]
 
     model_config = ConfigDict(
@@ -39,6 +46,83 @@ class Interface(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_gateway(self):
+#        if self.gateway is not None:
+#            return self.gateway
+#        field_info = self.__class__.__fields__["gateway"]
+#        try:
+#            self.gateway =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.gateway =  self.link_based_request("gateway", "GET", return_type="str")
+#        return self.gateway
+#
+#    @rest_gateway.setter
+#    def rest_gateway(self, value):
+#        self.gateway = value
+
+#    @property
+#    def rest_ip(self):
+#        if self.ip is not None:
+#            return self.ip
+#        field_info = self.__class__.__fields__["ip"]
+#        try:
+#            self.ip =  self.link_based_request(field_info.alias, "GET", return_type="List[IpMask]")
+#        except LinkNameException as e:
+#            self.ip =  self.link_based_request("ip", "GET", return_type="List[IpMask]")
+#        return self.ip
+#
+#    @rest_ip.setter
+#    def rest_ip(self, value):
+#        self.ip = value
+
+#    @property
+#    def rest_mtu(self):
+#        if self.mtu is not None:
+#            return self.mtu
+#        field_info = self.__class__.__fields__["mtu"]
+#        try:
+#            self.mtu =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.mtu =  self.link_based_request("mtu", "GET", return_type="int")
+#        return self.mtu
+#
+#    @rest_mtu.setter
+#    def rest_mtu(self, value):
+#        self.mtu = value
+
+#    @property
+#    def rest_mac(self):
+#        if self.mac is not None:
+#            return self.mac
+#        field_info = self.__class__.__fields__["mac"]
+#        try:
+#            self.mac =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.mac =  self.link_based_request("mac", "GET", return_type="str")
+#        return self.mac
+#
+#    @rest_mac.setter
+#    def rest_mac(self, value):
+#        self.mac = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
 
 
     def to_str(self) -> str:
@@ -86,9 +170,9 @@ class Interface(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in ip (list)
         _items = []
         if self.ip:
-            for _item_ip in self.ip:
-                if _item_ip:
-                    _items.append(_item_ip.to_dict())
+            for _item in self.ip:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['IP'] = _items
         return _dict
 
@@ -99,15 +183,87 @@ class Interface(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "Gateway": obj.get("Gateway"),
-            "IP": [IpMask.from_dict(_item) for _item in obj["IP"]] if obj.get("IP") is not None else None,
-            "MTU": obj.get("MTU"),
-            "Mac": obj.get("Mac"),
-            "Name": obj.get("Name")
+                        "IP": [IpMask.from_dict(_item) for _item in obj["IP"]] if obj.get("IP") is not None else None,
+                        "MTU": obj.get("MTU"),
+                        "Mac": obj.get("Mac"),
+                        "Name": obj.get("Name")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

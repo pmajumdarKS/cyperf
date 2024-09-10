@@ -20,8 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.filtered_stat import FilteredStat
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "GenerateCSVReportsOperation" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class GenerateCSVReportsOperation(BaseModel):
     """
@@ -33,6 +38,8 @@ class GenerateCSVReportsOperation(BaseModel):
     stats: Optional[List[FilteredStat]] = Field(default=None, description="The stat views for which a CSV report will be generated")
     to: Optional[StrictStr] = Field(default=None, description="(optional) UNIX time in milliseconds or milliseconds from the test start (based on useRelativeTime flag) as the query interval end. Defaults to 'now-7s' (in milliseconds).")
     use_relative_time: Optional[StrictBool] = Field(default=None, description="(optional) Specifies if the from/to params use milliseconds from test start or UNIX time in milliseconds.", alias="useRelativeTime")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["forceGenerate", "from", "interval", "stats", "to", "useRelativeTime"]
 
     model_config = ConfigDict(
@@ -40,6 +47,98 @@ class GenerateCSVReportsOperation(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_force_generate(self):
+#        if self.force_generate is not None:
+#            return self.force_generate
+#        field_info = self.__class__.__fields__["force_generate"]
+#        try:
+#            self.force_generate =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.force_generate =  self.link_based_request("force_generate", "GET", return_type="bool")
+#        return self.force_generate
+#
+#    @rest_force_generate.setter
+#    def rest_force_generate(self, value):
+#        self.force_generate = value
+
+#    @property
+#    def rest_var_from(self):
+#        if self.var_from is not None:
+#            return self.var_from
+#        field_info = self.__class__.__fields__["var_from"]
+#        try:
+#            self.var_from =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.var_from =  self.link_based_request("var_from", "GET", return_type="str")
+#        return self.var_from
+#
+#    @rest_var_from.setter
+#    def rest_var_from(self, value):
+#        self.var_from = value
+
+#    @property
+#    def rest_interval(self):
+#        if self.interval is not None:
+#            return self.interval
+#        field_info = self.__class__.__fields__["interval"]
+#        try:
+#            self.interval =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.interval =  self.link_based_request("interval", "GET", return_type="str")
+#        return self.interval
+#
+#    @rest_interval.setter
+#    def rest_interval(self, value):
+#        self.interval = value
+
+#    @property
+#    def rest_stats(self):
+#        if self.stats is not None:
+#            return self.stats
+#        field_info = self.__class__.__fields__["stats"]
+#        try:
+#            self.stats =  self.link_based_request(field_info.alias, "GET", return_type="List[FilteredStat]")
+#        except LinkNameException as e:
+#            self.stats =  self.link_based_request("stats", "GET", return_type="List[FilteredStat]")
+#        return self.stats
+#
+#    @rest_stats.setter
+#    def rest_stats(self, value):
+#        self.stats = value
+
+#    @property
+#    def rest_to(self):
+#        if self.to is not None:
+#            return self.to
+#        field_info = self.__class__.__fields__["to"]
+#        try:
+#            self.to =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.to =  self.link_based_request("to", "GET", return_type="str")
+#        return self.to
+#
+#    @rest_to.setter
+#    def rest_to(self, value):
+#        self.to = value
+
+#    @property
+#    def rest_use_relative_time(self):
+#        if self.use_relative_time is not None:
+#            return self.use_relative_time
+#        field_info = self.__class__.__fields__["use_relative_time"]
+#        try:
+#            self.use_relative_time =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.use_relative_time =  self.link_based_request("use_relative_time", "GET", return_type="bool")
+#        return self.use_relative_time
+#
+#    @rest_use_relative_time.setter
+#    def rest_use_relative_time(self, value):
+#        self.use_relative_time = value
+
 
 
     def to_str(self) -> str:
@@ -77,9 +176,9 @@ class GenerateCSVReportsOperation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in stats (list)
         _items = []
         if self.stats:
-            for _item_stats in self.stats:
-                if _item_stats:
-                    _items.append(_item_stats.to_dict())
+            for _item in self.stats:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['stats'] = _items
         return _dict
 
@@ -90,16 +189,88 @@ class GenerateCSVReportsOperation(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "forceGenerate": obj.get("forceGenerate"),
-            "from": obj.get("from"),
-            "interval": obj.get("interval"),
-            "stats": [FilteredStat.from_dict(_item) for _item in obj["stats"]] if obj.get("stats") is not None else None,
-            "to": obj.get("to"),
-            "useRelativeTime": obj.get("useRelativeTime")
+                        "from": obj.get("from"),
+                        "interval": obj.get("interval"),
+                        "stats": [FilteredStat.from_dict(_item) for _item in obj["stats"]] if obj.get("stats") is not None else None,
+                        "to": obj.get("to"),
+                        "useRelativeTime": obj.get("useRelativeTime")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

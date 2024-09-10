@@ -22,8 +22,13 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cyperf.models.exchange import Exchange
 from cyperf.models.params import Params
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "AttackAction" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class AttackAction(BaseModel):
     """
@@ -42,6 +47,8 @@ class AttackAction(BaseModel):
     protocol_id: Optional[StrictStr] = Field(default=None, alias="ProtocolID")
     requires_uniqueness: Optional[StrictBool] = Field(default=None, description="If true, for applications with the same protocol id, application/attack must have been uniquely identified in previous commands.", alias="RequiresUniqueness")
     id: Optional[StrictStr] = None
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["DstHost", "Exchanges", "Index", "IsBanner", "IsDeprecated", "IsHostname", "IsStrike", "Name", "Params", "Port", "ProtocolID", "RequiresUniqueness", "id"]
 
     @field_validator('dst_host')
@@ -59,6 +66,203 @@ class AttackAction(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_dst_host(self):
+#        if self.dst_host is not None:
+#            return self.dst_host
+#        field_info = self.__class__.__fields__["dst_host"]
+#        try:
+#            self.dst_host =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.dst_host =  self.link_based_request("dst_host", "GET", return_type="str")
+#        return self.dst_host
+#
+#    @rest_dst_host.setter
+#    def rest_dst_host(self, value):
+#        self.dst_host = value
+
+#    @property
+#    def rest_exchanges(self):
+#        if self.exchanges is not None:
+#            return self.exchanges
+#        field_info = self.__class__.__fields__["exchanges"]
+#        try:
+#            self.exchanges =  self.link_based_request(field_info.alias, "GET", return_type="List[Exchange]")
+#        except LinkNameException as e:
+#            self.exchanges =  self.link_based_request("exchanges", "GET", return_type="List[Exchange]")
+#        return self.exchanges
+#
+#    @rest_exchanges.setter
+#    def rest_exchanges(self, value):
+#        self.exchanges = value
+
+#    @property
+#    def rest_index(self):
+#        if self.index is not None:
+#            return self.index
+#        field_info = self.__class__.__fields__["index"]
+#        try:
+#            self.index =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.index =  self.link_based_request("index", "GET", return_type="int")
+#        return self.index
+#
+#    @rest_index.setter
+#    def rest_index(self, value):
+#        self.index = value
+
+#    @property
+#    def rest_is_banner(self):
+#        if self.is_banner is not None:
+#            return self.is_banner
+#        field_info = self.__class__.__fields__["is_banner"]
+#        try:
+#            self.is_banner =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_banner =  self.link_based_request("is_banner", "GET", return_type="bool")
+#        return self.is_banner
+#
+#    @rest_is_banner.setter
+#    def rest_is_banner(self, value):
+#        self.is_banner = value
+
+#    @property
+#    def rest_is_deprecated(self):
+#        if self.is_deprecated is not None:
+#            return self.is_deprecated
+#        field_info = self.__class__.__fields__["is_deprecated"]
+#        try:
+#            self.is_deprecated =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_deprecated =  self.link_based_request("is_deprecated", "GET", return_type="bool")
+#        return self.is_deprecated
+#
+#    @rest_is_deprecated.setter
+#    def rest_is_deprecated(self, value):
+#        self.is_deprecated = value
+
+#    @property
+#    def rest_is_hostname(self):
+#        if self.is_hostname is not None:
+#            return self.is_hostname
+#        field_info = self.__class__.__fields__["is_hostname"]
+#        try:
+#            self.is_hostname =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.is_hostname =  self.link_based_request("is_hostname", "GET", return_type="int")
+#        return self.is_hostname
+#
+#    @rest_is_hostname.setter
+#    def rest_is_hostname(self, value):
+#        self.is_hostname = value
+
+#    @property
+#    def rest_is_strike(self):
+#        if self.is_strike is not None:
+#            return self.is_strike
+#        field_info = self.__class__.__fields__["is_strike"]
+#        try:
+#            self.is_strike =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_strike =  self.link_based_request("is_strike", "GET", return_type="bool")
+#        return self.is_strike
+#
+#    @rest_is_strike.setter
+#    def rest_is_strike(self, value):
+#        self.is_strike = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_params(self):
+#        if self.params is not None:
+#            return self.params
+#        field_info = self.__class__.__fields__["params"]
+#        try:
+#            self.params =  self.link_based_request(field_info.alias, "GET", return_type="List[Params]")
+#        except LinkNameException as e:
+#            self.params =  self.link_based_request("params", "GET", return_type="List[Params]")
+#        return self.params
+#
+#    @rest_params.setter
+#    def rest_params(self, value):
+#        self.params = value
+
+#    @property
+#    def rest_port(self):
+#        if self.port is not None:
+#            return self.port
+#        field_info = self.__class__.__fields__["port"]
+#        try:
+#            self.port =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.port =  self.link_based_request("port", "GET", return_type="int")
+#        return self.port
+#
+#    @rest_port.setter
+#    def rest_port(self, value):
+#        self.port = value
+
+#    @property
+#    def rest_protocol_id(self):
+#        if self.protocol_id is not None:
+#            return self.protocol_id
+#        field_info = self.__class__.__fields__["protocol_id"]
+#        try:
+#            self.protocol_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.protocol_id =  self.link_based_request("protocol_id", "GET", return_type="str")
+#        return self.protocol_id
+#
+#    @rest_protocol_id.setter
+#    def rest_protocol_id(self, value):
+#        self.protocol_id = value
+
+#    @property
+#    def rest_requires_uniqueness(self):
+#        if self.requires_uniqueness is not None:
+#            return self.requires_uniqueness
+#        field_info = self.__class__.__fields__["requires_uniqueness"]
+#        try:
+#            self.requires_uniqueness =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.requires_uniqueness =  self.link_based_request("requires_uniqueness", "GET", return_type="bool")
+#        return self.requires_uniqueness
+#
+#    @rest_requires_uniqueness.setter
+#    def rest_requires_uniqueness(self, value):
+#        self.requires_uniqueness = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
 
 
     def to_str(self) -> str:
@@ -96,16 +300,16 @@ class AttackAction(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in exchanges (list)
         _items = []
         if self.exchanges:
-            for _item_exchanges in self.exchanges:
-                if _item_exchanges:
-                    _items.append(_item_exchanges.to_dict())
+            for _item in self.exchanges:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Exchanges'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in params (list)
         _items = []
         if self.params:
-            for _item_params in self.params:
-                if _item_params:
-                    _items.append(_item_params.to_dict())
+            for _item in self.params:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Params'] = _items
         return _dict
 
@@ -116,23 +320,95 @@ class AttackAction(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "DstHost": obj.get("DstHost"),
-            "Exchanges": [Exchange.from_dict(_item) for _item in obj["Exchanges"]] if obj.get("Exchanges") is not None else None,
-            "Index": obj.get("Index"),
-            "IsBanner": obj.get("IsBanner"),
-            "IsDeprecated": obj.get("IsDeprecated"),
-            "IsHostname": obj.get("IsHostname"),
-            "IsStrike": obj.get("IsStrike"),
-            "Name": obj.get("Name"),
-            "Params": [Params.from_dict(_item) for _item in obj["Params"]] if obj.get("Params") is not None else None,
-            "Port": obj.get("Port"),
-            "ProtocolID": obj.get("ProtocolID"),
-            "RequiresUniqueness": obj.get("RequiresUniqueness"),
-            "id": obj.get("id")
+                        "Exchanges": [Exchange.from_dict(_item) for _item in obj["Exchanges"]] if obj.get("Exchanges") is not None else None,
+                        "Index": obj.get("Index"),
+                        "IsBanner": obj.get("IsBanner"),
+                        "IsDeprecated": obj.get("IsDeprecated"),
+                        "IsHostname": obj.get("IsHostname"),
+                        "IsStrike": obj.get("IsStrike"),
+                        "Name": obj.get("Name"),
+                        "Params": [Params.from_dict(_item) for _item in obj["Params"]] if obj.get("Params") is not None else None,
+                        "Port": obj.get("Port"),
+                        "ProtocolID": obj.get("ProtocolID"),
+                        "RequiresUniqueness": obj.get("RequiresUniqueness"),
+                        "id": obj.get("id")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

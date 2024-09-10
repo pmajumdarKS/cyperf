@@ -20,8 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.dashboard import Dashboard
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "TestInfo" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class TestInfo(BaseModel):
     """
@@ -38,6 +43,8 @@ class TestInfo(BaseModel):
     test_initialized: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the last test was initialized", alias="testInitialized")
     test_started: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the test was started", alias="testStarted")
     test_stopped: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the test was stopped. May be null if the test is still running.", alias="testStopped")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["dashboards", "defaultDashboardIndex", "defaultPollingInterval", "status", "testDetails", "testDuration", "testElapsed", "testId", "testInitialized", "testStarted", "testStopped"]
 
     model_config = ConfigDict(
@@ -45,6 +52,173 @@ class TestInfo(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_dashboards(self):
+#        if self.dashboards is not None:
+#            return self.dashboards
+#        field_info = self.__class__.__fields__["dashboards"]
+#        try:
+#            self.dashboards =  self.link_based_request(field_info.alias, "GET", return_type="List[Dashboard]")
+#        except LinkNameException as e:
+#            self.dashboards =  self.link_based_request("dashboards", "GET", return_type="List[Dashboard]")
+#        return self.dashboards
+#
+#    @rest_dashboards.setter
+#    def rest_dashboards(self, value):
+#        self.dashboards = value
+
+#    @property
+#    def rest_default_dashboard_index(self):
+#        if self.default_dashboard_index is not None:
+#            return self.default_dashboard_index
+#        field_info = self.__class__.__fields__["default_dashboard_index"]
+#        try:
+#            self.default_dashboard_index =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.default_dashboard_index =  self.link_based_request("default_dashboard_index", "GET", return_type="int")
+#        return self.default_dashboard_index
+#
+#    @rest_default_dashboard_index.setter
+#    def rest_default_dashboard_index(self, value):
+#        self.default_dashboard_index = value
+
+#    @property
+#    def rest_default_polling_interval(self):
+#        if self.default_polling_interval is not None:
+#            return self.default_polling_interval
+#        field_info = self.__class__.__fields__["default_polling_interval"]
+#        try:
+#            self.default_polling_interval =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.default_polling_interval =  self.link_based_request("default_polling_interval", "GET", return_type="int")
+#        return self.default_polling_interval
+#
+#    @rest_default_polling_interval.setter
+#    def rest_default_polling_interval(self, value):
+#        self.default_polling_interval = value
+
+#    @property
+#    def rest_status(self):
+#        if self.status is not None:
+#            return self.status
+#        field_info = self.__class__.__fields__["status"]
+#        try:
+#            self.status =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.status =  self.link_based_request("status", "GET", return_type="str")
+#        return self.status
+#
+#    @rest_status.setter
+#    def rest_status(self, value):
+#        self.status = value
+
+#    @property
+#    def rest_test_details(self):
+#        if self.test_details is not None:
+#            return self.test_details
+#        field_info = self.__class__.__fields__["test_details"]
+#        try:
+#            self.test_details =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.test_details =  self.link_based_request("test_details", "GET", return_type="str")
+#        return self.test_details
+#
+#    @rest_test_details.setter
+#    def rest_test_details(self, value):
+#        self.test_details = value
+
+#    @property
+#    def rest_test_duration(self):
+#        if self.test_duration is not None:
+#            return self.test_duration
+#        field_info = self.__class__.__fields__["test_duration"]
+#        try:
+#            self.test_duration =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.test_duration =  self.link_based_request("test_duration", "GET", return_type="int")
+#        return self.test_duration
+#
+#    @rest_test_duration.setter
+#    def rest_test_duration(self, value):
+#        self.test_duration = value
+
+#    @property
+#    def rest_test_elapsed(self):
+#        if self.test_elapsed is not None:
+#            return self.test_elapsed
+#        field_info = self.__class__.__fields__["test_elapsed"]
+#        try:
+#            self.test_elapsed =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.test_elapsed =  self.link_based_request("test_elapsed", "GET", return_type="int")
+#        return self.test_elapsed
+#
+#    @rest_test_elapsed.setter
+#    def rest_test_elapsed(self, value):
+#        self.test_elapsed = value
+
+#    @property
+#    def rest_test_id(self):
+#        if self.test_id is not None:
+#            return self.test_id
+#        field_info = self.__class__.__fields__["test_id"]
+#        try:
+#            self.test_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.test_id =  self.link_based_request("test_id", "GET", return_type="str")
+#        return self.test_id
+#
+#    @rest_test_id.setter
+#    def rest_test_id(self, value):
+#        self.test_id = value
+
+#    @property
+#    def rest_test_initialized(self):
+#        if self.test_initialized is not None:
+#            return self.test_initialized
+#        field_info = self.__class__.__fields__["test_initialized"]
+#        try:
+#            self.test_initialized =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.test_initialized =  self.link_based_request("test_initialized", "GET", return_type="int")
+#        return self.test_initialized
+#
+#    @rest_test_initialized.setter
+#    def rest_test_initialized(self, value):
+#        self.test_initialized = value
+
+#    @property
+#    def rest_test_started(self):
+#        if self.test_started is not None:
+#            return self.test_started
+#        field_info = self.__class__.__fields__["test_started"]
+#        try:
+#            self.test_started =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.test_started =  self.link_based_request("test_started", "GET", return_type="int")
+#        return self.test_started
+#
+#    @rest_test_started.setter
+#    def rest_test_started(self, value):
+#        self.test_started = value
+
+#    @property
+#    def rest_test_stopped(self):
+#        if self.test_stopped is not None:
+#            return self.test_stopped
+#        field_info = self.__class__.__fields__["test_stopped"]
+#        try:
+#            self.test_stopped =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.test_stopped =  self.link_based_request("test_stopped", "GET", return_type="int")
+#        return self.test_stopped
+#
+#    @rest_test_stopped.setter
+#    def rest_test_stopped(self, value):
+#        self.test_stopped = value
+
 
 
     def to_str(self) -> str:
@@ -84,9 +258,9 @@ class TestInfo(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in dashboards (list)
         _items = []
         if self.dashboards:
-            for _item_dashboards in self.dashboards:
-                if _item_dashboards:
-                    _items.append(_item_dashboards.to_dict())
+            for _item in self.dashboards:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['dashboards'] = _items
         return _dict
 
@@ -97,21 +271,93 @@ class TestInfo(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "dashboards": [Dashboard.from_dict(_item) for _item in obj["dashboards"]] if obj.get("dashboards") is not None else None,
-            "defaultDashboardIndex": obj.get("defaultDashboardIndex"),
-            "defaultPollingInterval": obj.get("defaultPollingInterval"),
-            "status": obj.get("status"),
-            "testDetails": obj.get("testDetails"),
-            "testDuration": obj.get("testDuration"),
-            "testElapsed": obj.get("testElapsed"),
-            "testId": obj.get("testId"),
-            "testInitialized": obj.get("testInitialized"),
-            "testStarted": obj.get("testStarted"),
-            "testStopped": obj.get("testStopped")
+                        "defaultDashboardIndex": obj.get("defaultDashboardIndex"),
+                        "defaultPollingInterval": obj.get("defaultPollingInterval"),
+                        "status": obj.get("status"),
+                        "testDetails": obj.get("testDetails"),
+                        "testDuration": obj.get("testDuration"),
+                        "testElapsed": obj.get("testElapsed"),
+                        "testId": obj.get("testId"),
+                        "testInitialized": obj.get("testInitialized"),
+                        "testStarted": obj.get("testStarted"),
+                        "testStopped": obj.get("testStopped")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

@@ -21,8 +21,13 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List
 from cyperf.models.feature import Feature
 from cyperf.models.link import Link
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "License" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class License(BaseModel):
     """
@@ -39,6 +44,8 @@ class License(BaseModel):
     part_number_id: StrictStr = Field(description="Part number id.", alias="partNumberId")
     product: StrictStr = Field(description="The product for which the license was generated")
     quantity: StrictInt = Field(description="Quantity installed of the license")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["activationCode", "daysLeftToExpire", "expiryDate", "features", "isExpired", "links", "maintenanceDate", "partNumberDescription", "partNumberId", "product", "quantity"]
 
     model_config = ConfigDict(
@@ -46,6 +53,173 @@ class License(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_activation_code(self):
+#        if self.activation_code is not None:
+#            return self.activation_code
+#        field_info = self.__class__.__fields__["activation_code"]
+#        try:
+#            self.activation_code =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.activation_code =  self.link_based_request("activation_code", "GET", return_type="str")
+#        return self.activation_code
+#
+#    @rest_activation_code.setter
+#    def rest_activation_code(self, value):
+#        self.activation_code = value
+
+#    @property
+#    def rest_days_left_to_expire(self):
+#        if self.days_left_to_expire is not None:
+#            return self.days_left_to_expire
+#        field_info = self.__class__.__fields__["days_left_to_expire"]
+#        try:
+#            self.days_left_to_expire =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.days_left_to_expire =  self.link_based_request("days_left_to_expire", "GET", return_type="int")
+#        return self.days_left_to_expire
+#
+#    @rest_days_left_to_expire.setter
+#    def rest_days_left_to_expire(self, value):
+#        self.days_left_to_expire = value
+
+#    @property
+#    def rest_expiry_date(self):
+#        if self.expiry_date is not None:
+#            return self.expiry_date
+#        field_info = self.__class__.__fields__["expiry_date"]
+#        try:
+#            self.expiry_date =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.expiry_date =  self.link_based_request("expiry_date", "GET", return_type="str")
+#        return self.expiry_date
+#
+#    @rest_expiry_date.setter
+#    def rest_expiry_date(self, value):
+#        self.expiry_date = value
+
+#    @property
+#    def rest_features(self):
+#        if self.features is not None:
+#            return self.features
+#        field_info = self.__class__.__fields__["features"]
+#        try:
+#            self.features =  self.link_based_request(field_info.alias, "GET", return_type="List[Feature]")
+#        except LinkNameException as e:
+#            self.features =  self.link_based_request("features", "GET", return_type="List[Feature]")
+#        return self.features
+#
+#    @rest_features.setter
+#    def rest_features(self, value):
+#        self.features = value
+
+#    @property
+#    def rest_is_expired(self):
+#        if self.is_expired is not None:
+#            return self.is_expired
+#        field_info = self.__class__.__fields__["is_expired"]
+#        try:
+#            self.is_expired =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_expired =  self.link_based_request("is_expired", "GET", return_type="bool")
+#        return self.is_expired
+#
+#    @rest_is_expired.setter
+#    def rest_is_expired(self, value):
+#        self.is_expired = value
+
+#    @property
+#    def rest_links(self):
+#        if self.links is not None:
+#            return self.links
+#        field_info = self.__class__.__fields__["links"]
+#        try:
+#            self.links =  self.link_based_request(field_info.alias, "GET", return_type="List[Link]")
+#        except LinkNameException as e:
+#            self.links =  self.link_based_request("links", "GET", return_type="List[Link]")
+#        return self.links
+#
+#    @rest_links.setter
+#    def rest_links(self, value):
+#        self.links = value
+
+#    @property
+#    def rest_maintenance_date(self):
+#        if self.maintenance_date is not None:
+#            return self.maintenance_date
+#        field_info = self.__class__.__fields__["maintenance_date"]
+#        try:
+#            self.maintenance_date =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.maintenance_date =  self.link_based_request("maintenance_date", "GET", return_type="str")
+#        return self.maintenance_date
+#
+#    @rest_maintenance_date.setter
+#    def rest_maintenance_date(self, value):
+#        self.maintenance_date = value
+
+#    @property
+#    def rest_part_number_description(self):
+#        if self.part_number_description is not None:
+#            return self.part_number_description
+#        field_info = self.__class__.__fields__["part_number_description"]
+#        try:
+#            self.part_number_description =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.part_number_description =  self.link_based_request("part_number_description", "GET", return_type="str")
+#        return self.part_number_description
+#
+#    @rest_part_number_description.setter
+#    def rest_part_number_description(self, value):
+#        self.part_number_description = value
+
+#    @property
+#    def rest_part_number_id(self):
+#        if self.part_number_id is not None:
+#            return self.part_number_id
+#        field_info = self.__class__.__fields__["part_number_id"]
+#        try:
+#            self.part_number_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.part_number_id =  self.link_based_request("part_number_id", "GET", return_type="str")
+#        return self.part_number_id
+#
+#    @rest_part_number_id.setter
+#    def rest_part_number_id(self, value):
+#        self.part_number_id = value
+
+#    @property
+#    def rest_product(self):
+#        if self.product is not None:
+#            return self.product
+#        field_info = self.__class__.__fields__["product"]
+#        try:
+#            self.product =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.product =  self.link_based_request("product", "GET", return_type="str")
+#        return self.product
+#
+#    @rest_product.setter
+#    def rest_product(self, value):
+#        self.product = value
+
+#    @property
+#    def rest_quantity(self):
+#        if self.quantity is not None:
+#            return self.quantity
+#        field_info = self.__class__.__fields__["quantity"]
+#        try:
+#            self.quantity =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.quantity =  self.link_based_request("quantity", "GET", return_type="int")
+#        return self.quantity
+#
+#    @rest_quantity.setter
+#    def rest_quantity(self, value):
+#        self.quantity = value
+
 
 
     def to_str(self) -> str:
@@ -83,16 +257,16 @@ class License(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in features (list)
         _items = []
         if self.features:
-            for _item_features in self.features:
-                if _item_features:
-                    _items.append(_item_features.to_dict())
+            for _item in self.features:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['features'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in links (list)
         _items = []
         if self.links:
-            for _item_links in self.links:
-                if _item_links:
-                    _items.append(_item_links.to_dict())
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['links'] = _items
         return _dict
 
@@ -103,21 +277,93 @@ class License(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "activationCode": obj.get("activationCode"),
-            "daysLeftToExpire": obj.get("daysLeftToExpire"),
-            "expiryDate": obj.get("expiryDate"),
-            "features": [Feature.from_dict(_item) for _item in obj["features"]] if obj.get("features") is not None else None,
-            "isExpired": obj.get("isExpired"),
-            "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
-            "maintenanceDate": obj.get("maintenanceDate"),
-            "partNumberDescription": obj.get("partNumberDescription"),
-            "partNumberId": obj.get("partNumberId"),
-            "product": obj.get("product"),
-            "quantity": obj.get("quantity")
+                        "daysLeftToExpire": obj.get("daysLeftToExpire"),
+                        "expiryDate": obj.get("expiryDate"),
+                        "features": [Feature.from_dict(_item) for _item in obj["features"]] if obj.get("features") is not None else None,
+                        "isExpired": obj.get("isExpired"),
+                        "links": [Link.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
+                        "maintenanceDate": obj.get("maintenanceDate"),
+                        "partNumberDescription": obj.get("partNumberDescription"),
+                        "partNumberId": obj.get("partNumberId"),
+                        "product": obj.get("product"),
+                        "quantity": obj.get("quantity")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

@@ -24,8 +24,13 @@ from cyperf.models.emulated_subnet_config import EmulatedSubnetConfig
 from cyperf.models.ip_range import IPRange
 from cyperf.models.ip_sec_range import IPSecRange
 from cyperf.models.params import Params
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "IPSecStack" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class IPSecStack(BaseModel):
     """
@@ -49,6 +54,8 @@ class IPSecStack(BaseModel):
     setup_timeout: StrictInt = Field(alias="SetupTimeout")
     stack_role: StrictStr = Field(alias="StackRole")
     id: StrictStr
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["CACertificateFile", "EmulatedSubConfig", "EnableRekey", "IPSecRange", "IPSecStackName", "LogKeys", "MaxInitiationRate", "MaxPending", "OuterIPRange", "RekeyMargin", "RekeyRetryCount", "RetransmissionTimeout", "RetryCount", "RetryInterval", "RetryIntervalIncrement", "SetupTimeout", "StackRole", "id"]
 
     @field_validator('ip_sec_stack_name')
@@ -70,6 +77,278 @@ class IPSecStack(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_ca_certificate_file(self):
+#        if self.ca_certificate_file is not None:
+#            return self.ca_certificate_file
+#        field_info = self.__class__.__fields__["ca_certificate_file"]
+#        try:
+#            self.ca_certificate_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.ca_certificate_file =  self.link_based_request("ca_certificate_file", "GET", return_type="Params")
+#        return self.ca_certificate_file
+#
+#    @rest_ca_certificate_file.setter
+#    def rest_ca_certificate_file(self, value):
+#        self.ca_certificate_file = value
+
+#    @property
+#    def rest_emulated_sub_config(self):
+#        if self.emulated_sub_config is not None:
+#            return self.emulated_sub_config
+#        field_info = self.__class__.__fields__["emulated_sub_config"]
+#        try:
+#            self.emulated_sub_config =  self.link_based_request(field_info.alias, "GET", return_type="EmulatedSubnetConfig")
+#        except LinkNameException as e:
+#            self.emulated_sub_config =  self.link_based_request("emulated_sub_config", "GET", return_type="EmulatedSubnetConfig")
+#        return self.emulated_sub_config
+#
+#    @rest_emulated_sub_config.setter
+#    def rest_emulated_sub_config(self, value):
+#        self.emulated_sub_config = value
+
+#    @property
+#    def rest_enable_rekey(self):
+#        if self.enable_rekey is not None:
+#            return self.enable_rekey
+#        field_info = self.__class__.__fields__["enable_rekey"]
+#        try:
+#            self.enable_rekey =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.enable_rekey =  self.link_based_request("enable_rekey", "GET", return_type="bool")
+#        return self.enable_rekey
+#
+#    @rest_enable_rekey.setter
+#    def rest_enable_rekey(self, value):
+#        self.enable_rekey = value
+
+#    @property
+#    def rest_ip_sec_range(self):
+#        if self.ip_sec_range is not None:
+#            return self.ip_sec_range
+#        field_info = self.__class__.__fields__["ip_sec_range"]
+#        try:
+#            self.ip_sec_range =  self.link_based_request(field_info.alias, "GET", return_type="IPSecRange")
+#        except LinkNameException as e:
+#            self.ip_sec_range =  self.link_based_request("ip_sec_range", "GET", return_type="IPSecRange")
+#        return self.ip_sec_range
+#
+#    @rest_ip_sec_range.setter
+#    def rest_ip_sec_range(self, value):
+#        self.ip_sec_range = value
+
+#    @property
+#    def rest_ip_sec_stack_name(self):
+#        if self.ip_sec_stack_name is not None:
+#            return self.ip_sec_stack_name
+#        field_info = self.__class__.__fields__["ip_sec_stack_name"]
+#        try:
+#            self.ip_sec_stack_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.ip_sec_stack_name =  self.link_based_request("ip_sec_stack_name", "GET", return_type="str")
+#        return self.ip_sec_stack_name
+#
+#    @rest_ip_sec_stack_name.setter
+#    def rest_ip_sec_stack_name(self, value):
+#        self.ip_sec_stack_name = value
+
+#    @property
+#    def rest_log_keys(self):
+#        if self.log_keys is not None:
+#            return self.log_keys
+#        field_info = self.__class__.__fields__["log_keys"]
+#        try:
+#            self.log_keys =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.log_keys =  self.link_based_request("log_keys", "GET", return_type="bool")
+#        return self.log_keys
+#
+#    @rest_log_keys.setter
+#    def rest_log_keys(self, value):
+#        self.log_keys = value
+
+#    @property
+#    def rest_max_initiation_rate(self):
+#        if self.max_initiation_rate is not None:
+#            return self.max_initiation_rate
+#        field_info = self.__class__.__fields__["max_initiation_rate"]
+#        try:
+#            self.max_initiation_rate =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.max_initiation_rate =  self.link_based_request("max_initiation_rate", "GET", return_type="int")
+#        return self.max_initiation_rate
+#
+#    @rest_max_initiation_rate.setter
+#    def rest_max_initiation_rate(self, value):
+#        self.max_initiation_rate = value
+
+#    @property
+#    def rest_max_pending(self):
+#        if self.max_pending is not None:
+#            return self.max_pending
+#        field_info = self.__class__.__fields__["max_pending"]
+#        try:
+#            self.max_pending =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.max_pending =  self.link_based_request("max_pending", "GET", return_type="int")
+#        return self.max_pending
+#
+#    @rest_max_pending.setter
+#    def rest_max_pending(self, value):
+#        self.max_pending = value
+
+#    @property
+#    def rest_outer_ip_range(self):
+#        if self.outer_ip_range is not None:
+#            return self.outer_ip_range
+#        field_info = self.__class__.__fields__["outer_ip_range"]
+#        try:
+#            self.outer_ip_range =  self.link_based_request(field_info.alias, "GET", return_type="IPRange")
+#        except LinkNameException as e:
+#            self.outer_ip_range =  self.link_based_request("outer_ip_range", "GET", return_type="IPRange")
+#        return self.outer_ip_range
+#
+#    @rest_outer_ip_range.setter
+#    def rest_outer_ip_range(self, value):
+#        self.outer_ip_range = value
+
+#    @property
+#    def rest_rekey_margin(self):
+#        if self.rekey_margin is not None:
+#            return self.rekey_margin
+#        field_info = self.__class__.__fields__["rekey_margin"]
+#        try:
+#            self.rekey_margin =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.rekey_margin =  self.link_based_request("rekey_margin", "GET", return_type="int")
+#        return self.rekey_margin
+#
+#    @rest_rekey_margin.setter
+#    def rest_rekey_margin(self, value):
+#        self.rekey_margin = value
+
+#    @property
+#    def rest_rekey_retry_count(self):
+#        if self.rekey_retry_count is not None:
+#            return self.rekey_retry_count
+#        field_info = self.__class__.__fields__["rekey_retry_count"]
+#        try:
+#            self.rekey_retry_count =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.rekey_retry_count =  self.link_based_request("rekey_retry_count", "GET", return_type="int")
+#        return self.rekey_retry_count
+#
+#    @rest_rekey_retry_count.setter
+#    def rest_rekey_retry_count(self, value):
+#        self.rekey_retry_count = value
+
+#    @property
+#    def rest_retransmission_timeout(self):
+#        if self.retransmission_timeout is not None:
+#            return self.retransmission_timeout
+#        field_info = self.__class__.__fields__["retransmission_timeout"]
+#        try:
+#            self.retransmission_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.retransmission_timeout =  self.link_based_request("retransmission_timeout", "GET", return_type="int")
+#        return self.retransmission_timeout
+#
+#    @rest_retransmission_timeout.setter
+#    def rest_retransmission_timeout(self, value):
+#        self.retransmission_timeout = value
+
+#    @property
+#    def rest_retry_count(self):
+#        if self.retry_count is not None:
+#            return self.retry_count
+#        field_info = self.__class__.__fields__["retry_count"]
+#        try:
+#            self.retry_count =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.retry_count =  self.link_based_request("retry_count", "GET", return_type="int")
+#        return self.retry_count
+#
+#    @rest_retry_count.setter
+#    def rest_retry_count(self, value):
+#        self.retry_count = value
+
+#    @property
+#    def rest_retry_interval(self):
+#        if self.retry_interval is not None:
+#            return self.retry_interval
+#        field_info = self.__class__.__fields__["retry_interval"]
+#        try:
+#            self.retry_interval =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.retry_interval =  self.link_based_request("retry_interval", "GET", return_type="int")
+#        return self.retry_interval
+#
+#    @rest_retry_interval.setter
+#    def rest_retry_interval(self, value):
+#        self.retry_interval = value
+
+#    @property
+#    def rest_retry_interval_increment(self):
+#        if self.retry_interval_increment is not None:
+#            return self.retry_interval_increment
+#        field_info = self.__class__.__fields__["retry_interval_increment"]
+#        try:
+#            self.retry_interval_increment =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.retry_interval_increment =  self.link_based_request("retry_interval_increment", "GET", return_type="int")
+#        return self.retry_interval_increment
+#
+#    @rest_retry_interval_increment.setter
+#    def rest_retry_interval_increment(self, value):
+#        self.retry_interval_increment = value
+
+#    @property
+#    def rest_setup_timeout(self):
+#        if self.setup_timeout is not None:
+#            return self.setup_timeout
+#        field_info = self.__class__.__fields__["setup_timeout"]
+#        try:
+#            self.setup_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.setup_timeout =  self.link_based_request("setup_timeout", "GET", return_type="int")
+#        return self.setup_timeout
+#
+#    @rest_setup_timeout.setter
+#    def rest_setup_timeout(self, value):
+#        self.setup_timeout = value
+
+#    @property
+#    def rest_stack_role(self):
+#        if self.stack_role is not None:
+#            return self.stack_role
+#        field_info = self.__class__.__fields__["stack_role"]
+#        try:
+#            self.stack_role =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.stack_role =  self.link_based_request("stack_role", "GET", return_type="str")
+#        return self.stack_role
+#
+#    @rest_stack_role.setter
+#    def rest_stack_role(self, value):
+#        self.stack_role = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
 
 
     def to_str(self) -> str:
@@ -125,28 +404,100 @@ class IPSecStack(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "CACertificateFile": Params.from_dict(obj["CACertificateFile"]) if obj.get("CACertificateFile") is not None else None,
-            "EmulatedSubConfig": EmulatedSubnetConfig.from_dict(obj["EmulatedSubConfig"]) if obj.get("EmulatedSubConfig") is not None else None,
-            "EnableRekey": obj.get("EnableRekey"),
-            "IPSecRange": IPSecRange.from_dict(obj["IPSecRange"]) if obj.get("IPSecRange") is not None else None,
-            "IPSecStackName": obj.get("IPSecStackName"),
-            "LogKeys": obj.get("LogKeys"),
-            "MaxInitiationRate": obj.get("MaxInitiationRate"),
-            "MaxPending": obj.get("MaxPending"),
-            "OuterIPRange": IPRange.from_dict(obj["OuterIPRange"]) if obj.get("OuterIPRange") is not None else None,
-            "RekeyMargin": obj.get("RekeyMargin"),
-            "RekeyRetryCount": obj.get("RekeyRetryCount"),
-            "RetransmissionTimeout": obj.get("RetransmissionTimeout"),
-            "RetryCount": obj.get("RetryCount"),
-            "RetryInterval": obj.get("RetryInterval"),
-            "RetryIntervalIncrement": obj.get("RetryIntervalIncrement"),
-            "SetupTimeout": obj.get("SetupTimeout"),
-            "StackRole": obj.get("StackRole"),
-            "id": obj.get("id")
+                        "EmulatedSubConfig": EmulatedSubnetConfig.from_dict(obj["EmulatedSubConfig"]) if obj.get("EmulatedSubConfig") is not None else None,
+                        "EnableRekey": obj.get("EnableRekey"),
+                        "IPSecRange": IPSecRange.from_dict(obj["IPSecRange"]) if obj.get("IPSecRange") is not None else None,
+                        "IPSecStackName": obj.get("IPSecStackName"),
+                        "LogKeys": obj.get("LogKeys"),
+                        "MaxInitiationRate": obj.get("MaxInitiationRate"),
+                        "MaxPending": obj.get("MaxPending"),
+                        "OuterIPRange": IPRange.from_dict(obj["OuterIPRange"]) if obj.get("OuterIPRange") is not None else None,
+                        "RekeyMargin": obj.get("RekeyMargin"),
+                        "RekeyRetryCount": obj.get("RekeyRetryCount"),
+                        "RetransmissionTimeout": obj.get("RetransmissionTimeout"),
+                        "RetryCount": obj.get("RetryCount"),
+                        "RetryInterval": obj.get("RetryInterval"),
+                        "RetryIntervalIncrement": obj.get("RetryIntervalIncrement"),
+                        "SetupTimeout": obj.get("SetupTimeout"),
+                        "StackRole": obj.get("StackRole"),
+                        "id": obj.get("id")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

@@ -22,8 +22,13 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.api_link import APILink
 from cyperf.models.config_metadata_config_data_value import ConfigMetadataConfigDataValue
 from cyperf.models.version import Version
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "ConfigMetadata" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class ConfigMetadata(BaseModel):
     """
@@ -45,6 +50,8 @@ class ConfigMetadata(BaseModel):
     tags: Optional[Dict[str, StrictStr]] = Field(default=None, description="Tags used for categorizing configs")
     type: Optional[StrictStr] = Field(default=None, description="The type of config")
     version: Optional[Version] = None
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["application", "configData", "configUrl", "createdOn", "displayName", "encodedFiles", "id", "lastAccessed", "lastModified", "linkedResources", "owner", "ownerId", "readonly", "tags", "type", "version"]
 
     model_config = ConfigDict(
@@ -52,6 +59,248 @@ class ConfigMetadata(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_application(self):
+#        if self.application is not None:
+#            return self.application
+#        field_info = self.__class__.__fields__["application"]
+#        try:
+#            self.application =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.application =  self.link_based_request("application", "GET", return_type="str")
+#        return self.application
+#
+#    @rest_application.setter
+#    def rest_application(self, value):
+#        self.application = value
+
+#    @property
+#    def rest_config_data(self):
+#        if self.config_data is not None:
+#            return self.config_data
+#        field_info = self.__class__.__fields__["config_data"]
+#        try:
+#            self.config_data =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, ConfigMetadataConfigDataValue]")
+#        except LinkNameException as e:
+#            self.config_data =  self.link_based_request("config_data", "GET", return_type="Dict[str, ConfigMetadataConfigDataValue]")
+#        return self.config_data
+#
+#    @rest_config_data.setter
+#    def rest_config_data(self, value):
+#        self.config_data = value
+
+#    @property
+#    def rest_config_url(self):
+#        if self.config_url is not None:
+#            return self.config_url
+#        field_info = self.__class__.__fields__["config_url"]
+#        try:
+#            self.config_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.config_url =  self.link_based_request("config_url", "GET", return_type="str")
+#        return self.config_url
+#
+#    @rest_config_url.setter
+#    def rest_config_url(self, value):
+#        self.config_url = value
+
+#    @property
+#    def rest_created_on(self):
+#        if self.created_on is not None:
+#            return self.created_on
+#        field_info = self.__class__.__fields__["created_on"]
+#        try:
+#            self.created_on =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.created_on =  self.link_based_request("created_on", "GET", return_type="int")
+#        return self.created_on
+#
+#    @rest_created_on.setter
+#    def rest_created_on(self, value):
+#        self.created_on = value
+
+#    @property
+#    def rest_display_name(self):
+#        if self.display_name is not None:
+#            return self.display_name
+#        field_info = self.__class__.__fields__["display_name"]
+#        try:
+#            self.display_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.display_name =  self.link_based_request("display_name", "GET", return_type="str")
+#        return self.display_name
+#
+#    @rest_display_name.setter
+#    def rest_display_name(self, value):
+#        self.display_name = value
+
+#    @property
+#    def rest_encoded_files(self):
+#        if self.encoded_files is not None:
+#            return self.encoded_files
+#        field_info = self.__class__.__fields__["encoded_files"]
+#        try:
+#            self.encoded_files =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.encoded_files =  self.link_based_request("encoded_files", "GET", return_type="bool")
+#        return self.encoded_files
+#
+#    @rest_encoded_files.setter
+#    def rest_encoded_files(self, value):
+#        self.encoded_files = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_last_accessed(self):
+#        if self.last_accessed is not None:
+#            return self.last_accessed
+#        field_info = self.__class__.__fields__["last_accessed"]
+#        try:
+#            self.last_accessed =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.last_accessed =  self.link_based_request("last_accessed", "GET", return_type="int")
+#        return self.last_accessed
+#
+#    @rest_last_accessed.setter
+#    def rest_last_accessed(self, value):
+#        self.last_accessed = value
+
+#    @property
+#    def rest_last_modified(self):
+#        if self.last_modified is not None:
+#            return self.last_modified
+#        field_info = self.__class__.__fields__["last_modified"]
+#        try:
+#            self.last_modified =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.last_modified =  self.link_based_request("last_modified", "GET", return_type="int")
+#        return self.last_modified
+#
+#    @rest_last_modified.setter
+#    def rest_last_modified(self, value):
+#        self.last_modified = value
+
+#    @property
+#    def rest_linked_resources(self):
+#        if self.linked_resources is not None:
+#            return self.linked_resources
+#        field_info = self.__class__.__fields__["linked_resources"]
+#        try:
+#            self.linked_resources =  self.link_based_request(field_info.alias, "GET", return_type="List[APILink]")
+#        except LinkNameException as e:
+#            self.linked_resources =  self.link_based_request("linked_resources", "GET", return_type="List[APILink]")
+#        return self.linked_resources
+#
+#    @rest_linked_resources.setter
+#    def rest_linked_resources(self, value):
+#        self.linked_resources = value
+
+#    @property
+#    def rest_owner(self):
+#        if self.owner is not None:
+#            return self.owner
+#        field_info = self.__class__.__fields__["owner"]
+#        try:
+#            self.owner =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner =  self.link_based_request("owner", "GET", return_type="str")
+#        return self.owner
+#
+#    @rest_owner.setter
+#    def rest_owner(self, value):
+#        self.owner = value
+
+#    @property
+#    def rest_owner_id(self):
+#        if self.owner_id is not None:
+#            return self.owner_id
+#        field_info = self.__class__.__fields__["owner_id"]
+#        try:
+#            self.owner_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.owner_id =  self.link_based_request("owner_id", "GET", return_type="str")
+#        return self.owner_id
+#
+#    @rest_owner_id.setter
+#    def rest_owner_id(self, value):
+#        self.owner_id = value
+
+#    @property
+#    def rest_readonly(self):
+#        if self.readonly is not None:
+#            return self.readonly
+#        field_info = self.__class__.__fields__["readonly"]
+#        try:
+#            self.readonly =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.readonly =  self.link_based_request("readonly", "GET", return_type="bool")
+#        return self.readonly
+#
+#    @rest_readonly.setter
+#    def rest_readonly(self, value):
+#        self.readonly = value
+
+#    @property
+#    def rest_tags(self):
+#        if self.tags is not None:
+#            return self.tags
+#        field_info = self.__class__.__fields__["tags"]
+#        try:
+#            self.tags =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, str]")
+#        except LinkNameException as e:
+#            self.tags =  self.link_based_request("tags", "GET", return_type="Dict[str, str]")
+#        return self.tags
+#
+#    @rest_tags.setter
+#    def rest_tags(self, value):
+#        self.tags = value
+
+#    @property
+#    def rest_type(self):
+#        if self.type is not None:
+#            return self.type
+#        field_info = self.__class__.__fields__["type"]
+#        try:
+#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.type =  self.link_based_request("type", "GET", return_type="str")
+#        return self.type
+#
+#    @rest_type.setter
+#    def rest_type(self, value):
+#        self.type = value
+
+#    @property
+#    def rest_version(self):
+#        if self.version is not None:
+#            return self.version
+#        field_info = self.__class__.__fields__["version"]
+#        try:
+#            self.version =  self.link_based_request(field_info.alias, "GET", return_type="Version")
+#        except LinkNameException as e:
+#            self.version =  self.link_based_request("version", "GET", return_type="Version")
+#        return self.version
+#
+#    @rest_version.setter
+#    def rest_version(self, value):
+#        self.version = value
+
 
 
     def to_str(self) -> str:
@@ -103,16 +352,16 @@ class ConfigMetadata(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each value in config_data (dict)
         _field_dict = {}
         if self.config_data:
-            for _key_config_data in self.config_data:
-                if self.config_data[_key_config_data]:
-                    _field_dict[_key_config_data] = self.config_data[_key_config_data].to_dict()
+            for _key in self.config_data:
+                if self.config_data[_key]:
+                    _field_dict[_key] = self.config_data[_key].to_dict()
             _dict['configData'] = _field_dict
         # override the default output from pydantic by calling `to_dict()` of each item in linked_resources (list)
         _items = []
         if self.linked_resources:
-            for _item_linked_resources in self.linked_resources:
-                if _item_linked_resources:
-                    _items.append(_item_linked_resources.to_dict())
+            for _item in self.linked_resources:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['linkedResources'] = _items
         # override the default output from pydantic by calling `to_dict()` of version
         if self.version:
@@ -126,31 +375,103 @@ class ConfigMetadata(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "application": obj.get("application"),
-            "configData": dict(
+                        "configData": dict(
                 (_k, ConfigMetadataConfigDataValue.from_dict(_v))
                 for _k, _v in obj["configData"].items()
             )
             if obj.get("configData") is not None
             else None,
-            "configUrl": obj.get("configUrl"),
-            "createdOn": obj.get("createdOn"),
-            "displayName": obj.get("displayName"),
-            "encodedFiles": obj.get("encodedFiles"),
-            "id": obj.get("id"),
-            "lastAccessed": obj.get("lastAccessed"),
-            "lastModified": obj.get("lastModified"),
-            "linkedResources": [APILink.from_dict(_item) for _item in obj["linkedResources"]] if obj.get("linkedResources") is not None else None,
-            "owner": obj.get("owner"),
-            "ownerId": obj.get("ownerId"),
-            "readonly": obj.get("readonly"),
-            "tags": obj.get("tags"),
-            "type": obj.get("type"),
-            "version": Version.from_dict(obj["version"]) if obj.get("version") is not None else None
+                        "configUrl": obj.get("configUrl"),
+                        "createdOn": obj.get("createdOn"),
+                        "displayName": obj.get("displayName"),
+                        "encodedFiles": obj.get("encodedFiles"),
+                        "id": obj.get("id"),
+                        "lastAccessed": obj.get("lastAccessed"),
+                        "lastModified": obj.get("lastModified"),
+                        "linkedResources": [APILink.from_dict(_item) for _item in obj["linkedResources"]] if obj.get("linkedResources") is not None else None,
+                        "owner": obj.get("owner"),
+                        "ownerId": obj.get("ownerId"),
+                        "readonly": obj.get("readonly"),
+                        "tags": obj.get("tags"),
+                        "type": obj.get("type"),
+                        "version": Version.from_dict(obj["version"]) if obj.get("version") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

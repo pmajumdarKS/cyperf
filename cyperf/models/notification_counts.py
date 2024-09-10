@@ -19,8 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "NotificationCounts" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class NotificationCounts(BaseModel):
     """
@@ -30,6 +35,8 @@ class NotificationCounts(BaseModel):
     error: Optional[StrictInt] = Field(default=None, description="The number of error notifications")
     info: Optional[StrictInt] = Field(default=None, description="The number of informational messages")
     warning: Optional[StrictInt] = Field(default=None, description="The number of warnings")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["all", "error", "info", "warning"]
 
     model_config = ConfigDict(
@@ -37,6 +44,68 @@ class NotificationCounts(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_all(self):
+#        if self.all is not None:
+#            return self.all
+#        field_info = self.__class__.__fields__["all"]
+#        try:
+#            self.all =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.all =  self.link_based_request("all", "GET", return_type="int")
+#        return self.all
+#
+#    @rest_all.setter
+#    def rest_all(self, value):
+#        self.all = value
+
+#    @property
+#    def rest_error(self):
+#        if self.error is not None:
+#            return self.error
+#        field_info = self.__class__.__fields__["error"]
+#        try:
+#            self.error =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.error =  self.link_based_request("error", "GET", return_type="int")
+#        return self.error
+#
+#    @rest_error.setter
+#    def rest_error(self, value):
+#        self.error = value
+
+#    @property
+#    def rest_info(self):
+#        if self.info is not None:
+#            return self.info
+#        field_info = self.__class__.__fields__["info"]
+#        try:
+#            self.info =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.info =  self.link_based_request("info", "GET", return_type="int")
+#        return self.info
+#
+#    @rest_info.setter
+#    def rest_info(self, value):
+#        self.info = value
+
+#    @property
+#    def rest_warning(self):
+#        if self.warning is not None:
+#            return self.warning
+#        field_info = self.__class__.__fields__["warning"]
+#        try:
+#            self.warning =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.warning =  self.link_based_request("warning", "GET", return_type="int")
+#        return self.warning
+#
+#    @rest_warning.setter
+#    def rest_warning(self, value):
+#        self.warning = value
+
 
 
     def to_str(self) -> str:
@@ -88,14 +157,86 @@ class NotificationCounts(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "all": obj.get("all"),
-            "error": obj.get("error"),
-            "info": obj.get("info"),
-            "warning": obj.get("warning")
+                        "error": obj.get("error"),
+                        "info": obj.get("info"),
+                        "warning": obj.get("warning")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

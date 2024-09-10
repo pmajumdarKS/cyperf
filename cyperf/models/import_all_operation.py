@@ -20,14 +20,21 @@ import json
 from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.config_metadata import ConfigMetadata
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "ImportAllOperation" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class ImportAllOperation(BaseModel):
     """
     ImportAllOperation
     """ # noqa: E501
     configs: Optional[List[ConfigMetadata]] = Field(default=None, description="The list of configurations to be imported")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["configs"]
 
     model_config = ConfigDict(
@@ -35,6 +42,23 @@ class ImportAllOperation(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_configs(self):
+#        if self.configs is not None:
+#            return self.configs
+#        field_info = self.__class__.__fields__["configs"]
+#        try:
+#            self.configs =  self.link_based_request(field_info.alias, "GET", return_type="List[ConfigMetadata]")
+#        except LinkNameException as e:
+#            self.configs =  self.link_based_request("configs", "GET", return_type="List[ConfigMetadata]")
+#        return self.configs
+#
+#    @rest_configs.setter
+#    def rest_configs(self, value):
+#        self.configs = value
+
 
 
     def to_str(self) -> str:
@@ -72,9 +96,9 @@ class ImportAllOperation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in configs (list)
         _items = []
         if self.configs:
-            for _item_configs in self.configs:
-                if _item_configs:
-                    _items.append(_item_configs.to_dict())
+            for _item in self.configs:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['configs'] = _items
         return _dict
 
@@ -85,11 +109,83 @@ class ImportAllOperation(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "configs": [ConfigMetadata.from_dict(_item) for _item in obj["configs"]] if obj.get("configs") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

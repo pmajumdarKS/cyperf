@@ -19,8 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictBytes, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "RTPProfileMeta" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class RTPProfileMeta(BaseModel):
     """
@@ -33,6 +38,8 @@ class RTPProfileMeta(BaseModel):
     custom_header_size: Optional[StrictInt] = Field(default=None, description="The max size of the custom header", alias="CustomHeaderSize")
     encryption_mode: Optional[StrictStr] = Field(default=None, description="The desired encryption mode", alias="EncryptionMode")
     requires_rtp_profile: Optional[StrictBool] = Field(default=None, description="Indicates that this applicaiton type requires an RTP profile", alias="RequiresRTPProfile")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["CustomHeaderLenOffset", "CustomHeaderLenSize", "CustomHeaderSignature", "CustomHeaderSignatureOffset", "CustomHeaderSize", "EncryptionMode", "RequiresRTPProfile"]
 
     model_config = ConfigDict(
@@ -40,6 +47,113 @@ class RTPProfileMeta(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_custom_header_len_offset(self):
+#        if self.custom_header_len_offset is not None:
+#            return self.custom_header_len_offset
+#        field_info = self.__class__.__fields__["custom_header_len_offset"]
+#        try:
+#            self.custom_header_len_offset =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.custom_header_len_offset =  self.link_based_request("custom_header_len_offset", "GET", return_type="int")
+#        return self.custom_header_len_offset
+#
+#    @rest_custom_header_len_offset.setter
+#    def rest_custom_header_len_offset(self, value):
+#        self.custom_header_len_offset = value
+
+#    @property
+#    def rest_custom_header_len_size(self):
+#        if self.custom_header_len_size is not None:
+#            return self.custom_header_len_size
+#        field_info = self.__class__.__fields__["custom_header_len_size"]
+#        try:
+#            self.custom_header_len_size =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.custom_header_len_size =  self.link_based_request("custom_header_len_size", "GET", return_type="int")
+#        return self.custom_header_len_size
+#
+#    @rest_custom_header_len_size.setter
+#    def rest_custom_header_len_size(self, value):
+#        self.custom_header_len_size = value
+
+#    @property
+#    def rest_custom_header_signature(self):
+#        if self.custom_header_signature is not None:
+#            return self.custom_header_signature
+#        field_info = self.__class__.__fields__["custom_header_signature"]
+#        try:
+#            self.custom_header_signature =  self.link_based_request(field_info.alias, "GET", return_type="bytearray")
+#        except LinkNameException as e:
+#            self.custom_header_signature =  self.link_based_request("custom_header_signature", "GET", return_type="bytearray")
+#        return self.custom_header_signature
+#
+#    @rest_custom_header_signature.setter
+#    def rest_custom_header_signature(self, value):
+#        self.custom_header_signature = value
+
+#    @property
+#    def rest_custom_header_signature_offset(self):
+#        if self.custom_header_signature_offset is not None:
+#            return self.custom_header_signature_offset
+#        field_info = self.__class__.__fields__["custom_header_signature_offset"]
+#        try:
+#            self.custom_header_signature_offset =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.custom_header_signature_offset =  self.link_based_request("custom_header_signature_offset", "GET", return_type="int")
+#        return self.custom_header_signature_offset
+#
+#    @rest_custom_header_signature_offset.setter
+#    def rest_custom_header_signature_offset(self, value):
+#        self.custom_header_signature_offset = value
+
+#    @property
+#    def rest_custom_header_size(self):
+#        if self.custom_header_size is not None:
+#            return self.custom_header_size
+#        field_info = self.__class__.__fields__["custom_header_size"]
+#        try:
+#            self.custom_header_size =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.custom_header_size =  self.link_based_request("custom_header_size", "GET", return_type="int")
+#        return self.custom_header_size
+#
+#    @rest_custom_header_size.setter
+#    def rest_custom_header_size(self, value):
+#        self.custom_header_size = value
+
+#    @property
+#    def rest_encryption_mode(self):
+#        if self.encryption_mode is not None:
+#            return self.encryption_mode
+#        field_info = self.__class__.__fields__["encryption_mode"]
+#        try:
+#            self.encryption_mode =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.encryption_mode =  self.link_based_request("encryption_mode", "GET", return_type="str")
+#        return self.encryption_mode
+#
+#    @rest_encryption_mode.setter
+#    def rest_encryption_mode(self, value):
+#        self.encryption_mode = value
+
+#    @property
+#    def rest_requires_rtp_profile(self):
+#        if self.requires_rtp_profile is not None:
+#            return self.requires_rtp_profile
+#        field_info = self.__class__.__fields__["requires_rtp_profile"]
+#        try:
+#            self.requires_rtp_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.requires_rtp_profile =  self.link_based_request("requires_rtp_profile", "GET", return_type="bool")
+#        return self.requires_rtp_profile
+#
+#    @rest_requires_rtp_profile.setter
+#    def rest_requires_rtp_profile(self, value):
+#        self.requires_rtp_profile = value
+
 
 
     def to_str(self) -> str:
@@ -83,17 +197,89 @@ class RTPProfileMeta(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "CustomHeaderLenOffset": obj.get("CustomHeaderLenOffset"),
-            "CustomHeaderLenSize": obj.get("CustomHeaderLenSize"),
-            "CustomHeaderSignature": obj.get("CustomHeaderSignature"),
-            "CustomHeaderSignatureOffset": obj.get("CustomHeaderSignatureOffset"),
-            "CustomHeaderSize": obj.get("CustomHeaderSize"),
-            "EncryptionMode": obj.get("EncryptionMode"),
-            "RequiresRTPProfile": obj.get("RequiresRTPProfile")
+                        "CustomHeaderLenSize": obj.get("CustomHeaderLenSize"),
+                        "CustomHeaderSignature": obj.get("CustomHeaderSignature"),
+                        "CustomHeaderSignatureOffset": obj.get("CustomHeaderSignatureOffset"),
+                        "CustomHeaderSize": obj.get("CustomHeaderSize"),
+                        "EncryptionMode": obj.get("EncryptionMode"),
+                        "RequiresRTPProfile": obj.get("RequiresRTPProfile")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

@@ -29,8 +29,13 @@ from cyperf.models.network_mapping import NetworkMapping
 from cyperf.models.params import Params
 from cyperf.models.tls_profile import TLSProfile
 from cyperf.models.update_network_mapping import UpdateNetworkMapping
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Attack" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Attack(BaseModel):
     """
@@ -72,6 +77,8 @@ class Attack(BaseModel):
     create: Optional[List[Union[StrictBytes, StrictStr]]] = None
     modify_excluded_dut_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-excluded-dut-recursively")
     modify_tags_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-tags-recursively")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["ActionTimeout", "Active", "ClientHTTPProfile", "Connections", "ConnectionsMaxTransactions", "Description", "DestinationHostname", "DnnId", "EndPointID", "Endpoints", "ExternalResourceURL", "Index", "InheritHTTPProfile", "IpPreference", "IsDeprecated", "IterationCount", "MaxActiveLimit", "Name", "NetworkMapping", "Params", "ProtocolID", "QosFlowId", "ReadonlyMaxTrans", "ServerHTTPProfile", "SupportsClientHTTPProfile", "SupportsHTTPProfiles", "SupportsServerHTTPProfile", "id", "ClientTLSProfile", "InheritTLS", "ServerTLSProfile", "SupportsTLS", "Tracks", "create", "modify-excluded-dut-recursively", "modify-tags-recursively"]
 
     @field_validator('name')
@@ -89,6 +96,548 @@ class Attack(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_action_timeout(self):
+#        if self.action_timeout is not None:
+#            return self.action_timeout
+#        field_info = self.__class__.__fields__["action_timeout"]
+#        try:
+#            self.action_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.action_timeout =  self.link_based_request("action_timeout", "GET", return_type="int")
+#        return self.action_timeout
+#
+#    @rest_action_timeout.setter
+#    def rest_action_timeout(self, value):
+#        self.action_timeout = value
+
+#    @property
+#    def rest_active(self):
+#        if self.active is not None:
+#            return self.active
+#        field_info = self.__class__.__fields__["active"]
+#        try:
+#            self.active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.active =  self.link_based_request("active", "GET", return_type="bool")
+#        return self.active
+#
+#    @rest_active.setter
+#    def rest_active(self, value):
+#        self.active = value
+
+#    @property
+#    def rest_client_http_profile(self):
+#        if self.client_http_profile is not None:
+#            return self.client_http_profile
+#        field_info = self.__class__.__fields__["client_http_profile"]
+#        try:
+#            self.client_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="HTTPProfile")
+#        except LinkNameException as e:
+#            self.client_http_profile =  self.link_based_request("client_http_profile", "GET", return_type="HTTPProfile")
+#        return self.client_http_profile
+#
+#    @rest_client_http_profile.setter
+#    def rest_client_http_profile(self, value):
+#        self.client_http_profile = value
+
+#    @property
+#    def rest_connections(self):
+#        if self.connections is not None:
+#            return self.connections
+#        field_info = self.__class__.__fields__["connections"]
+#        try:
+#            self.connections =  self.link_based_request(field_info.alias, "GET", return_type="List[Connection]")
+#        except LinkNameException as e:
+#            self.connections =  self.link_based_request("connections", "GET", return_type="List[Connection]")
+#        return self.connections
+#
+#    @rest_connections.setter
+#    def rest_connections(self, value):
+#        self.connections = value
+
+#    @property
+#    def rest_connections_max_transactions(self):
+#        if self.connections_max_transactions is not None:
+#            return self.connections_max_transactions
+#        field_info = self.__class__.__fields__["connections_max_transactions"]
+#        try:
+#            self.connections_max_transactions =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.connections_max_transactions =  self.link_based_request("connections_max_transactions", "GET", return_type="int")
+#        return self.connections_max_transactions
+#
+#    @rest_connections_max_transactions.setter
+#    def rest_connections_max_transactions(self, value):
+#        self.connections_max_transactions = value
+
+#    @property
+#    def rest_description(self):
+#        if self.description is not None:
+#            return self.description
+#        field_info = self.__class__.__fields__["description"]
+#        try:
+#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.description =  self.link_based_request("description", "GET", return_type="str")
+#        return self.description
+#
+#    @rest_description.setter
+#    def rest_description(self, value):
+#        self.description = value
+
+#    @property
+#    def rest_destination_hostname(self):
+#        if self.destination_hostname is not None:
+#            return self.destination_hostname
+#        field_info = self.__class__.__fields__["destination_hostname"]
+#        try:
+#            self.destination_hostname =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.destination_hostname =  self.link_based_request("destination_hostname", "GET", return_type="str")
+#        return self.destination_hostname
+#
+#    @rest_destination_hostname.setter
+#    def rest_destination_hostname(self, value):
+#        self.destination_hostname = value
+
+#    @property
+#    def rest_dnn_id(self):
+#        if self.dnn_id is not None:
+#            return self.dnn_id
+#        field_info = self.__class__.__fields__["dnn_id"]
+#        try:
+#            self.dnn_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.dnn_id =  self.link_based_request("dnn_id", "GET", return_type="str")
+#        return self.dnn_id
+#
+#    @rest_dnn_id.setter
+#    def rest_dnn_id(self, value):
+#        self.dnn_id = value
+
+#    @property
+#    def rest_end_point_id(self):
+#        if self.end_point_id is not None:
+#            return self.end_point_id
+#        field_info = self.__class__.__fields__["end_point_id"]
+#        try:
+#            self.end_point_id =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.end_point_id =  self.link_based_request("end_point_id", "GET", return_type="int")
+#        return self.end_point_id
+#
+#    @rest_end_point_id.setter
+#    def rest_end_point_id(self, value):
+#        self.end_point_id = value
+
+#    @property
+#    def rest_endpoints(self):
+#        if self.endpoints is not None:
+#            return self.endpoints
+#        field_info = self.__class__.__fields__["endpoints"]
+#        try:
+#            self.endpoints =  self.link_based_request(field_info.alias, "GET", return_type="List[Endpoint]")
+#        except LinkNameException as e:
+#            self.endpoints =  self.link_based_request("endpoints", "GET", return_type="List[Endpoint]")
+#        return self.endpoints
+#
+#    @rest_endpoints.setter
+#    def rest_endpoints(self, value):
+#        self.endpoints = value
+
+#    @property
+#    def rest_external_resource_url(self):
+#        if self.external_resource_url is not None:
+#            return self.external_resource_url
+#        field_info = self.__class__.__fields__["external_resource_url"]
+#        try:
+#            self.external_resource_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.external_resource_url =  self.link_based_request("external_resource_url", "GET", return_type="str")
+#        return self.external_resource_url
+#
+#    @rest_external_resource_url.setter
+#    def rest_external_resource_url(self, value):
+#        self.external_resource_url = value
+
+#    @property
+#    def rest_index(self):
+#        if self.index is not None:
+#            return self.index
+#        field_info = self.__class__.__fields__["index"]
+#        try:
+#            self.index =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.index =  self.link_based_request("index", "GET", return_type="int")
+#        return self.index
+#
+#    @rest_index.setter
+#    def rest_index(self, value):
+#        self.index = value
+
+#    @property
+#    def rest_inherit_http_profile(self):
+#        if self.inherit_http_profile is not None:
+#            return self.inherit_http_profile
+#        field_info = self.__class__.__fields__["inherit_http_profile"]
+#        try:
+#            self.inherit_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.inherit_http_profile =  self.link_based_request("inherit_http_profile", "GET", return_type="bool")
+#        return self.inherit_http_profile
+#
+#    @rest_inherit_http_profile.setter
+#    def rest_inherit_http_profile(self, value):
+#        self.inherit_http_profile = value
+
+#    @property
+#    def rest_ip_preference(self):
+#        if self.ip_preference is not None:
+#            return self.ip_preference
+#        field_info = self.__class__.__fields__["ip_preference"]
+#        try:
+#            self.ip_preference =  self.link_based_request(field_info.alias, "GET", return_type="IpPreference")
+#        except LinkNameException as e:
+#            self.ip_preference =  self.link_based_request("ip_preference", "GET", return_type="IpPreference")
+#        return self.ip_preference
+#
+#    @rest_ip_preference.setter
+#    def rest_ip_preference(self, value):
+#        self.ip_preference = value
+
+#    @property
+#    def rest_is_deprecated(self):
+#        if self.is_deprecated is not None:
+#            return self.is_deprecated
+#        field_info = self.__class__.__fields__["is_deprecated"]
+#        try:
+#            self.is_deprecated =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_deprecated =  self.link_based_request("is_deprecated", "GET", return_type="bool")
+#        return self.is_deprecated
+#
+#    @rest_is_deprecated.setter
+#    def rest_is_deprecated(self, value):
+#        self.is_deprecated = value
+
+#    @property
+#    def rest_iteration_count(self):
+#        if self.iteration_count is not None:
+#            return self.iteration_count
+#        field_info = self.__class__.__fields__["iteration_count"]
+#        try:
+#            self.iteration_count =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.iteration_count =  self.link_based_request("iteration_count", "GET", return_type="int")
+#        return self.iteration_count
+#
+#    @rest_iteration_count.setter
+#    def rest_iteration_count(self, value):
+#        self.iteration_count = value
+
+#    @property
+#    def rest_max_active_limit(self):
+#        if self.max_active_limit is not None:
+#            return self.max_active_limit
+#        field_info = self.__class__.__fields__["max_active_limit"]
+#        try:
+#            self.max_active_limit =  self.link_based_request(field_info.alias, "GET", return_type="int")
+#        except LinkNameException as e:
+#            self.max_active_limit =  self.link_based_request("max_active_limit", "GET", return_type="int")
+#        return self.max_active_limit
+#
+#    @rest_max_active_limit.setter
+#    def rest_max_active_limit(self, value):
+#        self.max_active_limit = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_network_mapping(self):
+#        if self.network_mapping is not None:
+#            return self.network_mapping
+#        field_info = self.__class__.__fields__["network_mapping"]
+#        try:
+#            self.network_mapping =  self.link_based_request(field_info.alias, "GET", return_type="NetworkMapping")
+#        except LinkNameException as e:
+#            self.network_mapping =  self.link_based_request("network_mapping", "GET", return_type="NetworkMapping")
+#        return self.network_mapping
+#
+#    @rest_network_mapping.setter
+#    def rest_network_mapping(self, value):
+#        self.network_mapping = value
+
+#    @property
+#    def rest_params(self):
+#        if self.params is not None:
+#            return self.params
+#        field_info = self.__class__.__fields__["params"]
+#        try:
+#            self.params =  self.link_based_request(field_info.alias, "GET", return_type="List[Params]")
+#        except LinkNameException as e:
+#            self.params =  self.link_based_request("params", "GET", return_type="List[Params]")
+#        return self.params
+#
+#    @rest_params.setter
+#    def rest_params(self, value):
+#        self.params = value
+
+#    @property
+#    def rest_protocol_id(self):
+#        if self.protocol_id is not None:
+#            return self.protocol_id
+#        field_info = self.__class__.__fields__["protocol_id"]
+#        try:
+#            self.protocol_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.protocol_id =  self.link_based_request("protocol_id", "GET", return_type="str")
+#        return self.protocol_id
+#
+#    @rest_protocol_id.setter
+#    def rest_protocol_id(self, value):
+#        self.protocol_id = value
+
+#    @property
+#    def rest_qos_flow_id(self):
+#        if self.qos_flow_id is not None:
+#            return self.qos_flow_id
+#        field_info = self.__class__.__fields__["qos_flow_id"]
+#        try:
+#            self.qos_flow_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.qos_flow_id =  self.link_based_request("qos_flow_id", "GET", return_type="str")
+#        return self.qos_flow_id
+#
+#    @rest_qos_flow_id.setter
+#    def rest_qos_flow_id(self, value):
+#        self.qos_flow_id = value
+
+#    @property
+#    def rest_readonly_max_trans(self):
+#        if self.readonly_max_trans is not None:
+#            return self.readonly_max_trans
+#        field_info = self.__class__.__fields__["readonly_max_trans"]
+#        try:
+#            self.readonly_max_trans =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.readonly_max_trans =  self.link_based_request("readonly_max_trans", "GET", return_type="bool")
+#        return self.readonly_max_trans
+#
+#    @rest_readonly_max_trans.setter
+#    def rest_readonly_max_trans(self, value):
+#        self.readonly_max_trans = value
+
+#    @property
+#    def rest_server_http_profile(self):
+#        if self.server_http_profile is not None:
+#            return self.server_http_profile
+#        field_info = self.__class__.__fields__["server_http_profile"]
+#        try:
+#            self.server_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="HTTPProfile")
+#        except LinkNameException as e:
+#            self.server_http_profile =  self.link_based_request("server_http_profile", "GET", return_type="HTTPProfile")
+#        return self.server_http_profile
+#
+#    @rest_server_http_profile.setter
+#    def rest_server_http_profile(self, value):
+#        self.server_http_profile = value
+
+#    @property
+#    def rest_supports_client_http_profile(self):
+#        if self.supports_client_http_profile is not None:
+#            return self.supports_client_http_profile
+#        field_info = self.__class__.__fields__["supports_client_http_profile"]
+#        try:
+#            self.supports_client_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_client_http_profile =  self.link_based_request("supports_client_http_profile", "GET", return_type="bool")
+#        return self.supports_client_http_profile
+#
+#    @rest_supports_client_http_profile.setter
+#    def rest_supports_client_http_profile(self, value):
+#        self.supports_client_http_profile = value
+
+#    @property
+#    def rest_supports_http_profiles(self):
+#        if self.supports_http_profiles is not None:
+#            return self.supports_http_profiles
+#        field_info = self.__class__.__fields__["supports_http_profiles"]
+#        try:
+#            self.supports_http_profiles =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_http_profiles =  self.link_based_request("supports_http_profiles", "GET", return_type="bool")
+#        return self.supports_http_profiles
+#
+#    @rest_supports_http_profiles.setter
+#    def rest_supports_http_profiles(self, value):
+#        self.supports_http_profiles = value
+
+#    @property
+#    def rest_supports_server_http_profile(self):
+#        if self.supports_server_http_profile is not None:
+#            return self.supports_server_http_profile
+#        field_info = self.__class__.__fields__["supports_server_http_profile"]
+#        try:
+#            self.supports_server_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_server_http_profile =  self.link_based_request("supports_server_http_profile", "GET", return_type="bool")
+#        return self.supports_server_http_profile
+#
+#    @rest_supports_server_http_profile.setter
+#    def rest_supports_server_http_profile(self, value):
+#        self.supports_server_http_profile = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_client_tls_profile(self):
+#        if self.client_tls_profile is not None:
+#            return self.client_tls_profile
+#        field_info = self.__class__.__fields__["client_tls_profile"]
+#        try:
+#            self.client_tls_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
+#        except LinkNameException as e:
+#            self.client_tls_profile =  self.link_based_request("client_tls_profile", "GET", return_type="TLSProfile")
+#        return self.client_tls_profile
+#
+#    @rest_client_tls_profile.setter
+#    def rest_client_tls_profile(self, value):
+#        self.client_tls_profile = value
+
+#    @property
+#    def rest_inherit_tls(self):
+#        if self.inherit_tls is not None:
+#            return self.inherit_tls
+#        field_info = self.__class__.__fields__["inherit_tls"]
+#        try:
+#            self.inherit_tls =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.inherit_tls =  self.link_based_request("inherit_tls", "GET", return_type="bool")
+#        return self.inherit_tls
+#
+#    @rest_inherit_tls.setter
+#    def rest_inherit_tls(self, value):
+#        self.inherit_tls = value
+
+#    @property
+#    def rest_server_tls_profile(self):
+#        if self.server_tls_profile is not None:
+#            return self.server_tls_profile
+#        field_info = self.__class__.__fields__["server_tls_profile"]
+#        try:
+#            self.server_tls_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
+#        except LinkNameException as e:
+#            self.server_tls_profile =  self.link_based_request("server_tls_profile", "GET", return_type="TLSProfile")
+#        return self.server_tls_profile
+#
+#    @rest_server_tls_profile.setter
+#    def rest_server_tls_profile(self, value):
+#        self.server_tls_profile = value
+
+#    @property
+#    def rest_supports_tls(self):
+#        if self.supports_tls is not None:
+#            return self.supports_tls
+#        field_info = self.__class__.__fields__["supports_tls"]
+#        try:
+#            self.supports_tls =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_tls =  self.link_based_request("supports_tls", "GET", return_type="bool")
+#        return self.supports_tls
+#
+#    @rest_supports_tls.setter
+#    def rest_supports_tls(self, value):
+#        self.supports_tls = value
+
+#    @property
+#    def rest_tracks(self):
+#        if self.tracks is not None:
+#            return self.tracks
+#        field_info = self.__class__.__fields__["tracks"]
+#        try:
+#            self.tracks =  self.link_based_request(field_info.alias, "GET", return_type="List[AttackTrack]")
+#        except LinkNameException as e:
+#            self.tracks =  self.link_based_request("tracks", "GET", return_type="List[AttackTrack]")
+#        return self.tracks
+#
+#    @rest_tracks.setter
+#    def rest_tracks(self, value):
+#        self.tracks = value
+
+#    @property
+#    def rest_create(self):
+#        if self.create is not None:
+#            return self.create
+#        field_info = self.__class__.__fields__["create"]
+#        try:
+#            self.create =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
+#        except LinkNameException as e:
+#            self.create =  self.link_based_request("create", "GET", return_type="List[bytearray]")
+#        return self.create
+#
+#    @rest_create.setter
+#    def rest_create(self, value):
+#        self.create = value
+
+#    @property
+#    def rest_modify_excluded_dut_recursively(self):
+#        if self.modify_excluded_dut_recursively is not None:
+#            return self.modify_excluded_dut_recursively
+#        field_info = self.__class__.__fields__["modify_excluded_dut_recursively"]
+#        try:
+#            self.modify_excluded_dut_recursively =  self.link_based_request(field_info.alias, "GET", return_type="List[UpdateNetworkMapping]")
+#        except LinkNameException as e:
+#            self.modify_excluded_dut_recursively =  self.link_based_request("modify_excluded_dut_recursively", "GET", return_type="List[UpdateNetworkMapping]")
+#        return self.modify_excluded_dut_recursively
+#
+#    @rest_modify_excluded_dut_recursively.setter
+#    def rest_modify_excluded_dut_recursively(self, value):
+#        self.modify_excluded_dut_recursively = value
+
+#    @property
+#    def rest_modify_tags_recursively(self):
+#        if self.modify_tags_recursively is not None:
+#            return self.modify_tags_recursively
+#        field_info = self.__class__.__fields__["modify_tags_recursively"]
+#        try:
+#            self.modify_tags_recursively =  self.link_based_request(field_info.alias, "GET", return_type="List[UpdateNetworkMapping]")
+#        except LinkNameException as e:
+#            self.modify_tags_recursively =  self.link_based_request("modify_tags_recursively", "GET", return_type="List[UpdateNetworkMapping]")
+#        return self.modify_tags_recursively
+#
+#    @rest_modify_tags_recursively.setter
+#    def rest_modify_tags_recursively(self, value):
+#        self.modify_tags_recursively = value
+
 
 
     def to_str(self) -> str:
@@ -129,16 +678,16 @@ class Attack(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
         _items = []
         if self.connections:
-            for _item_connections in self.connections:
-                if _item_connections:
-                    _items.append(_item_connections.to_dict())
+            for _item in self.connections:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Connections'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in endpoints (list)
         _items = []
         if self.endpoints:
-            for _item_endpoints in self.endpoints:
-                if _item_endpoints:
-                    _items.append(_item_endpoints.to_dict())
+            for _item in self.endpoints:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Endpoints'] = _items
         # override the default output from pydantic by calling `to_dict()` of network_mapping
         if self.network_mapping:
@@ -146,9 +695,9 @@ class Attack(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in params (list)
         _items = []
         if self.params:
-            for _item_params in self.params:
-                if _item_params:
-                    _items.append(_item_params.to_dict())
+            for _item in self.params:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Params'] = _items
         # override the default output from pydantic by calling `to_dict()` of server_http_profile
         if self.server_http_profile:
@@ -162,23 +711,23 @@ class Attack(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in tracks (list)
         _items = []
         if self.tracks:
-            for _item_tracks in self.tracks:
-                if _item_tracks:
-                    _items.append(_item_tracks.to_dict())
+            for _item in self.tracks:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Tracks'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in modify_excluded_dut_recursively (list)
         _items = []
         if self.modify_excluded_dut_recursively:
-            for _item_modify_excluded_dut_recursively in self.modify_excluded_dut_recursively:
-                if _item_modify_excluded_dut_recursively:
-                    _items.append(_item_modify_excluded_dut_recursively.to_dict())
+            for _item in self.modify_excluded_dut_recursively:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['modify-excluded-dut-recursively'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in modify_tags_recursively (list)
         _items = []
         if self.modify_tags_recursively:
-            for _item_modify_tags_recursively in self.modify_tags_recursively:
-                if _item_modify_tags_recursively:
-                    _items.append(_item_modify_tags_recursively.to_dict())
+            for _item in self.modify_tags_recursively:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['modify-tags-recursively'] = _items
         return _dict
 
@@ -189,46 +738,118 @@ class Attack(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "ActionTimeout": obj.get("ActionTimeout"),
-            "Active": obj.get("Active"),
-            "ClientHTTPProfile": HTTPProfile.from_dict(obj["ClientHTTPProfile"]) if obj.get("ClientHTTPProfile") is not None else None,
-            "Connections": [Connection.from_dict(_item) for _item in obj["Connections"]] if obj.get("Connections") is not None else None,
-            "ConnectionsMaxTransactions": obj.get("ConnectionsMaxTransactions"),
-            "Description": obj.get("Description"),
-            "DestinationHostname": obj.get("DestinationHostname"),
-            "DnnId": obj.get("DnnId"),
-            "EndPointID": obj.get("EndPointID"),
-            "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
-            "ExternalResourceURL": obj.get("ExternalResourceURL"),
-            "Index": obj.get("Index"),
-            "InheritHTTPProfile": obj.get("InheritHTTPProfile"),
-            "IpPreference": obj.get("IpPreference"),
-            "IsDeprecated": obj.get("IsDeprecated"),
-            "IterationCount": obj.get("IterationCount"),
-            "MaxActiveLimit": obj.get("MaxActiveLimit"),
-            "Name": obj.get("Name"),
-            "NetworkMapping": NetworkMapping.from_dict(obj["NetworkMapping"]) if obj.get("NetworkMapping") is not None else None,
-            "Params": [Params.from_dict(_item) for _item in obj["Params"]] if obj.get("Params") is not None else None,
-            "ProtocolID": obj.get("ProtocolID"),
-            "QosFlowId": obj.get("QosFlowId"),
-            "ReadonlyMaxTrans": obj.get("ReadonlyMaxTrans"),
-            "ServerHTTPProfile": HTTPProfile.from_dict(obj["ServerHTTPProfile"]) if obj.get("ServerHTTPProfile") is not None else None,
-            "SupportsClientHTTPProfile": obj.get("SupportsClientHTTPProfile"),
-            "SupportsHTTPProfiles": obj.get("SupportsHTTPProfiles"),
-            "SupportsServerHTTPProfile": obj.get("SupportsServerHTTPProfile"),
-            "id": obj.get("id"),
-            "ClientTLSProfile": TLSProfile.from_dict(obj["ClientTLSProfile"]) if obj.get("ClientTLSProfile") is not None else None,
-            "InheritTLS": obj.get("InheritTLS"),
-            "ServerTLSProfile": TLSProfile.from_dict(obj["ServerTLSProfile"]) if obj.get("ServerTLSProfile") is not None else None,
-            "SupportsTLS": obj.get("SupportsTLS"),
-            "Tracks": [AttackTrack.from_dict(_item) for _item in obj["Tracks"]] if obj.get("Tracks") is not None else None,
-            "create": obj.get("create"),
-            "modify-excluded-dut-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-excluded-dut-recursively"]] if obj.get("modify-excluded-dut-recursively") is not None else None,
-            "modify-tags-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-tags-recursively"]] if obj.get("modify-tags-recursively") is not None else None
+                        "Active": obj.get("Active"),
+                        "ClientHTTPProfile": HTTPProfile.from_dict(obj["ClientHTTPProfile"]) if obj.get("ClientHTTPProfile") is not None else None,
+                        "Connections": [Connection.from_dict(_item) for _item in obj["Connections"]] if obj.get("Connections") is not None else None,
+                        "ConnectionsMaxTransactions": obj.get("ConnectionsMaxTransactions"),
+                        "Description": obj.get("Description"),
+                        "DestinationHostname": obj.get("DestinationHostname"),
+                        "DnnId": obj.get("DnnId"),
+                        "EndPointID": obj.get("EndPointID"),
+                        "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
+                        "ExternalResourceURL": obj.get("ExternalResourceURL"),
+                        "Index": obj.get("Index"),
+                        "InheritHTTPProfile": obj.get("InheritHTTPProfile"),
+                        "IpPreference": obj.get("IpPreference"),
+                        "IsDeprecated": obj.get("IsDeprecated"),
+                        "IterationCount": obj.get("IterationCount"),
+                        "MaxActiveLimit": obj.get("MaxActiveLimit"),
+                        "Name": obj.get("Name"),
+                        "NetworkMapping": NetworkMapping.from_dict(obj["NetworkMapping"]) if obj.get("NetworkMapping") is not None else None,
+                        "Params": [Params.from_dict(_item) for _item in obj["Params"]] if obj.get("Params") is not None else None,
+                        "ProtocolID": obj.get("ProtocolID"),
+                        "QosFlowId": obj.get("QosFlowId"),
+                        "ReadonlyMaxTrans": obj.get("ReadonlyMaxTrans"),
+                        "ServerHTTPProfile": HTTPProfile.from_dict(obj["ServerHTTPProfile"]) if obj.get("ServerHTTPProfile") is not None else None,
+                        "SupportsClientHTTPProfile": obj.get("SupportsClientHTTPProfile"),
+                        "SupportsHTTPProfiles": obj.get("SupportsHTTPProfiles"),
+                        "SupportsServerHTTPProfile": obj.get("SupportsServerHTTPProfile"),
+                        "id": obj.get("id"),
+                        "ClientTLSProfile": TLSProfile.from_dict(obj["ClientTLSProfile"]) if obj.get("ClientTLSProfile") is not None else None,
+                        "InheritTLS": obj.get("InheritTLS"),
+                        "ServerTLSProfile": TLSProfile.from_dict(obj["ServerTLSProfile"]) if obj.get("ServerTLSProfile") is not None else None,
+                        "SupportsTLS": obj.get("SupportsTLS"),
+                        "Tracks": [AttackTrack.from_dict(_item) for _item in obj["Tracks"]] if obj.get("Tracks") is not None else None,
+                        "create": obj.get("create"),
+                        "modify-excluded-dut-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-excluded-dut-recursively"]] if obj.get("modify-excluded-dut-recursively") is not None else None,
+                        "modify-tags-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-tags-recursively"]] if obj.get("modify-tags-recursively") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

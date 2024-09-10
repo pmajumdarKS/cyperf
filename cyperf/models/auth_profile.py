@@ -24,8 +24,13 @@ from cyperf.models.data_type import DataType
 from cyperf.models.endpoint import Endpoint
 from cyperf.models.metadata import Metadata
 from cyperf.models.parameter import Parameter
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "AuthProfile" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class AuthProfile(BaseModel):
     """
@@ -40,6 +45,8 @@ class AuthProfile(BaseModel):
     description: Optional[StrictStr] = Field(default=None, description="The user friendly description of the Auth Profile")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the profile")
     type: Optional[StrictStr] = Field(default=None, description="The type of the authentication profile")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Connections", "DataTypes", "Endpoints", "FileName", "Metadata", "Parameters", "description", "id", "type"]
 
     model_config = ConfigDict(
@@ -47,6 +54,143 @@ class AuthProfile(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_connections(self):
+#        if self.connections is not None:
+#            return self.connections
+#        field_info = self.__class__.__fields__["connections"]
+#        try:
+#            self.connections =  self.link_based_request(field_info.alias, "GET", return_type="List[Connection]")
+#        except LinkNameException as e:
+#            self.connections =  self.link_based_request("connections", "GET", return_type="List[Connection]")
+#        return self.connections
+#
+#    @rest_connections.setter
+#    def rest_connections(self, value):
+#        self.connections = value
+
+#    @property
+#    def rest_data_types(self):
+#        if self.data_types is not None:
+#            return self.data_types
+#        field_info = self.__class__.__fields__["data_types"]
+#        try:
+#            self.data_types =  self.link_based_request(field_info.alias, "GET", return_type="List[DataType]")
+#        except LinkNameException as e:
+#            self.data_types =  self.link_based_request("data_types", "GET", return_type="List[DataType]")
+#        return self.data_types
+#
+#    @rest_data_types.setter
+#    def rest_data_types(self, value):
+#        self.data_types = value
+
+#    @property
+#    def rest_endpoints(self):
+#        if self.endpoints is not None:
+#            return self.endpoints
+#        field_info = self.__class__.__fields__["endpoints"]
+#        try:
+#            self.endpoints =  self.link_based_request(field_info.alias, "GET", return_type="List[Endpoint]")
+#        except LinkNameException as e:
+#            self.endpoints =  self.link_based_request("endpoints", "GET", return_type="List[Endpoint]")
+#        return self.endpoints
+#
+#    @rest_endpoints.setter
+#    def rest_endpoints(self, value):
+#        self.endpoints = value
+
+#    @property
+#    def rest_file_name(self):
+#        if self.file_name is not None:
+#            return self.file_name
+#        field_info = self.__class__.__fields__["file_name"]
+#        try:
+#            self.file_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.file_name =  self.link_based_request("file_name", "GET", return_type="str")
+#        return self.file_name
+#
+#    @rest_file_name.setter
+#    def rest_file_name(self, value):
+#        self.file_name = value
+
+#    @property
+#    def rest_metadata(self):
+#        if self.metadata is not None:
+#            return self.metadata
+#        field_info = self.__class__.__fields__["metadata"]
+#        try:
+#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="Metadata")
+#        except LinkNameException as e:
+#            self.metadata =  self.link_based_request("metadata", "GET", return_type="Metadata")
+#        return self.metadata
+#
+#    @rest_metadata.setter
+#    def rest_metadata(self, value):
+#        self.metadata = value
+
+#    @property
+#    def rest_parameters(self):
+#        if self.parameters is not None:
+#            return self.parameters
+#        field_info = self.__class__.__fields__["parameters"]
+#        try:
+#            self.parameters =  self.link_based_request(field_info.alias, "GET", return_type="List[Parameter]")
+#        except LinkNameException as e:
+#            self.parameters =  self.link_based_request("parameters", "GET", return_type="List[Parameter]")
+#        return self.parameters
+#
+#    @rest_parameters.setter
+#    def rest_parameters(self, value):
+#        self.parameters = value
+
+#    @property
+#    def rest_description(self):
+#        if self.description is not None:
+#            return self.description
+#        field_info = self.__class__.__fields__["description"]
+#        try:
+#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.description =  self.link_based_request("description", "GET", return_type="str")
+#        return self.description
+#
+#    @rest_description.setter
+#    def rest_description(self, value):
+#        self.description = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_type(self):
+#        if self.type is not None:
+#            return self.type
+#        field_info = self.__class__.__fields__["type"]
+#        try:
+#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.type =  self.link_based_request("type", "GET", return_type="str")
+#        return self.type
+#
+#    @rest_type.setter
+#    def rest_type(self, value):
+#        self.type = value
+
 
 
     def to_str(self) -> str:
@@ -96,23 +240,23 @@ class AuthProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
         _items = []
         if self.connections:
-            for _item_connections in self.connections:
-                if _item_connections:
-                    _items.append(_item_connections.to_dict())
+            for _item in self.connections:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Connections'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in data_types (list)
         _items = []
         if self.data_types:
-            for _item_data_types in self.data_types:
-                if _item_data_types:
-                    _items.append(_item_data_types.to_dict())
+            for _item in self.data_types:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['DataTypes'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in endpoints (list)
         _items = []
         if self.endpoints:
-            for _item_endpoints in self.endpoints:
-                if _item_endpoints:
-                    _items.append(_item_endpoints.to_dict())
+            for _item in self.endpoints:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Endpoints'] = _items
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
@@ -120,9 +264,9 @@ class AuthProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in parameters (list)
         _items = []
         if self.parameters:
-            for _item_parameters in self.parameters:
-                if _item_parameters:
-                    _items.append(_item_parameters.to_dict())
+            for _item in self.parameters:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Parameters'] = _items
         return _dict
 
@@ -133,19 +277,91 @@ class AuthProfile(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "Connections": [Connection.from_dict(_item) for _item in obj["Connections"]] if obj.get("Connections") is not None else None,
-            "DataTypes": [DataType.from_dict(_item) for _item in obj["DataTypes"]] if obj.get("DataTypes") is not None else None,
-            "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
-            "FileName": obj.get("FileName"),
-            "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
-            "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None,
-            "description": obj.get("description"),
-            "id": obj.get("id"),
-            "type": obj.get("type")
+                        "DataTypes": [DataType.from_dict(_item) for _item in obj["DataTypes"]] if obj.get("DataTypes") is not None else None,
+                        "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
+                        "FileName": obj.get("FileName"),
+                        "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
+                        "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None,
+                        "description": obj.get("description"),
+                        "id": obj.get("id"),
+                        "type": obj.get("type")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

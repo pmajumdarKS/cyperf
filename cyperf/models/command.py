@@ -22,8 +22,13 @@ from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.exchange import Exchange
 from cyperf.models.metadata import Metadata
 from cyperf.models.parameter import Parameter
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "Command" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class Command(BaseModel):
     """
@@ -36,6 +41,8 @@ class Command(BaseModel):
     metadata: Optional[Metadata] = Field(default=None, alias="Metadata")
     name: Optional[StrictStr] = Field(default=None, description="The name of the command", alias="Name")
     parameters: Optional[List[Parameter]] = Field(default=None, description="The parameters of the command", alias="Parameters")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["ActionID", "Description", "Exchanges", "IsStrike", "Metadata", "Name", "Parameters"]
 
     model_config = ConfigDict(
@@ -43,6 +50,113 @@ class Command(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_action_id(self):
+#        if self.action_id is not None:
+#            return self.action_id
+#        field_info = self.__class__.__fields__["action_id"]
+#        try:
+#            self.action_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.action_id =  self.link_based_request("action_id", "GET", return_type="str")
+#        return self.action_id
+#
+#    @rest_action_id.setter
+#    def rest_action_id(self, value):
+#        self.action_id = value
+
+#    @property
+#    def rest_description(self):
+#        if self.description is not None:
+#            return self.description
+#        field_info = self.__class__.__fields__["description"]
+#        try:
+#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.description =  self.link_based_request("description", "GET", return_type="str")
+#        return self.description
+#
+#    @rest_description.setter
+#    def rest_description(self, value):
+#        self.description = value
+
+#    @property
+#    def rest_exchanges(self):
+#        if self.exchanges is not None:
+#            return self.exchanges
+#        field_info = self.__class__.__fields__["exchanges"]
+#        try:
+#            self.exchanges =  self.link_based_request(field_info.alias, "GET", return_type="List[Exchange]")
+#        except LinkNameException as e:
+#            self.exchanges =  self.link_based_request("exchanges", "GET", return_type="List[Exchange]")
+#        return self.exchanges
+#
+#    @rest_exchanges.setter
+#    def rest_exchanges(self, value):
+#        self.exchanges = value
+
+#    @property
+#    def rest_is_strike(self):
+#        if self.is_strike is not None:
+#            return self.is_strike
+#        field_info = self.__class__.__fields__["is_strike"]
+#        try:
+#            self.is_strike =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_strike =  self.link_based_request("is_strike", "GET", return_type="bool")
+#        return self.is_strike
+#
+#    @rest_is_strike.setter
+#    def rest_is_strike(self, value):
+#        self.is_strike = value
+
+#    @property
+#    def rest_metadata(self):
+#        if self.metadata is not None:
+#            return self.metadata
+#        field_info = self.__class__.__fields__["metadata"]
+#        try:
+#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="Metadata")
+#        except LinkNameException as e:
+#            self.metadata =  self.link_based_request("metadata", "GET", return_type="Metadata")
+#        return self.metadata
+#
+#    @rest_metadata.setter
+#    def rest_metadata(self, value):
+#        self.metadata = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_parameters(self):
+#        if self.parameters is not None:
+#            return self.parameters
+#        field_info = self.__class__.__fields__["parameters"]
+#        try:
+#            self.parameters =  self.link_based_request(field_info.alias, "GET", return_type="List[Parameter]")
+#        except LinkNameException as e:
+#            self.parameters =  self.link_based_request("parameters", "GET", return_type="List[Parameter]")
+#        return self.parameters
+#
+#    @rest_parameters.setter
+#    def rest_parameters(self, value):
+#        self.parameters = value
+
 
 
     def to_str(self) -> str:
@@ -86,9 +200,9 @@ class Command(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in exchanges (list)
         _items = []
         if self.exchanges:
-            for _item_exchanges in self.exchanges:
-                if _item_exchanges:
-                    _items.append(_item_exchanges.to_dict())
+            for _item in self.exchanges:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Exchanges'] = _items
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
@@ -96,9 +210,9 @@ class Command(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in parameters (list)
         _items = []
         if self.parameters:
-            for _item_parameters in self.parameters:
-                if _item_parameters:
-                    _items.append(_item_parameters.to_dict())
+            for _item in self.parameters:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Parameters'] = _items
         return _dict
 
@@ -109,17 +223,89 @@ class Command(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "ActionID": obj.get("ActionID"),
-            "Description": obj.get("Description"),
-            "Exchanges": [Exchange.from_dict(_item) for _item in obj["Exchanges"]] if obj.get("Exchanges") is not None else None,
-            "IsStrike": obj.get("IsStrike"),
-            "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
-            "Name": obj.get("Name"),
-            "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None
+                        "Description": obj.get("Description"),
+                        "Exchanges": [Exchange.from_dict(_item) for _item in obj["Exchanges"]] if obj.get("Exchanges") is not None else None,
+                        "IsStrike": obj.get("IsStrike"),
+                        "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
+                        "Name": obj.get("Name"),
+                        "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

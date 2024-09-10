@@ -15,7 +15,6 @@
 import datetime
 from dateutil.parser import parse
 from enum import Enum
-import decimal
 import json
 import mimetypes
 import os
@@ -67,7 +66,6 @@ class ApiClient:
         'bool': bool,
         'date': datetime.date,
         'datetime': datetime.datetime,
-        'decimal': decimal.Decimal,
         'object': object,
     }
     _pool = None
@@ -340,7 +338,6 @@ class ApiClient:
         If obj is str, int, long, float, bool, return directly.
         If obj is datetime.datetime, datetime.date
             convert to string in iso8601 format.
-        If obj is decimal.Decimal return string representation.
         If obj is list, sanitize each element in the list.
         If obj is dict, return the dict.
         If obj is OpenAPI model, return the properties dict.
@@ -366,8 +363,6 @@ class ApiClient:
             )
         elif isinstance(obj, (datetime.datetime, datetime.date)):
             return obj.isoformat()
-        elif isinstance(obj, decimal.Decimal):
-            return str(obj)
 
         elif isinstance(obj, dict):
             obj_dict = obj
@@ -459,8 +454,6 @@ class ApiClient:
             return self.__deserialize_date(data)
         elif klass == datetime.datetime:
             return self.__deserialize_datetime(data)
-        elif klass == decimal.Decimal:
-            return decimal.Decimal(data)
         elif issubclass(klass, Enum):
             return self.__deserialize_enum(data, klass)
         else:

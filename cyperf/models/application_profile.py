@@ -25,8 +25,13 @@ from cyperf.models.network_mapping import NetworkMapping
 from cyperf.models.objectives_and_timeline import ObjectivesAndTimeline
 from cyperf.models.traffic_settings import TrafficSettings
 from cyperf.models.update_network_mapping import UpdateNetworkMapping
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "ApplicationProfile" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class ApplicationProfile(BaseModel):
     """
@@ -43,6 +48,8 @@ class ApplicationProfile(BaseModel):
     modify_excluded_dut_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-excluded-dut-recursively")
     modify_tags_recursively: Optional[List[UpdateNetworkMapping]] = Field(default=None, alias="modify-tags-recursively")
     reset_tags_to_default: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="reset-tags-to-default")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Active", "TrafficSettings", "id", "Applications", "DefaultNetworkMapping", "Name", "ObjectivesAndTimeline", "add-applications", "modify-excluded-dut-recursively", "modify-tags-recursively", "reset-tags-to-default"]
 
     model_config = ConfigDict(
@@ -50,6 +57,173 @@ class ApplicationProfile(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_active(self):
+#        if self.active is not None:
+#            return self.active
+#        field_info = self.__class__.__fields__["active"]
+#        try:
+#            self.active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.active =  self.link_based_request("active", "GET", return_type="bool")
+#        return self.active
+#
+#    @rest_active.setter
+#    def rest_active(self, value):
+#        self.active = value
+
+#    @property
+#    def rest_traffic_settings(self):
+#        if self.traffic_settings is not None:
+#            return self.traffic_settings
+#        field_info = self.__class__.__fields__["traffic_settings"]
+#        try:
+#            self.traffic_settings =  self.link_based_request(field_info.alias, "GET", return_type="TrafficSettings")
+#        except LinkNameException as e:
+#            self.traffic_settings =  self.link_based_request("traffic_settings", "GET", return_type="TrafficSettings")
+#        return self.traffic_settings
+#
+#    @rest_traffic_settings.setter
+#    def rest_traffic_settings(self, value):
+#        self.traffic_settings = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_applications(self):
+#        if self.applications is not None:
+#            return self.applications
+#        field_info = self.__class__.__fields__["applications"]
+#        try:
+#            self.applications =  self.link_based_request(field_info.alias, "GET", return_type="List[Application]")
+#        except LinkNameException as e:
+#            self.applications =  self.link_based_request("applications", "GET", return_type="List[Application]")
+#        return self.applications
+#
+#    @rest_applications.setter
+#    def rest_applications(self, value):
+#        self.applications = value
+
+#    @property
+#    def rest_default_network_mapping(self):
+#        if self.default_network_mapping is not None:
+#            return self.default_network_mapping
+#        field_info = self.__class__.__fields__["default_network_mapping"]
+#        try:
+#            self.default_network_mapping =  self.link_based_request(field_info.alias, "GET", return_type="NetworkMapping")
+#        except LinkNameException as e:
+#            self.default_network_mapping =  self.link_based_request("default_network_mapping", "GET", return_type="NetworkMapping")
+#        return self.default_network_mapping
+#
+#    @rest_default_network_mapping.setter
+#    def rest_default_network_mapping(self, value):
+#        self.default_network_mapping = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_objectives_and_timeline(self):
+#        if self.objectives_and_timeline is not None:
+#            return self.objectives_and_timeline
+#        field_info = self.__class__.__fields__["objectives_and_timeline"]
+#        try:
+#            self.objectives_and_timeline =  self.link_based_request(field_info.alias, "GET", return_type="ObjectivesAndTimeline")
+#        except LinkNameException as e:
+#            self.objectives_and_timeline =  self.link_based_request("objectives_and_timeline", "GET", return_type="ObjectivesAndTimeline")
+#        return self.objectives_and_timeline
+#
+#    @rest_objectives_and_timeline.setter
+#    def rest_objectives_and_timeline(self, value):
+#        self.objectives_and_timeline = value
+
+#    @property
+#    def rest_add_applications(self):
+#        if self.add_applications is not None:
+#            return self.add_applications
+#        field_info = self.__class__.__fields__["add_applications"]
+#        try:
+#            self.add_applications =  self.link_based_request(field_info.alias, "GET", return_type="List[ExternalResourceInfo]")
+#        except LinkNameException as e:
+#            self.add_applications =  self.link_based_request("add_applications", "GET", return_type="List[ExternalResourceInfo]")
+#        return self.add_applications
+#
+#    @rest_add_applications.setter
+#    def rest_add_applications(self, value):
+#        self.add_applications = value
+
+#    @property
+#    def rest_modify_excluded_dut_recursively(self):
+#        if self.modify_excluded_dut_recursively is not None:
+#            return self.modify_excluded_dut_recursively
+#        field_info = self.__class__.__fields__["modify_excluded_dut_recursively"]
+#        try:
+#            self.modify_excluded_dut_recursively =  self.link_based_request(field_info.alias, "GET", return_type="List[UpdateNetworkMapping]")
+#        except LinkNameException as e:
+#            self.modify_excluded_dut_recursively =  self.link_based_request("modify_excluded_dut_recursively", "GET", return_type="List[UpdateNetworkMapping]")
+#        return self.modify_excluded_dut_recursively
+#
+#    @rest_modify_excluded_dut_recursively.setter
+#    def rest_modify_excluded_dut_recursively(self, value):
+#        self.modify_excluded_dut_recursively = value
+
+#    @property
+#    def rest_modify_tags_recursively(self):
+#        if self.modify_tags_recursively is not None:
+#            return self.modify_tags_recursively
+#        field_info = self.__class__.__fields__["modify_tags_recursively"]
+#        try:
+#            self.modify_tags_recursively =  self.link_based_request(field_info.alias, "GET", return_type="List[UpdateNetworkMapping]")
+#        except LinkNameException as e:
+#            self.modify_tags_recursively =  self.link_based_request("modify_tags_recursively", "GET", return_type="List[UpdateNetworkMapping]")
+#        return self.modify_tags_recursively
+#
+#    @rest_modify_tags_recursively.setter
+#    def rest_modify_tags_recursively(self, value):
+#        self.modify_tags_recursively = value
+
+#    @property
+#    def rest_reset_tags_to_default(self):
+#        if self.reset_tags_to_default is not None:
+#            return self.reset_tags_to_default
+#        field_info = self.__class__.__fields__["reset_tags_to_default"]
+#        try:
+#            self.reset_tags_to_default =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
+#        except LinkNameException as e:
+#            self.reset_tags_to_default =  self.link_based_request("reset_tags_to_default", "GET", return_type="List[bytearray]")
+#        return self.reset_tags_to_default
+#
+#    @rest_reset_tags_to_default.setter
+#    def rest_reset_tags_to_default(self, value):
+#        self.reset_tags_to_default = value
+
 
 
     def to_str(self) -> str:
@@ -90,9 +264,9 @@ class ApplicationProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in applications (list)
         _items = []
         if self.applications:
-            for _item_applications in self.applications:
-                if _item_applications:
-                    _items.append(_item_applications.to_dict())
+            for _item in self.applications:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Applications'] = _items
         # override the default output from pydantic by calling `to_dict()` of default_network_mapping
         if self.default_network_mapping:
@@ -103,23 +277,23 @@ class ApplicationProfile(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in add_applications (list)
         _items = []
         if self.add_applications:
-            for _item_add_applications in self.add_applications:
-                if _item_add_applications:
-                    _items.append(_item_add_applications.to_dict())
+            for _item in self.add_applications:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['add-applications'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in modify_excluded_dut_recursively (list)
         _items = []
         if self.modify_excluded_dut_recursively:
-            for _item_modify_excluded_dut_recursively in self.modify_excluded_dut_recursively:
-                if _item_modify_excluded_dut_recursively:
-                    _items.append(_item_modify_excluded_dut_recursively.to_dict())
+            for _item in self.modify_excluded_dut_recursively:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['modify-excluded-dut-recursively'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in modify_tags_recursively (list)
         _items = []
         if self.modify_tags_recursively:
-            for _item_modify_tags_recursively in self.modify_tags_recursively:
-                if _item_modify_tags_recursively:
-                    _items.append(_item_modify_tags_recursively.to_dict())
+            for _item in self.modify_tags_recursively:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['modify-tags-recursively'] = _items
         return _dict
 
@@ -130,21 +304,93 @@ class ApplicationProfile(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "Active": obj.get("Active"),
-            "TrafficSettings": TrafficSettings.from_dict(obj["TrafficSettings"]) if obj.get("TrafficSettings") is not None else None,
-            "id": obj.get("id"),
-            "Applications": [Application.from_dict(_item) for _item in obj["Applications"]] if obj.get("Applications") is not None else None,
-            "DefaultNetworkMapping": NetworkMapping.from_dict(obj["DefaultNetworkMapping"]) if obj.get("DefaultNetworkMapping") is not None else None,
-            "Name": obj.get("Name"),
-            "ObjectivesAndTimeline": ObjectivesAndTimeline.from_dict(obj["ObjectivesAndTimeline"]) if obj.get("ObjectivesAndTimeline") is not None else None,
-            "add-applications": [ExternalResourceInfo.from_dict(_item) for _item in obj["add-applications"]] if obj.get("add-applications") is not None else None,
-            "modify-excluded-dut-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-excluded-dut-recursively"]] if obj.get("modify-excluded-dut-recursively") is not None else None,
-            "modify-tags-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-tags-recursively"]] if obj.get("modify-tags-recursively") is not None else None,
-            "reset-tags-to-default": obj.get("reset-tags-to-default")
+                        "TrafficSettings": TrafficSettings.from_dict(obj["TrafficSettings"]) if obj.get("TrafficSettings") is not None else None,
+                        "id": obj.get("id"),
+                        "Applications": [Application.from_dict(_item) for _item in obj["Applications"]] if obj.get("Applications") is not None else None,
+                        "DefaultNetworkMapping": NetworkMapping.from_dict(obj["DefaultNetworkMapping"]) if obj.get("DefaultNetworkMapping") is not None else None,
+                        "Name": obj.get("Name"),
+                        "ObjectivesAndTimeline": ObjectivesAndTimeline.from_dict(obj["ObjectivesAndTimeline"]) if obj.get("ObjectivesAndTimeline") is not None else None,
+                        "add-applications": [ExternalResourceInfo.from_dict(_item) for _item in obj["add-applications"]] if obj.get("add-applications") is not None else None,
+                        "modify-excluded-dut-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-excluded-dut-recursively"]] if obj.get("modify-excluded-dut-recursively") is not None else None,
+                        "modify-tags-recursively": [UpdateNetworkMapping.from_dict(_item) for _item in obj["modify-tags-recursively"]] if obj.get("modify-tags-recursively") is not None else None,
+                        "reset-tags-to-default": obj.get("reset-tags-to-default")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

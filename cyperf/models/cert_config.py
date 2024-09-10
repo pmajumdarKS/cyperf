@@ -21,8 +21,13 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictBytes, Stri
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from cyperf.models.conflict import Conflict
 from cyperf.models.params import Params
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "CertConfig" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class CertConfig(BaseModel):
     """
@@ -39,6 +44,8 @@ class CertConfig(BaseModel):
     playlist_filename: Optional[StrictStr] = Field(default=None, alias="playlistFilename")
     resolve_sni_conflicts: Optional[List[Conflict]] = Field(default=None, alias="resolve-sni-conflicts")
     sni_hostname: StrictStr = Field(description="The SNI hostname associated with the certificate. (default: generic.keysight.io).", alias="sniHostname")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["certificateFile", "dhFile", "get-sni-conflicts", "id", "isPlaylist", "keyFile", "keyFilePassword", "playlistColumnName", "playlistFilename", "resolve-sni-conflicts", "sniHostname"]
 
     model_config = ConfigDict(
@@ -46,6 +53,173 @@ class CertConfig(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_certificate_file(self):
+#        if self.certificate_file is not None:
+#            return self.certificate_file
+#        field_info = self.__class__.__fields__["certificate_file"]
+#        try:
+#            self.certificate_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.certificate_file =  self.link_based_request("certificate_file", "GET", return_type="Params")
+#        return self.certificate_file
+#
+#    @rest_certificate_file.setter
+#    def rest_certificate_file(self, value):
+#        self.certificate_file = value
+
+#    @property
+#    def rest_dh_file(self):
+#        if self.dh_file is not None:
+#            return self.dh_file
+#        field_info = self.__class__.__fields__["dh_file"]
+#        try:
+#            self.dh_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.dh_file =  self.link_based_request("dh_file", "GET", return_type="Params")
+#        return self.dh_file
+#
+#    @rest_dh_file.setter
+#    def rest_dh_file(self, value):
+#        self.dh_file = value
+
+#    @property
+#    def rest_get_sni_conflicts(self):
+#        if self.get_sni_conflicts is not None:
+#            return self.get_sni_conflicts
+#        field_info = self.__class__.__fields__["get_sni_conflicts"]
+#        try:
+#            self.get_sni_conflicts =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
+#        except LinkNameException as e:
+#            self.get_sni_conflicts =  self.link_based_request("get_sni_conflicts", "GET", return_type="List[bytearray]")
+#        return self.get_sni_conflicts
+#
+#    @rest_get_sni_conflicts.setter
+#    def rest_get_sni_conflicts(self, value):
+#        self.get_sni_conflicts = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
+#    @property
+#    def rest_is_playlist(self):
+#        if self.is_playlist is not None:
+#            return self.is_playlist
+#        field_info = self.__class__.__fields__["is_playlist"]
+#        try:
+#            self.is_playlist =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.is_playlist =  self.link_based_request("is_playlist", "GET", return_type="bool")
+#        return self.is_playlist
+#
+#    @rest_is_playlist.setter
+#    def rest_is_playlist(self, value):
+#        self.is_playlist = value
+
+#    @property
+#    def rest_key_file(self):
+#        if self.key_file is not None:
+#            return self.key_file
+#        field_info = self.__class__.__fields__["key_file"]
+#        try:
+#            self.key_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
+#        except LinkNameException as e:
+#            self.key_file =  self.link_based_request("key_file", "GET", return_type="Params")
+#        return self.key_file
+#
+#    @rest_key_file.setter
+#    def rest_key_file(self, value):
+#        self.key_file = value
+
+#    @property
+#    def rest_key_file_password(self):
+#        if self.key_file_password is not None:
+#            return self.key_file_password
+#        field_info = self.__class__.__fields__["key_file_password"]
+#        try:
+#            self.key_file_password =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.key_file_password =  self.link_based_request("key_file_password", "GET", return_type="str")
+#        return self.key_file_password
+#
+#    @rest_key_file_password.setter
+#    def rest_key_file_password(self, value):
+#        self.key_file_password = value
+
+#    @property
+#    def rest_playlist_column_name(self):
+#        if self.playlist_column_name is not None:
+#            return self.playlist_column_name
+#        field_info = self.__class__.__fields__["playlist_column_name"]
+#        try:
+#            self.playlist_column_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.playlist_column_name =  self.link_based_request("playlist_column_name", "GET", return_type="str")
+#        return self.playlist_column_name
+#
+#    @rest_playlist_column_name.setter
+#    def rest_playlist_column_name(self, value):
+#        self.playlist_column_name = value
+
+#    @property
+#    def rest_playlist_filename(self):
+#        if self.playlist_filename is not None:
+#            return self.playlist_filename
+#        field_info = self.__class__.__fields__["playlist_filename"]
+#        try:
+#            self.playlist_filename =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.playlist_filename =  self.link_based_request("playlist_filename", "GET", return_type="str")
+#        return self.playlist_filename
+#
+#    @rest_playlist_filename.setter
+#    def rest_playlist_filename(self, value):
+#        self.playlist_filename = value
+
+#    @property
+#    def rest_resolve_sni_conflicts(self):
+#        if self.resolve_sni_conflicts is not None:
+#            return self.resolve_sni_conflicts
+#        field_info = self.__class__.__fields__["resolve_sni_conflicts"]
+#        try:
+#            self.resolve_sni_conflicts =  self.link_based_request(field_info.alias, "GET", return_type="List[Conflict]")
+#        except LinkNameException as e:
+#            self.resolve_sni_conflicts =  self.link_based_request("resolve_sni_conflicts", "GET", return_type="List[Conflict]")
+#        return self.resolve_sni_conflicts
+#
+#    @rest_resolve_sni_conflicts.setter
+#    def rest_resolve_sni_conflicts(self, value):
+#        self.resolve_sni_conflicts = value
+
+#    @property
+#    def rest_sni_hostname(self):
+#        if self.sni_hostname is not None:
+#            return self.sni_hostname
+#        field_info = self.__class__.__fields__["sni_hostname"]
+#        try:
+#            self.sni_hostname =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.sni_hostname =  self.link_based_request("sni_hostname", "GET", return_type="str")
+#        return self.sni_hostname
+#
+#    @rest_sni_hostname.setter
+#    def rest_sni_hostname(self, value):
+#        self.sni_hostname = value
+
 
 
     def to_str(self) -> str:
@@ -92,9 +266,9 @@ class CertConfig(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in resolve_sni_conflicts (list)
         _items = []
         if self.resolve_sni_conflicts:
-            for _item_resolve_sni_conflicts in self.resolve_sni_conflicts:
-                if _item_resolve_sni_conflicts:
-                    _items.append(_item_resolve_sni_conflicts.to_dict())
+            for _item in self.resolve_sni_conflicts:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['resolve-sni-conflicts'] = _items
         return _dict
 
@@ -105,21 +279,93 @@ class CertConfig(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "certificateFile": Params.from_dict(obj["certificateFile"]) if obj.get("certificateFile") is not None else None,
-            "dhFile": Params.from_dict(obj["dhFile"]) if obj.get("dhFile") is not None else None,
-            "get-sni-conflicts": obj.get("get-sni-conflicts"),
-            "id": obj.get("id"),
-            "isPlaylist": obj.get("isPlaylist"),
-            "keyFile": Params.from_dict(obj["keyFile"]) if obj.get("keyFile") is not None else None,
-            "keyFilePassword": obj.get("keyFilePassword"),
-            "playlistColumnName": obj.get("playlistColumnName"),
-            "playlistFilename": obj.get("playlistFilename"),
-            "resolve-sni-conflicts": [Conflict.from_dict(_item) for _item in obj["resolve-sni-conflicts"]] if obj.get("resolve-sni-conflicts") is not None else None,
-            "sniHostname": obj.get("sniHostname")
+                        "dhFile": Params.from_dict(obj["dhFile"]) if obj.get("dhFile") is not None else None,
+                        "get-sni-conflicts": obj.get("get-sni-conflicts"),
+                        "id": obj.get("id"),
+                        "isPlaylist": obj.get("isPlaylist"),
+                        "keyFile": Params.from_dict(obj["keyFile"]) if obj.get("keyFile") is not None else None,
+                        "keyFilePassword": obj.get("keyFilePassword"),
+                        "playlistColumnName": obj.get("playlistColumnName"),
+                        "playlistFilename": obj.get("playlistFilename"),
+                        "resolve-sni-conflicts": [Conflict.from_dict(_item) for _item in obj["resolve-sni-conflicts"]] if obj.get("resolve-sni-conflicts") is not None else None,
+                        "sniHostname": obj.get("sniHostname")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

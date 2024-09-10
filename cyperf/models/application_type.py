@@ -27,8 +27,13 @@ from cyperf.models.definition import Definition
 from cyperf.models.endpoint import Endpoint
 from cyperf.models.metadata import Metadata
 from cyperf.models.parameter import Parameter
-from typing import Optional, Set
+from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
+from pydantic import Field
+#from cyperf.models import LinkNameException
+
+if "ApplicationType" != "APILink":
+    from cyperf.models.api_link import APILink
 
 class ApplicationType(BaseModel):
     """
@@ -56,6 +61,8 @@ class ApplicationType(BaseModel):
     supports_strikes: Optional[StrictBool] = Field(default=None, description="Indicates if the application supports strikes.", alias="SupportsStrikes")
     supports_tls: Optional[StrictBool] = Field(default=None, description="Indicates if the application supports TLS protocol.", alias="SupportsTLS")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the flow")
+    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
+#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Commands", "Connections", "CustomStats", "DataTypes", "Definition", "Description", "Endpoints", "FileName", "HasBannerCommand", "Md5Content", "Md5Metadata", "Metadata", "Name", "Parameters", "Strikes", "SupportsCalibration", "SupportsClientHTTPProfile", "SupportsHTTPProfiles", "SupportsServerHTTPProfile", "SupportsStrikes", "SupportsTLS", "id"]
 
     model_config = ConfigDict(
@@ -63,6 +70,338 @@ class ApplicationType(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+
+#    @property
+#    def rest_commands(self):
+#        if self.commands is not None:
+#            return self.commands
+#        field_info = self.__class__.__fields__["commands"]
+#        try:
+#            self.commands =  self.link_based_request(field_info.alias, "GET", return_type="List[Command]")
+#        except LinkNameException as e:
+#            self.commands =  self.link_based_request("commands", "GET", return_type="List[Command]")
+#        return self.commands
+#
+#    @rest_commands.setter
+#    def rest_commands(self, value):
+#        self.commands = value
+
+#    @property
+#    def rest_connections(self):
+#        if self.connections is not None:
+#            return self.connections
+#        field_info = self.__class__.__fields__["connections"]
+#        try:
+#            self.connections =  self.link_based_request(field_info.alias, "GET", return_type="List[Connection]")
+#        except LinkNameException as e:
+#            self.connections =  self.link_based_request("connections", "GET", return_type="List[Connection]")
+#        return self.connections
+#
+#    @rest_connections.setter
+#    def rest_connections(self, value):
+#        self.connections = value
+
+#    @property
+#    def rest_custom_stats(self):
+#        if self.custom_stats is not None:
+#            return self.custom_stats
+#        field_info = self.__class__.__fields__["custom_stats"]
+#        try:
+#            self.custom_stats =  self.link_based_request(field_info.alias, "GET", return_type="List[CustomStat]")
+#        except LinkNameException as e:
+#            self.custom_stats =  self.link_based_request("custom_stats", "GET", return_type="List[CustomStat]")
+#        return self.custom_stats
+#
+#    @rest_custom_stats.setter
+#    def rest_custom_stats(self, value):
+#        self.custom_stats = value
+
+#    @property
+#    def rest_data_types(self):
+#        if self.data_types is not None:
+#            return self.data_types
+#        field_info = self.__class__.__fields__["data_types"]
+#        try:
+#            self.data_types =  self.link_based_request(field_info.alias, "GET", return_type="List[DataType]")
+#        except LinkNameException as e:
+#            self.data_types =  self.link_based_request("data_types", "GET", return_type="List[DataType]")
+#        return self.data_types
+#
+#    @rest_data_types.setter
+#    def rest_data_types(self, value):
+#        self.data_types = value
+
+#    @property
+#    def rest_definition(self):
+#        if self.definition is not None:
+#            return self.definition
+#        field_info = self.__class__.__fields__["definition"]
+#        try:
+#            self.definition =  self.link_based_request(field_info.alias, "GET", return_type="Definition")
+#        except LinkNameException as e:
+#            self.definition =  self.link_based_request("definition", "GET", return_type="Definition")
+#        return self.definition
+#
+#    @rest_definition.setter
+#    def rest_definition(self, value):
+#        self.definition = value
+
+#    @property
+#    def rest_description(self):
+#        if self.description is not None:
+#            return self.description
+#        field_info = self.__class__.__fields__["description"]
+#        try:
+#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.description =  self.link_based_request("description", "GET", return_type="str")
+#        return self.description
+#
+#    @rest_description.setter
+#    def rest_description(self, value):
+#        self.description = value
+
+#    @property
+#    def rest_endpoints(self):
+#        if self.endpoints is not None:
+#            return self.endpoints
+#        field_info = self.__class__.__fields__["endpoints"]
+#        try:
+#            self.endpoints =  self.link_based_request(field_info.alias, "GET", return_type="List[Endpoint]")
+#        except LinkNameException as e:
+#            self.endpoints =  self.link_based_request("endpoints", "GET", return_type="List[Endpoint]")
+#        return self.endpoints
+#
+#    @rest_endpoints.setter
+#    def rest_endpoints(self, value):
+#        self.endpoints = value
+
+#    @property
+#    def rest_file_name(self):
+#        if self.file_name is not None:
+#            return self.file_name
+#        field_info = self.__class__.__fields__["file_name"]
+#        try:
+#            self.file_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.file_name =  self.link_based_request("file_name", "GET", return_type="str")
+#        return self.file_name
+#
+#    @rest_file_name.setter
+#    def rest_file_name(self, value):
+#        self.file_name = value
+
+#    @property
+#    def rest_has_banner_command(self):
+#        if self.has_banner_command is not None:
+#            return self.has_banner_command
+#        field_info = self.__class__.__fields__["has_banner_command"]
+#        try:
+#            self.has_banner_command =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.has_banner_command =  self.link_based_request("has_banner_command", "GET", return_type="bool")
+#        return self.has_banner_command
+#
+#    @rest_has_banner_command.setter
+#    def rest_has_banner_command(self, value):
+#        self.has_banner_command = value
+
+#    @property
+#    def rest_md5_content(self):
+#        if self.md5_content is not None:
+#            return self.md5_content
+#        field_info = self.__class__.__fields__["md5_content"]
+#        try:
+#            self.md5_content =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.md5_content =  self.link_based_request("md5_content", "GET", return_type="str")
+#        return self.md5_content
+#
+#    @rest_md5_content.setter
+#    def rest_md5_content(self, value):
+#        self.md5_content = value
+
+#    @property
+#    def rest_md5_metadata(self):
+#        if self.md5_metadata is not None:
+#            return self.md5_metadata
+#        field_info = self.__class__.__fields__["md5_metadata"]
+#        try:
+#            self.md5_metadata =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.md5_metadata =  self.link_based_request("md5_metadata", "GET", return_type="str")
+#        return self.md5_metadata
+#
+#    @rest_md5_metadata.setter
+#    def rest_md5_metadata(self, value):
+#        self.md5_metadata = value
+
+#    @property
+#    def rest_metadata(self):
+#        if self.metadata is not None:
+#            return self.metadata
+#        field_info = self.__class__.__fields__["metadata"]
+#        try:
+#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="Metadata")
+#        except LinkNameException as e:
+#            self.metadata =  self.link_based_request("metadata", "GET", return_type="Metadata")
+#        return self.metadata
+#
+#    @rest_metadata.setter
+#    def rest_metadata(self, value):
+#        self.metadata = value
+
+#    @property
+#    def rest_name(self):
+#        if self.name is not None:
+#            return self.name
+#        field_info = self.__class__.__fields__["name"]
+#        try:
+#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.name =  self.link_based_request("name", "GET", return_type="str")
+#        return self.name
+#
+#    @rest_name.setter
+#    def rest_name(self, value):
+#        self.name = value
+
+#    @property
+#    def rest_parameters(self):
+#        if self.parameters is not None:
+#            return self.parameters
+#        field_info = self.__class__.__fields__["parameters"]
+#        try:
+#            self.parameters =  self.link_based_request(field_info.alias, "GET", return_type="List[Parameter]")
+#        except LinkNameException as e:
+#            self.parameters =  self.link_based_request("parameters", "GET", return_type="List[Parameter]")
+#        return self.parameters
+#
+#    @rest_parameters.setter
+#    def rest_parameters(self, value):
+#        self.parameters = value
+
+#    @property
+#    def rest_strikes(self):
+#        if self.strikes is not None:
+#            return self.strikes
+#        field_info = self.__class__.__fields__["strikes"]
+#        try:
+#            self.strikes =  self.link_based_request(field_info.alias, "GET", return_type="List[Command]")
+#        except LinkNameException as e:
+#            self.strikes =  self.link_based_request("strikes", "GET", return_type="List[Command]")
+#        return self.strikes
+#
+#    @rest_strikes.setter
+#    def rest_strikes(self, value):
+#        self.strikes = value
+
+#    @property
+#    def rest_supports_calibration(self):
+#        if self.supports_calibration is not None:
+#            return self.supports_calibration
+#        field_info = self.__class__.__fields__["supports_calibration"]
+#        try:
+#            self.supports_calibration =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_calibration =  self.link_based_request("supports_calibration", "GET", return_type="bool")
+#        return self.supports_calibration
+#
+#    @rest_supports_calibration.setter
+#    def rest_supports_calibration(self, value):
+#        self.supports_calibration = value
+
+#    @property
+#    def rest_supports_client_http_profile(self):
+#        if self.supports_client_http_profile is not None:
+#            return self.supports_client_http_profile
+#        field_info = self.__class__.__fields__["supports_client_http_profile"]
+#        try:
+#            self.supports_client_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_client_http_profile =  self.link_based_request("supports_client_http_profile", "GET", return_type="bool")
+#        return self.supports_client_http_profile
+#
+#    @rest_supports_client_http_profile.setter
+#    def rest_supports_client_http_profile(self, value):
+#        self.supports_client_http_profile = value
+
+#    @property
+#    def rest_supports_http_profiles(self):
+#        if self.supports_http_profiles is not None:
+#            return self.supports_http_profiles
+#        field_info = self.__class__.__fields__["supports_http_profiles"]
+#        try:
+#            self.supports_http_profiles =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_http_profiles =  self.link_based_request("supports_http_profiles", "GET", return_type="bool")
+#        return self.supports_http_profiles
+#
+#    @rest_supports_http_profiles.setter
+#    def rest_supports_http_profiles(self, value):
+#        self.supports_http_profiles = value
+
+#    @property
+#    def rest_supports_server_http_profile(self):
+#        if self.supports_server_http_profile is not None:
+#            return self.supports_server_http_profile
+#        field_info = self.__class__.__fields__["supports_server_http_profile"]
+#        try:
+#            self.supports_server_http_profile =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_server_http_profile =  self.link_based_request("supports_server_http_profile", "GET", return_type="bool")
+#        return self.supports_server_http_profile
+#
+#    @rest_supports_server_http_profile.setter
+#    def rest_supports_server_http_profile(self, value):
+#        self.supports_server_http_profile = value
+
+#    @property
+#    def rest_supports_strikes(self):
+#        if self.supports_strikes is not None:
+#            return self.supports_strikes
+#        field_info = self.__class__.__fields__["supports_strikes"]
+#        try:
+#            self.supports_strikes =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_strikes =  self.link_based_request("supports_strikes", "GET", return_type="bool")
+#        return self.supports_strikes
+#
+#    @rest_supports_strikes.setter
+#    def rest_supports_strikes(self, value):
+#        self.supports_strikes = value
+
+#    @property
+#    def rest_supports_tls(self):
+#        if self.supports_tls is not None:
+#            return self.supports_tls
+#        field_info = self.__class__.__fields__["supports_tls"]
+#        try:
+#            self.supports_tls =  self.link_based_request(field_info.alias, "GET", return_type="bool")
+#        except LinkNameException as e:
+#            self.supports_tls =  self.link_based_request("supports_tls", "GET", return_type="bool")
+#        return self.supports_tls
+#
+#    @rest_supports_tls.setter
+#    def rest_supports_tls(self, value):
+#        self.supports_tls = value
+
+#    @property
+#    def rest_id(self):
+#        if self.id is not None:
+#            return self.id
+#        field_info = self.__class__.__fields__["id"]
+#        try:
+#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
+#        except LinkNameException as e:
+#            self.id =  self.link_based_request("id", "GET", return_type="str")
+#        return self.id
+#
+#    @rest_id.setter
+#    def rest_id(self, value):
+#        self.id = value
+
 
 
     def to_str(self) -> str:
@@ -108,30 +447,30 @@ class ApplicationType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in commands (list)
         _items = []
         if self.commands:
-            for _item_commands in self.commands:
-                if _item_commands:
-                    _items.append(_item_commands.to_dict())
+            for _item in self.commands:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Commands'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in connections (list)
         _items = []
         if self.connections:
-            for _item_connections in self.connections:
-                if _item_connections:
-                    _items.append(_item_connections.to_dict())
+            for _item in self.connections:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Connections'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in custom_stats (list)
         _items = []
         if self.custom_stats:
-            for _item_custom_stats in self.custom_stats:
-                if _item_custom_stats:
-                    _items.append(_item_custom_stats.to_dict())
+            for _item in self.custom_stats:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['CustomStats'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in data_types (list)
         _items = []
         if self.data_types:
-            for _item_data_types in self.data_types:
-                if _item_data_types:
-                    _items.append(_item_data_types.to_dict())
+            for _item in self.data_types:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['DataTypes'] = _items
         # override the default output from pydantic by calling `to_dict()` of definition
         if self.definition:
@@ -139,9 +478,9 @@ class ApplicationType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in endpoints (list)
         _items = []
         if self.endpoints:
-            for _item_endpoints in self.endpoints:
-                if _item_endpoints:
-                    _items.append(_item_endpoints.to_dict())
+            for _item in self.endpoints:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Endpoints'] = _items
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
@@ -149,16 +488,16 @@ class ApplicationType(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in parameters (list)
         _items = []
         if self.parameters:
-            for _item_parameters in self.parameters:
-                if _item_parameters:
-                    _items.append(_item_parameters.to_dict())
+            for _item in self.parameters:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Parameters'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in strikes (list)
         _items = []
         if self.strikes:
-            for _item_strikes in self.strikes:
-                if _item_strikes:
-                    _items.append(_item_strikes.to_dict())
+            for _item in self.strikes:
+                if _item:
+                    _items.append(_item.to_dict())
             _dict['Strikes'] = _items
         return _dict
 
@@ -169,32 +508,104 @@ class ApplicationType(BaseModel):
             return None
 
         if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+            _obj = cls.model_validate(obj)
+#            _obj.api_client = client
+            return _obj
 
         _obj = cls.model_validate({
             "Commands": [Command.from_dict(_item) for _item in obj["Commands"]] if obj.get("Commands") is not None else None,
-            "Connections": [Connection.from_dict(_item) for _item in obj["Connections"]] if obj.get("Connections") is not None else None,
-            "CustomStats": [CustomStat.from_dict(_item) for _item in obj["CustomStats"]] if obj.get("CustomStats") is not None else None,
-            "DataTypes": [DataType.from_dict(_item) for _item in obj["DataTypes"]] if obj.get("DataTypes") is not None else None,
-            "Definition": Definition.from_dict(obj["Definition"]) if obj.get("Definition") is not None else None,
-            "Description": obj.get("Description"),
-            "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
-            "FileName": obj.get("FileName"),
-            "HasBannerCommand": obj.get("HasBannerCommand"),
-            "Md5Content": obj.get("Md5Content"),
-            "Md5Metadata": obj.get("Md5Metadata"),
-            "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
-            "Name": obj.get("Name"),
-            "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None,
-            "Strikes": [Command.from_dict(_item) for _item in obj["Strikes"]] if obj.get("Strikes") is not None else None,
-            "SupportsCalibration": obj.get("SupportsCalibration"),
-            "SupportsClientHTTPProfile": obj.get("SupportsClientHTTPProfile"),
-            "SupportsHTTPProfiles": obj.get("SupportsHTTPProfiles"),
-            "SupportsServerHTTPProfile": obj.get("SupportsServerHTTPProfile"),
-            "SupportsStrikes": obj.get("SupportsStrikes"),
-            "SupportsTLS": obj.get("SupportsTLS"),
-            "id": obj.get("id")
+                        "Connections": [Connection.from_dict(_item) for _item in obj["Connections"]] if obj.get("Connections") is not None else None,
+                        "CustomStats": [CustomStat.from_dict(_item) for _item in obj["CustomStats"]] if obj.get("CustomStats") is not None else None,
+                        "DataTypes": [DataType.from_dict(_item) for _item in obj["DataTypes"]] if obj.get("DataTypes") is not None else None,
+                        "Definition": Definition.from_dict(obj["Definition"]) if obj.get("Definition") is not None else None,
+                        "Description": obj.get("Description"),
+                        "Endpoints": [Endpoint.from_dict(_item) for _item in obj["Endpoints"]] if obj.get("Endpoints") is not None else None,
+                        "FileName": obj.get("FileName"),
+                        "HasBannerCommand": obj.get("HasBannerCommand"),
+                        "Md5Content": obj.get("Md5Content"),
+                        "Md5Metadata": obj.get("Md5Metadata"),
+                        "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
+                        "Name": obj.get("Name"),
+                        "Parameters": [Parameter.from_dict(_item) for _item in obj["Parameters"]] if obj.get("Parameters") is not None else None,
+                        "Strikes": [Command.from_dict(_item) for _item in obj["Strikes"]] if obj.get("Strikes") is not None else None,
+                        "SupportsCalibration": obj.get("SupportsCalibration"),
+                        "SupportsClientHTTPProfile": obj.get("SupportsClientHTTPProfile"),
+                        "SupportsHTTPProfiles": obj.get("SupportsHTTPProfiles"),
+                        "SupportsServerHTTPProfile": obj.get("SupportsServerHTTPProfile"),
+                        "SupportsStrikes": obj.get("SupportsStrikes"),
+                        "SupportsTLS": obj.get("SupportsTLS"),
+                        "id": obj.get("id")
+            ,
+            "links": obj.get("links")
         })
+#        _obj.api_client = client
         return _obj
+
+#    def update(self):
+#        self.link_request("self", "PUT", body=self)
+#
+#   def link_based_request(self, link_name, method, return_type = None, body = None):
+#        if self.links == None:
+#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
+#        if link_name == 'self':
+#            self_links = [link for link in self.links if link.rel == link_name]
+#        else:
+#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
+#        if len(self_links) == 0:
+#           raise LinkNameException(f"Missing {link_name} link.")
+#        self_link = self_links[0]
+#        
+#        _host = None
+#
+#        _collection_formats: Dict[str, str] = {
+#        }#
+#
+#        _path_params: Dict[str, str] = {}
+#        _query_params: List[Tuple[str, str]] = []
+#        _header_params: Dict[str, Optional[str]] = {}
+#        _form_params: List[Tuple[str, str]] = []
+#        _files: Dict[str, Union[str, bytes]] = {}
+#        _body_params: Optional[bytes] = None
+#        if body:
+#            _body_params = body.to_json().encode('utf-8')
+#
+#        # set the HTTP header `Accept`
+#        if 'Accept' not in _header_params:
+#            _header_params['Accept'] = self.api_client.select_header_accept(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        if 'Content-Type' not in _header_params:
+#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
+#                [
+#                    'application/json'
+#                ]
+#            )
+#        _auth_settings: List[str] = [
+#            'OAuth2',
+#        ]
+#        _param = self.api_client.param_serialize(
+#            method=method,
+#           resource_path=self_link.href,
+#            path_params=_path_params,
+#           query_params=_query_params,
+#           body=_body_params,
+#            post_params=_form_params,
+#            files=_files,
+#            auth_settings=_auth_settings,
+#            collection_formats=_collection_formats,
+#            _host=_host
+#        )
+#        response_data = self.api_client.call_api(
+#            *_param
+#        )
+#        response_data.read()
+#        response_types = {
+#            '200': return_type,
+#            '500': 'ErrorResponse'
+#        }
+#        return self.api_client.response_deserialize(response_data, response_types).data
+    
 
 

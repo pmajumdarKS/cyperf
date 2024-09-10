@@ -26,6 +26,8 @@ cyperf/api/utils_api.py
 cyperf/api_client.py
 cyperf/api_response.py
 cyperf/configuration.py
+cyperf/dynamic_model_meta.py
+cyperf/dynamic_models/__init__.py
 cyperf/exceptions.py
 cyperf/models/__init__.py
 cyperf/models/action.py
