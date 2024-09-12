@@ -1,4 +1,5 @@
 import cyperf
+import re
 import urllib3
 import requests
 from cyperf.rest import ApiException
@@ -7,12 +8,33 @@ from pprint import pprint
 import time
 
 class TestConfig(object):
-    def __init__(self, configFile, agentMapping, objectiveType, objectiveValue, verifyRules):
+    def __init__(self,
+                 configFile,
+                 agentMapping={},
+                 objectiveType=cyperf.ObjectiveType.SIMULATED_USERS,
+                 objectiveValue=100,
+                 testDuration=0,
+                 verifyRules=None):
+        objectiveUnit = None
+        if type(objectiveValue) == str:
+            val = re.compile('(\d+\.\d+|\d+)\s*(\w*)').match(objectiveValue).groups()
+            objectiveValue = float(val[0])
+            if val[1]:
+                objectiveUnit = val[1]
+
+        if not objectiveUnit:
+            if objectiveType == cyperf.ObjectiveType.THROUGHPUT:
+                objectiveUnit = 'bps'
+            else:
+                objectiveUnit = ''
+
         self.file      = configFile
         self.agents    = agentMapping
+        self.duration  = testDuration
         self.objective = {
             'type'  : objectiveType,
-            'value' : objectiveValue
+            'value' : objectiveValue,
+            'unit'  : objectiveUnit
         }
         self.statRules = []
 
@@ -133,6 +155,34 @@ class TestRunner(object):
             except cyperf.exceptions.ApiException as e:
                 pprint (f'{e}')
 
+    def __updateObjective__(self, session, objective, duration):
+        for tProfile in session.config.config.traffic_profiles:
+            obj = tProfile.objectives_and_timeline.primary_objective
+            if not duration:
+                ### [PARTHA] Segment durations get reset as soon as the objective type is changed.
+                ###          We need to find out a way to keep the existing segments even when the
+                ###          objective type is changed.
+                for segment in obj.timeline:
+                    if segment.enabled:
+                        ### [PARTHA] How can I avoid accessing base_model
+                        segmentType = segment.segment_type.base_model
+                        if segmentType == cyperf.SegmentType.STEADYSEGMENT or segmentType == cyperf.SegmentType.NORMALSEGMENT:
+                            duration = segment.duration
+                        ### [PARTHA]
+                ### [PARTHA]
+            obj.type = objective['type']
+            obj.update()
+            for segment in obj.timeline:
+                if segment.enabled:
+                    ### [PARTHA] How can I avoid accessing base_model
+                    segmentType = segment.segment_type.base_model
+                    ### [PARTHA]
+                    if segmentType == cyperf.SegmentType.STEADYSEGMENT or segmentType == cyperf.SegmentType.NORMALSEGMENT:
+                        segment.objective_value = objective['value']
+                        segment.objective_unit  = objective['unit']
+                        segment.duration        = duration
+                        segment.update()
+
     def __updateAgents__(self, session, agentMapping):
         config      = session.config.config
         netProfiles = config.network_profiles
@@ -148,9 +198,10 @@ class TestRunner(object):
                 else:
                     pprint (f"Found no agents for the network segment {ipNet.name}")
 
-    def UpdateAgents(self, sessions, agentMapping):
+    def UpdateSessionConfig(self, sessions, config):
         for session in sessions:
-            self.__updateAgents__(session, agentMapping)
+            self.__updateObjective__(session, config.objective, config.duration)
+            self.__updateAgents__(session, config.agents)
 
 
     def StartSessions(self, sessions):
@@ -190,7 +241,7 @@ class TestRunner(object):
         pprint (f"Launching session for configuration {config.file} ...", width=width)
         sessions = self.LaunchSessions (configs)
         pprint (f"Updating agents as {config.agents} ...", width=width)
-        self.UpdateAgents (sessions, config.agents)
+        self.UpdateSessionConfig (sessions, config)
         pprint (f"Statrting session for configuration {config.file} ...", width=width)
         self.StartSessions(sessions)
         pprint (f"Started test for configuration {config.file} ... session id: {sessions[0].index}", width=width)
