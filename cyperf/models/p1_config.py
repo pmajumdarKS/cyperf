@@ -26,10 +26,6 @@ from cyperf.models.prf_p1_algorithm import PrfP1Algorithm
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "P1Config" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class P1Config(BaseModel):
     """
@@ -41,8 +37,6 @@ class P1Config(BaseModel):
     initial_contact: StrictBool = Field(alias="InitialContact")
     lifetime: StrictInt = Field(alias="Lifetime")
     prf_algorithm: PrfP1Algorithm = Field(alias="PrfAlgorithm")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["DHGroup", "EncAlgorithm", "HashAlgorithm", "InitialContact", "Lifetime", "PrfAlgorithm"]
 
     model_config = ConfigDict(
@@ -50,98 +44,6 @@ class P1Config(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_dh_group(self):
-#        if self.dh_group is not None:
-#            return self.dh_group
-#        field_info = self.__class__.__fields__["dh_group"]
-#        try:
-#            self.dh_group =  self.link_based_request(field_info.alias, "GET", return_type="DhP1Group")
-#        except LinkNameException as e:
-#            self.dh_group =  self.link_based_request("dh_group", "GET", return_type="DhP1Group")
-#        return self.dh_group
-#
-#    @rest_dh_group.setter
-#    def rest_dh_group(self, value):
-#        self.dh_group = value
-
-#    @property
-#    def rest_enc_algorithm(self):
-#        if self.enc_algorithm is not None:
-#            return self.enc_algorithm
-#        field_info = self.__class__.__fields__["enc_algorithm"]
-#        try:
-#            self.enc_algorithm =  self.link_based_request(field_info.alias, "GET", return_type="EncP1Algorithm")
-#        except LinkNameException as e:
-#            self.enc_algorithm =  self.link_based_request("enc_algorithm", "GET", return_type="EncP1Algorithm")
-#        return self.enc_algorithm
-#
-#    @rest_enc_algorithm.setter
-#    def rest_enc_algorithm(self, value):
-#        self.enc_algorithm = value
-
-#    @property
-#    def rest_hash_algorithm(self):
-#        if self.hash_algorithm is not None:
-#            return self.hash_algorithm
-#        field_info = self.__class__.__fields__["hash_algorithm"]
-#        try:
-#            self.hash_algorithm =  self.link_based_request(field_info.alias, "GET", return_type="HashP1Algorithm")
-#        except LinkNameException as e:
-#            self.hash_algorithm =  self.link_based_request("hash_algorithm", "GET", return_type="HashP1Algorithm")
-#        return self.hash_algorithm
-#
-#    @rest_hash_algorithm.setter
-#    def rest_hash_algorithm(self, value):
-#        self.hash_algorithm = value
-
-#    @property
-#    def rest_initial_contact(self):
-#        if self.initial_contact is not None:
-#            return self.initial_contact
-#        field_info = self.__class__.__fields__["initial_contact"]
-#        try:
-#            self.initial_contact =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.initial_contact =  self.link_based_request("initial_contact", "GET", return_type="bool")
-#        return self.initial_contact
-#
-#    @rest_initial_contact.setter
-#    def rest_initial_contact(self, value):
-#        self.initial_contact = value
-
-#    @property
-#    def rest_lifetime(self):
-#        if self.lifetime is not None:
-#            return self.lifetime
-#        field_info = self.__class__.__fields__["lifetime"]
-#        try:
-#            self.lifetime =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.lifetime =  self.link_based_request("lifetime", "GET", return_type="int")
-#        return self.lifetime
-#
-#    @rest_lifetime.setter
-#    def rest_lifetime(self, value):
-#        self.lifetime = value
-
-#    @property
-#    def rest_prf_algorithm(self):
-#        if self.prf_algorithm is not None:
-#            return self.prf_algorithm
-#        field_info = self.__class__.__fields__["prf_algorithm"]
-#        try:
-#            self.prf_algorithm =  self.link_based_request(field_info.alias, "GET", return_type="PrfP1Algorithm")
-#        except LinkNameException as e:
-#            self.prf_algorithm =  self.link_based_request("prf_algorithm", "GET", return_type="PrfP1Algorithm")
-#        return self.prf_algorithm
-#
-#    @rest_prf_algorithm.setter
-#    def rest_prf_algorithm(self, value):
-#        self.prf_algorithm = value
-
 
 
     def to_str(self) -> str:
@@ -199,74 +101,6 @@ class P1Config(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

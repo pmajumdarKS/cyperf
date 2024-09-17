@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **patch_agent_assignments_for_net_segment**
-> patch_agent_assignments_for_net_segment(session_id, net_profile_id)
+> object patch_agent_assignments_for_net_segment(session_id, net_profile_id)
 
 
 
@@ -48,7 +48,9 @@ with cyperf.ApiClient(configuration) as api_client:
     net_profile_id = 'net_profile_id_example' # str | The ID of the network segment. Note: this might be an INT or a STRING that holds an int value. Defaulting to string for now.
 
     try:
-        api_instance.patch_agent_assignments_for_net_segment(session_id, net_profile_id)
+        api_response = api_instance.patch_agent_assignments_for_net_segment(session_id, net_profile_id)
+        print("The response of AgentAssignmentApi->patch_agent_assignments_for_net_segment:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling AgentAssignmentApi->patch_agent_assignments_for_net_segment: %s\n" % e)
 ```
@@ -65,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -80,13 +82,13 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The agent assignments were successfully updated. |  -  |
+**200** | Update the agent assignments for a network group. |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **put_agent_assignments_by_id_for_net_segment**
-> put_agent_assignments_by_id_for_net_segment(session_id, net_profile_id)
+> object put_agent_assignments_by_id_for_net_segment(session_id, net_profile_id)
 
 
 
@@ -125,7 +127,9 @@ with cyperf.ApiClient(configuration) as api_client:
     net_profile_id = 'net_profile_id_example' # str | The ID of the network segment. Note: this might be an INT or a STRING that holds an int value. Defaulting to string for now.
 
     try:
-        api_instance.put_agent_assignments_by_id_for_net_segment(session_id, net_profile_id)
+        api_response = api_instance.put_agent_assignments_by_id_for_net_segment(session_id, net_profile_id)
+        print("The response of AgentAssignmentApi->put_agent_assignments_by_id_for_net_segment:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling AgentAssignmentApi->put_agent_assignments_by_id_for_net_segment: %s\n" % e)
 ```
@@ -142,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-void (empty response body)
+**object**
 
 ### Authorization
 
@@ -157,7 +161,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | The agent assignments were successfully updated. |  -  |
+**200** | Update the list of agent IDs assigned to this network segment. |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -42,14 +42,14 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                     connection_graceful_stop_timeout = 56, 
                     warm_up_period = 56, ),
                 primary_objective = cyperf.models.specific_objective.SpecificObjective(
+                    id = '', 
                     max_pending_simulated_users = '80728', 
                     max_simulated_users_per_interval = 56, 
                     timeline = [
                         null
                         ], 
                     type = null, 
-                    unit = null, 
-                    id = '', ),
+                    unit = null, ),
                 secondary_objective = cyperf.models.secondary_objective.SecondaryObjective(
                     enabled = True, 
                     max_pending_simulated_users = '4', 
@@ -59,14 +59,14 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                     type = null, ),
                 secondary_objectives = [
                     cyperf.models.specific_objective.SpecificObjective(
+                        id = '', 
                         max_pending_simulated_users = '80728', 
                         max_simulated_users_per_interval = 56, 
                         timeline = [
                             null
                             ], 
                         type = null, 
-                        unit = null, 
-                        id = '', )
+                        unit = null, )
                     ],
                 timeline_segments = [
                     null

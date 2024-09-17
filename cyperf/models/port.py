@@ -17,15 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Port" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Port(BaseModel):
     """
@@ -34,78 +30,18 @@ class Port(BaseModel):
     disabled: Optional[StrictBool] = None
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
+    owner: Optional[StrictStr] = None
+    owner_id: Optional[StrictStr] = Field(default=None, alias="ownerId")
     speed: Optional[StrictStr] = None
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["disabled", "id", "name", "speed"]
+    status: Optional[StrictStr] = None
+    traffic_status: Optional[StrictStr] = Field(default=None, alias="trafficStatus")
+    __properties: ClassVar[List[str]] = ["disabled", "id", "name", "owner", "ownerId", "speed", "status", "trafficStatus"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_disabled(self):
-#        if self.disabled is not None:
-#            return self.disabled
-#        field_info = self.__class__.__fields__["disabled"]
-#        try:
-#            self.disabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.disabled =  self.link_based_request("disabled", "GET", return_type="bool")
-#        return self.disabled
-#
-#    @rest_disabled.setter
-#    def rest_disabled(self, value):
-#        self.disabled = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_speed(self):
-#        if self.speed is not None:
-#            return self.speed
-#        field_info = self.__class__.__fields__["speed"]
-#        try:
-#            self.speed =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.speed =  self.link_based_request("speed", "GET", return_type="str")
-#        return self.speed
-#
-#    @rest_speed.setter
-#    def rest_speed(self, value):
-#        self.speed = value
-
 
 
     def to_str(self) -> str:
@@ -157,78 +93,14 @@ class Port(BaseModel):
             "disabled": obj.get("disabled"),
                         "id": obj.get("id"),
                         "name": obj.get("name"),
-                        "speed": obj.get("speed")
+                        "owner": obj.get("owner"),
+                        "ownerId": obj.get("ownerId"),
+                        "speed": obj.get("speed"),
+                        "status": obj.get("status"),
+                        "trafficStatus": obj.get("trafficStatus")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

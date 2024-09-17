@@ -19,15 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.stream_direction import StreamDirection
 from cyperf.models.stream_profile import StreamProfile
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "StatelessStream" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class StatelessStream(BaseModel):
     """
@@ -37,77 +34,14 @@ class StatelessStream(BaseModel):
     direction: Optional[StreamDirection] = Field(default=None, alias="Direction")
     is_flood_stream: Optional[StrictBool] = Field(default=None, alias="IsFloodStream")
     server_stream_profile: Optional[StreamProfile] = Field(default=None, alias="ServerStreamProfile")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["ClientStreamProfile", "Direction", "IsFloodStream", "ServerStreamProfile"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["ClientStreamProfile", "Direction", "IsFloodStream", "ServerStreamProfile", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_client_stream_profile(self):
-#        if self.client_stream_profile is not None:
-#            return self.client_stream_profile
-#        field_info = self.__class__.__fields__["client_stream_profile"]
-#        try:
-#            self.client_stream_profile =  self.link_based_request(field_info.alias, "GET", return_type="StreamProfile")
-#        except LinkNameException as e:
-#            self.client_stream_profile =  self.link_based_request("client_stream_profile", "GET", return_type="StreamProfile")
-#        return self.client_stream_profile
-#
-#    @rest_client_stream_profile.setter
-#    def rest_client_stream_profile(self, value):
-#        self.client_stream_profile = value
-
-#    @property
-#    def rest_direction(self):
-#        if self.direction is not None:
-#            return self.direction
-#        field_info = self.__class__.__fields__["direction"]
-#        try:
-#            self.direction =  self.link_based_request(field_info.alias, "GET", return_type="StreamDirection")
-#        except LinkNameException as e:
-#            self.direction =  self.link_based_request("direction", "GET", return_type="StreamDirection")
-#        return self.direction
-#
-#    @rest_direction.setter
-#    def rest_direction(self, value):
-#        self.direction = value
-
-#    @property
-#    def rest_is_flood_stream(self):
-#        if self.is_flood_stream is not None:
-#            return self.is_flood_stream
-#        field_info = self.__class__.__fields__["is_flood_stream"]
-#        try:
-#            self.is_flood_stream =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.is_flood_stream =  self.link_based_request("is_flood_stream", "GET", return_type="bool")
-#        return self.is_flood_stream
-#
-#    @rest_is_flood_stream.setter
-#    def rest_is_flood_stream(self, value):
-#        self.is_flood_stream = value
-
-#    @property
-#    def rest_server_stream_profile(self):
-#        if self.server_stream_profile is not None:
-#            return self.server_stream_profile
-#        field_info = self.__class__.__fields__["server_stream_profile"]
-#        try:
-#            self.server_stream_profile =  self.link_based_request(field_info.alias, "GET", return_type="StreamProfile")
-#        except LinkNameException as e:
-#            self.server_stream_profile =  self.link_based_request("server_stream_profile", "GET", return_type="StreamProfile")
-#        return self.server_stream_profile
-#
-#    @rest_server_stream_profile.setter
-#    def rest_server_stream_profile(self, value):
-#        self.server_stream_profile = value
-
 
 
     def to_str(self) -> str:
@@ -148,6 +82,13 @@ class StatelessStream(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of server_stream_profile
         if self.server_stream_profile:
             _dict['ServerStreamProfile'] = self.server_stream_profile.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -165,78 +106,11 @@ class StatelessStream(BaseModel):
             "ClientStreamProfile": StreamProfile.from_dict(obj["ClientStreamProfile"]) if obj.get("ClientStreamProfile") is not None else None,
                         "Direction": obj.get("Direction"),
                         "IsFloodStream": obj.get("IsFloodStream"),
-                        "ServerStreamProfile": StreamProfile.from_dict(obj["ServerStreamProfile"]) if obj.get("ServerStreamProfile") is not None else None
+                        "ServerStreamProfile": StreamProfile.from_dict(obj["ServerStreamProfile"]) if obj.get("ServerStreamProfile") is not None else None,
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

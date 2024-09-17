@@ -137,9 +137,9 @@ class TestPANGPSettings(unittest.TestCase):
                     use_tls_profile = True, 
                     version = 'NONE', ),
                 pangp_encapsulation = cyperf.models.pangp_encapsulation.PANGPEncapsulation(
+                    encapsulation_mode = 'ESP_OVER_UDP', 
                     esp_over_udp_enabled = True, 
                     esp_over_udp_settings = null, 
-                    encapsulation_mode = 'ESP_OVER_UDP', 
                     udp_port = 56, ),
                 portal_hostname = '02::84',
                 vpn_gateway = '',

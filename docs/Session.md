@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **application** | **str** | The user-friendly name for the application that controls this session | [optional] 
-**config** | **object** | The current session&#39;s configuration | [optional] 
+**config** | [**AppsecConfig**](AppsecConfig.md) |  | [optional] 
 **config_name** | **str** | The display name of the configuration loaded in the session | [optional] 
 **config_url** | **str** | The external URL of the configuration loaded in the session | [optional] 
 **created** | **int** | A Unix timestamp that indicates when the session was created | [optional] [readonly] 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **id** | **str** | The unique identifier of the session | [optional] [readonly] 
 **index** | **int** | The session&#39;s index | [optional] [readonly] 
 **last_visited** | **int** | A Unix timestamp that indicates when the session was last visited | [optional] [readonly] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **meta** | [**List[Pair]**](Pair.md) | The session&#39;s metadata as a list of key-value pairs | [optional] 
 **name** | **str** | The user-visible name of the session | [optional] 
 **owner** | **str** | The user-visible name of the session&#39;s owner | [optional] [readonly] 

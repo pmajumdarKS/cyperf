@@ -35,16 +35,16 @@ class TestNetworkSegmentBase(unittest.TestCase):
         model = NetworkSegmentBase()
         if include_optional:
             return NetworkSegmentBase(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
                 network_tags = [
                     ''
                     ]
             )
         else:
             return NetworkSegmentBase(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
         )
         """
 

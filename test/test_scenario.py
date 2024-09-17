@@ -43,18 +43,18 @@ class TestScenario(unittest.TestCase):
                     connections_max_transactions = 56, 
                     description = '', 
                     external_resource_url = '', 
-                    http_version = null, 
                     headers = null, 
+                    http_version = null, 
                     is_modified = True, 
                     name = '', 
                     params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -70,8 +70,12 @@ class TestScenario(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -83,11 +87,10 @@ class TestScenario(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -113,14 +116,10 @@ class TestScenario(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     use_application_server_headers = True, ),
                 connections = [
@@ -132,6 +131,7 @@ class TestScenario(unittest.TestCase):
                         hostname = '', 
                         hostname_param = null, 
                         http_forward_proxy_mode = 'INHERIT_DUT', 
+                        id = '', 
                         is_deprecated = True, 
                         max_transactions = 56, 
                         name = '', 
@@ -142,8 +142,7 @@ class TestScenario(unittest.TestCase):
                         readonly_type = True, 
                         server_endpoint = '', 
                         server_port = 56, 
-                        type = 'http', 
-                        id = '', )
+                        type = 'http', )
                     ],
                 connections_max_transactions = 56,
                 description = '',
@@ -152,12 +151,13 @@ class TestScenario(unittest.TestCase):
                 end_point_id = 56,
                 endpoints = [
                     cyperf.models.endpoint.Endpoint(
+                        id = '', 
                         name = '', 
                         network_mapping = null, 
-                        type = 'Client', 
-                        id = '', )
+                        type = 'Client', )
                     ],
                 external_resource_url = '',
+                id = '',
                 index = 56,
                 inherit_http_profile = True,
                 ip_preference = 'IPV4_ONLY',
@@ -177,12 +177,12 @@ class TestScenario(unittest.TestCase):
                         ], ),
                 params = [
                     cyperf.models.params.Params(
-                        array_element_type = '', 
                         array_elements = [
                             {
                                 'key' : ''
                                 }
                             ], 
+                        array_element_type = '', 
                         category = '', 
                         category_index = 56, 
                         deprecated_previous_source = '', 
@@ -198,8 +198,12 @@ class TestScenario(unittest.TestCase):
                                     name = '', 
                                     value = '', )
                                 ], ), 
+                        file_upload = [
+                            'YQ=='
+                            ], 
                         file_value = null, 
                         flow_identifier = True, 
+                        id = '', 
                         is_deprecated = True, 
                         is_modified = True, 
                         media_files = [
@@ -211,11 +215,10 @@ class TestScenario(unittest.TestCase):
                                         bitrate_kbps = 56, 
                                         codec = '', 
                                         codec_description = '', 
+                                        id = '', 
                                         track_id = '', 
-                                        track_type = null, 
-                                        id = '', )
-                                    ], 
-                                id = '', )
+                                        track_type = null, )
+                                    ], )
                             ], 
                         metadata = cyperf.models.param_metadata.ParamMetadata(
                             type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -241,14 +244,10 @@ class TestScenario(unittest.TestCase):
                         supported_sources = [
                             ''
                             ], 
-                        type = '', 
-                        value = '', 
-                        file_upload = [
-                            'YQ=='
-                            ], 
-                        id = , 
                         supports_dynamic_payload = True, 
-                        upload_url = '', )
+                        type = '', 
+                        upload_url = '', 
+                        value = '', )
                     ],
                 protocol_id = '',
                 qos_flow_id = '',
@@ -259,18 +258,18 @@ class TestScenario(unittest.TestCase):
                     connections_max_transactions = 56, 
                     description = '', 
                     external_resource_url = '', 
-                    http_version = null, 
                     headers = null, 
+                    http_version = null, 
                     is_modified = True, 
                     name = '', 
                     params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -286,8 +285,12 @@ class TestScenario(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -299,11 +302,10 @@ class TestScenario(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -329,20 +331,15 @@ class TestScenario(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     use_application_server_headers = True, ),
                 supports_client_http_profile = True,
                 supports_http_profiles = True,
-                supports_server_http_profile = True,
-                id = ''
+                supports_server_http_profile = True
             )
         else:
             return Scenario(

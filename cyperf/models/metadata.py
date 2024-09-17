@@ -19,126 +19,38 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from cyperf.models.enum import Enum
+from cyperf.models.config_metadata_config_data_value import ConfigMetadataConfigDataValue
+from cyperf.models.reference import Reference
+from cyperf.models.rtp_profile_meta import RTPProfileMeta
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Metadata" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Metadata(BaseModel):
     """
     Metadata
     """ # noqa: E501
-    auth_method: Optional[Enum] = Field(default=None, alias="AuthMethod")
-    explicit_proxy: Optional[StrictBool] = Field(default=None, description="This is an authentication profile used along with an explicit proxy", alias="ExplicitProxy")
-    idp_type: Optional[Enum] = Field(default=None, alias="IDPType")
-    sgw_name: Optional[StrictStr] = Field(default=None, description="The name of the secure gateway", alias="SGWName")
-    sgw_type: Optional[StrictStr] = Field(default=None, description="The type of the secure gateway", alias="SGWType")
-    sgw_type_value: Optional[StrictStr] = Field(default=None, description="The agent secure gateway type value of the secure gateway type", alias="SGWTypeValue")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AuthMethod", "ExplicitProxy", "IDPType", "SGWName", "SGWType", "SGWTypeValue"]
+    direction: Optional[StrictStr] = Field(default=None, description="The direction of the strike", alias="Direction")
+    is_banner: Optional[StrictBool] = Field(default=None, description="Indicates that this is a command that is required, can only be add once and also must be the first", alias="IsBanner")
+    keywords: Optional[List[ConfigMetadataConfigDataValue]] = Field(default=None, description="The keywords of the strike", alias="Keywords")
+    legacy_names: Optional[List[StrictStr]] = Field(default=None, description="The names of the equivalent application/strike", alias="LegacyNames")
+    protocol: Optional[StrictStr] = Field(default=None, description="The protocol of the strike", alias="Protocol")
+    rtp_profile_meta: Optional[RTPProfileMeta] = Field(default=None, alias="RTPProfileMeta")
+    references: Optional[List[Reference]] = Field(default=None, description="The references of the strike", alias="References")
+    requires_uniqueness: Optional[StrictBool] = Field(default=None, description="If true, for applications with the same protocol id, application/attack must have been uniquely identified in previous commands", alias="RequiresUniqueness")
+    severity: Optional[StrictStr] = Field(default=None, description="The severity of the strike", alias="Severity")
+    skip_attack_generation: Optional[StrictBool] = Field(default=None, description="If true, don't generate an attack for this strike", alias="SkipAttackGeneration")
+    sort_severity: Optional[StrictStr] = Field(default=None, description="The field by which the severity is sorted", alias="SortSeverity")
+    static: Optional[StrictBool] = Field(default=None, description="If true, the application/strike is managed directly by the controller", alias="Static")
+    supported_apps: Optional[List[StrictStr]] = Field(default=None, description="The apps that this strike can be used with", alias="SupportedApps")
+    year: Optional[StrictStr] = Field(default=None, description="The year of the strike", alias="Year")
+    __properties: ClassVar[List[str]] = ["Direction", "IsBanner", "Keywords", "LegacyNames", "Protocol", "RTPProfileMeta", "References", "RequiresUniqueness", "Severity", "SkipAttackGeneration", "SortSeverity", "Static", "SupportedApps", "Year"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_auth_method(self):
-#        if self.auth_method is not None:
-#            return self.auth_method
-#        field_info = self.__class__.__fields__["auth_method"]
-#        try:
-#            self.auth_method =  self.link_based_request(field_info.alias, "GET", return_type="Enum")
-#        except LinkNameException as e:
-#            self.auth_method =  self.link_based_request("auth_method", "GET", return_type="Enum")
-#        return self.auth_method
-#
-#    @rest_auth_method.setter
-#    def rest_auth_method(self, value):
-#        self.auth_method = value
-
-#    @property
-#    def rest_explicit_proxy(self):
-#        if self.explicit_proxy is not None:
-#            return self.explicit_proxy
-#        field_info = self.__class__.__fields__["explicit_proxy"]
-#        try:
-#            self.explicit_proxy =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.explicit_proxy =  self.link_based_request("explicit_proxy", "GET", return_type="bool")
-#        return self.explicit_proxy
-#
-#    @rest_explicit_proxy.setter
-#    def rest_explicit_proxy(self, value):
-#        self.explicit_proxy = value
-
-#    @property
-#    def rest_idp_type(self):
-#        if self.idp_type is not None:
-#            return self.idp_type
-#        field_info = self.__class__.__fields__["idp_type"]
-#        try:
-#            self.idp_type =  self.link_based_request(field_info.alias, "GET", return_type="Enum")
-#        except LinkNameException as e:
-#            self.idp_type =  self.link_based_request("idp_type", "GET", return_type="Enum")
-#        return self.idp_type
-#
-#    @rest_idp_type.setter
-#    def rest_idp_type(self, value):
-#        self.idp_type = value
-
-#    @property
-#    def rest_sgw_name(self):
-#        if self.sgw_name is not None:
-#            return self.sgw_name
-#        field_info = self.__class__.__fields__["sgw_name"]
-#        try:
-#            self.sgw_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.sgw_name =  self.link_based_request("sgw_name", "GET", return_type="str")
-#        return self.sgw_name
-#
-#    @rest_sgw_name.setter
-#    def rest_sgw_name(self, value):
-#        self.sgw_name = value
-
-#    @property
-#    def rest_sgw_type(self):
-#        if self.sgw_type is not None:
-#            return self.sgw_type
-#        field_info = self.__class__.__fields__["sgw_type"]
-#        try:
-#            self.sgw_type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.sgw_type =  self.link_based_request("sgw_type", "GET", return_type="str")
-#        return self.sgw_type
-#
-#    @rest_sgw_type.setter
-#    def rest_sgw_type(self, value):
-#        self.sgw_type = value
-
-#    @property
-#    def rest_sgw_type_value(self):
-#        if self.sgw_type_value is not None:
-#            return self.sgw_type_value
-#        field_info = self.__class__.__fields__["sgw_type_value"]
-#        try:
-#            self.sgw_type_value =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.sgw_type_value =  self.link_based_request("sgw_type_value", "GET", return_type="str")
-#        return self.sgw_type_value
-#
-#    @rest_sgw_type_value.setter
-#    def rest_sgw_type_value(self, value):
-#        self.sgw_type_value = value
-
 
 
     def to_str(self) -> str:
@@ -173,12 +85,23 @@ class Metadata(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of auth_method
-        if self.auth_method:
-            _dict['AuthMethod'] = self.auth_method.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of idp_type
-        if self.idp_type:
-            _dict['IDPType'] = self.idp_type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in keywords (list)
+        _items = []
+        if self.keywords:
+            for _item in self.keywords:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['Keywords'] = _items
+        # override the default output from pydantic by calling `to_dict()` of rtp_profile_meta
+        if self.rtp_profile_meta:
+            _dict['RTPProfileMeta'] = self.rtp_profile_meta.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in references (list)
+        _items = []
+        if self.references:
+            for _item in self.references:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['References'] = _items
         return _dict
 
     @classmethod
@@ -193,83 +116,23 @@ class Metadata(BaseModel):
             return _obj
 
         _obj = cls.model_validate({
-            "AuthMethod": Enum.from_dict(obj["AuthMethod"]) if obj.get("AuthMethod") is not None else None,
-                        "ExplicitProxy": obj.get("ExplicitProxy"),
-                        "IDPType": Enum.from_dict(obj["IDPType"]) if obj.get("IDPType") is not None else None,
-                        "SGWName": obj.get("SGWName"),
-                        "SGWType": obj.get("SGWType"),
-                        "SGWTypeValue": obj.get("SGWTypeValue")
+            "Direction": obj.get("Direction"),
+                        "IsBanner": obj.get("IsBanner"),
+                        "Keywords": [ConfigMetadataConfigDataValue.from_dict(_item) for _item in obj["Keywords"]] if obj.get("Keywords") is not None else None,
+                        "LegacyNames": obj.get("LegacyNames"),
+                        "Protocol": obj.get("Protocol"),
+                        "RTPProfileMeta": RTPProfileMeta.from_dict(obj["RTPProfileMeta"]) if obj.get("RTPProfileMeta") is not None else None,
+                        "References": [Reference.from_dict(_item) for _item in obj["References"]] if obj.get("References") is not None else None,
+                        "RequiresUniqueness": obj.get("RequiresUniqueness"),
+                        "Severity": obj.get("Severity"),
+                        "SkipAttackGeneration": obj.get("SkipAttackGeneration"),
+                        "SortSeverity": obj.get("SortSeverity"),
+                        "Static": obj.get("Static"),
+                        "SupportedApps": obj.get("SupportedApps"),
+                        "Year": obj.get("Year")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

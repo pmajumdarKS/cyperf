@@ -42,12 +42,12 @@ class TestVLANRange(unittest.TestCase):
                 static_arp_table = [
                     cyperf.models.static_arp_entry.StaticARPEntry(
                         count = 56, 
+                        id = '', 
                         remote_ip = '::02:84:9:0cc0:F:CCf', 
                         remote_ip_incr = '::02:84:9:0cc0:F:CCf', 
                         remote_mac = '2E-B0-08-29:0c:01', 
                         remote_mac_incr = '2E-B0-08-29:0c:01', 
-                        static_arp_entry_name = 'YBuLd', 
-                        id = '', )
+                        static_arp_entry_name = 'YBuLd', )
                     ],
                 tag_protocol_id = 33024,
                 vlan_auto = True,

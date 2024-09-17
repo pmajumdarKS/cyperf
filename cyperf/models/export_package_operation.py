@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "ExportPackageOperation" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class ExportPackageOperation(BaseModel):
     """
@@ -36,8 +32,6 @@ class ExportPackageOperation(BaseModel):
     keycloak: Optional[StrictBool] = None
     license_servers: Optional[StrictBool] = Field(default=None, alias="licenseServers")
     results: Optional[StrictBool] = None
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["configs", "externalNatsBrokers", "keycloak", "licenseServers", "results"]
 
     model_config = ConfigDict(
@@ -45,83 +39,6 @@ class ExportPackageOperation(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_configs(self):
-#        if self.configs is not None:
-#            return self.configs
-#        field_info = self.__class__.__fields__["configs"]
-#        try:
-#            self.configs =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.configs =  self.link_based_request("configs", "GET", return_type="bool")
-#        return self.configs
-#
-#    @rest_configs.setter
-#    def rest_configs(self, value):
-#        self.configs = value
-
-#    @property
-#    def rest_external_nats_brokers(self):
-#        if self.external_nats_brokers is not None:
-#            return self.external_nats_brokers
-#        field_info = self.__class__.__fields__["external_nats_brokers"]
-#        try:
-#            self.external_nats_brokers =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.external_nats_brokers =  self.link_based_request("external_nats_brokers", "GET", return_type="bool")
-#        return self.external_nats_brokers
-#
-#    @rest_external_nats_brokers.setter
-#    def rest_external_nats_brokers(self, value):
-#        self.external_nats_brokers = value
-
-#    @property
-#    def rest_keycloak(self):
-#        if self.keycloak is not None:
-#            return self.keycloak
-#        field_info = self.__class__.__fields__["keycloak"]
-#        try:
-#            self.keycloak =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.keycloak =  self.link_based_request("keycloak", "GET", return_type="bool")
-#        return self.keycloak
-#
-#    @rest_keycloak.setter
-#    def rest_keycloak(self, value):
-#        self.keycloak = value
-
-#    @property
-#    def rest_license_servers(self):
-#        if self.license_servers is not None:
-#            return self.license_servers
-#        field_info = self.__class__.__fields__["license_servers"]
-#        try:
-#            self.license_servers =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.license_servers =  self.link_based_request("license_servers", "GET", return_type="bool")
-#        return self.license_servers
-#
-#    @rest_license_servers.setter
-#    def rest_license_servers(self, value):
-#        self.license_servers = value
-
-#    @property
-#    def rest_results(self):
-#        if self.results is not None:
-#            return self.results
-#        field_info = self.__class__.__fields__["results"]
-#        try:
-#            self.results =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.results =  self.link_based_request("results", "GET", return_type="bool")
-#        return self.results
-#
-#    @rest_results.setter
-#    def rest_results(self, value):
-#        self.results = value
-
 
 
     def to_str(self) -> str:
@@ -178,74 +95,6 @@ class ExportPackageOperation(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

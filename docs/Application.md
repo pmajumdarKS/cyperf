@@ -33,6 +33,7 @@ Name | Type | Description | Notes
 **supports_http_profiles** | **bool** | Indicates if the scenario supports HTTP profiles. | [optional] 
 **supports_server_http_profile** | **bool** | Indicates if the scenario supports Server HTTP profile. | [optional] 
 **id** | **str** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **client_tls_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
 **data_types** | [**List[DataType]**](DataType.md) |  | [optional] 
 **inherit_tls** | **bool** |  | [optional] 

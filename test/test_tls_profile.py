@@ -36,12 +36,12 @@ class TestTLSProfile(unittest.TestCase):
         if include_optional:
             return TLSProfile(
                 certificate_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -57,8 +57,12 @@ class TestTLSProfile(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -70,11 +74,10 @@ class TestTLSProfile(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -100,14 +103,10 @@ class TestTLSProfile(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 cipher = 'ECDHE-RSA-AES256-GCM-SHA384',
                 cipher12 = 'ECDHE-RSA-AES256-GCM-SHA384',
                 cipher13 = 'AES-256-GCM-SHA384',
@@ -118,12 +117,12 @@ class TestTLSProfile(unittest.TestCase):
                     'AES-256-GCM-SHA384'
                     ],
                 dh_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -139,8 +138,12 @@ class TestTLSProfile(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -152,11 +155,10 @@ class TestTLSProfile(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -182,25 +184,21 @@ class TestTLSProfile(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 get_tls_conflicts = [
                     'YQ=='
                     ],
                 immediate_close = True,
                 key_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -216,8 +214,12 @@ class TestTLSProfile(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -229,11 +231,10 @@ class TestTLSProfile(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -259,14 +260,10 @@ class TestTLSProfile(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 key_file_password = '',
                 middle_box_enabled = True,
                 profile_id = '',

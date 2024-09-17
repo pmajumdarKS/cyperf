@@ -39,6 +39,7 @@ class TestGetAttacks200ResponseOneOf(unittest.TestCase):
                     cyperf.models.appsec_attack.AppsecAttack(
                         attack = null, 
                         description = '', 
+                        id = '', 
                         metadata = cyperf.models.metadata.Metadata(
                             auth_method = cyperf.models.enum.Enum(
                                 choices = [
@@ -56,7 +57,6 @@ class TestGetAttacks200ResponseOneOf(unittest.TestCase):
                             sgw_type = '', 
                             sgw_type_value = '', ), 
                         name = '', 
-                        id = '', 
                         owner = '', 
                         owner_id = '', )
                     ],

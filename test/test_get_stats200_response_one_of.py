@@ -47,6 +47,8 @@ class TestGetStats200ResponseOneOf(unittest.TestCase):
                                 default_source = '', 
                                 default_value = '', 
                                 element_type = '', 
+                                field = '', 
+                                id = '', 
                                 metadata = cyperf.models.parameter_metadata.ParameterMetadata(
                                     category = '', 
                                     category_index = 56, 
@@ -94,14 +96,12 @@ class TestGetStats200ResponseOneOf(unittest.TestCase):
                                             max_length = 56, 
                                             min_length = 56, ), ), 
                                     unique_value = True, ), 
+                                operator = '', 
+                                query_param = '', 
                                 sources = [
                                     ''
                                     ], 
-                                type = '', 
-                                field = '', 
-                                id = '', 
-                                operator = '', 
-                                query_param = '', )
+                                type = '', )
                             ], 
                         columns = [
                             ''

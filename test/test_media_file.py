@@ -42,17 +42,17 @@ class TestMediaFile(unittest.TestCase):
                         ], 
                     resource_url = '', 
                     value = '', ),
+                id = '',
                 media_tracks = [
                     cyperf.models.media_track.MediaTrack(
                         bitrate = 56, 
                         bitrate_kbps = 56, 
                         codec = '', 
                         codec_description = '', 
+                        id = '', 
                         track_id = '', 
-                        track_type = null, 
-                        id = '', )
-                    ],
-                id = ''
+                        track_type = null, )
+                    ]
             )
         else:
             return MediaFile(

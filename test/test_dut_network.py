@@ -35,11 +35,12 @@ class TestDUTNetwork(unittest.TestCase):
         model = DUTNetwork()
         if include_optional:
             return DUTNetwork(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
                 network_tags = [
                     ''
                     ],
+                active = True,
                 client_dut_active = True,
                 client_dut_host = '252.7.188.200',
                 client_dut_port = 56,
@@ -48,12 +49,12 @@ class TestDUTNetwork(unittest.TestCase):
                     auth_method = null, 
                     auth_profile_params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -69,8 +70,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -82,11 +87,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -112,14 +116,10 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     auth_profile_type = '', 
                     hostname_suffix = null, 
@@ -129,16 +129,19 @@ class TestDUTNetwork(unittest.TestCase):
                     pep_port = 56, 
                     simulated_id_p = null, ),
                 forward_proxy_pep_dut_active = True,
+                host = '252.7.188.200',
+                hostname_suffix = '252.7.188.200',
+                http_forward_proxy_mode = 'PROXY_MODE',
                 http_health_check = cyperf.models.health_check_config.HealthCheckConfig(
                     enabled = True, 
                     params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -154,8 +157,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -167,11 +174,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -197,26 +203,22 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     port = 56, ),
                 https_health_check = cyperf.models.health_check_config.HealthCheckConfig(
                     enabled = True, 
                     params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -232,8 +234,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -245,11 +251,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -275,25 +280,19 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     port = 56, ),
-                hostname_suffix = '252.7.188.200',
-                http_forward_proxy_mode = 'PROXY_MODE',
                 non_proxied_hosts = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -309,8 +308,12 @@ class TestDUTNetwork(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -322,11 +325,10 @@ class TestDUTNetwork(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -352,24 +354,20 @@ class TestDUTNetwork(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 pep_dut = cyperf.models.pep_dut.PepDUT(
                     auth_method = null, 
                     auth_profile_params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -385,8 +383,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -398,11 +400,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -428,14 +429,10 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     auth_profile_type = '', 
                     hostname_suffix = null, 
@@ -449,12 +446,12 @@ class TestDUTNetwork(unittest.TestCase):
                     auth_method = null, 
                     auth_profile_params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -470,8 +467,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -483,11 +484,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -513,14 +513,10 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     auth_profile_type = '', 
                     hostname_suffix = null, 
@@ -537,12 +533,12 @@ class TestDUTNetwork(unittest.TestCase):
                     enabled = True, 
                     params = [
                         cyperf.models.params.Params(
-                            array_element_type = '', 
                             array_elements = [
                                 {
                                     'key' : ''
                                     }
                                 ], 
+                            array_element_type = '', 
                             category = '', 
                             category_index = 56, 
                             deprecated_previous_source = '', 
@@ -558,8 +554,12 @@ class TestDUTNetwork(unittest.TestCase):
                                         name = '', 
                                         value = '', )
                                     ], ), 
+                            file_upload = [
+                                'YQ=='
+                                ], 
                             file_value = null, 
                             flow_identifier = True, 
+                            id = '', 
                             is_deprecated = True, 
                             is_modified = True, 
                             media_files = [
@@ -571,11 +571,10 @@ class TestDUTNetwork(unittest.TestCase):
                                             bitrate_kbps = 56, 
                                             codec = '', 
                                             codec_description = '', 
+                                            id = '', 
                                             track_id = '', 
-                                            track_type = null, 
-                                            id = '', )
-                                        ], 
-                                    id = '', )
+                                            track_type = null, )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -601,24 +600,18 @@ class TestDUTNetwork(unittest.TestCase):
                             supported_sources = [
                                 ''
                                 ], 
-                            type = '', 
-                            value = '', 
-                            file_upload = [
-                                'YQ=='
-                                ], 
-                            id = , 
                             supports_dynamic_payload = True, 
-                            upload_url = '', )
+                            type = '', 
+                            upload_url = '', 
+                            value = '', )
                         ], 
                     port = 56, ),
-                use_real_host = True,
-                active = True,
-                host = '252.7.188.200'
+                use_real_host = True
             )
         else:
             return DUTNetwork(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
         )
         """
 

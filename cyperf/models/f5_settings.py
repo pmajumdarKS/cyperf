@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cyperf.models.api_link import APILink
 from cyperf.models.auth_settings import AuthSettings
 from cyperf.models.f5_encapsulation import F5Encapsulation
 from cyperf.models.tcp_profile import TcpProfile
@@ -27,10 +28,6 @@ from cyperf.models.tls_profile import TLSProfile
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "F5Settings" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class F5Settings(BaseModel):
     """
@@ -38,12 +35,11 @@ class F5Settings(BaseModel):
     """ # noqa: E501
     var_auth_settings: Optional[AuthSettings] = Field(default=None, alias="AuthSettings")
     outer_tcp_profile: Optional[TcpProfile] = Field(default=None, alias="OuterTCPProfile")
+    links: Optional[List[APILink]] = None
     f5_encapsulation: Optional[F5Encapsulation] = Field(default=None, alias="F5Encapsulation")
     outer_tls_client_profile: Optional[TLSProfile] = Field(default=None, alias="OuterTLSClientProfile")
     vpn_gateway: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="VPNGateway")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile", "F5Encapsulation", "OuterTLSClientProfile", "VPNGateway"]
+    __properties: ClassVar[List[str]] = ["AuthSettings", "OuterTCPProfile", "links", "F5Encapsulation", "OuterTLSClientProfile", "VPNGateway"]
 
     @field_validator('vpn_gateway')
     def vpn_gateway_validate_regular_expression(cls, value):
@@ -60,83 +56,6 @@ class F5Settings(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_var_auth_settings(self):
-#        if self.var_auth_settings is not None:
-#            return self.var_auth_settings
-#        field_info = self.__class__.__fields__["var_auth_settings"]
-#        try:
-#            self.var_auth_settings =  self.link_based_request(field_info.alias, "GET", return_type="AuthSettings")
-#        except LinkNameException as e:
-#            self.var_auth_settings =  self.link_based_request("var_auth_settings", "GET", return_type="AuthSettings")
-#        return self.var_auth_settings
-#
-#    @rest_var_auth_settings.setter
-#    def rest_var_auth_settings(self, value):
-#        self.var_auth_settings = value
-
-#    @property
-#    def rest_outer_tcp_profile(self):
-#        if self.outer_tcp_profile is not None:
-#            return self.outer_tcp_profile
-#        field_info = self.__class__.__fields__["outer_tcp_profile"]
-#        try:
-#            self.outer_tcp_profile =  self.link_based_request(field_info.alias, "GET", return_type="TcpProfile")
-#        except LinkNameException as e:
-#            self.outer_tcp_profile =  self.link_based_request("outer_tcp_profile", "GET", return_type="TcpProfile")
-#        return self.outer_tcp_profile
-#
-#    @rest_outer_tcp_profile.setter
-#    def rest_outer_tcp_profile(self, value):
-#        self.outer_tcp_profile = value
-
-#    @property
-#    def rest_f5_encapsulation(self):
-#        if self.f5_encapsulation is not None:
-#            return self.f5_encapsulation
-#        field_info = self.__class__.__fields__["f5_encapsulation"]
-#        try:
-#            self.f5_encapsulation =  self.link_based_request(field_info.alias, "GET", return_type="F5Encapsulation")
-#        except LinkNameException as e:
-#            self.f5_encapsulation =  self.link_based_request("f5_encapsulation", "GET", return_type="F5Encapsulation")
-#        return self.f5_encapsulation
-#
-#    @rest_f5_encapsulation.setter
-#    def rest_f5_encapsulation(self, value):
-#        self.f5_encapsulation = value
-
-#    @property
-#    def rest_outer_tls_client_profile(self):
-#        if self.outer_tls_client_profile is not None:
-#            return self.outer_tls_client_profile
-#        field_info = self.__class__.__fields__["outer_tls_client_profile"]
-#        try:
-#            self.outer_tls_client_profile =  self.link_based_request(field_info.alias, "GET", return_type="TLSProfile")
-#        except LinkNameException as e:
-#            self.outer_tls_client_profile =  self.link_based_request("outer_tls_client_profile", "GET", return_type="TLSProfile")
-#        return self.outer_tls_client_profile
-#
-#    @rest_outer_tls_client_profile.setter
-#    def rest_outer_tls_client_profile(self, value):
-#        self.outer_tls_client_profile = value
-
-#    @property
-#    def rest_vpn_gateway(self):
-#        if self.vpn_gateway is not None:
-#            return self.vpn_gateway
-#        field_info = self.__class__.__fields__["vpn_gateway"]
-#        try:
-#            self.vpn_gateway =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.vpn_gateway =  self.link_based_request("vpn_gateway", "GET", return_type="str")
-#        return self.vpn_gateway
-#
-#    @rest_vpn_gateway.setter
-#    def rest_vpn_gateway(self, value):
-#        self.vpn_gateway = value
-
 
 
     def to_str(self) -> str:
@@ -177,6 +96,13 @@ class F5Settings(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of outer_tcp_profile
         if self.outer_tcp_profile:
             _dict['OuterTCPProfile'] = self.outer_tcp_profile.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         # override the default output from pydantic by calling `to_dict()` of f5_encapsulation
         if self.f5_encapsulation:
             _dict['F5Encapsulation'] = self.f5_encapsulation.to_dict()
@@ -199,80 +125,13 @@ class F5Settings(BaseModel):
         _obj = cls.model_validate({
             "AuthSettings": AuthSettings.from_dict(obj["AuthSettings"]) if obj.get("AuthSettings") is not None else None,
                         "OuterTCPProfile": TcpProfile.from_dict(obj["OuterTCPProfile"]) if obj.get("OuterTCPProfile") is not None else None,
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "F5Encapsulation": F5Encapsulation.from_dict(obj["F5Encapsulation"]) if obj.get("F5Encapsulation") is not None else None,
                         "OuterTLSClientProfile": TLSProfile.from_dict(obj["OuterTLSClientProfile"]) if obj.get("OuterTLSClientProfile") is not None else None,
                         "VPNGateway": obj.get("VPNGateway")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

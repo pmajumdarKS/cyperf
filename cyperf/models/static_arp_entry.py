@@ -23,10 +23,6 @@ from typing_extensions import Annotated
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "StaticARPEntry" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class StaticARPEntry(BaseModel):
     """
@@ -39,8 +35,6 @@ class StaticARPEntry(BaseModel):
     remote_mac_incr: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="RemoteMACIncr")
     static_arp_entry_name: Annotated[str, Field(strict=True)] = Field(alias="StaticArpEntryName")
     id: StrictStr
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Count", "RemoteIP", "RemoteIPIncr", "RemoteMAC", "RemoteMACIncr", "StaticArpEntryName", "id"]
 
     @field_validator('remote_ip')
@@ -95,113 +89,6 @@ class StaticARPEntry(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_count(self):
-#        if self.count is not None:
-#            return self.count
-#        field_info = self.__class__.__fields__["count"]
-#        try:
-#            self.count =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.count =  self.link_based_request("count", "GET", return_type="int")
-#        return self.count
-#
-#    @rest_count.setter
-#    def rest_count(self, value):
-#        self.count = value
-
-#    @property
-#    def rest_remote_ip(self):
-#        if self.remote_ip is not None:
-#            return self.remote_ip
-#        field_info = self.__class__.__fields__["remote_ip"]
-#        try:
-#            self.remote_ip =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.remote_ip =  self.link_based_request("remote_ip", "GET", return_type="str")
-#        return self.remote_ip
-#
-#    @rest_remote_ip.setter
-#    def rest_remote_ip(self, value):
-#        self.remote_ip = value
-
-#    @property
-#    def rest_remote_ip_incr(self):
-#        if self.remote_ip_incr is not None:
-#            return self.remote_ip_incr
-#        field_info = self.__class__.__fields__["remote_ip_incr"]
-#        try:
-#            self.remote_ip_incr =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.remote_ip_incr =  self.link_based_request("remote_ip_incr", "GET", return_type="str")
-#        return self.remote_ip_incr
-#
-#    @rest_remote_ip_incr.setter
-#    def rest_remote_ip_incr(self, value):
-#        self.remote_ip_incr = value
-
-#    @property
-#    def rest_remote_mac(self):
-#        if self.remote_mac is not None:
-#            return self.remote_mac
-#        field_info = self.__class__.__fields__["remote_mac"]
-#        try:
-#            self.remote_mac =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.remote_mac =  self.link_based_request("remote_mac", "GET", return_type="str")
-#        return self.remote_mac
-#
-#    @rest_remote_mac.setter
-#    def rest_remote_mac(self, value):
-#        self.remote_mac = value
-
-#    @property
-#    def rest_remote_mac_incr(self):
-#        if self.remote_mac_incr is not None:
-#            return self.remote_mac_incr
-#        field_info = self.__class__.__fields__["remote_mac_incr"]
-#        try:
-#            self.remote_mac_incr =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.remote_mac_incr =  self.link_based_request("remote_mac_incr", "GET", return_type="str")
-#        return self.remote_mac_incr
-#
-#    @rest_remote_mac_incr.setter
-#    def rest_remote_mac_incr(self, value):
-#        self.remote_mac_incr = value
-
-#    @property
-#    def rest_static_arp_entry_name(self):
-#        if self.static_arp_entry_name is not None:
-#            return self.static_arp_entry_name
-#        field_info = self.__class__.__fields__["static_arp_entry_name"]
-#        try:
-#            self.static_arp_entry_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.static_arp_entry_name =  self.link_based_request("static_arp_entry_name", "GET", return_type="str")
-#        return self.static_arp_entry_name
-#
-#    @rest_static_arp_entry_name.setter
-#    def rest_static_arp_entry_name(self, value):
-#        self.static_arp_entry_name = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
 
 
     def to_str(self) -> str:
@@ -260,74 +147,6 @@ class StaticARPEntry(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -36,17 +36,17 @@ class TestStepSegment(unittest.TestCase):
         if include_optional:
             return StepSegment(
                 duration = 56,
+                id = '',
                 segment_type = 'SteadySegment',
                 warm_up_period = 56,
-                id = '',
                 enabled = True,
                 number_of_steps = 56
             )
         else:
             return StepSegment(
                 duration = 56,
-                segment_type = 'SteadySegment',
                 id = '',
+                segment_type = 'SteadySegment',
                 enabled = True,
                 number_of_steps = 56,
         )

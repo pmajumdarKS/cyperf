@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
+from typing import Any
 from typing_extensions import Annotated
 
 from cyperf import DynamicModel
@@ -55,7 +56,7 @@ class AgentAssignmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> object:
         """patch_agent_assignments_for_net_segment
 
         Update the agent assignments for a network group.
@@ -96,7 +97,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -127,7 +128,7 @@ class AgentAssignmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[object]:
         """patch_agent_assignments_for_net_segment
 
         Update the agent assignments for a network group.
@@ -168,7 +169,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -240,7 +241,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -333,7 +334,7 @@ class AgentAssignmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> object:
         """put_agent_assignments_by_id_for_net_segment
 
         Update the list of agent IDs assigned to this network segment.
@@ -374,7 +375,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -405,7 +406,7 @@ class AgentAssignmentApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[object]:
         """put_agent_assignments_by_id_for_net_segment
 
         Update the list of agent IDs assigned to this network segment.
@@ -446,7 +447,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(
@@ -518,7 +519,7 @@ class AgentAssignmentApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "object",
             '500': "ErrorResponse",
         }
         response_data = self.api_client.call_api(

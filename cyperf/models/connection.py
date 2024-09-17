@@ -19,15 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.params import Params
 from cyperf.models.port_settings import PortSettings
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Connection" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Connection(BaseModel):
     """
@@ -52,9 +49,8 @@ class Connection(BaseModel):
     server_port: StrictInt = Field(description="The server port of the connection (default: 80).", alias="ServerPort")
     type: Optional[StrictStr] = Field(default=None, alias="Type")
     id: StrictStr
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["ClientEndpoint", "ClientPort", "ClosingEnd", "DisableEncryption", "Hostname", "HostnameParam", "HttpForwardProxyMode", "IsDeprecated", "MaxTransactions", "Name", "PortSettings", "Readonly", "ReadonlyHostname", "ReadonlyMaxTrans", "ReadonlyType", "ServerEndpoint", "ServerPort", "Type", "id"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["ClientEndpoint", "ClientPort", "ClosingEnd", "DisableEncryption", "Hostname", "HostnameParam", "HttpForwardProxyMode", "IsDeprecated", "MaxTransactions", "Name", "PortSettings", "Readonly", "ReadonlyHostname", "ReadonlyMaxTrans", "ReadonlyType", "ServerEndpoint", "ServerPort", "Type", "id", "links"]
 
     @field_validator('http_forward_proxy_mode')
     def http_forward_proxy_mode_validate_enum(cls, value):
@@ -81,293 +77,6 @@ class Connection(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_client_endpoint(self):
-#        if self.client_endpoint is not None:
-#            return self.client_endpoint
-#        field_info = self.__class__.__fields__["client_endpoint"]
-#        try:
-#            self.client_endpoint =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.client_endpoint =  self.link_based_request("client_endpoint", "GET", return_type="str")
-#        return self.client_endpoint
-#
-#    @rest_client_endpoint.setter
-#    def rest_client_endpoint(self, value):
-#        self.client_endpoint = value
-
-#    @property
-#    def rest_client_port(self):
-#        if self.client_port is not None:
-#            return self.client_port
-#        field_info = self.__class__.__fields__["client_port"]
-#        try:
-#            self.client_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.client_port =  self.link_based_request("client_port", "GET", return_type="int")
-#        return self.client_port
-#
-#    @rest_client_port.setter
-#    def rest_client_port(self, value):
-#        self.client_port = value
-
-#    @property
-#    def rest_closing_end(self):
-#        if self.closing_end is not None:
-#            return self.closing_end
-#        field_info = self.__class__.__fields__["closing_end"]
-#        try:
-#            self.closing_end =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.closing_end =  self.link_based_request("closing_end", "GET", return_type="str")
-#        return self.closing_end
-#
-#    @rest_closing_end.setter
-#    def rest_closing_end(self, value):
-#        self.closing_end = value
-
-#    @property
-#    def rest_disable_encryption(self):
-#        if self.disable_encryption is not None:
-#            return self.disable_encryption
-#        field_info = self.__class__.__fields__["disable_encryption"]
-#        try:
-#            self.disable_encryption =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.disable_encryption =  self.link_based_request("disable_encryption", "GET", return_type="bool")
-#        return self.disable_encryption
-#
-#    @rest_disable_encryption.setter
-#    def rest_disable_encryption(self, value):
-#        self.disable_encryption = value
-
-#    @property
-#    def rest_hostname(self):
-#        if self.hostname is not None:
-#            return self.hostname
-#        field_info = self.__class__.__fields__["hostname"]
-#        try:
-#            self.hostname =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.hostname =  self.link_based_request("hostname", "GET", return_type="str")
-#        return self.hostname
-#
-#    @rest_hostname.setter
-#    def rest_hostname(self, value):
-#        self.hostname = value
-
-#    @property
-#    def rest_hostname_param(self):
-#        if self.hostname_param is not None:
-#            return self.hostname_param
-#        field_info = self.__class__.__fields__["hostname_param"]
-#        try:
-#            self.hostname_param =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.hostname_param =  self.link_based_request("hostname_param", "GET", return_type="Params")
-#        return self.hostname_param
-#
-#    @rest_hostname_param.setter
-#    def rest_hostname_param(self, value):
-#        self.hostname_param = value
-
-#    @property
-#    def rest_http_forward_proxy_mode(self):
-#        if self.http_forward_proxy_mode is not None:
-#            return self.http_forward_proxy_mode
-#        field_info = self.__class__.__fields__["http_forward_proxy_mode"]
-#        try:
-#            self.http_forward_proxy_mode =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.http_forward_proxy_mode =  self.link_based_request("http_forward_proxy_mode", "GET", return_type="str")
-#        return self.http_forward_proxy_mode
-#
-#    @rest_http_forward_proxy_mode.setter
-#    def rest_http_forward_proxy_mode(self, value):
-#        self.http_forward_proxy_mode = value
-
-#    @property
-#    def rest_is_deprecated(self):
-#        if self.is_deprecated is not None:
-#            return self.is_deprecated
-#        field_info = self.__class__.__fields__["is_deprecated"]
-#        try:
-#            self.is_deprecated =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.is_deprecated =  self.link_based_request("is_deprecated", "GET", return_type="bool")
-#        return self.is_deprecated
-#
-#    @rest_is_deprecated.setter
-#    def rest_is_deprecated(self, value):
-#        self.is_deprecated = value
-
-#    @property
-#    def rest_max_transactions(self):
-#        if self.max_transactions is not None:
-#            return self.max_transactions
-#        field_info = self.__class__.__fields__["max_transactions"]
-#        try:
-#            self.max_transactions =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.max_transactions =  self.link_based_request("max_transactions", "GET", return_type="int")
-#        return self.max_transactions
-#
-#    @rest_max_transactions.setter
-#    def rest_max_transactions(self, value):
-#        self.max_transactions = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_port_settings(self):
-#        if self.port_settings is not None:
-#            return self.port_settings
-#        field_info = self.__class__.__fields__["port_settings"]
-#        try:
-#            self.port_settings =  self.link_based_request(field_info.alias, "GET", return_type="PortSettings")
-#        except LinkNameException as e:
-#            self.port_settings =  self.link_based_request("port_settings", "GET", return_type="PortSettings")
-#        return self.port_settings
-#
-#    @rest_port_settings.setter
-#    def rest_port_settings(self, value):
-#        self.port_settings = value
-
-#    @property
-#    def rest_readonly(self):
-#        if self.readonly is not None:
-#            return self.readonly
-#        field_info = self.__class__.__fields__["readonly"]
-#        try:
-#            self.readonly =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.readonly =  self.link_based_request("readonly", "GET", return_type="bool")
-#        return self.readonly
-#
-#    @rest_readonly.setter
-#    def rest_readonly(self, value):
-#        self.readonly = value
-
-#    @property
-#    def rest_readonly_hostname(self):
-#        if self.readonly_hostname is not None:
-#            return self.readonly_hostname
-#        field_info = self.__class__.__fields__["readonly_hostname"]
-#        try:
-#            self.readonly_hostname =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.readonly_hostname =  self.link_based_request("readonly_hostname", "GET", return_type="bool")
-#        return self.readonly_hostname
-#
-#    @rest_readonly_hostname.setter
-#    def rest_readonly_hostname(self, value):
-#        self.readonly_hostname = value
-
-#    @property
-#    def rest_readonly_max_trans(self):
-#        if self.readonly_max_trans is not None:
-#            return self.readonly_max_trans
-#        field_info = self.__class__.__fields__["readonly_max_trans"]
-#        try:
-#            self.readonly_max_trans =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.readonly_max_trans =  self.link_based_request("readonly_max_trans", "GET", return_type="bool")
-#        return self.readonly_max_trans
-#
-#    @rest_readonly_max_trans.setter
-#    def rest_readonly_max_trans(self, value):
-#        self.readonly_max_trans = value
-
-#    @property
-#    def rest_readonly_type(self):
-#        if self.readonly_type is not None:
-#            return self.readonly_type
-#        field_info = self.__class__.__fields__["readonly_type"]
-#        try:
-#            self.readonly_type =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.readonly_type =  self.link_based_request("readonly_type", "GET", return_type="bool")
-#        return self.readonly_type
-#
-#    @rest_readonly_type.setter
-#    def rest_readonly_type(self, value):
-#        self.readonly_type = value
-
-#    @property
-#    def rest_server_endpoint(self):
-#        if self.server_endpoint is not None:
-#            return self.server_endpoint
-#        field_info = self.__class__.__fields__["server_endpoint"]
-#        try:
-#            self.server_endpoint =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.server_endpoint =  self.link_based_request("server_endpoint", "GET", return_type="str")
-#        return self.server_endpoint
-#
-#    @rest_server_endpoint.setter
-#    def rest_server_endpoint(self, value):
-#        self.server_endpoint = value
-
-#    @property
-#    def rest_server_port(self):
-#        if self.server_port is not None:
-#            return self.server_port
-#        field_info = self.__class__.__fields__["server_port"]
-#        try:
-#            self.server_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.server_port =  self.link_based_request("server_port", "GET", return_type="int")
-#        return self.server_port
-#
-#    @rest_server_port.setter
-#    def rest_server_port(self, value):
-#        self.server_port = value
-
-#    @property
-#    def rest_type(self):
-#        if self.type is not None:
-#            return self.type
-#        field_info = self.__class__.__fields__["type"]
-#        try:
-#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.type =  self.link_based_request("type", "GET", return_type="str")
-#        return self.type
-#
-#    @rest_type.setter
-#    def rest_type(self, value):
-#        self.type = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
 
 
     def to_str(self) -> str:
@@ -408,6 +117,13 @@ class Connection(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of port_settings
         if self.port_settings:
             _dict['PortSettings'] = self.port_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -440,78 +156,11 @@ class Connection(BaseModel):
                         "ServerEndpoint": obj.get("ServerEndpoint"),
                         "ServerPort": obj.get("ServerPort"),
                         "Type": obj.get("Type"),
-                        "id": obj.get("id")
+                        "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -10,10 +10,10 @@ Method | HTTP request | Description
 [**get_download_result_config**](TestResultsApi.md#get_download_result_config) | **GET** /api/v2/results/{resultId}/download-result-config | 
 [**get_files**](TestResultsApi.md#get_files) | **GET** /api/v2/results/{resultId}/files | 
 [**get_files_by_id**](TestResultsApi.md#get_files_by_id) | **GET** /api/v2/results/{resultId}/files/{fileId} | 
-[**get_result_tags**](TestResultsApi.md#get_result_tags) | **GET** /api/v2/results/tags | 
 [**get_results**](TestResultsApi.md#get_results) | **GET** /api/v2/results | 
 [**get_results_by_id**](TestResultsApi.md#get_results_by_id) | **GET** /api/v2/results/{resultId} | 
 [**get_results_results_id_files_files_id_content**](TestResultsApi.md#get_results_results_id_files_files_id_content) | **GET** /api/v2/results/{resultId}/files/{fileId}/content | 
+[**get_results_tags**](TestResultsApi.md#get_results_tags) | **GET** /api/v2/results/tags | 
 [**poll_results_batch_delete**](TestResultsApi.md#poll_results_batch_delete) | **GET** /api/v2/results/operations/batch-delete/{id} | 
 [**poll_results_generate_all**](TestResultsApi.md#poll_results_generate_all) | **GET** /api/v2/results/{resultId}/operations/generate-all/{id} | 
 [**poll_results_generate_results**](TestResultsApi.md#poll_results_generate_results) | **GET** /api/v2/results/{resultId}/operations/generate-results/{id} | 
@@ -496,86 +496,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_result_tags**
-> GetResultTags200Response get_result_tags(take=take, skip=skip)
-
-
-
-Get all the currently available agent groups.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.get_result_tags200_response import GetResultTags200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.TestResultsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.get_result_tags(take=take, skip=skip)
-        print("The response of TestResultsApi->get_result_tags:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TestResultsApi->get_result_tags: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**GetResultTags200Response**](GetResultTags200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of agent groups |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_results**
 > GetResults200Response get_results(take=take, skip=skip, search_col=search_col, search_val=search_val, filter_mode=filter_mode, sort=sort)
 
@@ -817,6 +737,86 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | The content of the result file |  -  |
 **404** | A result or file with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_results_tags**
+> GetResultsTags200Response get_results_tags(take=take, skip=skip)
+
+
+
+Get all the currently available agent groups.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_results_tags200_response import GetResultsTags200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.TestResultsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_results_tags(take=take, skip=skip)
+        print("The response of TestResultsApi->get_results_tags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TestResultsApi->get_results_tags: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetResultsTags200Response**](GetResultsTags200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of agent groups |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

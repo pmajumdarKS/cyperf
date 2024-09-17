@@ -36,9 +36,13 @@ class TestAttackProfile(unittest.TestCase):
         if include_optional:
             return AttackProfile(
                 active = True,
+                id = '',
                 traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
                     default_transport_profile = null, ),
-                id = '',
+                add_attacks = [
+                    cyperf.models.external_resource_info.ExternalResourceInfo(
+                        external_resource_url = '', )
+                    ],
                 attacks = [
                     null
                     ],
@@ -52,15 +56,6 @@ class TestAttackProfile(unittest.TestCase):
                     server_network_tags = [
                         ''
                         ], ),
-                name = '',
-                objectives_and_timeline = cyperf.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
-                    timeline_segments = [
-                        null
-                        ], ),
-                add_attacks = [
-                    cyperf.models.external_resource_info.ExternalResourceInfo(
-                        external_resource_url = '', )
-                    ],
                 modify_excluded_dut_recursively = [
                     cyperf.models.update_network_mapping.UpdateNetworkMapping(
                         client_network_tags = [
@@ -87,6 +82,11 @@ class TestAttackProfile(unittest.TestCase):
                             ''
                             ], )
                     ],
+                name = '',
+                objectives_and_timeline = cyperf.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
+                    timeline_segments = [
+                        null
+                        ], ),
                 reset_tags_to_default = [
                     'YQ=='
                     ]

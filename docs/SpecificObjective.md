@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **type** | [**ObjectiveType**](ObjectiveType.md) | The objective&#39;s type (default: Throughput). | 
 **unit** | [**ObjectiveUnit**](ObjectiveUnit.md) | The objective&#39;s unit. Must be one of: bps or &#39;&#39;. | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

@@ -19,15 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.file_value import FileValue
 from cyperf.models.media_track import MediaTrack
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "MediaFile" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class MediaFile(BaseModel):
     """
@@ -36,62 +33,14 @@ class MediaFile(BaseModel):
     file_value: Optional[FileValue] = Field(default=None, alias="FileValue")
     media_tracks: Optional[List[MediaTrack]] = Field(default=None, alias="MediaTracks")
     id: Optional[StrictStr] = None
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["FileValue", "MediaTracks", "id"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["FileValue", "MediaTracks", "id", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_file_value(self):
-#        if self.file_value is not None:
-#            return self.file_value
-#        field_info = self.__class__.__fields__["file_value"]
-#        try:
-#            self.file_value =  self.link_based_request(field_info.alias, "GET", return_type="FileValue")
-#        except LinkNameException as e:
-#            self.file_value =  self.link_based_request("file_value", "GET", return_type="FileValue")
-#        return self.file_value
-#
-#    @rest_file_value.setter
-#    def rest_file_value(self, value):
-#        self.file_value = value
-
-#    @property
-#    def rest_media_tracks(self):
-#        if self.media_tracks is not None:
-#            return self.media_tracks
-#        field_info = self.__class__.__fields__["media_tracks"]
-#        try:
-#            self.media_tracks =  self.link_based_request(field_info.alias, "GET", return_type="List[MediaTrack]")
-#        except LinkNameException as e:
-#            self.media_tracks =  self.link_based_request("media_tracks", "GET", return_type="List[MediaTrack]")
-#        return self.media_tracks
-#
-#    @rest_media_tracks.setter
-#    def rest_media_tracks(self, value):
-#        self.media_tracks = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
 
 
     def to_str(self) -> str:
@@ -136,6 +85,13 @@ class MediaFile(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['MediaTracks'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -152,78 +108,11 @@ class MediaFile(BaseModel):
         _obj = cls.model_validate({
             "FileValue": FileValue.from_dict(obj["FileValue"]) if obj.get("FileValue") is not None else None,
                         "MediaTracks": [MediaTrack.from_dict(_item) for _item in obj["MediaTracks"]] if obj.get("MediaTracks") is not None else None,
-                        "id": obj.get("id")
+                        "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

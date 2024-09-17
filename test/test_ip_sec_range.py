@@ -41,6 +41,7 @@ class TestIPSecRange(unittest.TestCase):
                     key_file = null, 
                     key_file_password = '', 
                     shared_key = '', ),
+                id = '',
                 ike_phase1_config = cyperf.models.p1_config.P1Config(
                     dh_group = null, 
                     enc_algorithm = null, 
@@ -76,18 +77,17 @@ class TestIPSecRange(unittest.TestCase):
                     dpd_enabled = True, 
                     dpd_idle_period = 56, 
                     dpd_timeout = 56, ),
-                tunnel_count_per_outer_ip = 56,
-                id = ''
+                tunnel_count_per_outer_ip = 56
             )
         else:
             return IPSecRange(
+                id = '',
                 ip_sec_range_name = 'YBuLd',
                 multi_p2_over_p1 = True,
                 public_peer = '02::84',
                 public_peer_increment = '02::84',
                 test_scenario = 'REMOTE-ACCESS',
                 tunnel_count_per_outer_ip = 56,
-                id = '',
         )
         """
 

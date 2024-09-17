@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **pep_host** | **str** | The hostname where the traffic goes if PEP device is active. | [optional] 
 **pep_port** | **int** | The listen port for PEP DUT (default: 443). | [optional] 
 **simulated_id_p** | [**SimulatedIdP**](SimulatedIdP.md) |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

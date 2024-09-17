@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **static** | **bool** | If true, the application/strike is generated from Controller | [optional] [readonly] 
 **user_defined** | **bool** | If true, the application was created by the user | [optional] [readonly] 
 **id** | **str** | The unique identifier of the application | [optional] [readonly] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **owner** | **str** | The friendly display name of the application&#39;s owner | [optional] [readonly] 
 **owner_id** | **str** | The unique identifier of the application&#39;s owner | [optional] [readonly] 
 

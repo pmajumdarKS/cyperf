@@ -39,12 +39,12 @@ class TestGetApps200Response(unittest.TestCase):
                     cyperf.models.appsec_app.AppsecApp(
                         app = null, 
                         description = '', 
-                        name = '', 
-                        static = True, 
-                        user_defined = True, 
                         id = '', 
+                        name = '', 
                         owner = '', 
-                        owner_id = '', )
+                        owner_id = '', 
+                        static = True, 
+                        user_defined = True, )
                     ],
                 total_count = 56
             )

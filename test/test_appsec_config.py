@@ -61,10 +61,10 @@ class TestAppsecConfig(unittest.TestCase):
                             dut_network_segment = [
                                 null
                                 ], 
+                            id = '', 
                             ip_network_segment = [
                                 null
-                                ], 
-                            id = '', )
+                                ], )
                         ], 
                     traffic_profiles = [
                         null
@@ -72,11 +72,11 @@ class TestAppsecConfig(unittest.TestCase):
                     validate = [
                         'YQ=='
                         ], ),
-                session_id = '',
-                template_id = '',
                 data_model_version = '',
                 id = '',
-                name = ''
+                name = '',
+                session_id = '',
+                template_id = ''
             )
         else:
             return AppsecConfig(

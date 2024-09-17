@@ -35,6 +35,7 @@ class TestEndpoint(unittest.TestCase):
         model = Endpoint()
         if include_optional:
             return Endpoint(
+                id = '',
                 name = '',
                 network_mapping = cyperf.models.network_mapping.NetworkMapping(
                     client_network_tags = [
@@ -46,14 +47,13 @@ class TestEndpoint(unittest.TestCase):
                     server_network_tags = [
                         ''
                         ], ),
-                type = 'Client',
-                id = ''
+                type = 'Client'
             )
         else:
             return Endpoint(
+                id = '',
                 name = '',
                 type = 'Client',
-                id = '',
         )
         """
 

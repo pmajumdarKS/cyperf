@@ -44,9 +44,9 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                 exchanges = [
                                     cyperf.models.exchange.Exchange(
                                         client_endpoint = '', 
+                                        id = '', 
                                         name = '', 
-                                        server_endpoint = '', 
-                                        id = '', )
+                                        server_endpoint = '', )
                                     ], 
                                 is_strike = True, 
                                 metadata = cyperf.models.metadata.Metadata(
@@ -76,14 +76,14 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                         default_source = '', 
                                         default_value = '', 
                                         element_type = '', 
-                                        sources = [
-                                            ''
-                                            ], 
-                                        type = '', 
                                         field = '', 
                                         id = '', 
                                         operator = '', 
-                                        query_param = '', )
+                                        query_param = '', 
+                                        sources = [
+                                            ''
+                                            ], 
+                                        type = '', )
                                     ], )
                             ], 
                         connections = [
@@ -95,6 +95,7 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                 hostname = '', 
                                 hostname_param = null, 
                                 http_forward_proxy_mode = 'INHERIT_DUT', 
+                                id = '', 
                                 is_deprecated = True, 
                                 max_transactions = 56, 
                                 name = '', 
@@ -105,8 +106,7 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                 readonly_type = True, 
                                 server_endpoint = '', 
                                 server_port = 56, 
-                                type = 'http', 
-                                id = '', )
+                                type = 'http', )
                             ], 
                         custom_stats = [
                             cyperf.models.custom_stat.CustomStat(
@@ -115,25 +115,26 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                             ], 
                         data_types = [
                             cyperf.models.data_type.DataType(
+                                id = '', 
                                 values = [
                                     cyperf.models.data_type_values_inner.DataType_Values_inner(
                                         id = '', 
                                         value_type = '', )
-                                    ], 
-                                id = '', )
+                                    ], )
                             ], 
                         definition = cyperf.models.definition.Definition(
                             xml = 'YQ==', ), 
                         description = '', 
                         endpoints = [
                             cyperf.models.endpoint.Endpoint(
+                                id = '', 
                                 name = '', 
                                 network_mapping = null, 
-                                type = 'Client', 
-                                id = '', )
+                                type = 'Client', )
                             ], 
                         file_name = '', 
                         has_banner_command = True, 
+                        id = '', 
                         md5_content = '', 
                         md5_metadata = '', 
                         metadata = cyperf.models.metadata.Metadata(
@@ -147,11 +148,11 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                 default_source = '', 
                                 default_value = '', 
                                 element_type = '', 
-                                type = '', 
                                 field = '', 
                                 id = '', 
                                 operator = '', 
-                                query_param = '', )
+                                query_param = '', 
+                                type = '', )
                             ], 
                         strikes = [
                             cyperf.models.command.Command(
@@ -165,8 +166,7 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                         supports_http_profiles = True, 
                         supports_server_http_profile = True, 
                         supports_strikes = True, 
-                        supports_tls = True, 
-                        id = '', )
+                        supports_tls = True, )
                     ],
                 total_count = 56
             )

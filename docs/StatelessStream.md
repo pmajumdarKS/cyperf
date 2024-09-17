@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **direction** | [**StreamDirection**](StreamDirection.md) |  | [optional] 
 **is_flood_stream** | **bool** |  | [optional] 
 **server_stream_profile** | [**StreamProfile**](StreamProfile.md) |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

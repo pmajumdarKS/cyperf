@@ -35,11 +35,22 @@ class TestIPNetwork(unittest.TestCase):
         model = IPNetwork()
         if include_optional:
             return IPNetwork(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
                 network_tags = [
                     ''
                     ],
+                active = True,
+                agent_assignments = cyperf.models.agent_assignments.AgentAssignments(
+                    by_id = [
+                        null
+                        ], 
+                    by_port = [
+                        null
+                        ], 
+                    by_tag = [
+                        ''
+                        ], ),
                 dns_resolver = cyperf.models.dns_resolver.DNSResolver(
                     cache_timeout = 56, 
                     enable_perconnect = True, 
@@ -61,6 +72,7 @@ class TestIPNetwork(unittest.TestCase):
                         count = 56, 
                         gw_auto = True, 
                         gw_start = '::02:84:9:0cc0:F:CCf', 
+                        id = '', 
                         inner_vlan_range = null, 
                         ip_auto = True, 
                         ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -68,12 +80,11 @@ class TestIPNetwork(unittest.TestCase):
                         ip_start = '::02:84:9:0cc0:F:CCf', 
                         ip_ver = null, 
                         is_emulated_router = True, 
+                        max_count_per_agent = 56, 
                         mss = 56, 
                         mss_auto = True, 
                         net_mask = 56, 
                         net_mask_auto = True, 
-                        id = '', 
-                        max_count_per_agent = 56, 
                         network_tags = [
                             ''
                             ], )
@@ -83,6 +94,7 @@ class TestIPNetwork(unittest.TestCase):
                         ca_certificate_file = null, 
                         emulated_sub_config = null, 
                         enable_rekey = True, 
+                        id = '', 
                         ip_sec_range = null, 
                         ip_sec_stack_name = 'YBuLd', 
                         log_keys = True, 
@@ -96,34 +108,22 @@ class TestIPNetwork(unittest.TestCase):
                         retry_interval = 56, 
                         retry_interval_increment = 56, 
                         setup_timeout = 56, 
-                        stack_role = 'INITIATOR', 
-                        id = '', )
+                        stack_role = 'INITIATOR', )
                     ],
+                min_agents = 56,
                 tunnel_stacks = [
                     cyperf.models.tunnel_stack.TunnelStack(
+                        id = '', 
                         inner_ip_range = null, 
                         outer_ip_range = null, 
                         tunnel_range = null, 
-                        tunnel_stack_name = 'YBuLd', 
-                        id = '', )
-                    ],
-                active = True,
-                agent_assignments = cyperf.models.agent_assignments.AgentAssignments(
-                    by_id = [
-                        null
-                        ], 
-                    by_port = [
-                        null
-                        ], 
-                    by_tag = [
-                        ''
-                        ], ),
-                min_agents = 56
+                        tunnel_stack_name = 'YBuLd', )
+                    ]
             )
         else:
             return IPNetwork(
-                name = 'YBuLd',
                 id = '',
+                name = 'YBuLd',
         )
         """
 

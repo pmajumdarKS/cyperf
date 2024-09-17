@@ -78,10 +78,10 @@ class TestConfig(unittest.TestCase):
                         dut_network_segment = [
                             null
                             ], 
+                        id = '', 
                         ip_network_segment = [
                             null
-                            ], 
-                        id = '', )
+                            ], )
                     ],
                 traffic_profiles = [
                     null

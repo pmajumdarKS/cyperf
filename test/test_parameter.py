@@ -43,6 +43,8 @@ class TestParameter(unittest.TestCase):
                 default_source = '',
                 default_value = '',
                 element_type = '',
+                var_field = '',
+                id = '',
                 metadata = cyperf.models.parameter_metadata.ParameterMetadata(
                     category = '', 
                     category_index = 56, 
@@ -90,14 +92,12 @@ class TestParameter(unittest.TestCase):
                             max_length = 56, 
                             min_length = 56, ), ), 
                     unique_value = True, ),
+                operator = '',
+                query_param = '',
                 sources = [
                     ''
                     ],
-                type = '',
-                var_field = '',
-                id = '',
-                operator = '',
-                query_param = ''
+                type = ''
             )
         else:
             return Parameter(

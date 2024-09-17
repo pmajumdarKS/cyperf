@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_auth_settings** | [**AuthSettings**](AuthSettings.md) |  | [optional] 
 **outer_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **fortinet_encapsulation** | [**FortinetEncapsulation**](FortinetEncapsulation.md) |  | [optional] 
 **outer_tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
 **vpn_gateway** | **str** |  | [optional] 

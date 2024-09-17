@@ -19,14 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.params import Params
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "AuthenticationSettings" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class AuthenticationSettings(BaseModel):
     """
@@ -37,9 +34,8 @@ class AuthenticationSettings(BaseModel):
     key_file: Optional[Params] = Field(default=None, description="The authentication key file of the IPsec tunnel(s).", alias="KeyFile")
     key_file_password: Optional[StrictStr] = Field(default=None, description="The key file password of the IPsec authentication.", alias="KeyFilePassword")
     shared_key: Optional[StrictStr] = Field(default=None, alias="SharedKey")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AuthMethod", "CertificateFile", "KeyFile", "KeyFilePassword", "SharedKey"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["AuthMethod", "CertificateFile", "KeyFile", "KeyFilePassword", "SharedKey", "links"]
 
     @field_validator('auth_method')
     def auth_method_validate_enum(cls, value):
@@ -56,83 +52,6 @@ class AuthenticationSettings(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_auth_method(self):
-#        if self.auth_method is not None:
-#            return self.auth_method
-#        field_info = self.__class__.__fields__["auth_method"]
-#        try:
-#            self.auth_method =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.auth_method =  self.link_based_request("auth_method", "GET", return_type="str")
-#        return self.auth_method
-#
-#    @rest_auth_method.setter
-#    def rest_auth_method(self, value):
-#        self.auth_method = value
-
-#    @property
-#    def rest_certificate_file(self):
-#        if self.certificate_file is not None:
-#            return self.certificate_file
-#        field_info = self.__class__.__fields__["certificate_file"]
-#        try:
-#            self.certificate_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.certificate_file =  self.link_based_request("certificate_file", "GET", return_type="Params")
-#        return self.certificate_file
-#
-#    @rest_certificate_file.setter
-#    def rest_certificate_file(self, value):
-#        self.certificate_file = value
-
-#    @property
-#    def rest_key_file(self):
-#        if self.key_file is not None:
-#            return self.key_file
-#        field_info = self.__class__.__fields__["key_file"]
-#        try:
-#            self.key_file =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.key_file =  self.link_based_request("key_file", "GET", return_type="Params")
-#        return self.key_file
-#
-#    @rest_key_file.setter
-#    def rest_key_file(self, value):
-#        self.key_file = value
-
-#    @property
-#    def rest_key_file_password(self):
-#        if self.key_file_password is not None:
-#            return self.key_file_password
-#        field_info = self.__class__.__fields__["key_file_password"]
-#        try:
-#            self.key_file_password =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.key_file_password =  self.link_based_request("key_file_password", "GET", return_type="str")
-#        return self.key_file_password
-#
-#    @rest_key_file_password.setter
-#    def rest_key_file_password(self, value):
-#        self.key_file_password = value
-
-#    @property
-#    def rest_shared_key(self):
-#        if self.shared_key is not None:
-#            return self.shared_key
-#        field_info = self.__class__.__fields__["shared_key"]
-#        try:
-#            self.shared_key =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.shared_key =  self.link_based_request("shared_key", "GET", return_type="str")
-#        return self.shared_key
-#
-#    @rest_shared_key.setter
-#    def rest_shared_key(self, value):
-#        self.shared_key = value
-
 
 
     def to_str(self) -> str:
@@ -173,6 +92,13 @@ class AuthenticationSettings(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of key_file
         if self.key_file:
             _dict['KeyFile'] = self.key_file.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -191,78 +117,11 @@ class AuthenticationSettings(BaseModel):
                         "CertificateFile": Params.from_dict(obj["CertificateFile"]) if obj.get("CertificateFile") is not None else None,
                         "KeyFile": Params.from_dict(obj["KeyFile"]) if obj.get("KeyFile") is not None else None,
                         "KeyFilePassword": obj.get("KeyFilePassword"),
-                        "SharedKey": obj.get("SharedKey")
+                        "SharedKey": obj.get("SharedKey"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

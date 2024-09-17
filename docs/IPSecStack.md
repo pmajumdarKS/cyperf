@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **setup_timeout** | **int** |  | 
 **stack_role** | **str** |  | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

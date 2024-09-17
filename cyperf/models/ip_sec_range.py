@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cyperf.models.api_link import APILink
 from cyperf.models.authentication_settings import AuthenticationSettings
 from cyperf.models.p1_config import P1Config
 from cyperf.models.p2_config import P2Config
@@ -29,10 +30,6 @@ from cyperf.models.timers import Timers
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "IPSecRange" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class IPSecRange(BaseModel):
     """
@@ -51,9 +48,8 @@ class IPSecRange(BaseModel):
     timers: Optional[Timers] = Field(default=None, alias="Timers")
     tunnel_count_per_outer_ip: StrictInt = Field(alias="TunnelCountPerOuterIP")
     id: StrictStr
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AuthSettings", "IKEPhase1Config", "IKEPhase2Config", "IPSecRangeName", "MultiP2OverP1", "ProtectedSubConfig", "PublicPeer", "PublicPeerIncrement", "RemoteAccess", "TestScenario", "Timers", "TunnelCountPerOuterIP", "id"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["AuthSettings", "IKEPhase1Config", "IKEPhase2Config", "IPSecRangeName", "MultiP2OverP1", "ProtectedSubConfig", "PublicPeer", "PublicPeerIncrement", "RemoteAccess", "TestScenario", "Timers", "TunnelCountPerOuterIP", "id", "links"]
 
     @field_validator('ip_sec_range_name')
     def ip_sec_range_name_validate_regular_expression(cls, value):
@@ -88,203 +84,6 @@ class IPSecRange(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_var_auth_settings(self):
-#        if self.var_auth_settings is not None:
-#            return self.var_auth_settings
-#        field_info = self.__class__.__fields__["var_auth_settings"]
-#        try:
-#            self.var_auth_settings =  self.link_based_request(field_info.alias, "GET", return_type="AuthenticationSettings")
-#        except LinkNameException as e:
-#            self.var_auth_settings =  self.link_based_request("var_auth_settings", "GET", return_type="AuthenticationSettings")
-#        return self.var_auth_settings
-#
-#    @rest_var_auth_settings.setter
-#    def rest_var_auth_settings(self, value):
-#        self.var_auth_settings = value
-
-#    @property
-#    def rest_ike_phase1_config(self):
-#        if self.ike_phase1_config is not None:
-#            return self.ike_phase1_config
-#        field_info = self.__class__.__fields__["ike_phase1_config"]
-#        try:
-#            self.ike_phase1_config =  self.link_based_request(field_info.alias, "GET", return_type="P1Config")
-#        except LinkNameException as e:
-#            self.ike_phase1_config =  self.link_based_request("ike_phase1_config", "GET", return_type="P1Config")
-#        return self.ike_phase1_config
-#
-#    @rest_ike_phase1_config.setter
-#    def rest_ike_phase1_config(self, value):
-#        self.ike_phase1_config = value
-
-#    @property
-#    def rest_ike_phase2_config(self):
-#        if self.ike_phase2_config is not None:
-#            return self.ike_phase2_config
-#        field_info = self.__class__.__fields__["ike_phase2_config"]
-#        try:
-#            self.ike_phase2_config =  self.link_based_request(field_info.alias, "GET", return_type="P2Config")
-#        except LinkNameException as e:
-#            self.ike_phase2_config =  self.link_based_request("ike_phase2_config", "GET", return_type="P2Config")
-#        return self.ike_phase2_config
-#
-#    @rest_ike_phase2_config.setter
-#    def rest_ike_phase2_config(self, value):
-#        self.ike_phase2_config = value
-
-#    @property
-#    def rest_ip_sec_range_name(self):
-#        if self.ip_sec_range_name is not None:
-#            return self.ip_sec_range_name
-#        field_info = self.__class__.__fields__["ip_sec_range_name"]
-#        try:
-#            self.ip_sec_range_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.ip_sec_range_name =  self.link_based_request("ip_sec_range_name", "GET", return_type="str")
-#        return self.ip_sec_range_name
-#
-#    @rest_ip_sec_range_name.setter
-#    def rest_ip_sec_range_name(self, value):
-#        self.ip_sec_range_name = value
-
-#    @property
-#    def rest_multi_p2_over_p1(self):
-#        if self.multi_p2_over_p1 is not None:
-#            return self.multi_p2_over_p1
-#        field_info = self.__class__.__fields__["multi_p2_over_p1"]
-#        try:
-#            self.multi_p2_over_p1 =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.multi_p2_over_p1 =  self.link_based_request("multi_p2_over_p1", "GET", return_type="bool")
-#        return self.multi_p2_over_p1
-#
-#    @rest_multi_p2_over_p1.setter
-#    def rest_multi_p2_over_p1(self, value):
-#        self.multi_p2_over_p1 = value
-
-#    @property
-#    def rest_protected_sub_config(self):
-#        if self.protected_sub_config is not None:
-#            return self.protected_sub_config
-#        field_info = self.__class__.__fields__["protected_sub_config"]
-#        try:
-#            self.protected_sub_config =  self.link_based_request(field_info.alias, "GET", return_type="ProtectedSubnetConfig")
-#        except LinkNameException as e:
-#            self.protected_sub_config =  self.link_based_request("protected_sub_config", "GET", return_type="ProtectedSubnetConfig")
-#        return self.protected_sub_config
-#
-#    @rest_protected_sub_config.setter
-#    def rest_protected_sub_config(self, value):
-#        self.protected_sub_config = value
-
-#    @property
-#    def rest_public_peer(self):
-#        if self.public_peer is not None:
-#            return self.public_peer
-#        field_info = self.__class__.__fields__["public_peer"]
-#        try:
-#            self.public_peer =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.public_peer =  self.link_based_request("public_peer", "GET", return_type="str")
-#        return self.public_peer
-#
-#    @rest_public_peer.setter
-#    def rest_public_peer(self, value):
-#        self.public_peer = value
-
-#    @property
-#    def rest_public_peer_increment(self):
-#        if self.public_peer_increment is not None:
-#            return self.public_peer_increment
-#        field_info = self.__class__.__fields__["public_peer_increment"]
-#        try:
-#            self.public_peer_increment =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.public_peer_increment =  self.link_based_request("public_peer_increment", "GET", return_type="str")
-#        return self.public_peer_increment
-#
-#    @rest_public_peer_increment.setter
-#    def rest_public_peer_increment(self, value):
-#        self.public_peer_increment = value
-
-#    @property
-#    def rest_remote_access(self):
-#        if self.remote_access is not None:
-#            return self.remote_access
-#        field_info = self.__class__.__fields__["remote_access"]
-#        try:
-#            self.remote_access =  self.link_based_request(field_info.alias, "GET", return_type="RemoteAccess")
-#        except LinkNameException as e:
-#            self.remote_access =  self.link_based_request("remote_access", "GET", return_type="RemoteAccess")
-#        return self.remote_access
-#
-#    @rest_remote_access.setter
-#    def rest_remote_access(self, value):
-#        self.remote_access = value
-
-#    @property
-#    def rest_test_scenario(self):
-#        if self.test_scenario is not None:
-#            return self.test_scenario
-#        field_info = self.__class__.__fields__["test_scenario"]
-#        try:
-#            self.test_scenario =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.test_scenario =  self.link_based_request("test_scenario", "GET", return_type="str")
-#        return self.test_scenario
-#
-#    @rest_test_scenario.setter
-#    def rest_test_scenario(self, value):
-#        self.test_scenario = value
-
-#    @property
-#    def rest_timers(self):
-#        if self.timers is not None:
-#            return self.timers
-#        field_info = self.__class__.__fields__["timers"]
-#        try:
-#            self.timers =  self.link_based_request(field_info.alias, "GET", return_type="Timers")
-#        except LinkNameException as e:
-#            self.timers =  self.link_based_request("timers", "GET", return_type="Timers")
-#        return self.timers
-#
-#    @rest_timers.setter
-#    def rest_timers(self, value):
-#        self.timers = value
-
-#    @property
-#    def rest_tunnel_count_per_outer_ip(self):
-#        if self.tunnel_count_per_outer_ip is not None:
-#            return self.tunnel_count_per_outer_ip
-#        field_info = self.__class__.__fields__["tunnel_count_per_outer_ip"]
-#        try:
-#            self.tunnel_count_per_outer_ip =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.tunnel_count_per_outer_ip =  self.link_based_request("tunnel_count_per_outer_ip", "GET", return_type="int")
-#        return self.tunnel_count_per_outer_ip
-#
-#    @rest_tunnel_count_per_outer_ip.setter
-#    def rest_tunnel_count_per_outer_ip(self, value):
-#        self.tunnel_count_per_outer_ip = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
 
 
     def to_str(self) -> str:
@@ -337,6 +136,13 @@ class IPSecRange(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of timers
         if self.timers:
             _dict['Timers'] = self.timers.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -363,78 +169,11 @@ class IPSecRange(BaseModel):
                         "TestScenario": obj.get("TestScenario"),
                         "Timers": Timers.from_dict(obj["Timers"]) if obj.get("Timers") is not None else None,
                         "TunnelCountPerOuterIP": obj.get("TunnelCountPerOuterIP"),
-                        "id": obj.get("id")
+                        "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictBytes, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from cyperf.models.api_link import APILink
 from cyperf.models.file_value import FileValue
 from cyperf.models.media_file import MediaFile
 from cyperf.models.param_metadata import ParamMetadata
@@ -26,10 +27,6 @@ from cyperf.models.params_enum import ParamsEnum
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Params" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Params(BaseModel):
     """
@@ -58,394 +55,16 @@ class Params(BaseModel):
     value: Optional[StrictStr] = Field(default=None, description="The value of the parameter.", alias="Value")
     file_upload: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="file-upload")
     id: StrictStr
+    links: Optional[List[APILink]] = None
     supports_dynamic_payload: Optional[StrictBool] = Field(default=None, description="A value that indicates if the parameter can have dynamic payload.", alias="supportsDynamicPayload")
     upload_url: Optional[StrictStr] = Field(default=None, description="The URL where the file parameter content could be uploaded.", alias="uploadURL")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["ArrayElementType", "ArrayElements", "Category", "CategoryIndex", "DeprecatedPreviousSource", "Description", "DictionaryValue", "Enum", "FileValue", "FlowIdentifier", "IsDeprecated", "IsModified", "MediaFiles", "Metadata", "Name", "ParamId", "Readonly", "Source", "SupportedSources", "Type", "Value", "file-upload", "id", "supportsDynamicPayload", "uploadURL"]
+    __properties: ClassVar[List[str]] = ["ArrayElementType", "ArrayElements", "Category", "CategoryIndex", "DeprecatedPreviousSource", "Description", "DictionaryValue", "Enum", "FileValue", "FlowIdentifier", "IsDeprecated", "IsModified", "MediaFiles", "Metadata", "Name", "ParamId", "Readonly", "Source", "SupportedSources", "Type", "Value", "file-upload", "id", "links", "supportsDynamicPayload", "uploadURL"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_array_element_type(self):
-#        if self.array_element_type is not None:
-#            return self.array_element_type
-#        field_info = self.__class__.__fields__["array_element_type"]
-#        try:
-#            self.array_element_type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.array_element_type =  self.link_based_request("array_element_type", "GET", return_type="str")
-#        return self.array_element_type
-#
-#    @rest_array_element_type.setter
-#    def rest_array_element_type(self, value):
-#        self.array_element_type = value
-
-#    @property
-#    def rest_array_elements(self):
-#        if self.array_elements is not None:
-#            return self.array_elements
-#        field_info = self.__class__.__fields__["array_elements"]
-#        try:
-#            self.array_elements =  self.link_based_request(field_info.alias, "GET", return_type="List[Dict[str, str]]")
-#        except LinkNameException as e:
-#            self.array_elements =  self.link_based_request("array_elements", "GET", return_type="List[Dict[str, str]]")
-#        return self.array_elements
-#
-#    @rest_array_elements.setter
-#    def rest_array_elements(self, value):
-#        self.array_elements = value
-
-#    @property
-#    def rest_category(self):
-#        if self.category is not None:
-#            return self.category
-#        field_info = self.__class__.__fields__["category"]
-#        try:
-#            self.category =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.category =  self.link_based_request("category", "GET", return_type="str")
-#        return self.category
-#
-#    @rest_category.setter
-#    def rest_category(self, value):
-#        self.category = value
-
-#    @property
-#    def rest_category_index(self):
-#        if self.category_index is not None:
-#            return self.category_index
-#        field_info = self.__class__.__fields__["category_index"]
-#        try:
-#            self.category_index =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.category_index =  self.link_based_request("category_index", "GET", return_type="int")
-#        return self.category_index
-#
-#    @rest_category_index.setter
-#    def rest_category_index(self, value):
-#        self.category_index = value
-
-#    @property
-#    def rest_deprecated_previous_source(self):
-#        if self.deprecated_previous_source is not None:
-#            return self.deprecated_previous_source
-#        field_info = self.__class__.__fields__["deprecated_previous_source"]
-#        try:
-#            self.deprecated_previous_source =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.deprecated_previous_source =  self.link_based_request("deprecated_previous_source", "GET", return_type="str")
-#        return self.deprecated_previous_source
-#
-#    @rest_deprecated_previous_source.setter
-#    def rest_deprecated_previous_source(self, value):
-#        self.deprecated_previous_source = value
-
-#    @property
-#    def rest_description(self):
-#        if self.description is not None:
-#            return self.description
-#        field_info = self.__class__.__fields__["description"]
-#        try:
-#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.description =  self.link_based_request("description", "GET", return_type="str")
-#        return self.description
-#
-#    @rest_description.setter
-#    def rest_description(self, value):
-#        self.description = value
-
-#    @property
-#    def rest_dictionary_value(self):
-#        if self.dictionary_value is not None:
-#            return self.dictionary_value
-#        field_info = self.__class__.__fields__["dictionary_value"]
-#        try:
-#            self.dictionary_value =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, str]")
-#        except LinkNameException as e:
-#            self.dictionary_value =  self.link_based_request("dictionary_value", "GET", return_type="Dict[str, str]")
-#        return self.dictionary_value
-#
-#    @rest_dictionary_value.setter
-#    def rest_dictionary_value(self, value):
-#        self.dictionary_value = value
-
-#    @property
-#    def rest_enum(self):
-#        if self.enum is not None:
-#            return self.enum
-#        field_info = self.__class__.__fields__["enum"]
-#        try:
-#            self.enum =  self.link_based_request(field_info.alias, "GET", return_type="ParamsEnum")
-#        except LinkNameException as e:
-#            self.enum =  self.link_based_request("enum", "GET", return_type="ParamsEnum")
-#        return self.enum
-#
-#    @rest_enum.setter
-#    def rest_enum(self, value):
-#        self.enum = value
-
-#    @property
-#    def rest_file_value(self):
-#        if self.file_value is not None:
-#            return self.file_value
-#        field_info = self.__class__.__fields__["file_value"]
-#        try:
-#            self.file_value =  self.link_based_request(field_info.alias, "GET", return_type="FileValue")
-#        except LinkNameException as e:
-#            self.file_value =  self.link_based_request("file_value", "GET", return_type="FileValue")
-#        return self.file_value
-#
-#    @rest_file_value.setter
-#    def rest_file_value(self, value):
-#        self.file_value = value
-
-#    @property
-#    def rest_flow_identifier(self):
-#        if self.flow_identifier is not None:
-#            return self.flow_identifier
-#        field_info = self.__class__.__fields__["flow_identifier"]
-#        try:
-#            self.flow_identifier =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.flow_identifier =  self.link_based_request("flow_identifier", "GET", return_type="bool")
-#        return self.flow_identifier
-#
-#    @rest_flow_identifier.setter
-#    def rest_flow_identifier(self, value):
-#        self.flow_identifier = value
-
-#    @property
-#    def rest_is_deprecated(self):
-#        if self.is_deprecated is not None:
-#            return self.is_deprecated
-#        field_info = self.__class__.__fields__["is_deprecated"]
-#        try:
-#            self.is_deprecated =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.is_deprecated =  self.link_based_request("is_deprecated", "GET", return_type="bool")
-#        return self.is_deprecated
-#
-#    @rest_is_deprecated.setter
-#    def rest_is_deprecated(self, value):
-#        self.is_deprecated = value
-
-#    @property
-#    def rest_is_modified(self):
-#        if self.is_modified is not None:
-#            return self.is_modified
-#        field_info = self.__class__.__fields__["is_modified"]
-#        try:
-#            self.is_modified =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.is_modified =  self.link_based_request("is_modified", "GET", return_type="bool")
-#        return self.is_modified
-#
-#    @rest_is_modified.setter
-#    def rest_is_modified(self, value):
-#        self.is_modified = value
-
-#    @property
-#    def rest_media_files(self):
-#        if self.media_files is not None:
-#            return self.media_files
-#        field_info = self.__class__.__fields__["media_files"]
-#        try:
-#            self.media_files =  self.link_based_request(field_info.alias, "GET", return_type="List[MediaFile]")
-#        except LinkNameException as e:
-#            self.media_files =  self.link_based_request("media_files", "GET", return_type="List[MediaFile]")
-#        return self.media_files
-#
-#    @rest_media_files.setter
-#    def rest_media_files(self, value):
-#        self.media_files = value
-
-#    @property
-#    def rest_metadata(self):
-#        if self.metadata is not None:
-#            return self.metadata
-#        field_info = self.__class__.__fields__["metadata"]
-#        try:
-#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="ParamMetadata")
-#        except LinkNameException as e:
-#            self.metadata =  self.link_based_request("metadata", "GET", return_type="ParamMetadata")
-#        return self.metadata
-#
-#    @rest_metadata.setter
-#    def rest_metadata(self, value):
-#        self.metadata = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_param_id(self):
-#        if self.param_id is not None:
-#            return self.param_id
-#        field_info = self.__class__.__fields__["param_id"]
-#        try:
-#            self.param_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.param_id =  self.link_based_request("param_id", "GET", return_type="str")
-#        return self.param_id
-#
-#    @rest_param_id.setter
-#    def rest_param_id(self, value):
-#        self.param_id = value
-
-#    @property
-#    def rest_readonly(self):
-#        if self.readonly is not None:
-#            return self.readonly
-#        field_info = self.__class__.__fields__["readonly"]
-#        try:
-#            self.readonly =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.readonly =  self.link_based_request("readonly", "GET", return_type="bool")
-#        return self.readonly
-#
-#    @rest_readonly.setter
-#    def rest_readonly(self, value):
-#        self.readonly = value
-
-#    @property
-#    def rest_source(self):
-#        if self.source is not None:
-#            return self.source
-#        field_info = self.__class__.__fields__["source"]
-#        try:
-#            self.source =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.source =  self.link_based_request("source", "GET", return_type="str")
-#        return self.source
-#
-#    @rest_source.setter
-#    def rest_source(self, value):
-#        self.source = value
-
-#    @property
-#    def rest_supported_sources(self):
-#        if self.supported_sources is not None:
-#            return self.supported_sources
-#        field_info = self.__class__.__fields__["supported_sources"]
-#        try:
-#            self.supported_sources =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.supported_sources =  self.link_based_request("supported_sources", "GET", return_type="List[str]")
-#        return self.supported_sources
-#
-#    @rest_supported_sources.setter
-#    def rest_supported_sources(self, value):
-#        self.supported_sources = value
-
-#    @property
-#    def rest_type(self):
-#        if self.type is not None:
-#            return self.type
-#        field_info = self.__class__.__fields__["type"]
-#        try:
-#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.type =  self.link_based_request("type", "GET", return_type="str")
-#        return self.type
-#
-#    @rest_type.setter
-#    def rest_type(self, value):
-#        self.type = value
-
-#    @property
-#    def rest_value(self):
-#        if self.value is not None:
-#            return self.value
-#        field_info = self.__class__.__fields__["value"]
-#        try:
-#            self.value =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.value =  self.link_based_request("value", "GET", return_type="str")
-#        return self.value
-#
-#    @rest_value.setter
-#    def rest_value(self, value):
-#        self.value = value
-
-#    @property
-#    def rest_file_upload(self):
-#        if self.file_upload is not None:
-#            return self.file_upload
-#        field_info = self.__class__.__fields__["file_upload"]
-#        try:
-#            self.file_upload =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
-#        except LinkNameException as e:
-#            self.file_upload =  self.link_based_request("file_upload", "GET", return_type="List[bytearray]")
-#        return self.file_upload
-#
-#    @rest_file_upload.setter
-#    def rest_file_upload(self, value):
-#        self.file_upload = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_supports_dynamic_payload(self):
-#        if self.supports_dynamic_payload is not None:
-#            return self.supports_dynamic_payload
-#        field_info = self.__class__.__fields__["supports_dynamic_payload"]
-#        try:
-#            self.supports_dynamic_payload =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.supports_dynamic_payload =  self.link_based_request("supports_dynamic_payload", "GET", return_type="bool")
-#        return self.supports_dynamic_payload
-#
-#    @rest_supports_dynamic_payload.setter
-#    def rest_supports_dynamic_payload(self, value):
-#        self.supports_dynamic_payload = value
-
-#    @property
-#    def rest_upload_url(self):
-#        if self.upload_url is not None:
-#            return self.upload_url
-#        field_info = self.__class__.__fields__["upload_url"]
-#        try:
-#            self.upload_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.upload_url =  self.link_based_request("upload_url", "GET", return_type="str")
-#        return self.upload_url
-#
-#    @rest_upload_url.setter
-#    def rest_upload_url(self, value):
-#        self.upload_url = value
-
 
 
     def to_str(self) -> str:
@@ -496,6 +115,13 @@ class Params(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['Metadata'] = self.metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -533,79 +159,12 @@ class Params(BaseModel):
                         "Value": obj.get("Value"),
                         "file-upload": obj.get("file-upload"),
                         "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "supportsDynamicPayload": obj.get("supportsDynamicPayload"),
                         "uploadURL": obj.get("uploadURL")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

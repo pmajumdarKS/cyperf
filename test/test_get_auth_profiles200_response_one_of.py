@@ -46,6 +46,7 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                                 hostname = '', 
                                 hostname_param = null, 
                                 http_forward_proxy_mode = 'INHERIT_DUT', 
+                                id = '', 
                                 is_deprecated = True, 
                                 max_transactions = 56, 
                                 name = '', 
@@ -56,26 +57,27 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                                 readonly_type = True, 
                                 server_endpoint = '', 
                                 server_port = 56, 
-                                type = 'http', 
-                                id = '', )
+                                type = 'http', )
                             ], 
                         data_types = [
                             cyperf.models.data_type.DataType(
+                                id = '', 
                                 values = [
                                     cyperf.models.data_type_values_inner.DataType_Values_inner(
                                         id = '', 
                                         value_type = '', )
-                                    ], 
-                                id = '', )
+                                    ], )
                             ], 
+                        description = '', 
                         endpoints = [
                             cyperf.models.endpoint.Endpoint(
+                                id = '', 
                                 name = '', 
                                 network_mapping = null, 
-                                type = 'Client', 
-                                id = '', )
+                                type = 'Client', )
                             ], 
                         file_name = '', 
+                        id = '', 
                         metadata = cyperf.models.metadata.Metadata(
                             auth_method = cyperf.models.enum.Enum(
                                 choices = [
@@ -102,17 +104,15 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                                 default_source = '', 
                                 default_value = '', 
                                 element_type = '', 
-                                sources = [
-                                    ''
-                                    ], 
-                                type = '', 
                                 field = '', 
                                 id = '', 
                                 operator = '', 
-                                query_param = '', )
+                                query_param = '', 
+                                sources = [
+                                    ''
+                                    ], 
+                                type = '', )
                             ], 
-                        description = '', 
-                        id = '', 
                         type = '', )
                     ],
                 total_count = 56

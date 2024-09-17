@@ -39,15 +39,15 @@ class TestMediaTrack(unittest.TestCase):
                 bitrate_kbps = 56,
                 codec = '',
                 codec_description = '',
+                id = '',
                 track_id = '',
-                track_type = 'VIDEO',
-                id = ''
+                track_type = 'VIDEO'
             )
         else:
             return MediaTrack(
+                id = '',
                 track_id = '',
                 track_type = 'VIDEO',
-                id = '',
         )
         """
 

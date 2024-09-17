@@ -35,16 +35,16 @@ class TestPANGPEncapsulation(unittest.TestCase):
         model = PANGPEncapsulation()
         if include_optional:
             return PANGPEncapsulation(
+                encapsulation_mode = 'ESP_OVER_UDP',
                 esp_over_udp_enabled = True,
                 esp_over_udp_settings = cyperf.models.esp_over_udp_settings.ESPOverUDPSettings(
                     udp_profile = null, ),
-                encapsulation_mode = 'ESP_OVER_UDP',
                 udp_port = 56
             )
         else:
             return PANGPEncapsulation(
-                esp_over_udp_enabled = True,
                 encapsulation_mode = 'ESP_OVER_UDP',
+                esp_over_udp_enabled = True,
                 udp_port = 56,
         )
         """

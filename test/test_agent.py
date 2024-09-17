@@ -38,37 +38,6 @@ class TestAgent(unittest.TestCase):
                 agent_tags = [
                     ''
                     ],
-                ip = '',
-                interfaces = [
-                    cyperf.models.interface.Interface(
-                        gateway = '', 
-                        ip = [
-                            cyperf.models.ip_mask.IpMask(
-                                net_mask = 56, )
-                            ], 
-                        mtu = 56, 
-                        mac = '', 
-                        name = '', )
-                    ],
-                last_update = 56,
-                reservation_id = '',
-                selected_env = cyperf.models.selected_env.SelectedEnv(
-                    session_id = '', 
-                    test_interface = [
-                        cyperf.models.interface.Interface(
-                            gateway = '', 
-                            ip = [
-                                cyperf.models.ip_mask.IpMask(
-                                    net_mask = 56, )
-                                ], 
-                            mtu = 56, 
-                            mac = '', 
-                            name = '', )
-                        ], 
-                    token = '', ),
-                selection_status = '',
-                session_name = '',
-                status = '',
                 cpu_info = [
                     cyperf.models.agent_cpu_info.AgentCPUInfo(
                         cpu_core_count = 56, 
@@ -84,6 +53,19 @@ class TestAgent(unittest.TestCase):
                     update = '', ),
                 hostname = '',
                 id = '',
+                interfaces = [
+                    cyperf.models.interface.Interface(
+                        gateway = '', 
+                        ip = [
+                            cyperf.models.ip_mask.IpMask(
+                                net_mask = 56, )
+                            ], 
+                        mac = '', 
+                        mtu = 56, 
+                        name = '', )
+                    ],
+                ip = '',
+                last_update = 56,
                 memory_mb = 1.337,
                 mgmt_interface = cyperf.models.interface.Interface(
                     gateway = '', 
@@ -91,8 +73,8 @@ class TestAgent(unittest.TestCase):
                         cyperf.models.ip_mask.IpMask(
                             net_mask = 56, )
                         ], 
-                    mtu = 56, 
                     mac = '', 
+                    mtu = 56, 
                     name = '', ),
                 ntp_info = cyperf.models.ntp_info.NtpInfo(
                     active_server = '', 
@@ -105,6 +87,24 @@ class TestAgent(unittest.TestCase):
                 owner_id = '',
                 package_version_status = '',
                 requires_updating = True,
+                reservation_id = '',
+                selected_env = cyperf.models.selected_env.SelectedEnv(
+                    session_id = '', 
+                    test_interface = [
+                        cyperf.models.interface.Interface(
+                            gateway = '', 
+                            ip = [
+                                cyperf.models.ip_mask.IpMask(
+                                    net_mask = 56, )
+                                ], 
+                            mac = '', 
+                            mtu = 56, 
+                            name = '', )
+                        ], 
+                    token = '', ),
+                selection_status = '',
+                session_name = '',
+                status = '',
                 system_info = cyperf.models.system_info.SystemInfo(
                     chassis_info = cyperf.models.chassis_info.ChassisInfo(
                         compute_node_id = '', 

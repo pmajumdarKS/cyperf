@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **tunnel_count_per_outer_ip** | **int** |  | 
 **tunnel_establishment_timeout** | **int** |  | [optional] 
 **vendor_type** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

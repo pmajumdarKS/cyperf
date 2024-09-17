@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **immediate_close** | **bool** | The immediate FIN after close notify | [optional] 
 **key_file** | [**Params**](Params.md) | The key file of the TLS profile. | [optional] 
 **key_file_password** | **str** | The key file password of the TLS profile. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **middle_box_enabled** | **bool** | If true, the middle box compatibility will be enabled | [optional] 
 **profile_id** | **str** | The ID of the TLS profile (default: TLSProfile). | 
 **resolve_tls_conflicts** | [**List[Conflict]**](Conflict.md) |  | [optional] 

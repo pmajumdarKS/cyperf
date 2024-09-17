@@ -35,6 +35,9 @@ class TestPrepareTestOperation(unittest.TestCase):
         model = PrepareTestOperation()
         if include_optional:
             return PrepareTestOperation(
+                message = '',
+                new_state = '',
+                old_state = '',
                 options = cyperf.models.prepared_test_options.PreparedTestOptions(
                     add_activity_meta = True, 
                     datasource_for_ui_views = '', 
@@ -50,9 +53,6 @@ class TestPrepareTestOperation(unittest.TestCase):
                     override_properties = {
                         'key' : ''
                         }, ),
-                message = '',
-                new_state = '',
-                old_state = '',
                 owner = '',
                 owner_id = '',
                 reason = '',

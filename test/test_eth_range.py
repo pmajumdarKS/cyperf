@@ -39,18 +39,18 @@ class TestEthRange(unittest.TestCase):
                 mac_auto = True,
                 mac_incr = '2E-B0-08-29:0c:01',
                 mac_start = '2E-B0-08-29:0c:01',
+                max_count_per_agent = 56,
                 one_mac_per_ip = True,
                 static_arp_table = [
                     cyperf.models.static_arp_entry.StaticARPEntry(
                         count = 56, 
+                        id = '', 
                         remote_ip = '::02:84:9:0cc0:F:CCf', 
                         remote_ip_incr = '::02:84:9:0cc0:F:CCf', 
                         remote_mac = '2E-B0-08-29:0c:01', 
                         remote_mac_incr = '2E-B0-08-29:0c:01', 
-                        static_arp_entry_name = 'YBuLd', 
-                        id = '', )
-                    ],
-                max_count_per_agent = 56
+                        static_arp_entry_name = 'YBuLd', )
+                    ]
             )
         else:
             return EthRange(

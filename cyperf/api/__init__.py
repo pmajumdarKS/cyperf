@@ -1,7 +1,6 @@
 # flake8: noqa
 
 # import apis into api package
-from cyperf.api.agent_assignment_api import AgentAssignmentApi
 from cyperf.api.agents_api import AgentsApi
 from cyperf.api.application_resources_api import ApplicationResourcesApi
 from cyperf.api.authorization_api import AuthorizationApi

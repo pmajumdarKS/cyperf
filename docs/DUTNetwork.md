@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **use_real_host** | **bool** | A flag indicating if tunneled hostname should use real domain names. | [optional] 
 **active** | **bool** | A flag indicating if the server DUT is an active device. If it is, the simulated clients or client DUT(if active) will send traffic to the DUT &#39;host&#39;; and the simulated servers will use the healtcheck configurations. (default: false) | [optional] 
 **host** | **str** | The hostname where the traffic goes if server DUT is active. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

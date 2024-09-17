@@ -41,12 +41,12 @@ class TestConnection(unittest.TestCase):
                 disable_encryption = True,
                 hostname = '',
                 hostname_param = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -62,8 +62,12 @@ class TestConnection(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -75,11 +79,10 @@ class TestConnection(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -105,15 +108,12 @@ class TestConnection(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 http_forward_proxy_mode = 'INHERIT_DUT',
+                id = '',
                 is_deprecated = True,
                 max_transactions = 56,
                 name = '',
@@ -132,16 +132,15 @@ class TestConnection(unittest.TestCase):
                 readonly_type = True,
                 server_endpoint = '',
                 server_port = 56,
-                type = 'http',
-                id = ''
+                type = 'http'
             )
         else:
             return Connection(
                 client_endpoint = '',
                 client_port = 56,
+                id = '',
                 max_transactions = 56,
                 server_port = 56,
-                id = '',
         )
         """
 

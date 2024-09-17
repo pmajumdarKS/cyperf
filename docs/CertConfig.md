@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **is_playlist** | **bool** |  | [optional] 
 **key_file** | [**Params**](Params.md) | The key file of the TLS profile. | [optional] 
 **key_file_password** | **str** | The key file password of the TLS profile. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **playlist_column_name** | **str** |  | [optional] 
 **playlist_filename** | **str** |  | [optional] 
 **resolve_sni_conflicts** | [**List[Conflict]**](Conflict.md) |  | [optional] 

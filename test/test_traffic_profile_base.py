@@ -36,9 +36,9 @@ class TestTrafficProfileBase(unittest.TestCase):
         if include_optional:
             return TrafficProfileBase(
                 active = True,
+                id = '',
                 traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
-                id = ''
+                    default_transport_profile = null, )
             )
         else:
             return TrafficProfileBase(

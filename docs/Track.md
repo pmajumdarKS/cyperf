@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **actions** | [**List[Action]**](Action.md) |  | [optional] 
 **add_actions** | **List[bytearray]** |  | [optional] 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

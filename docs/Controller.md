@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **compute_nodes** | [**List[ComputeNode]**](ComputeNode.md) |  | [optional] 
 **id** | **str** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **name** | **str** |  | [optional] 
 **serial** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 

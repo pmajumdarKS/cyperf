@@ -39,12 +39,12 @@ class TestEmulatedSubnetConfig(unittest.TestCase):
                 hosts_increment = '::02:84:9:0cc0:F:CCf',
                 hosts_prefix = 56,
                 increment = '::02:84:9:0cc0:F:CCf',
-                prefix = 56,
-                start = '::02:84:9:0cc0:F:CCf',
-                total_host_count = '',
                 network_tags = [
                     ''
-                    ]
+                    ],
+                prefix = 56,
+                start = '::02:84:9:0cc0:F:CCf',
+                total_host_count = ''
             )
         else:
             return EmulatedSubnetConfig(
@@ -52,12 +52,12 @@ class TestEmulatedSubnetConfig(unittest.TestCase):
                 hosts_increment = '::02:84:9:0cc0:F:CCf',
                 hosts_prefix = 56,
                 increment = '::02:84:9:0cc0:F:CCf',
-                prefix = 56,
-                start = '::02:84:9:0cc0:F:CCf',
-                total_host_count = '',
                 network_tags = [
                     ''
                     ],
+                prefix = 56,
+                start = '::02:84:9:0cc0:F:CCf',
+                total_host_count = '',
         )
         """
 

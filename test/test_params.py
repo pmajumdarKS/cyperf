@@ -35,12 +35,12 @@ class TestParams(unittest.TestCase):
         model = Params()
         if include_optional:
             return Params(
-                array_element_type = '',
                 array_elements = [
                     {
                         'key' : ''
                         }
                     ],
+                array_element_type = '',
                 category = '',
                 category_index = 56,
                 deprecated_previous_source = '',
@@ -56,6 +56,9 @@ class TestParams(unittest.TestCase):
                             name = '', 
                             value = '', )
                         ], ),
+                file_upload = [
+                    'YQ=='
+                    ],
                 file_value = cyperf.models.file_value.FileValue(
                     file_name = '', 
                     payload = [
@@ -64,22 +67,23 @@ class TestParams(unittest.TestCase):
                     resource_url = '', 
                     value = '', ),
                 flow_identifier = True,
+                id = '',
                 is_deprecated = True,
                 is_modified = True,
                 media_files = [
                     cyperf.models.media_file.MediaFile(
                         file_value = null, 
+                        id = '', 
                         media_tracks = [
                             cyperf.models.media_track.MediaTrack(
                                 bitrate = 56, 
                                 bitrate_kbps = 56, 
                                 codec = '', 
                                 codec_description = '', 
+                                id = '', 
                                 track_id = '', 
-                                track_type = null, 
-                                id = '', )
-                            ], 
-                        id = '', )
+                                track_type = null, )
+                            ], )
                     ],
                 metadata = cyperf.models.param_metadata.ParamMetadata(
                     type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -106,14 +110,10 @@ class TestParams(unittest.TestCase):
                 supported_sources = [
                     ''
                     ],
-                type = '',
-                value = '',
-                file_upload = [
-                    'YQ=='
-                    ],
-                id = '',
                 supports_dynamic_payload = True,
-                upload_url = ''
+                type = '',
+                upload_url = '',
+                value = ''
             )
         else:
             return Params(

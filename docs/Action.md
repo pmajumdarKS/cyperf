@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **protocol_id** | **str** |  | [optional] 
 **requires_uniqueness** | **bool** | If true, for applications with the same protocol id, application/attack must have been uniquely identified in previous commands. | [optional] 
 **id** | **str** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

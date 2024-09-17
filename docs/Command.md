@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **metadata** | [**Metadata**](Metadata.md) |  | [optional] 
 **name** | **str** | The name of the command | [optional] [readonly] 
 **parameters** | [**List[Parameter]**](Parameter.md) | The parameters of the command | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

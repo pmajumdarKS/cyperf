@@ -36,25 +36,25 @@ class TestTimelineSegment(unittest.TestCase):
         if include_optional:
             return TimelineSegment(
                 duration = 56,
+                id = '',
                 segment_type = 'SteadySegment',
                 warm_up_period = 56,
-                id = '',
                 objective_unit = '',
                 objective_value = 1.337,
                 primary_objective_unit = '',
                 primary_objective_value = 1.337,
                 secondary_objective_values = [
                     cyperf.models.objective_value_entry.ObjectiveValueEntry(
+                        id = '', 
                         unit = '', 
-                        value = 1.337, 
-                        id = '', )
+                        value = 1.337, )
                     ]
             )
         else:
             return TimelineSegment(
                 duration = 56,
-                segment_type = 'SteadySegment',
                 id = '',
+                segment_type = 'SteadySegment',
                 primary_objective_unit = '',
                 primary_objective_value = 1.337,
         )

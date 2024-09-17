@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **type** | **str** | The type of the parameter | [optional] 
 **var_field** | **str** | The name of the ES document field | [optional] 
 **id** | **str** | The unique identifier of the parameter | [optional] [readonly] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **operator** | **str** | The operator that the parameter supports | [optional] 
 **query_param** | **str** | The corresponding query param | [optional] 
 

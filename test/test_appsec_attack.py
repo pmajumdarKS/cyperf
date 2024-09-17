@@ -37,6 +37,7 @@ class TestAppsecAttack(unittest.TestCase):
             return AppsecAttack(
                 attack = None,
                 description = '',
+                id = '',
                 metadata = cyperf.models.metadata.Metadata(
                     auth_method = cyperf.models.enum.Enum(
                         choices = [
@@ -54,7 +55,6 @@ class TestAppsecAttack(unittest.TestCase):
                     sgw_type = '', 
                     sgw_type_value = '', ),
                 name = '',
-                id = '',
                 owner = '',
                 owner_id = ''
             )

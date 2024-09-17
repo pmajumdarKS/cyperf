@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Broker" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Broker(BaseModel):
     """
@@ -41,8 +37,6 @@ class Broker(BaseModel):
     pretty_conn_status: Optional[StrictStr] = Field(default=None, description="The broker's connection status in human readable format", alias="prettyConnStatus")
     trust_new: Optional[StrictBool] = Field(default=None, description="The flag used to skip broker's identity verifications", alias="trustNew")
     user: Optional[StrictStr] = Field(default=None, description="The broker's authentication user")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["connectionStatus", "fingerprint", "host", "hostName", "id", "interactiveFingerprintVerification", "password", "prettyConnStatus", "trustNew", "user"]
 
     model_config = ConfigDict(
@@ -50,158 +44,6 @@ class Broker(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_connection_status(self):
-#        if self.connection_status is not None:
-#            return self.connection_status
-#        field_info = self.__class__.__fields__["connection_status"]
-#        try:
-#            self.connection_status =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.connection_status =  self.link_based_request("connection_status", "GET", return_type="str")
-#        return self.connection_status
-#
-#    @rest_connection_status.setter
-#    def rest_connection_status(self, value):
-#        self.connection_status = value
-
-#    @property
-#    def rest_fingerprint(self):
-#        if self.fingerprint is not None:
-#            return self.fingerprint
-#        field_info = self.__class__.__fields__["fingerprint"]
-#        try:
-#            self.fingerprint =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.fingerprint =  self.link_based_request("fingerprint", "GET", return_type="str")
-#        return self.fingerprint
-#
-#    @rest_fingerprint.setter
-#    def rest_fingerprint(self, value):
-#        self.fingerprint = value
-
-#    @property
-#    def rest_host(self):
-#        if self.host is not None:
-#            return self.host
-#        field_info = self.__class__.__fields__["host"]
-#        try:
-#            self.host =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.host =  self.link_based_request("host", "GET", return_type="str")
-#        return self.host
-#
-#    @rest_host.setter
-#    def rest_host(self, value):
-#        self.host = value
-
-#    @property
-#    def rest_host_name(self):
-#        if self.host_name is not None:
-#            return self.host_name
-#        field_info = self.__class__.__fields__["host_name"]
-#        try:
-#            self.host_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.host_name =  self.link_based_request("host_name", "GET", return_type="str")
-#        return self.host_name
-#
-#    @rest_host_name.setter
-#    def rest_host_name(self, value):
-#        self.host_name = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_interactive_fingerprint_verification(self):
-#        if self.interactive_fingerprint_verification is not None:
-#            return self.interactive_fingerprint_verification
-#        field_info = self.__class__.__fields__["interactive_fingerprint_verification"]
-#        try:
-#            self.interactive_fingerprint_verification =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.interactive_fingerprint_verification =  self.link_based_request("interactive_fingerprint_verification", "GET", return_type="bool")
-#        return self.interactive_fingerprint_verification
-#
-#    @rest_interactive_fingerprint_verification.setter
-#    def rest_interactive_fingerprint_verification(self, value):
-#        self.interactive_fingerprint_verification = value
-
-#    @property
-#    def rest_password(self):
-#        if self.password is not None:
-#            return self.password
-#        field_info = self.__class__.__fields__["password"]
-#        try:
-#            self.password =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.password =  self.link_based_request("password", "GET", return_type="str")
-#        return self.password
-#
-#    @rest_password.setter
-#    def rest_password(self, value):
-#        self.password = value
-
-#    @property
-#    def rest_pretty_conn_status(self):
-#        if self.pretty_conn_status is not None:
-#            return self.pretty_conn_status
-#        field_info = self.__class__.__fields__["pretty_conn_status"]
-#        try:
-#            self.pretty_conn_status =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.pretty_conn_status =  self.link_based_request("pretty_conn_status", "GET", return_type="str")
-#        return self.pretty_conn_status
-#
-#    @rest_pretty_conn_status.setter
-#    def rest_pretty_conn_status(self, value):
-#        self.pretty_conn_status = value
-
-#    @property
-#    def rest_trust_new(self):
-#        if self.trust_new is not None:
-#            return self.trust_new
-#        field_info = self.__class__.__fields__["trust_new"]
-#        try:
-#            self.trust_new =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.trust_new =  self.link_based_request("trust_new", "GET", return_type="bool")
-#        return self.trust_new
-#
-#    @rest_trust_new.setter
-#    def rest_trust_new(self, value):
-#        self.trust_new = value
-
-#    @property
-#    def rest_user(self):
-#        if self.user is not None:
-#            return self.user
-#        field_info = self.__class__.__fields__["user"]
-#        try:
-#            self.user =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.user =  self.link_based_request("user", "GET", return_type="str")
-#        return self.user
-#
-#    @rest_user.setter
-#    def rest_user(self, value):
-#        self.user = value
-
 
 
     def to_str(self) -> str:
@@ -269,74 +111,6 @@ class Broker(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

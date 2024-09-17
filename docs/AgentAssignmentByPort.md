@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **capture_settings** | [**CaptureSettings**](CaptureSettings.md) | The capture settings of the port that is assigned. | [optional] 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **port_id** | **str** | The id of the port that is assigned. | [optional] 
 
 ## Example

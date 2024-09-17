@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **count** | **int** | The number of IPs generated (default: 1). | [optional] 
 **gw_auto** | **bool** | A flag indicating if the gateway settings for the IPRange should be determined automatically (default: true). | 
 **gw_start** | **str** | The gateway start IP for the IPRange (default: 10.0.0.1). | [optional] 
+**host_count** | **int** | The number of Host IPs generated (default: 1). | [optional] 
+**host_ip_incr** | **str** | The Host IP incrementation rule (default: 0.0.0.1). | [optional] 
 **inner_vlan_range** | [**VLANRange**](VLANRange.md) | The inner VLAN range assigned to the current IP range configuration | [optional] 
 **ip_auto** | **bool** | A flag indicating if IP settings for the IPRange should be determined automatically (default: true). | 
 **ip_incr** | **str** | The IP incrementation rule (default: 0.0.0.1). | [optional] 
@@ -21,6 +23,7 @@ Name | Type | Description | Notes
 **net_mask** | **int** | The network mask of the IP Range (default: 16). | [optional] 
 **net_mask_auto** | **bool** | A flag indicating if the network mask of the IPRange should be determined automatically (default: true). | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **max_count_per_agent** | **int** | The maximum number of IPs that should be assigned to each traffic agent for this IP range segment in a valid test (default: 1). | [optional] 
 **network_tags** | **List[str]** | A list of tags. | [optional] 
 

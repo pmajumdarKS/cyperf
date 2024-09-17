@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **tls_client_profile** | [**TLSProfile**](TLSProfile.md) |  | [optional] 
 **udp_profile** | [**UdpProfile**](UdpProfile.md) |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

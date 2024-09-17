@@ -19,15 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from cyperf.models.api_link import APILink
 from cyperf.models.objective_value_entry import ObjectiveValueEntry
 from cyperf.models.segment_type import SegmentType
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "TimelineSegment" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class TimelineSegment(BaseModel):
     """
@@ -42,9 +39,8 @@ class TimelineSegment(BaseModel):
     primary_objective_unit: StrictStr = Field(description="Deprecated. Use PrimaryObjective.Timeline[].ObjectiveUnit instead. The primary objective unit. (default: Gbps)", alias="PrimaryObjectiveUnit")
     primary_objective_value: Union[StrictFloat, StrictInt] = Field(description="Deprecated. Use PrimaryObjective.Timeline[].ObjectiveValue instead. The primary objective value (default: 1).", alias="PrimaryObjectiveValue")
     secondary_objective_values: Optional[List[ObjectiveValueEntry]] = Field(default=None, description="Deprecated. Use SecondaryObjective.ObjectiveValue/ObjectiveUnit instead. The secondary objectives values.", alias="SecondaryObjectiveValues")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["Duration", "SegmentType", "WarmUpPeriod", "id", "ObjectiveUnit", "ObjectiveValue", "PrimaryObjectiveUnit", "PrimaryObjectiveValue", "SecondaryObjectiveValues"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["Duration", "SegmentType", "WarmUpPeriod", "id", "ObjectiveUnit", "ObjectiveValue", "PrimaryObjectiveUnit", "PrimaryObjectiveValue", "SecondaryObjectiveValues", "links"]
 
     @field_validator('objective_unit')
     def objective_unit_validate_enum(cls, value):
@@ -68,143 +64,6 @@ class TimelineSegment(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_duration(self):
-#        if self.duration is not None:
-#            return self.duration
-#        field_info = self.__class__.__fields__["duration"]
-#        try:
-#            self.duration =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.duration =  self.link_based_request("duration", "GET", return_type="int")
-#        return self.duration
-#
-#    @rest_duration.setter
-#    def rest_duration(self, value):
-#        self.duration = value
-
-#    @property
-#    def rest_segment_type(self):
-#        if self.segment_type is not None:
-#            return self.segment_type
-#        field_info = self.__class__.__fields__["segment_type"]
-#        try:
-#            self.segment_type =  self.link_based_request(field_info.alias, "GET", return_type="SegmentType")
-#        except LinkNameException as e:
-#            self.segment_type =  self.link_based_request("segment_type", "GET", return_type="SegmentType")
-#        return self.segment_type
-#
-#    @rest_segment_type.setter
-#    def rest_segment_type(self, value):
-#        self.segment_type = value
-
-#    @property
-#    def rest_warm_up_period(self):
-#        if self.warm_up_period is not None:
-#            return self.warm_up_period
-#        field_info = self.__class__.__fields__["warm_up_period"]
-#        try:
-#            self.warm_up_period =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.warm_up_period =  self.link_based_request("warm_up_period", "GET", return_type="int")
-#        return self.warm_up_period
-#
-#    @rest_warm_up_period.setter
-#    def rest_warm_up_period(self, value):
-#        self.warm_up_period = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_objective_unit(self):
-#        if self.objective_unit is not None:
-#            return self.objective_unit
-#        field_info = self.__class__.__fields__["objective_unit"]
-#        try:
-#            self.objective_unit =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.objective_unit =  self.link_based_request("objective_unit", "GET", return_type="str")
-#        return self.objective_unit
-#
-#    @rest_objective_unit.setter
-#    def rest_objective_unit(self, value):
-#        self.objective_unit = value
-
-#    @property
-#    def rest_objective_value(self):
-#        if self.objective_value is not None:
-#            return self.objective_value
-#        field_info = self.__class__.__fields__["objective_value"]
-#        try:
-#            self.objective_value =  self.link_based_request(field_info.alias, "GET", return_type="float")
-#        except LinkNameException as e:
-#            self.objective_value =  self.link_based_request("objective_value", "GET", return_type="float")
-#        return self.objective_value
-#
-#    @rest_objective_value.setter
-#    def rest_objective_value(self, value):
-#        self.objective_value = value
-
-#    @property
-#    def rest_primary_objective_unit(self):
-#        if self.primary_objective_unit is not None:
-#            return self.primary_objective_unit
-#        field_info = self.__class__.__fields__["primary_objective_unit"]
-#        try:
-#            self.primary_objective_unit =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.primary_objective_unit =  self.link_based_request("primary_objective_unit", "GET", return_type="str")
-#        return self.primary_objective_unit
-#
-#    @rest_primary_objective_unit.setter
-#    def rest_primary_objective_unit(self, value):
-#        self.primary_objective_unit = value
-
-#    @property
-#    def rest_primary_objective_value(self):
-#        if self.primary_objective_value is not None:
-#            return self.primary_objective_value
-#        field_info = self.__class__.__fields__["primary_objective_value"]
-#        try:
-#            self.primary_objective_value =  self.link_based_request(field_info.alias, "GET", return_type="float")
-#        except LinkNameException as e:
-#            self.primary_objective_value =  self.link_based_request("primary_objective_value", "GET", return_type="float")
-#        return self.primary_objective_value
-#
-#    @rest_primary_objective_value.setter
-#    def rest_primary_objective_value(self, value):
-#        self.primary_objective_value = value
-
-#    @property
-#    def rest_secondary_objective_values(self):
-#        if self.secondary_objective_values is not None:
-#            return self.secondary_objective_values
-#        field_info = self.__class__.__fields__["secondary_objective_values"]
-#        try:
-#            self.secondary_objective_values =  self.link_based_request(field_info.alias, "GET", return_type="List[ObjectiveValueEntry]")
-#        except LinkNameException as e:
-#            self.secondary_objective_values =  self.link_based_request("secondary_objective_values", "GET", return_type="List[ObjectiveValueEntry]")
-#        return self.secondary_objective_values
-#
-#    @rest_secondary_objective_values.setter
-#    def rest_secondary_objective_values(self, value):
-#        self.secondary_objective_values = value
-
 
 
     def to_str(self) -> str:
@@ -246,6 +105,13 @@ class TimelineSegment(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['SecondaryObjectiveValues'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -268,78 +134,11 @@ class TimelineSegment(BaseModel):
                         "ObjectiveValue": obj.get("ObjectiveValue"),
                         "PrimaryObjectiveUnit": obj.get("PrimaryObjectiveUnit"),
                         "PrimaryObjectiveValue": obj.get("PrimaryObjectiveValue"),
-                        "SecondaryObjectiveValues": [ObjectiveValueEntry.from_dict(_item) for _item in obj["SecondaryObjectiveValues"]] if obj.get("SecondaryObjectiveValues") is not None else None
+                        "SecondaryObjectiveValues": [ObjectiveValueEntry.from_dict(_item) for _item in obj["SecondaryObjectiveValues"]] if obj.get("SecondaryObjectiveValues") is not None else None,
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

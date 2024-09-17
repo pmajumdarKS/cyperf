@@ -37,12 +37,12 @@ class TestAppsecApp(unittest.TestCase):
             return AppsecApp(
                 app = None,
                 description = '',
-                name = '',
-                static = True,
-                user_defined = True,
                 id = '',
+                name = '',
                 owner = '',
-                owner_id = ''
+                owner_id = '',
+                static = True,
+                user_defined = True
             )
         else:
             return AppsecApp(

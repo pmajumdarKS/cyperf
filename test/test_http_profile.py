@@ -36,12 +36,12 @@ class TestHTTPProfile(unittest.TestCase):
         if include_optional:
             return HTTPProfile(
                 additional_headers = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -57,8 +57,12 @@ class TestHTTPProfile(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -70,11 +74,10 @@ class TestHTTPProfile(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -100,26 +103,21 @@ class TestHTTPProfile(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 connection_persistence = 'ConnectionPersistenceStandard',
                 connections_max_transactions = 56,
                 description = '',
                 external_resource_url = '',
-                http_version = 'HTTP11',
                 headers = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -135,8 +133,12 @@ class TestHTTPProfile(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -148,11 +150,10 @@ class TestHTTPProfile(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -178,24 +179,21 @@ class TestHTTPProfile(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
+                http_version = 'HTTP11',
                 is_modified = True,
                 name = '',
                 params = [
                     cyperf.models.params.Params(
-                        array_element_type = '', 
                         array_elements = [
                             {
                                 'key' : ''
                                 }
                             ], 
+                        array_element_type = '', 
                         category = '', 
                         category_index = 56, 
                         deprecated_previous_source = '', 
@@ -211,8 +209,12 @@ class TestHTTPProfile(unittest.TestCase):
                                     name = '', 
                                     value = '', )
                                 ], ), 
+                        file_upload = [
+                            'YQ=='
+                            ], 
                         file_value = null, 
                         flow_identifier = True, 
+                        id = '', 
                         is_deprecated = True, 
                         is_modified = True, 
                         media_files = [
@@ -224,11 +226,10 @@ class TestHTTPProfile(unittest.TestCase):
                                         bitrate_kbps = 56, 
                                         codec = '', 
                                         codec_description = '', 
+                                        id = '', 
                                         track_id = '', 
-                                        track_type = null, 
-                                        id = '', )
-                                    ], 
-                                id = '', )
+                                        track_type = null, )
+                                    ], )
                             ], 
                         metadata = cyperf.models.param_metadata.ParamMetadata(
                             type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -254,14 +255,10 @@ class TestHTTPProfile(unittest.TestCase):
                         supported_sources = [
                             ''
                             ], 
-                        type = '', 
-                        value = '', 
-                        file_upload = [
-                            'YQ=='
-                            ], 
-                        id = , 
                         supports_dynamic_payload = True, 
-                        upload_url = '', )
+                        type = '', 
+                        upload_url = '', 
+                        value = '', )
                     ],
                 use_application_server_headers = True
             )

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **timers** | [**Timers**](Timers.md) |  | [optional] 
 **tunnel_count_per_outer_ip** | **int** |  | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

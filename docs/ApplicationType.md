@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **supports_strikes** | **bool** | Indicates if the application supports strikes. | [optional] 
 **supports_tls** | **bool** | Indicates if the application supports TLS protocol. | [optional] 
 **id** | **str** | The unique identifier of the flow | [optional] [readonly] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

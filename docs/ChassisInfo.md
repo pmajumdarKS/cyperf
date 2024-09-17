@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**checkout_id** | **int** | The id of the compute node used for checkout licenses | [optional] [readonly] 
 **compute_node_id** | **str** | The id of the compute node where the agent is running | [optional] [readonly] 
 **port_id** | **str** | The id of the corresponding port | [optional] [readonly] 
 

@@ -21,18 +21,16 @@ from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, Strict
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from cyperf.models.agent_assignments import AgentAssignments
+from cyperf.models.api_link import APILink
 from cyperf.models.dns_resolver import DNSResolver
 from cyperf.models.dns_server import DNSServer
+from cyperf.models.dtls_stack import DTLSStack
 from cyperf.models.ip_range import IPRange
 from cyperf.models.ip_sec_stack import IPSecStack
 from cyperf.models.tunnel_stack import TunnelStack
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "IPNetwork" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class IPNetwork(BaseModel):
     """
@@ -43,6 +41,7 @@ class IPNetwork(BaseModel):
     network_tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags.", alias="networkTags")
     dns_resolver: Optional[DNSResolver] = Field(default=None, alias="DNSResolver")
     dns_server: Optional[DNSServer] = Field(default=None, description="The DNS Server configuration for Network Segment", alias="DNSServer")
+    dtls_stacks: Optional[List[DTLSStack]] = Field(default=None, alias="DTLSStacks")
     dut_connections: Optional[List[StrictStr]] = Field(default=None, description="The connected DUT network segments.", alias="DUTConnections")
     emulated_router: Optional[Dict[str, Any]] = Field(default=None, alias="EmulatedRouter")
     eth_range: Optional[Dict[str, Any]] = Field(default=None, alias="EthRange")
@@ -51,10 +50,9 @@ class IPNetwork(BaseModel):
     tunnel_stacks: Optional[List[TunnelStack]] = Field(default=None, alias="TunnelStacks")
     active: Optional[StrictBool] = Field(default=None, description="A flag indicating if the network segment is active.(default: true)")
     agent_assignments: Optional[AgentAssignments] = Field(default=None, alias="agentAssignments")
+    links: Optional[List[APILink]] = None
     min_agents: Optional[StrictInt] = Field(default=None, description="The minimum number of agents that should be assigned to this network segment in a valid test (default: 1).", alias="minAgents")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["Name", "id", "networkTags", "DNSResolver", "DNSServer", "DUTConnections", "EmulatedRouter", "EthRange", "IPRanges", "IPSecStacks", "TunnelStacks", "active", "agentAssignments", "minAgents"]
+    __properties: ClassVar[List[str]] = ["Name", "id", "networkTags", "DNSResolver", "DNSServer", "DTLSStacks", "DUTConnections", "EmulatedRouter", "EthRange", "IPRanges", "IPSecStacks", "TunnelStacks", "active", "agentAssignments", "links", "minAgents"]
 
     @field_validator('name')
     def name_validate_regular_expression(cls, value):
@@ -68,218 +66,6 @@ class IPNetwork(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_network_tags(self):
-#        if self.network_tags is not None:
-#            return self.network_tags
-#        field_info = self.__class__.__fields__["network_tags"]
-#        try:
-#            self.network_tags =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.network_tags =  self.link_based_request("network_tags", "GET", return_type="List[str]")
-#        return self.network_tags
-#
-#    @rest_network_tags.setter
-#    def rest_network_tags(self, value):
-#        self.network_tags = value
-
-#    @property
-#    def rest_dns_resolver(self):
-#        if self.dns_resolver is not None:
-#            return self.dns_resolver
-#        field_info = self.__class__.__fields__["dns_resolver"]
-#        try:
-#            self.dns_resolver =  self.link_based_request(field_info.alias, "GET", return_type="DNSResolver")
-#        except LinkNameException as e:
-#            self.dns_resolver =  self.link_based_request("dns_resolver", "GET", return_type="DNSResolver")
-#        return self.dns_resolver
-#
-#    @rest_dns_resolver.setter
-#    def rest_dns_resolver(self, value):
-#        self.dns_resolver = value
-
-#    @property
-#    def rest_dns_server(self):
-#        if self.dns_server is not None:
-#            return self.dns_server
-#        field_info = self.__class__.__fields__["dns_server"]
-#        try:
-#            self.dns_server =  self.link_based_request(field_info.alias, "GET", return_type="DNSServer")
-#        except LinkNameException as e:
-#            self.dns_server =  self.link_based_request("dns_server", "GET", return_type="DNSServer")
-#        return self.dns_server
-#
-#    @rest_dns_server.setter
-#    def rest_dns_server(self, value):
-#        self.dns_server = value
-
-#    @property
-#    def rest_dut_connections(self):
-#        if self.dut_connections is not None:
-#            return self.dut_connections
-#        field_info = self.__class__.__fields__["dut_connections"]
-#        try:
-#            self.dut_connections =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.dut_connections =  self.link_based_request("dut_connections", "GET", return_type="List[str]")
-#        return self.dut_connections
-#
-#    @rest_dut_connections.setter
-#    def rest_dut_connections(self, value):
-#        self.dut_connections = value
-
-#    @property
-#    def rest_emulated_router(self):
-#        if self.emulated_router is not None:
-#            return self.emulated_router
-#        field_info = self.__class__.__fields__["emulated_router"]
-#        try:
-#            self.emulated_router =  self.link_based_request(field_info.alias, "GET", return_type="object")
-#        except LinkNameException as e:
-#            self.emulated_router =  self.link_based_request("emulated_router", "GET", return_type="object")
-#        return self.emulated_router
-#
-#    @rest_emulated_router.setter
-#    def rest_emulated_router(self, value):
-#        self.emulated_router = value
-
-#    @property
-#    def rest_eth_range(self):
-#        if self.eth_range is not None:
-#            return self.eth_range
-#        field_info = self.__class__.__fields__["eth_range"]
-#        try:
-#            self.eth_range =  self.link_based_request(field_info.alias, "GET", return_type="object")
-#        except LinkNameException as e:
-#            self.eth_range =  self.link_based_request("eth_range", "GET", return_type="object")
-#        return self.eth_range
-#
-#    @rest_eth_range.setter
-#    def rest_eth_range(self, value):
-#        self.eth_range = value
-
-#    @property
-#    def rest_ip_ranges(self):
-#        if self.ip_ranges is not None:
-#            return self.ip_ranges
-#        field_info = self.__class__.__fields__["ip_ranges"]
-#        try:
-#            self.ip_ranges =  self.link_based_request(field_info.alias, "GET", return_type="List[IPRange]")
-#        except LinkNameException as e:
-#            self.ip_ranges =  self.link_based_request("ip_ranges", "GET", return_type="List[IPRange]")
-#        return self.ip_ranges
-#
-#    @rest_ip_ranges.setter
-#    def rest_ip_ranges(self, value):
-#        self.ip_ranges = value
-
-#    @property
-#    def rest_ip_sec_stacks(self):
-#        if self.ip_sec_stacks is not None:
-#            return self.ip_sec_stacks
-#        field_info = self.__class__.__fields__["ip_sec_stacks"]
-#        try:
-#            self.ip_sec_stacks =  self.link_based_request(field_info.alias, "GET", return_type="List[IPSecStack]")
-#        except LinkNameException as e:
-#            self.ip_sec_stacks =  self.link_based_request("ip_sec_stacks", "GET", return_type="List[IPSecStack]")
-#        return self.ip_sec_stacks
-#
-#    @rest_ip_sec_stacks.setter
-#    def rest_ip_sec_stacks(self, value):
-#        self.ip_sec_stacks = value
-
-#    @property
-#    def rest_tunnel_stacks(self):
-#        if self.tunnel_stacks is not None:
-#            return self.tunnel_stacks
-#        field_info = self.__class__.__fields__["tunnel_stacks"]
-#        try:
-#            self.tunnel_stacks =  self.link_based_request(field_info.alias, "GET", return_type="List[TunnelStack]")
-#        except LinkNameException as e:
-#            self.tunnel_stacks =  self.link_based_request("tunnel_stacks", "GET", return_type="List[TunnelStack]")
-#        return self.tunnel_stacks
-#
-#    @rest_tunnel_stacks.setter
-#    def rest_tunnel_stacks(self, value):
-#        self.tunnel_stacks = value
-
-#    @property
-#    def rest_active(self):
-#        if self.active is not None:
-#            return self.active
-#        field_info = self.__class__.__fields__["active"]
-#        try:
-#            self.active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.active =  self.link_based_request("active", "GET", return_type="bool")
-#        return self.active
-#
-#    @rest_active.setter
-#    def rest_active(self, value):
-#        self.active = value
-
-#    @property
-#    def rest_agent_assignments(self):
-#        if self.agent_assignments is not None:
-#            return self.agent_assignments
-#        field_info = self.__class__.__fields__["agent_assignments"]
-#        try:
-#            self.agent_assignments =  self.link_based_request(field_info.alias, "GET", return_type="AgentAssignments")
-#        except LinkNameException as e:
-#            self.agent_assignments =  self.link_based_request("agent_assignments", "GET", return_type="AgentAssignments")
-#        return self.agent_assignments
-#
-#    @rest_agent_assignments.setter
-#    def rest_agent_assignments(self, value):
-#        self.agent_assignments = value
-
-#    @property
-#    def rest_min_agents(self):
-#        if self.min_agents is not None:
-#            return self.min_agents
-#        field_info = self.__class__.__fields__["min_agents"]
-#        try:
-#            self.min_agents =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.min_agents =  self.link_based_request("min_agents", "GET", return_type="int")
-#        return self.min_agents
-#
-#    @rest_min_agents.setter
-#    def rest_min_agents(self, value):
-#        self.min_agents = value
-
 
 
     def to_str(self) -> str:
@@ -320,6 +106,13 @@ class IPNetwork(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of dns_server
         if self.dns_server:
             _dict['DNSServer'] = self.dns_server.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in dtls_stacks (list)
+        _items = []
+        if self.dtls_stacks:
+            for _item in self.dtls_stacks:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['DTLSStacks'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in ip_ranges (list)
         _items = []
         if self.ip_ranges:
@@ -344,6 +137,13 @@ class IPNetwork(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of agent_assignments
         if self.agent_assignments:
             _dict['agentAssignments'] = self.agent_assignments.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -363,6 +163,7 @@ class IPNetwork(BaseModel):
                         "networkTags": obj.get("networkTags"),
                         "DNSResolver": DNSResolver.from_dict(obj["DNSResolver"]) if obj.get("DNSResolver") is not None else None,
                         "DNSServer": DNSServer.from_dict(obj["DNSServer"]) if obj.get("DNSServer") is not None else None,
+                        "DTLSStacks": [DTLSStack.from_dict(_item) for _item in obj["DTLSStacks"]] if obj.get("DTLSStacks") is not None else None,
                         "DUTConnections": obj.get("DUTConnections"),
                         "EmulatedRouter": obj.get("EmulatedRouter"),
                         "EthRange": obj.get("EthRange"),
@@ -371,78 +172,11 @@ class IPNetwork(BaseModel):
                         "TunnelStacks": [TunnelStack.from_dict(_item) for _item in obj["TunnelStacks"]] if obj.get("TunnelStacks") is not None else None,
                         "active": obj.get("active"),
                         "agentAssignments": AgentAssignments.from_dict(obj["agentAssignments"]) if obj.get("agentAssignments") is not None else None,
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "minAgents": obj.get("minAgents")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

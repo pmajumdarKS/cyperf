@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **secondary_objective** | [**SecondaryObjective**](SecondaryObjective.md) |  | [optional] 
 **secondary_objectives** | [**List[SpecificObjective]**](SpecificObjective.md) | Deprecated. Use SecondaryObjective instead. | [optional] 
 **timeline_segments** | [**List[TimelineSegment]**](TimelineSegment.md) | Deprecated. Use PrimaryObjective.Timeline instead. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

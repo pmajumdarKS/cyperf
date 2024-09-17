@@ -36,9 +36,9 @@ class TestTimelineSegmentUnion(unittest.TestCase):
         if include_optional:
             return TimelineSegmentUnion(
                 duration = 56,
+                id = '',
                 segment_type = 'SteadySegment',
                 warm_up_period = 56,
-                id = '',
                 objective_unit = '',
                 objective_value = 1.337,
                 enabled = True,
@@ -47,8 +47,8 @@ class TestTimelineSegmentUnion(unittest.TestCase):
         else:
             return TimelineSegmentUnion(
                 duration = 56,
-                segment_type = 'SteadySegment',
                 id = '',
+                segment_type = 'SteadySegment',
                 objective_unit = '',
                 objective_value = 1.337,
                 enabled = True,

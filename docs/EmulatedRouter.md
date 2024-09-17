@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **emulated_router_ranges** | [**List[EmulatedRouterRange]**](EmulatedRouterRange.md) |  | [optional] 
 **enabled** | **bool** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

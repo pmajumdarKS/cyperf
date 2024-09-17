@@ -36,12 +36,12 @@ class TestCertConfig(unittest.TestCase):
         if include_optional:
             return CertConfig(
                 certificate_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -57,8 +57,12 @@ class TestCertConfig(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -70,11 +74,10 @@ class TestCertConfig(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -100,21 +103,17 @@ class TestCertConfig(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 dh_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -130,8 +129,12 @@ class TestCertConfig(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -143,11 +146,10 @@ class TestCertConfig(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -173,26 +175,22 @@ class TestCertConfig(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 get_sni_conflicts = [
                     'YQ=='
                     ],
                 id = '',
                 is_playlist = True,
                 key_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -208,8 +206,12 @@ class TestCertConfig(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -221,11 +223,10 @@ class TestCertConfig(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -251,14 +252,10 @@ class TestCertConfig(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 key_file_password = '',
                 playlist_column_name = '',
                 playlist_filename = '',

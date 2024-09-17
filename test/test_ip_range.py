@@ -39,6 +39,7 @@ class TestIPRange(unittest.TestCase):
                 count = 56,
                 gw_auto = True,
                 gw_start = '::02:84:9:0cc0:F:CCf',
+                id = '',
                 inner_vlan_range = cyperf.models.vlan_range.VLANRange(
                     count = 56, 
                     count_per_agent = 56, 
@@ -47,12 +48,12 @@ class TestIPRange(unittest.TestCase):
                     static_arp_table = [
                         cyperf.models.static_arp_entry.StaticARPEntry(
                             count = 56, 
+                            id = '', 
                             remote_ip = '::02:84:9:0cc0:F:CCf', 
                             remote_ip_incr = '::02:84:9:0cc0:F:CCf', 
                             remote_mac = '2E-B0-08-29:0c:01', 
                             remote_mac_incr = '2E-B0-08-29:0c:01', 
-                            static_arp_entry_name = 'YBuLd', 
-                            id = '', )
+                            static_arp_entry_name = 'YBuLd', )
                         ], 
                     tag_protocol_id = 33024, 
                     vlan_auto = True, 
@@ -65,12 +66,11 @@ class TestIPRange(unittest.TestCase):
                 ip_start = '::02:84:9:0cc0:F:CCf',
                 ip_ver = 'IPV4',
                 is_emulated_router = True,
+                max_count_per_agent = 56,
                 mss = 56,
                 mss_auto = True,
                 net_mask = 56,
                 net_mask_auto = True,
-                id = '',
-                max_count_per_agent = 56,
                 network_tags = [
                     ''
                     ]

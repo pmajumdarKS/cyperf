@@ -5,12 +5,13 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**delete_agents**](AgentsApi.md#delete_agents) | **DELETE** /api/v2/agents/{agentId} | 
-[**get_agent_tags**](AgentsApi.md#get_agent_tags) | **GET** /api/v2/tags | 
 [**get_agents**](AgentsApi.md#get_agents) | **GET** /api/v2/agents | 
 [**get_agents_by_id**](AgentsApi.md#get_agents_by_id) | **GET** /api/v2/agents/{agentId} | 
+[**get_agents_tags**](AgentsApi.md#get_agents_tags) | **GET** /api/v2/tags | 
 [**get_controllers**](AgentsApi.md#get_controllers) | **GET** /api/v2/controllers | 
 [**get_controllers_by_id**](AgentsApi.md#get_controllers_by_id) | **GET** /api/v2/controllers/{controllerId} | 
 [**patch_agents**](AgentsApi.md#patch_agents) | **PATCH** /api/v2/agents/{agentId} | 
+[**poll_compute_nodes_switch_aggregation_mode**](AgentsApi.md#poll_compute_nodes_switch_aggregation_mode) | **GET** /api/v2/controllers/{controllerId}/compute-nodes/{computeNodeId}/operations/switch-aggregation-mode/{id} | 
 [**poll_controllers_switch_app**](AgentsApi.md#poll_controllers_switch_app) | **GET** /api/v2/controllers/{controllerId}/operations/switch-app/{id} | 
 [**poll_root_batch_delete**](AgentsApi.md#poll_root_batch_delete) | **GET** /api/v2/agents/operations/batch-delete/{id} | 
 [**poll_root_export_files**](AgentsApi.md#poll_root_export_files) | **GET** /api/v2/agents/operations/exportFiles/{id} | 
@@ -20,6 +21,7 @@ Method | HTTP request | Description
 [**poll_root_set_dpdk_mode**](AgentsApi.md#poll_root_set_dpdk_mode) | **GET** /api/v2/agents/operations/set-dpdk-mode/{id} | 
 [**poll_root_set_ntp**](AgentsApi.md#poll_root_set_ntp) | **GET** /api/v2/agents/operations/set-ntp/{id} | 
 [**poll_root_update**](AgentsApi.md#poll_root_update) | **GET** /api/v2/agents/operations/update/{id} | 
+[**start_compute_nodes_switch_aggregation_mode**](AgentsApi.md#start_compute_nodes_switch_aggregation_mode) | **POST** /api/v2/controllers/{controllerId}/compute-nodes/{computeNodeId}/operations/switch-aggregation-mode | 
 [**start_controllers_switch_app**](AgentsApi.md#start_controllers_switch_app) | **POST** /api/v2/controllers/{controllerId}/operations/switch-app | 
 [**start_root_batch_delete**](AgentsApi.md#start_root_batch_delete) | **POST** /api/v2/agents/operations/batch-delete | 
 [**start_root_export_files**](AgentsApi.md#start_root_export_files) | **POST** /api/v2/agents/operations/exportFiles | 
@@ -28,7 +30,7 @@ Method | HTTP request | Description
 [**start_root_reserve**](AgentsApi.md#start_root_reserve) | **POST** /api/v2/agents/operations/reserve | 
 [**start_root_set_dpdk_mode**](AgentsApi.md#start_root_set_dpdk_mode) | **POST** /api/v2/agents/operations/set-dpdk-mode | 
 [**start_root_set_ntp**](AgentsApi.md#start_root_set_ntp) | **POST** /api/v2/agents/operations/set-ntp | 
-[**start_root_update_agents**](AgentsApi.md#start_root_update_agents) | **POST** /api/v2/agents/operations/update | 
+[**start_root_update**](AgentsApi.md#start_root_update) | **POST** /api/v2/agents/operations/update | 
 
 
 # **delete_agents**
@@ -103,86 +105,6 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | The agent was successfully removed. |  -  |
 **404** | An agent with the specified ID was not found. |  -  |
-**500** | Unexpected error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_agent_tags**
-> GetAgentTags200Response get_agent_tags(take=take, skip=skip)
-
-
-
-Get all the currently available agent groups.
-
-### Example
-
-* OAuth Authentication (OAuth2):
-* OAuth Authentication (OAuth2):
-
-```python
-import cyperf
-from cyperf.models.get_agent_tags200_response import GetAgentTags200Response
-from cyperf.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to http://localhost
-# See configuration.py for a list of all supported configuration parameters.
-configuration = cyperf.Configuration(
-    host = "http://localhost"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with cyperf.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = cyperf.AgentsApi(api_client)
-    take = 56 # int | The number of search results to return (optional)
-    skip = 56 # int | The number of search results to skip (optional)
-
-    try:
-        api_response = api_instance.get_agent_tags(take=take, skip=skip)
-        print("The response of AgentsApi->get_agent_tags:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling AgentsApi->get_agent_tags: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **take** | **int**| The number of search results to return | [optional] 
- **skip** | **int**| The number of search results to skip | [optional] 
-
-### Return type
-
-[**GetAgentTags200Response**](GetAgentTags200Response.md)
-
-### Authorization
-
-[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The list of agent groups |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -352,6 +274,86 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | The requested agent |  -  |
 **404** | An agent with the specified ID was not found. |  -  |
+**500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_agents_tags**
+> GetAgentsTags200Response get_agents_tags(take=take, skip=skip)
+
+
+
+Get all the currently available agent groups.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.get_agents_tags200_response import GetAgentsTags200Response
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.AgentsApi(api_client)
+    take = 56 # int | The number of search results to return (optional)
+    skip = 56 # int | The number of search results to skip (optional)
+
+    try:
+        api_response = api_instance.get_agents_tags(take=take, skip=skip)
+        print("The response of AgentsApi->get_agents_tags:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AgentsApi->get_agents_tags: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **take** | **int**| The number of search results to return | [optional] 
+ **skip** | **int**| The number of search results to skip | [optional] 
+
+### Return type
+
+[**GetAgentsTags200Response**](GetAgentsTags200Response.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of agent groups |  -  |
 **500** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -590,6 +592,87 @@ void (empty response body)
 **204** | The agent was successfully updated. |  -  |
 **404** | An agent with the specified ID was not found. |  -  |
 **500** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **poll_compute_nodes_switch_aggregation_mode**
+> AsyncContext poll_compute_nodes_switch_aggregation_mode(controller_id, compute_node_id, id)
+
+
+
+Get the state of an ongoing operation.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.AgentsApi(api_client)
+    controller_id = 'controller_id_example' # str | The ID of the controller.
+    compute_node_id = 'compute_node_id_example' # str | The ID of the compute node.
+    id = 56 # int | The ID of the async operation.
+
+    try:
+        api_response = api_instance.poll_compute_nodes_switch_aggregation_mode(controller_id, compute_node_id, id)
+        print("The response of AgentsApi->poll_compute_nodes_switch_aggregation_mode:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AgentsApi->poll_compute_nodes_switch_aggregation_mode: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **controller_id** | **str**| The ID of the controller. | 
+ **compute_node_id** | **str**| The ID of the compute node. | 
+ **id** | **int**| The ID of the async operation. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Details about the ongoing operation |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1288,6 +1371,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **start_compute_nodes_switch_aggregation_mode**
+> AsyncContext start_compute_nodes_switch_aggregation_mode(controller_id, compute_node_id)
+
+
+
+Switch the compute-node aggregation mode.
+
+### Example
+
+* OAuth Authentication (OAuth2):
+* OAuth Authentication (OAuth2):
+
+```python
+import cyperf
+from cyperf.models.async_context import AsyncContext
+from cyperf.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = cyperf.Configuration(
+    host = "http://localhost"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with cyperf.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = cyperf.AgentsApi(api_client)
+    controller_id = 'controller_id_example' # str | The ID of the controller.
+    compute_node_id = 'compute_node_id_example' # str | The ID of the compute node.
+
+    try:
+        api_response = api_instance.start_compute_nodes_switch_aggregation_mode(controller_id, compute_node_id)
+        print("The response of AgentsApi->start_compute_nodes_switch_aggregation_mode:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AgentsApi->start_compute_nodes_switch_aggregation_mode: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **controller_id** | **str**| The ID of the controller. | 
+ **compute_node_id** | **str**| The ID of the compute node. | 
+
+### Return type
+
+[**AsyncContext**](AsyncContext.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2), [OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Details about the operation that just started |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **start_controllers_switch_app**
 > AsyncContext start_controllers_switch_app(controller_id, switch_app_operation=switch_app_operation)
 
@@ -1914,8 +2076,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **start_root_update_agents**
-> AsyncContext start_root_update_agents()
+# **start_root_update**
+> AsyncContext start_root_update()
 
 
 
@@ -1953,11 +2115,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.AgentsApi(api_client)
 
     try:
-        api_response = api_instance.start_root_update_agents()
-        print("The response of AgentsApi->start_root_update_agents:\n")
+        api_response = api_instance.start_root_update()
+        print("The response of AgentsApi->start_root_update:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AgentsApi->start_root_update_agents: %s\n" % e)
+        print("Exception when calling AgentsApi->start_root_update: %s\n" % e)
 ```
 
 

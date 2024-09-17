@@ -35,6 +35,7 @@ class TestTunnelStack(unittest.TestCase):
         model = TunnelStack()
         if include_optional:
             return TunnelStack(
+                id = '',
                 inner_ip_range = cyperf.models.inner_ip_range.InnerIPRange(
                     network_tags = [
                         ''
@@ -44,6 +45,7 @@ class TestTunnelStack(unittest.TestCase):
                     count = 56, 
                     gw_auto = True, 
                     gw_start = '::02:84:9:0cc0:F:CCf', 
+                    id = '', 
                     inner_vlan_range = null, 
                     ip_auto = True, 
                     ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -51,12 +53,11 @@ class TestTunnelStack(unittest.TestCase):
                     ip_start = '::02:84:9:0cc0:F:CCf', 
                     ip_ver = null, 
                     is_emulated_router = True, 
+                    max_count_per_agent = 56, 
                     mss = 56, 
                     mss_auto = True, 
                     net_mask = 56, 
                     net_mask_auto = True, 
-                    id = '', 
-                    max_count_per_agent = 56, 
                     network_tags = [
                         ''
                         ], ),
@@ -71,13 +72,12 @@ class TestTunnelStack(unittest.TestCase):
                     tunnel_count_per_outer_ip = 56, 
                     tunnel_establishment_timeout = 56, 
                     vendor_type = 'CISCO_ANY_CONNECT', ),
-                tunnel_stack_name = 'YBuLd',
-                id = ''
+                tunnel_stack_name = 'YBuLd'
             )
         else:
             return TunnelStack(
-                tunnel_stack_name = 'YBuLd',
                 id = '',
+                tunnel_stack_name = 'YBuLd',
         )
         """
 

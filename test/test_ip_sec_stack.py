@@ -36,12 +36,12 @@ class TestIPSecStack(unittest.TestCase):
         if include_optional:
             return IPSecStack(
                 ca_certificate_file = cyperf.models.params.Params(
-                    array_element_type = '', 
                     array_elements = [
                         {
                             'key' : ''
                             }
                         ], 
+                    array_element_type = '', 
                     category = '', 
                     category_index = 56, 
                     deprecated_previous_source = '', 
@@ -57,8 +57,12 @@ class TestIPSecStack(unittest.TestCase):
                                 name = '', 
                                 value = '', )
                             ], ), 
+                    file_upload = [
+                        'YQ=='
+                        ], 
                     file_value = null, 
                     flow_identifier = True, 
+                    id = '', 
                     is_deprecated = True, 
                     is_modified = True, 
                     media_files = [
@@ -70,11 +74,10 @@ class TestIPSecStack(unittest.TestCase):
                                     bitrate_kbps = 56, 
                                     codec = '', 
                                     codec_description = '', 
+                                    id = '', 
                                     track_id = '', 
-                                    track_type = null, 
-                                    id = '', )
-                                ], 
-                            id = '', )
+                                    track_type = null, )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -100,28 +103,26 @@ class TestIPSecStack(unittest.TestCase):
                     supported_sources = [
                         ''
                         ], 
-                    type = '', 
-                    value = '', 
-                    file_upload = [
-                        'YQ=='
-                        ], 
-                    id = , 
                     supports_dynamic_payload = True, 
-                    upload_url = '', ),
+                    type = '', 
+                    upload_url = '', 
+                    value = '', ),
                 emulated_sub_config = cyperf.models.emulated_subnet_config.EmulatedSubnetConfig(
                     host_count_per_tunnel = 56, 
                     hosts_increment = '::02:84:9:0cc0:F:CCf', 
                     hosts_prefix = 56, 
                     increment = '::02:84:9:0cc0:F:CCf', 
-                    prefix = 56, 
-                    start = '::02:84:9:0cc0:F:CCf', 
-                    total_host_count = '', 
                     network_tags = [
                         ''
-                        ], ),
+                        ], 
+                    prefix = 56, 
+                    start = '::02:84:9:0cc0:F:CCf', 
+                    total_host_count = '', ),
                 enable_rekey = True,
+                id = '',
                 ip_sec_range = cyperf.models.ip_sec_range.IPSecRange(
                     auth_settings = null, 
+                    id = '', 
                     ike_phase1_config = null, 
                     ike_phase2_config = null, 
                     ip_sec_range_name = 'YBuLd', 
@@ -132,8 +133,7 @@ class TestIPSecStack(unittest.TestCase):
                     remote_access = null, 
                     test_scenario = 'REMOTE-ACCESS', 
                     timers = null, 
-                    tunnel_count_per_outer_ip = 56, 
-                    id = '', ),
+                    tunnel_count_per_outer_ip = 56, ),
                 ip_sec_stack_name = 'YBuLd',
                 log_keys = True,
                 max_initiation_rate = 56,
@@ -143,6 +143,7 @@ class TestIPSecStack(unittest.TestCase):
                     count = 56, 
                     gw_auto = True, 
                     gw_start = '::02:84:9:0cc0:F:CCf', 
+                    id = '', 
                     inner_vlan_range = null, 
                     ip_auto = True, 
                     ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -150,12 +151,11 @@ class TestIPSecStack(unittest.TestCase):
                     ip_start = '::02:84:9:0cc0:F:CCf', 
                     ip_ver = null, 
                     is_emulated_router = True, 
+                    max_count_per_agent = 56, 
                     mss = 56, 
                     mss_auto = True, 
                     net_mask = 56, 
                     net_mask_auto = True, 
-                    id = '', 
-                    max_count_per_agent = 56, 
                     network_tags = [
                         ''
                         ], ),
@@ -166,12 +166,12 @@ class TestIPSecStack(unittest.TestCase):
                 retry_interval = 56,
                 retry_interval_increment = 56,
                 setup_timeout = 56,
-                stack_role = 'INITIATOR',
-                id = ''
+                stack_role = 'INITIATOR'
             )
         else:
             return IPSecStack(
                 enable_rekey = True,
+                id = '',
                 ip_sec_stack_name = 'YBuLd',
                 log_keys = True,
                 max_initiation_rate = 56,
@@ -183,7 +183,6 @@ class TestIPSecStack(unittest.TestCase):
                 retry_interval = 56,
                 setup_timeout = 56,
                 stack_role = 'INITIATOR',
-                id = '',
         )
         """
 

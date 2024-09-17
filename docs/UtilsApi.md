@@ -25,8 +25,8 @@ Method | HTTP request | Description
 [**start_disk_usage_cleanup_migration**](UtilsApi.md#start_disk_usage_cleanup_migration) | **POST** /api/v2/disk-usage/operations/cleanup-migration | 
 [**start_disk_usage_cleanup_notifications**](UtilsApi.md#start_disk_usage_cleanup_notifications) | **POST** /api/v2/disk-usage/operations/cleanup-notifications | 
 [**start_disk_usage_cleanup_results**](UtilsApi.md#start_disk_usage_cleanup_results) | **POST** /api/v2/disk-usage/operations/cleanup-results | 
-[**start_root_generate_certificate**](UtilsApi.md#start_root_generate_certificate) | **POST** /api/v2/cert-manager/operations/generate | 
-[**start_root_upload_certificate**](UtilsApi.md#start_root_upload_certificate) | **POST** /api/v2/cert-manager/operations/upload | 
+[**start_root_generate**](UtilsApi.md#start_root_generate) | **POST** /api/v2/cert-manager/operations/generate | 
+[**start_root_upload**](UtilsApi.md#start_root_upload) | **POST** /api/v2/cert-manager/operations/upload | 
 [**update_log_config**](UtilsApi.md#update_log_config) | **PUT** /api/v2/log-config | 
 
 
@@ -1603,8 +1603,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **start_root_generate_certificate**
-> AsyncContext start_root_generate_certificate(certificate=certificate)
+# **start_root_generate**
+> AsyncContext start_root_generate(certificate=certificate)
 
 
 
@@ -1644,11 +1644,11 @@ with cyperf.ApiClient(configuration) as api_client:
     certificate = cyperf.Certificate() # Certificate |  (optional)
 
     try:
-        api_response = api_instance.start_root_generate_certificate(certificate=certificate)
-        print("The response of UtilsApi->start_root_generate_certificate:\n")
+        api_response = api_instance.start_root_generate(certificate=certificate)
+        print("The response of UtilsApi->start_root_generate:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->start_root_generate_certificate: %s\n" % e)
+        print("Exception when calling UtilsApi->start_root_generate: %s\n" % e)
 ```
 
 
@@ -1681,8 +1681,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **start_root_upload_certificate**
-> AsyncContext start_root_upload_certificate()
+# **start_root_upload**
+> AsyncContext start_root_upload()
 
 
 
@@ -1720,11 +1720,11 @@ with cyperf.ApiClient(configuration) as api_client:
     api_instance = cyperf.UtilsApi(api_client)
 
     try:
-        api_response = api_instance.start_root_upload_certificate()
-        print("The response of UtilsApi->start_root_upload_certificate:\n")
+        api_response = api_instance.start_root_upload()
+        print("The response of UtilsApi->start_root_upload:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UtilsApi->start_root_upload_certificate: %s\n" % e)
+        print("Exception when calling UtilsApi->start_root_upload: %s\n" % e)
 ```
 
 
