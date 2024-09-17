@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **network_tags** | **List[str]** | A list of tags. | [optional] 
 **dns_resolver** | [**DNSResolver**](DNSResolver.md) |  | [optional] 
 **dns_server** | [**DNSServer**](DNSServer.md) | The DNS Server configuration for Network Segment | [optional] 
+**dtls_stacks** | [**List[DTLSStack]**](DTLSStack.md) |  | [optional] 
 **dut_connections** | **List[str]** | The connected DUT network segments. | [optional] 
 **emulated_router** | **object** |  | [optional] 
 **eth_range** | **object** |  | [optional] 
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **tunnel_stacks** | [**List[TunnelStack]**](TunnelStack.md) |  | [optional] 
 **active** | **bool** | A flag indicating if the network segment is active.(default: true) | [optional] 
 **agent_assignments** | [**AgentAssignments**](AgentAssignments.md) |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **min_agents** | **int** | The minimum number of agents that should be assigned to this network segment in a valid test (default: 1). | [optional] 
 
 ## Example

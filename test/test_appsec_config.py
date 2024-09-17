@@ -64,18 +64,50 @@ class TestAppsecConfig(unittest.TestCase):
                             ip_network_segment = [
                                 null
                                 ], 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     traffic_profiles = [
                         null
+                        ], 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
                         ], 
                     validate = [
                         'YQ=='
                         ], ),
                 session_id = '',
                 template_id = '',
+                config_type_name = '',
                 data_model_version = '',
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 name = ''
             )
         else:

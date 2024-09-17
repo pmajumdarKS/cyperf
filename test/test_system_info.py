@@ -36,6 +36,7 @@ class TestSystemInfo(unittest.TestCase):
         if include_optional:
             return SystemInfo(
                 chassis_info = cyperf.models.chassis_info.ChassisInfo(
+                    checkout_id = 56, 
                     compute_node_id = '', 
                     port_id = '', ),
                 kernel_version = '',

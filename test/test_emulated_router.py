@@ -38,7 +38,18 @@ class TestEmulatedRouter(unittest.TestCase):
                 emulated_router_ranges = [
                     null
                     ],
-                enabled = True
+                enabled = True,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return EmulatedRouter(

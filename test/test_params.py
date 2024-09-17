@@ -79,7 +79,18 @@ class TestParams(unittest.TestCase):
                                 track_type = null, 
                                 id = '', )
                             ], 
-                        id = '', )
+                        id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                id = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], )
                     ],
                 metadata = cyperf.models.param_metadata.ParamMetadata(
                     type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
@@ -112,6 +123,17 @@ class TestParams(unittest.TestCase):
                     'YQ=='
                     ],
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 supports_dynamic_payload = True,
                 upload_url = ''
             )

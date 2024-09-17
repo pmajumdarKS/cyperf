@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **forward_proxy_port** | **int** |  | 
 **readonly** | **bool** | If true, the port can&#39;t be selected by the user | [optional] 
 **server_listen_port** | **int** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

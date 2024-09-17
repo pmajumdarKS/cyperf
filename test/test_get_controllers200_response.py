@@ -39,22 +39,39 @@ class TestGetControllers200Response(unittest.TestCase):
                     cyperf.models.controller.Controller(
                         compute_nodes = [
                             cyperf.models.compute_node.ComputeNode(
+                                aggregated_mode = True, 
                                 app_mode = cyperf.models.app_mode.AppMode(
                                     app_id = '', 
                                     ui_app_id = '', ), 
                                 id = '', 
-                                mode = '', 
                                 name = '', 
                                 ports = [
                                     cyperf.models.port.Port(
                                         disabled = True, 
                                         id = '', 
                                         name = '', 
-                                        speed = '', )
+                                        owner = '', 
+                                        owner_id = '', 
+                                        speed = '', 
+                                        status = '', 
+                                        traffic_status = '', )
                                     ], 
+                                slot_number = 56, 
+                                status = '', 
                                 type = '', )
                             ], 
                         id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                id = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], 
                         name = '', 
                         serial = '', 
                         type = '', )

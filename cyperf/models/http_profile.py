@@ -19,16 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.connection_persistence import ConnectionPersistence
 from cyperf.models.http_version import HTTPVersion
 from cyperf.models.params import Params
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "HTTPProfile" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class HTTPProfile(BaseModel):
     """
@@ -45,182 +42,14 @@ class HTTPProfile(BaseModel):
     name: StrictStr = Field(description="The name of the HTTP profile.", alias="Name")
     params: Optional[List[Params]] = Field(default=None, description="The list of parameters present in the HTTP profile.", alias="Params")
     use_application_server_headers: Optional[StrictBool] = Field(default=None, alias="UseApplicationServerHeaders")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AdditionalHeaders", "ConnectionPersistence", "ConnectionsMaxTransactions", "Description", "ExternalResourceURL", "HTTPVersion", "Headers", "IsModified", "Name", "Params", "UseApplicationServerHeaders"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["AdditionalHeaders", "ConnectionPersistence", "ConnectionsMaxTransactions", "Description", "ExternalResourceURL", "HTTPVersion", "Headers", "IsModified", "Name", "Params", "UseApplicationServerHeaders", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_additional_headers(self):
-#        if self.additional_headers is not None:
-#            return self.additional_headers
-#        field_info = self.__class__.__fields__["additional_headers"]
-#        try:
-#            self.additional_headers =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.additional_headers =  self.link_based_request("additional_headers", "GET", return_type="Params")
-#        return self.additional_headers
-#
-#    @rest_additional_headers.setter
-#    def rest_additional_headers(self, value):
-#        self.additional_headers = value
-
-#    @property
-#    def rest_connection_persistence(self):
-#        if self.connection_persistence is not None:
-#            return self.connection_persistence
-#        field_info = self.__class__.__fields__["connection_persistence"]
-#        try:
-#            self.connection_persistence =  self.link_based_request(field_info.alias, "GET", return_type="ConnectionPersistence")
-#        except LinkNameException as e:
-#            self.connection_persistence =  self.link_based_request("connection_persistence", "GET", return_type="ConnectionPersistence")
-#        return self.connection_persistence
-#
-#    @rest_connection_persistence.setter
-#    def rest_connection_persistence(self, value):
-#        self.connection_persistence = value
-
-#    @property
-#    def rest_connections_max_transactions(self):
-#        if self.connections_max_transactions is not None:
-#            return self.connections_max_transactions
-#        field_info = self.__class__.__fields__["connections_max_transactions"]
-#        try:
-#            self.connections_max_transactions =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.connections_max_transactions =  self.link_based_request("connections_max_transactions", "GET", return_type="int")
-#        return self.connections_max_transactions
-#
-#    @rest_connections_max_transactions.setter
-#    def rest_connections_max_transactions(self, value):
-#        self.connections_max_transactions = value
-
-#    @property
-#    def rest_description(self):
-#        if self.description is not None:
-#            return self.description
-#        field_info = self.__class__.__fields__["description"]
-#        try:
-#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.description =  self.link_based_request("description", "GET", return_type="str")
-#        return self.description
-#
-#    @rest_description.setter
-#    def rest_description(self, value):
-#        self.description = value
-
-#    @property
-#    def rest_external_resource_url(self):
-#        if self.external_resource_url is not None:
-#            return self.external_resource_url
-#        field_info = self.__class__.__fields__["external_resource_url"]
-#        try:
-#            self.external_resource_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.external_resource_url =  self.link_based_request("external_resource_url", "GET", return_type="str")
-#        return self.external_resource_url
-#
-#    @rest_external_resource_url.setter
-#    def rest_external_resource_url(self, value):
-#        self.external_resource_url = value
-
-#    @property
-#    def rest_http_version(self):
-#        if self.http_version is not None:
-#            return self.http_version
-#        field_info = self.__class__.__fields__["http_version"]
-#        try:
-#            self.http_version =  self.link_based_request(field_info.alias, "GET", return_type="HTTPVersion")
-#        except LinkNameException as e:
-#            self.http_version =  self.link_based_request("http_version", "GET", return_type="HTTPVersion")
-#        return self.http_version
-#
-#    @rest_http_version.setter
-#    def rest_http_version(self, value):
-#        self.http_version = value
-
-#    @property
-#    def rest_headers(self):
-#        if self.headers is not None:
-#            return self.headers
-#        field_info = self.__class__.__fields__["headers"]
-#        try:
-#            self.headers =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.headers =  self.link_based_request("headers", "GET", return_type="Params")
-#        return self.headers
-#
-#    @rest_headers.setter
-#    def rest_headers(self, value):
-#        self.headers = value
-
-#    @property
-#    def rest_is_modified(self):
-#        if self.is_modified is not None:
-#            return self.is_modified
-#        field_info = self.__class__.__fields__["is_modified"]
-#        try:
-#            self.is_modified =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.is_modified =  self.link_based_request("is_modified", "GET", return_type="bool")
-#        return self.is_modified
-#
-#    @rest_is_modified.setter
-#    def rest_is_modified(self, value):
-#        self.is_modified = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_params(self):
-#        if self.params is not None:
-#            return self.params
-#        field_info = self.__class__.__fields__["params"]
-#        try:
-#            self.params =  self.link_based_request(field_info.alias, "GET", return_type="List[Params]")
-#        except LinkNameException as e:
-#            self.params =  self.link_based_request("params", "GET", return_type="List[Params]")
-#        return self.params
-#
-#    @rest_params.setter
-#    def rest_params(self, value):
-#        self.params = value
-
-#    @property
-#    def rest_use_application_server_headers(self):
-#        if self.use_application_server_headers is not None:
-#            return self.use_application_server_headers
-#        field_info = self.__class__.__fields__["use_application_server_headers"]
-#        try:
-#            self.use_application_server_headers =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.use_application_server_headers =  self.link_based_request("use_application_server_headers", "GET", return_type="bool")
-#        return self.use_application_server_headers
-#
-#    @rest_use_application_server_headers.setter
-#    def rest_use_application_server_headers(self, value):
-#        self.use_application_server_headers = value
-
 
 
     def to_str(self) -> str:
@@ -268,6 +97,13 @@ class HTTPProfile(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['Params'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -292,78 +128,11 @@ class HTTPProfile(BaseModel):
                         "IsModified": obj.get("IsModified"),
                         "Name": obj.get("Name"),
                         "Params": [Params.from_dict(_item) for _item in obj["Params"]] if obj.get("Params") is not None else None,
-                        "UseApplicationServerHeaders": obj.get("UseApplicationServerHeaders")
+                        "UseApplicationServerHeaders": obj.get("UseApplicationServerHeaders"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

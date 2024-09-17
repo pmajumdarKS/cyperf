@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **vlan_enabled** | **bool** | The enable status of the VLAN configuration, if not determined automatically (default: false). | [optional] 
 **vlan_id** | **int** | The VLAN identifier (default: 1). | [optional] 
 **vlan_incr** | **int** | The VLAN incrementation rule (default: 1). | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

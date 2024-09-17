@@ -97,6 +97,7 @@ class TestGetAgents200ResponseOneOf(unittest.TestCase):
                         requires_updating = True, 
                         system_info = cyperf.models.system_info.SystemInfo(
                             chassis_info = cyperf.models.chassis_info.ChassisInfo(
+                                checkout_id = 56, 
                                 compute_node_id = '', 
                                 port_id = '', ), 
                             kernel_version = '', 

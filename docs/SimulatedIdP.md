@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **signature_algorithm** | [**IdPSignatureAlgo**](IdPSignatureAlgo.md) |  | [optional] 
 **single_sign_on_url** | **str** |  | 
 **xml_metadata** | **List[bytearray]** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

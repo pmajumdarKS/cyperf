@@ -35,7 +35,18 @@ class TestTrafficSettings(unittest.TestCase):
         model = TrafficSettings()
         if include_optional:
             return TrafficSettings(
-                default_transport_profile = None
+                default_transport_profile = None,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return TrafficSettings(

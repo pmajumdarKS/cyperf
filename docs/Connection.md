@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **server_port** | **int** | The server port of the connection (default: 80). | 
 **type** | **str** |  | [optional] 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

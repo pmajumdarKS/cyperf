@@ -79,14 +79,23 @@ class TestConnection(unittest.TestCase):
                                     track_type = null, 
                                     id = '', )
                                 ], 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                             array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        type = '', )
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                     ], ), 
                             int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
@@ -111,6 +120,16 @@ class TestConnection(unittest.TestCase):
                         'YQ=='
                         ], 
                     id = , 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
                 http_forward_proxy_mode = 'INHERIT_DUT',
@@ -125,7 +144,18 @@ class TestConnection(unittest.TestCase):
                     effective_ports = cyperf.models.effective_ports.EffectivePorts(), 
                     forward_proxy_port = 56, 
                     readonly = True, 
-                    server_listen_port = 56, ),
+                    server_listen_port = 56, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 readonly = True,
                 readonly_hostname = True,
                 readonly_max_trans = True,
@@ -133,7 +163,18 @@ class TestConnection(unittest.TestCase):
                 server_endpoint = '',
                 server_port = 56,
                 type = 'http',
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return Connection(

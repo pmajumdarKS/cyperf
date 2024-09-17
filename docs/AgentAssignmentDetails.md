@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **capture_settings** | [**CaptureSettings**](CaptureSettings.md) | The capture settings of the agent that is assigned. | [optional] 
 **id** | **str** |  | 
 **interfaces** | **List[str]** | The names of the assigned test interfaces for the agent. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

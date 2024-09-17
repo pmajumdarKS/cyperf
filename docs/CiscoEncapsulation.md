@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **dtls_settings** | [**DTLSSettings**](DTLSSettings.md) |  | [optional] 
 **encapsulation_mode** | **str** | The encapsulation mode for inner traffic. | 
 **udp_port** | **int** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

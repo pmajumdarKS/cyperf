@@ -89,13 +89,35 @@ class TestParameter(unittest.TestCase):
                             charset = '', 
                             max_length = 56, 
                             min_length = 56, ), ), 
-                    unique_value = True, ),
+                    unique_value = True, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 sources = [
                     ''
                     ],
                 type = '',
                 var_field = '',
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 operator = '',
                 query_param = ''
             )

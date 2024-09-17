@@ -5,11 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**aggregated_mode** | **bool** |  | [optional] 
 **app_mode** | [**AppMode**](AppMode.md) |  | [optional] 
 **id** | **str** |  | [optional] 
-**mode** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **ports** | [**List[Port]**](Port.md) |  | [optional] 
+**slot_number** | **int** |  | [optional] 
+**status** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 
 ## Example

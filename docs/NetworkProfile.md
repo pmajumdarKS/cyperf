@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **dut_network_segment** | [**List[DUTNetwork]**](DUTNetwork.md) |  | [optional] 
 **ip_network_segment** | [**List[IPNetwork]**](IPNetwork.md) |  | [optional] 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

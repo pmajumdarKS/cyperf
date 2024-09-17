@@ -32,56 +32,56 @@ class TestTestOperationsApi(unittest.TestCase):
         """
         pass
 
-    def test_poll_root_start_calibration(self) -> None:
-        """Test case for poll_root_start_calibration
+    def test_poll_root_start(self) -> None:
+        """Test case for poll_root_start
 
         """
         pass
 
-    def test_poll_root_start_test(self) -> None:
-        """Test case for poll_root_start_test
+    def test_poll_root_stop(self) -> None:
+        """Test case for poll_root_stop
 
         """
         pass
 
-    def test_poll_root_stop_calibration(self) -> None:
-        """Test case for poll_root_stop_calibration
+    def test_poll_test_start(self) -> None:
+        """Test case for poll_test_start
 
         """
         pass
 
-    def test_poll_root_stop_test(self) -> None:
-        """Test case for poll_root_stop_test
+    def test_poll_test_stop(self) -> None:
+        """Test case for poll_test_stop
 
         """
         pass
 
-    def test_start_root_abort_test(self) -> None:
-        """Test case for start_root_abort_test
+    def test_start_root_start(self) -> None:
+        """Test case for start_root_start
 
         """
         pass
 
-    def test_start_root_start_calibration(self) -> None:
-        """Test case for start_root_start_calibration
+    def test_start_root_stop(self) -> None:
+        """Test case for start_root_stop
 
         """
         pass
 
-    def test_start_root_start_test(self) -> None:
-        """Test case for start_root_start_test
+    def test_start_test_abort(self) -> None:
+        """Test case for start_test_abort
 
         """
         pass
 
-    def test_start_root_stop_calibration(self) -> None:
-        """Test case for start_root_stop_calibration
+    def test_start_test_start(self) -> None:
+        """Test case for start_test_start
 
         """
         pass
 
-    def test_start_root_stop_test(self) -> None:
-        """Test case for start_root_stop_test
+    def test_start_test_stop(self) -> None:
+        """Test case for start_test_stop
 
         """
         pass

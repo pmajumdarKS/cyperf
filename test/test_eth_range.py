@@ -50,6 +50,17 @@ class TestEthRange(unittest.TestCase):
                         static_arp_entry_name = 'YBuLd', 
                         id = '', )
                     ],
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 max_count_per_agent = 56
             )
         else:

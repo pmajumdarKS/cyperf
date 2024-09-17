@@ -48,7 +48,18 @@ class TestCiscoAnyConnectSettings(unittest.TestCase):
                     usernames = [
                         ''
                         ], 
-                    usernames_param = null, ),
+                    usernames_param = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 outer_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
@@ -69,11 +80,33 @@ class TestCiscoAnyConnectSettings(unittest.TestCase):
                     tx_buffer = 56, 
                     user_mss = 56, 
                     wscale_enabled = True, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 cisco_encapsulation = cyperf.models.cisco_encapsulation.CiscoEncapsulation(
                     dtls_enabled = True, 
                     dtls_settings = null, 
                     encapsulation_mode = 'DTLS', 
-                    udp_port = 56, ),
+                    udp_port = 56, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 connection_profiles = [
                     ''
                     ],
@@ -97,6 +130,17 @@ class TestCiscoAnyConnectSettings(unittest.TestCase):
                     immediate_close = True, 
                     key_file = null, 
                     key_file_password = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [

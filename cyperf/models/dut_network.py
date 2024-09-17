@@ -20,16 +20,13 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from cyperf.models.api_link import APILink
 from cyperf.models.health_check_config import HealthCheckConfig
 from cyperf.models.params import Params
 from cyperf.models.pep_dut import PepDUT
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "DUTNetwork" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class DUTNetwork(BaseModel):
     """
@@ -60,9 +57,8 @@ class DUTNetwork(BaseModel):
     use_real_host: Optional[StrictBool] = Field(default=None, description="A flag indicating if tunneled hostname should use real domain names.", alias="UseRealHost")
     active: Optional[StrictBool] = Field(default=None, description="A flag indicating if the server DUT is an active device. If it is, the simulated clients or client DUT(if active) will send traffic to the DUT 'host'; and the simulated servers will use the healtcheck configurations. (default: false)")
     host: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The hostname where the traffic goes if server DUT is active.")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["Name", "id", "networkTags", "ClientDUTActive", "ClientDUTHost", "ClientDUTPort", "ConfigSettings", "ForwardProxyPepDUT", "ForwardProxyPepDUTActive", "HTTPHealthCheck", "HTTPSHealthCheck", "HostnameSuffix", "HttpForwardProxyMode", "NonProxiedHosts", "PepDUT", "PepDUTActive", "ReverseProxyPepDUT", "ReverseProxyPepDUTActive", "ServerDUTActive", "ServerDUTHost", "ServerDUTPort", "TCPHealthCheck", "UseRealHost", "active", "host"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["Name", "id", "networkTags", "ClientDUTActive", "ClientDUTHost", "ClientDUTPort", "ConfigSettings", "ForwardProxyPepDUT", "ForwardProxyPepDUTActive", "HTTPHealthCheck", "HTTPSHealthCheck", "HostnameSuffix", "HttpForwardProxyMode", "NonProxiedHosts", "PepDUT", "PepDUTActive", "ReverseProxyPepDUT", "ReverseProxyPepDUTActive", "ServerDUTActive", "ServerDUTHost", "ServerDUTPort", "TCPHealthCheck", "UseRealHost", "active", "host", "links"]
 
     @field_validator('name')
     def name_validate_regular_expression(cls, value):
@@ -138,383 +134,6 @@ class DUTNetwork(BaseModel):
     )
 
 
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_network_tags(self):
-#        if self.network_tags is not None:
-#            return self.network_tags
-#        field_info = self.__class__.__fields__["network_tags"]
-#        try:
-#            self.network_tags =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.network_tags =  self.link_based_request("network_tags", "GET", return_type="List[str]")
-#        return self.network_tags
-#
-#    @rest_network_tags.setter
-#    def rest_network_tags(self, value):
-#        self.network_tags = value
-
-#    @property
-#    def rest_client_dut_active(self):
-#        if self.client_dut_active is not None:
-#            return self.client_dut_active
-#        field_info = self.__class__.__fields__["client_dut_active"]
-#        try:
-#            self.client_dut_active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.client_dut_active =  self.link_based_request("client_dut_active", "GET", return_type="bool")
-#        return self.client_dut_active
-#
-#    @rest_client_dut_active.setter
-#    def rest_client_dut_active(self, value):
-#        self.client_dut_active = value
-
-#    @property
-#    def rest_client_dut_host(self):
-#        if self.client_dut_host is not None:
-#            return self.client_dut_host
-#        field_info = self.__class__.__fields__["client_dut_host"]
-#        try:
-#            self.client_dut_host =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.client_dut_host =  self.link_based_request("client_dut_host", "GET", return_type="str")
-#        return self.client_dut_host
-#
-#    @rest_client_dut_host.setter
-#    def rest_client_dut_host(self, value):
-#        self.client_dut_host = value
-
-#    @property
-#    def rest_client_dut_port(self):
-#        if self.client_dut_port is not None:
-#            return self.client_dut_port
-#        field_info = self.__class__.__fields__["client_dut_port"]
-#        try:
-#            self.client_dut_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.client_dut_port =  self.link_based_request("client_dut_port", "GET", return_type="int")
-#        return self.client_dut_port
-#
-#    @rest_client_dut_port.setter
-#    def rest_client_dut_port(self, value):
-#        self.client_dut_port = value
-
-#    @property
-#    def rest_config_settings(self):
-#        if self.config_settings is not None:
-#            return self.config_settings
-#        field_info = self.__class__.__fields__["config_settings"]
-#        try:
-#            self.config_settings =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.config_settings =  self.link_based_request("config_settings", "GET", return_type="str")
-#        return self.config_settings
-#
-#    @rest_config_settings.setter
-#    def rest_config_settings(self, value):
-#        self.config_settings = value
-
-#    @property
-#    def rest_forward_proxy_pep_dut(self):
-#        if self.forward_proxy_pep_dut is not None:
-#            return self.forward_proxy_pep_dut
-#        field_info = self.__class__.__fields__["forward_proxy_pep_dut"]
-#        try:
-#            self.forward_proxy_pep_dut =  self.link_based_request(field_info.alias, "GET", return_type="PepDUT")
-#        except LinkNameException as e:
-#            self.forward_proxy_pep_dut =  self.link_based_request("forward_proxy_pep_dut", "GET", return_type="PepDUT")
-#        return self.forward_proxy_pep_dut
-#
-#    @rest_forward_proxy_pep_dut.setter
-#    def rest_forward_proxy_pep_dut(self, value):
-#        self.forward_proxy_pep_dut = value
-
-#    @property
-#    def rest_forward_proxy_pep_dut_active(self):
-#        if self.forward_proxy_pep_dut_active is not None:
-#            return self.forward_proxy_pep_dut_active
-#        field_info = self.__class__.__fields__["forward_proxy_pep_dut_active"]
-#        try:
-#            self.forward_proxy_pep_dut_active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.forward_proxy_pep_dut_active =  self.link_based_request("forward_proxy_pep_dut_active", "GET", return_type="bool")
-#        return self.forward_proxy_pep_dut_active
-#
-#    @rest_forward_proxy_pep_dut_active.setter
-#    def rest_forward_proxy_pep_dut_active(self, value):
-#        self.forward_proxy_pep_dut_active = value
-
-#    @property
-#    def rest_http_health_check(self):
-#        if self.http_health_check is not None:
-#            return self.http_health_check
-#        field_info = self.__class__.__fields__["http_health_check"]
-#        try:
-#            self.http_health_check =  self.link_based_request(field_info.alias, "GET", return_type="HealthCheckConfig")
-#        except LinkNameException as e:
-#            self.http_health_check =  self.link_based_request("http_health_check", "GET", return_type="HealthCheckConfig")
-#        return self.http_health_check
-#
-#    @rest_http_health_check.setter
-#    def rest_http_health_check(self, value):
-#        self.http_health_check = value
-
-#    @property
-#    def rest_https_health_check(self):
-#        if self.https_health_check is not None:
-#            return self.https_health_check
-#        field_info = self.__class__.__fields__["https_health_check"]
-#        try:
-#            self.https_health_check =  self.link_based_request(field_info.alias, "GET", return_type="HealthCheckConfig")
-#        except LinkNameException as e:
-#            self.https_health_check =  self.link_based_request("https_health_check", "GET", return_type="HealthCheckConfig")
-#        return self.https_health_check
-#
-#    @rest_https_health_check.setter
-#    def rest_https_health_check(self, value):
-#        self.https_health_check = value
-
-#    @property
-#    def rest_hostname_suffix(self):
-#        if self.hostname_suffix is not None:
-#            return self.hostname_suffix
-#        field_info = self.__class__.__fields__["hostname_suffix"]
-#        try:
-#            self.hostname_suffix =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.hostname_suffix =  self.link_based_request("hostname_suffix", "GET", return_type="str")
-#        return self.hostname_suffix
-#
-#    @rest_hostname_suffix.setter
-#    def rest_hostname_suffix(self, value):
-#        self.hostname_suffix = value
-
-#    @property
-#    def rest_http_forward_proxy_mode(self):
-#        if self.http_forward_proxy_mode is not None:
-#            return self.http_forward_proxy_mode
-#        field_info = self.__class__.__fields__["http_forward_proxy_mode"]
-#        try:
-#            self.http_forward_proxy_mode =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.http_forward_proxy_mode =  self.link_based_request("http_forward_proxy_mode", "GET", return_type="str")
-#        return self.http_forward_proxy_mode
-#
-#    @rest_http_forward_proxy_mode.setter
-#    def rest_http_forward_proxy_mode(self, value):
-#        self.http_forward_proxy_mode = value
-
-#    @property
-#    def rest_non_proxied_hosts(self):
-#        if self.non_proxied_hosts is not None:
-#            return self.non_proxied_hosts
-#        field_info = self.__class__.__fields__["non_proxied_hosts"]
-#        try:
-#            self.non_proxied_hosts =  self.link_based_request(field_info.alias, "GET", return_type="Params")
-#        except LinkNameException as e:
-#            self.non_proxied_hosts =  self.link_based_request("non_proxied_hosts", "GET", return_type="Params")
-#        return self.non_proxied_hosts
-#
-#    @rest_non_proxied_hosts.setter
-#    def rest_non_proxied_hosts(self, value):
-#        self.non_proxied_hosts = value
-
-#    @property
-#    def rest_pep_dut(self):
-#        if self.pep_dut is not None:
-#            return self.pep_dut
-#        field_info = self.__class__.__fields__["pep_dut"]
-#        try:
-#            self.pep_dut =  self.link_based_request(field_info.alias, "GET", return_type="PepDUT")
-#        except LinkNameException as e:
-#            self.pep_dut =  self.link_based_request("pep_dut", "GET", return_type="PepDUT")
-#        return self.pep_dut
-#
-#    @rest_pep_dut.setter
-#    def rest_pep_dut(self, value):
-#        self.pep_dut = value
-
-#    @property
-#    def rest_pep_dut_active(self):
-#        if self.pep_dut_active is not None:
-#            return self.pep_dut_active
-#        field_info = self.__class__.__fields__["pep_dut_active"]
-#        try:
-#            self.pep_dut_active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.pep_dut_active =  self.link_based_request("pep_dut_active", "GET", return_type="bool")
-#        return self.pep_dut_active
-#
-#    @rest_pep_dut_active.setter
-#    def rest_pep_dut_active(self, value):
-#        self.pep_dut_active = value
-
-#    @property
-#    def rest_reverse_proxy_pep_dut(self):
-#        if self.reverse_proxy_pep_dut is not None:
-#            return self.reverse_proxy_pep_dut
-#        field_info = self.__class__.__fields__["reverse_proxy_pep_dut"]
-#        try:
-#            self.reverse_proxy_pep_dut =  self.link_based_request(field_info.alias, "GET", return_type="PepDUT")
-#        except LinkNameException as e:
-#            self.reverse_proxy_pep_dut =  self.link_based_request("reverse_proxy_pep_dut", "GET", return_type="PepDUT")
-#        return self.reverse_proxy_pep_dut
-#
-#    @rest_reverse_proxy_pep_dut.setter
-#    def rest_reverse_proxy_pep_dut(self, value):
-#        self.reverse_proxy_pep_dut = value
-
-#    @property
-#    def rest_reverse_proxy_pep_dut_active(self):
-#        if self.reverse_proxy_pep_dut_active is not None:
-#            return self.reverse_proxy_pep_dut_active
-#        field_info = self.__class__.__fields__["reverse_proxy_pep_dut_active"]
-#        try:
-#            self.reverse_proxy_pep_dut_active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.reverse_proxy_pep_dut_active =  self.link_based_request("reverse_proxy_pep_dut_active", "GET", return_type="bool")
-#        return self.reverse_proxy_pep_dut_active
-#
-#    @rest_reverse_proxy_pep_dut_active.setter
-#    def rest_reverse_proxy_pep_dut_active(self, value):
-#        self.reverse_proxy_pep_dut_active = value
-
-#    @property
-#    def rest_server_dut_active(self):
-#        if self.server_dut_active is not None:
-#            return self.server_dut_active
-#        field_info = self.__class__.__fields__["server_dut_active"]
-#        try:
-#            self.server_dut_active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.server_dut_active =  self.link_based_request("server_dut_active", "GET", return_type="bool")
-#        return self.server_dut_active
-#
-#    @rest_server_dut_active.setter
-#    def rest_server_dut_active(self, value):
-#        self.server_dut_active = value
-
-#    @property
-#    def rest_server_dut_host(self):
-#        if self.server_dut_host is not None:
-#            return self.server_dut_host
-#        field_info = self.__class__.__fields__["server_dut_host"]
-#        try:
-#            self.server_dut_host =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.server_dut_host =  self.link_based_request("server_dut_host", "GET", return_type="str")
-#        return self.server_dut_host
-#
-#    @rest_server_dut_host.setter
-#    def rest_server_dut_host(self, value):
-#        self.server_dut_host = value
-
-#    @property
-#    def rest_server_dut_port(self):
-#        if self.server_dut_port is not None:
-#            return self.server_dut_port
-#        field_info = self.__class__.__fields__["server_dut_port"]
-#        try:
-#            self.server_dut_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.server_dut_port =  self.link_based_request("server_dut_port", "GET", return_type="int")
-#        return self.server_dut_port
-#
-#    @rest_server_dut_port.setter
-#    def rest_server_dut_port(self, value):
-#        self.server_dut_port = value
-
-#    @property
-#    def rest_tcp_health_check(self):
-#        if self.tcp_health_check is not None:
-#            return self.tcp_health_check
-#        field_info = self.__class__.__fields__["tcp_health_check"]
-#        try:
-#            self.tcp_health_check =  self.link_based_request(field_info.alias, "GET", return_type="HealthCheckConfig")
-#        except LinkNameException as e:
-#            self.tcp_health_check =  self.link_based_request("tcp_health_check", "GET", return_type="HealthCheckConfig")
-#        return self.tcp_health_check
-#
-#    @rest_tcp_health_check.setter
-#    def rest_tcp_health_check(self, value):
-#        self.tcp_health_check = value
-
-#    @property
-#    def rest_use_real_host(self):
-#        if self.use_real_host is not None:
-#            return self.use_real_host
-#        field_info = self.__class__.__fields__["use_real_host"]
-#        try:
-#            self.use_real_host =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.use_real_host =  self.link_based_request("use_real_host", "GET", return_type="bool")
-#        return self.use_real_host
-#
-#    @rest_use_real_host.setter
-#    def rest_use_real_host(self, value):
-#        self.use_real_host = value
-
-#    @property
-#    def rest_active(self):
-#        if self.active is not None:
-#            return self.active
-#        field_info = self.__class__.__fields__["active"]
-#        try:
-#            self.active =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.active =  self.link_based_request("active", "GET", return_type="bool")
-#        return self.active
-#
-#    @rest_active.setter
-#    def rest_active(self, value):
-#        self.active = value
-
-#    @property
-#    def rest_host(self):
-#        if self.host is not None:
-#            return self.host
-#        field_info = self.__class__.__fields__["host"]
-#        try:
-#            self.host =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.host =  self.link_based_request("host", "GET", return_type="str")
-#        return self.host
-#
-#    @rest_host.setter
-#    def rest_host(self, value):
-#        self.host = value
-
-
-
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
         return pprint.pformat(self.model_dump(by_alias=True))
@@ -568,6 +187,13 @@ class DUTNetwork(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tcp_health_check
         if self.tcp_health_check:
             _dict['TCPHealthCheck'] = self.tcp_health_check.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -606,78 +232,11 @@ class DUTNetwork(BaseModel):
                         "TCPHealthCheck": HealthCheckConfig.from_dict(obj["TCPHealthCheck"]) if obj.get("TCPHealthCheck") is not None else None,
                         "UseRealHost": obj.get("UseRealHost"),
                         "active": obj.get("active"),
-                        "host": obj.get("host")
+                        "host": obj.get("host"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

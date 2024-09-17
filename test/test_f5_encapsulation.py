@@ -39,8 +39,30 @@ class TestF5Encapsulation(unittest.TestCase):
                 ppp_over_dtls_enabled = True,
                 ppp_over_dtls_settings = cyperf.models.dtls_settings.DTLSSettings(
                     tls_client_profile = null, 
-                    udp_profile = null, ),
-                udp_port = 56
+                    udp_profile = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
+                udp_port = 56,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return F5Encapsulation(

@@ -19,15 +19,12 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.attack import Attack
 from cyperf.models.metadata import Metadata
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "AppsecAttack" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class AppsecAttack(BaseModel):
     """
@@ -38,124 +35,16 @@ class AppsecAttack(BaseModel):
     metadata: Optional[Metadata] = Field(default=None, alias="Metadata")
     name: Optional[StrictStr] = Field(default=None, description="The user friendly name of the attack", alias="Name")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the attack")
+    links: Optional[List[APILink]] = None
     owner: Optional[StrictStr] = Field(default=None, description="The friendly display name of the attack's owner")
     owner_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the attack's owner", alias="ownerId")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["Attack", "Description", "Metadata", "Name", "id", "owner", "ownerId"]
+    __properties: ClassVar[List[str]] = ["Attack", "Description", "Metadata", "Name", "id", "links", "owner", "ownerId"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_attack(self):
-#        if self.attack is not None:
-#            return self.attack
-#        field_info = self.__class__.__fields__["attack"]
-#        try:
-#            self.attack =  self.link_based_request(field_info.alias, "GET", return_type="Attack")
-#        except LinkNameException as e:
-#            self.attack =  self.link_based_request("attack", "GET", return_type="Attack")
-#        return self.attack
-#
-#    @rest_attack.setter
-#    def rest_attack(self, value):
-#        self.attack = value
-
-#    @property
-#    def rest_description(self):
-#        if self.description is not None:
-#            return self.description
-#        field_info = self.__class__.__fields__["description"]
-#        try:
-#            self.description =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.description =  self.link_based_request("description", "GET", return_type="str")
-#        return self.description
-#
-#    @rest_description.setter
-#    def rest_description(self, value):
-#        self.description = value
-
-#    @property
-#    def rest_metadata(self):
-#        if self.metadata is not None:
-#            return self.metadata
-#        field_info = self.__class__.__fields__["metadata"]
-#        try:
-#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="Metadata")
-#        except LinkNameException as e:
-#            self.metadata =  self.link_based_request("metadata", "GET", return_type="Metadata")
-#        return self.metadata
-#
-#    @rest_metadata.setter
-#    def rest_metadata(self, value):
-#        self.metadata = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_owner(self):
-#        if self.owner is not None:
-#            return self.owner
-#        field_info = self.__class__.__fields__["owner"]
-#        try:
-#            self.owner =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.owner =  self.link_based_request("owner", "GET", return_type="str")
-#        return self.owner
-#
-#    @rest_owner.setter
-#    def rest_owner(self, value):
-#        self.owner = value
-
-#    @property
-#    def rest_owner_id(self):
-#        if self.owner_id is not None:
-#            return self.owner_id
-#        field_info = self.__class__.__fields__["owner_id"]
-#        try:
-#            self.owner_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.owner_id =  self.link_based_request("owner_id", "GET", return_type="str")
-#        return self.owner_id
-#
-#    @rest_owner_id.setter
-#    def rest_owner_id(self, value):
-#        self.owner_id = value
-
 
 
     def to_str(self) -> str:
@@ -202,6 +91,13 @@ class AppsecAttack(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['Metadata'] = self.metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -221,79 +117,12 @@ class AppsecAttack(BaseModel):
                         "Metadata": Metadata.from_dict(obj["Metadata"]) if obj.get("Metadata") is not None else None,
                         "Name": obj.get("Name"),
                         "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "owner": obj.get("owner"),
                         "ownerId": obj.get("ownerId")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

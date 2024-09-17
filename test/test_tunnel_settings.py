@@ -48,7 +48,18 @@ class TestTunnelSettings(unittest.TestCase):
                     usernames = [
                         ''
                         ], 
-                    usernames_param = null, ),
+                    usernames_param = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 outer_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
@@ -68,7 +79,18 @@ class TestTunnelSettings(unittest.TestCase):
                     timestamp_hdr_enabled = True, 
                     tx_buffer = 56, 
                     user_mss = 56, 
-                    wscale_enabled = True, )
+                    wscale_enabled = True, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return TunnelSettings(

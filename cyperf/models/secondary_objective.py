@@ -24,10 +24,6 @@ from cyperf.models.objective_type import ObjectiveType
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "SecondaryObjective" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class SecondaryObjective(BaseModel):
     """
@@ -39,8 +35,6 @@ class SecondaryObjective(BaseModel):
     objective_unit: StrictStr = Field(description="The objective's unit.", alias="ObjectiveUnit")
     objective_value: Union[StrictFloat, StrictInt] = Field(description="The value of the secondary objective. This value will be used for the whole duration of the test.", alias="ObjectiveValue")
     type: ObjectiveType = Field(description="The objective's type (default: SimulatedUsers).", alias="Type")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Enabled", "MaxPendingSimulatedUsers", "MaxSimulatedUsersPerInterval", "ObjectiveUnit", "ObjectiveValue", "Type"]
 
     @field_validator('max_pending_simulated_users')
@@ -62,98 +56,6 @@ class SecondaryObjective(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_enabled(self):
-#        if self.enabled is not None:
-#            return self.enabled
-#        field_info = self.__class__.__fields__["enabled"]
-#        try:
-#            self.enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.enabled =  self.link_based_request("enabled", "GET", return_type="bool")
-#        return self.enabled
-#
-#    @rest_enabled.setter
-#    def rest_enabled(self, value):
-#        self.enabled = value
-
-#    @property
-#    def rest_max_pending_simulated_users(self):
-#        if self.max_pending_simulated_users is not None:
-#            return self.max_pending_simulated_users
-#        field_info = self.__class__.__fields__["max_pending_simulated_users"]
-#        try:
-#            self.max_pending_simulated_users =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.max_pending_simulated_users =  self.link_based_request("max_pending_simulated_users", "GET", return_type="str")
-#        return self.max_pending_simulated_users
-#
-#    @rest_max_pending_simulated_users.setter
-#    def rest_max_pending_simulated_users(self, value):
-#        self.max_pending_simulated_users = value
-
-#    @property
-#    def rest_max_simulated_users_per_interval(self):
-#        if self.max_simulated_users_per_interval is not None:
-#            return self.max_simulated_users_per_interval
-#        field_info = self.__class__.__fields__["max_simulated_users_per_interval"]
-#        try:
-#            self.max_simulated_users_per_interval =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.max_simulated_users_per_interval =  self.link_based_request("max_simulated_users_per_interval", "GET", return_type="int")
-#        return self.max_simulated_users_per_interval
-#
-#    @rest_max_simulated_users_per_interval.setter
-#    def rest_max_simulated_users_per_interval(self, value):
-#        self.max_simulated_users_per_interval = value
-
-#    @property
-#    def rest_objective_unit(self):
-#        if self.objective_unit is not None:
-#            return self.objective_unit
-#        field_info = self.__class__.__fields__["objective_unit"]
-#        try:
-#            self.objective_unit =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.objective_unit =  self.link_based_request("objective_unit", "GET", return_type="str")
-#        return self.objective_unit
-#
-#    @rest_objective_unit.setter
-#    def rest_objective_unit(self, value):
-#        self.objective_unit = value
-
-#    @property
-#    def rest_objective_value(self):
-#        if self.objective_value is not None:
-#            return self.objective_value
-#        field_info = self.__class__.__fields__["objective_value"]
-#        try:
-#            self.objective_value =  self.link_based_request(field_info.alias, "GET", return_type="float")
-#        except LinkNameException as e:
-#            self.objective_value =  self.link_based_request("objective_value", "GET", return_type="float")
-#        return self.objective_value
-#
-#    @rest_objective_value.setter
-#    def rest_objective_value(self, value):
-#        self.objective_value = value
-
-#    @property
-#    def rest_type(self):
-#        if self.type is not None:
-#            return self.type
-#        field_info = self.__class__.__fields__["type"]
-#        try:
-#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="ObjectiveType")
-#        except LinkNameException as e:
-#            self.type =  self.link_based_request("type", "GET", return_type="ObjectiveType")
-#        return self.type
-#
-#    @rest_type.setter
-#    def rest_type(self, value):
-#        self.type = value
-
 
 
     def to_str(self) -> str:
@@ -211,74 +113,6 @@ class SecondaryObjective(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

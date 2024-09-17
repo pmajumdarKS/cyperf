@@ -53,6 +53,17 @@ class TestDTLSSettings(unittest.TestCase):
                     immediate_close = True, 
                     key_file = null, 
                     key_file_password = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [
@@ -106,7 +117,18 @@ class TestDTLSSettings(unittest.TestCase):
                     recv_buff_size_res = 56, 
                     rx_buffer = 56, 
                     sock_group = '', 
-                    tx_buffer = 56, )
+                    tx_buffer = 56, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return DTLSSettings(

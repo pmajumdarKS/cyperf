@@ -23,10 +23,6 @@ from typing_extensions import Annotated
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "ProtectedSubnetConfig" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class ProtectedSubnetConfig(BaseModel):
     """
@@ -39,8 +35,6 @@ class ProtectedSubnetConfig(BaseModel):
     prefix: StrictInt = Field(description="The length (in bits) of the subnet mask to be applied to all the addresses created in the range.", alias="Prefix")
     single_protected_subnet: StrictBool = Field(alias="SingleProtectedSubnet")
     start: Annotated[str, Field(strict=True)] = Field(description="The base address for enumerating all the emulated subnets in the range", alias="Start")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["Automatic", "HostsIncrement", "HostsPrefix", "Increment", "Prefix", "SingleProtectedSubnet", "Start"]
 
     @field_validator('hosts_increment')
@@ -69,113 +63,6 @@ class ProtectedSubnetConfig(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_automatic(self):
-#        if self.automatic is not None:
-#            return self.automatic
-#        field_info = self.__class__.__fields__["automatic"]
-#        try:
-#            self.automatic =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.automatic =  self.link_based_request("automatic", "GET", return_type="bool")
-#        return self.automatic
-#
-#    @rest_automatic.setter
-#    def rest_automatic(self, value):
-#        self.automatic = value
-
-#    @property
-#    def rest_hosts_increment(self):
-#        if self.hosts_increment is not None:
-#            return self.hosts_increment
-#        field_info = self.__class__.__fields__["hosts_increment"]
-#        try:
-#            self.hosts_increment =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.hosts_increment =  self.link_based_request("hosts_increment", "GET", return_type="str")
-#        return self.hosts_increment
-#
-#    @rest_hosts_increment.setter
-#    def rest_hosts_increment(self, value):
-#        self.hosts_increment = value
-
-#    @property
-#    def rest_hosts_prefix(self):
-#        if self.hosts_prefix is not None:
-#            return self.hosts_prefix
-#        field_info = self.__class__.__fields__["hosts_prefix"]
-#        try:
-#            self.hosts_prefix =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.hosts_prefix =  self.link_based_request("hosts_prefix", "GET", return_type="int")
-#        return self.hosts_prefix
-#
-#    @rest_hosts_prefix.setter
-#    def rest_hosts_prefix(self, value):
-#        self.hosts_prefix = value
-
-#    @property
-#    def rest_increment(self):
-#        if self.increment is not None:
-#            return self.increment
-#        field_info = self.__class__.__fields__["increment"]
-#        try:
-#            self.increment =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.increment =  self.link_based_request("increment", "GET", return_type="str")
-#        return self.increment
-#
-#    @rest_increment.setter
-#    def rest_increment(self, value):
-#        self.increment = value
-
-#    @property
-#    def rest_prefix(self):
-#        if self.prefix is not None:
-#            return self.prefix
-#        field_info = self.__class__.__fields__["prefix"]
-#        try:
-#            self.prefix =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.prefix =  self.link_based_request("prefix", "GET", return_type="int")
-#        return self.prefix
-#
-#    @rest_prefix.setter
-#    def rest_prefix(self, value):
-#        self.prefix = value
-
-#    @property
-#    def rest_single_protected_subnet(self):
-#        if self.single_protected_subnet is not None:
-#            return self.single_protected_subnet
-#        field_info = self.__class__.__fields__["single_protected_subnet"]
-#        try:
-#            self.single_protected_subnet =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.single_protected_subnet =  self.link_based_request("single_protected_subnet", "GET", return_type="bool")
-#        return self.single_protected_subnet
-#
-#    @rest_single_protected_subnet.setter
-#    def rest_single_protected_subnet(self, value):
-#        self.single_protected_subnet = value
-
-#    @property
-#    def rest_start(self):
-#        if self.start is not None:
-#            return self.start
-#        field_info = self.__class__.__fields__["start"]
-#        try:
-#            self.start =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.start =  self.link_based_request("start", "GET", return_type="str")
-#        return self.start
-#
-#    @rest_start.setter
-#    def rest_start(self, value):
-#        self.start = value
-
 
 
     def to_str(self) -> str:
@@ -234,74 +121,6 @@ class ProtectedSubnetConfig(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

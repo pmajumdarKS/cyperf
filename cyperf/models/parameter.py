@@ -19,14 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.parameter_metadata import ParameterMetadata
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Parameter" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Parameter(BaseModel):
     """
@@ -41,184 +38,16 @@ class Parameter(BaseModel):
     type: Optional[StrictStr] = Field(default=None, description="The type of the parameter", alias="Type")
     var_field: Optional[StrictStr] = Field(default=None, description="The name of the ES document field", alias="field")
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the parameter")
+    links: Optional[List[APILink]] = None
     operator: Optional[StrictStr] = Field(default=None, description="The operator that the parameter supports")
     query_param: Optional[StrictStr] = Field(default=None, description="The corresponding query param", alias="queryParam")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["DefaultArrayElements", "DefaultSource", "DefaultValue", "ElementType", "Metadata", "Sources", "Type", "field", "id", "operator", "queryParam"]
+    __properties: ClassVar[List[str]] = ["DefaultArrayElements", "DefaultSource", "DefaultValue", "ElementType", "Metadata", "Sources", "Type", "field", "id", "links", "operator", "queryParam"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_default_array_elements(self):
-#        if self.default_array_elements is not None:
-#            return self.default_array_elements
-#        field_info = self.__class__.__fields__["default_array_elements"]
-#        try:
-#            self.default_array_elements =  self.link_based_request(field_info.alias, "GET", return_type="List[Dict[str, str]]")
-#        except LinkNameException as e:
-#            self.default_array_elements =  self.link_based_request("default_array_elements", "GET", return_type="List[Dict[str, str]]")
-#        return self.default_array_elements
-#
-#    @rest_default_array_elements.setter
-#    def rest_default_array_elements(self, value):
-#        self.default_array_elements = value
-
-#    @property
-#    def rest_default_source(self):
-#        if self.default_source is not None:
-#            return self.default_source
-#        field_info = self.__class__.__fields__["default_source"]
-#        try:
-#            self.default_source =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.default_source =  self.link_based_request("default_source", "GET", return_type="str")
-#        return self.default_source
-#
-#    @rest_default_source.setter
-#    def rest_default_source(self, value):
-#        self.default_source = value
-
-#    @property
-#    def rest_default_value(self):
-#        if self.default_value is not None:
-#            return self.default_value
-#        field_info = self.__class__.__fields__["default_value"]
-#        try:
-#            self.default_value =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.default_value =  self.link_based_request("default_value", "GET", return_type="str")
-#        return self.default_value
-#
-#    @rest_default_value.setter
-#    def rest_default_value(self, value):
-#        self.default_value = value
-
-#    @property
-#    def rest_element_type(self):
-#        if self.element_type is not None:
-#            return self.element_type
-#        field_info = self.__class__.__fields__["element_type"]
-#        try:
-#            self.element_type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.element_type =  self.link_based_request("element_type", "GET", return_type="str")
-#        return self.element_type
-#
-#    @rest_element_type.setter
-#    def rest_element_type(self, value):
-#        self.element_type = value
-
-#    @property
-#    def rest_metadata(self):
-#        if self.metadata is not None:
-#            return self.metadata
-#        field_info = self.__class__.__fields__["metadata"]
-#        try:
-#            self.metadata =  self.link_based_request(field_info.alias, "GET", return_type="ParameterMetadata")
-#        except LinkNameException as e:
-#            self.metadata =  self.link_based_request("metadata", "GET", return_type="ParameterMetadata")
-#        return self.metadata
-#
-#    @rest_metadata.setter
-#    def rest_metadata(self, value):
-#        self.metadata = value
-
-#    @property
-#    def rest_sources(self):
-#        if self.sources is not None:
-#            return self.sources
-#        field_info = self.__class__.__fields__["sources"]
-#        try:
-#            self.sources =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.sources =  self.link_based_request("sources", "GET", return_type="List[str]")
-#        return self.sources
-#
-#    @rest_sources.setter
-#    def rest_sources(self, value):
-#        self.sources = value
-
-#    @property
-#    def rest_type(self):
-#        if self.type is not None:
-#            return self.type
-#        field_info = self.__class__.__fields__["type"]
-#        try:
-#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.type =  self.link_based_request("type", "GET", return_type="str")
-#        return self.type
-#
-#    @rest_type.setter
-#    def rest_type(self, value):
-#        self.type = value
-
-#    @property
-#    def rest_var_field(self):
-#        if self.var_field is not None:
-#            return self.var_field
-#        field_info = self.__class__.__fields__["var_field"]
-#        try:
-#            self.var_field =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.var_field =  self.link_based_request("var_field", "GET", return_type="str")
-#        return self.var_field
-#
-#    @rest_var_field.setter
-#    def rest_var_field(self, value):
-#        self.var_field = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_operator(self):
-#        if self.operator is not None:
-#            return self.operator
-#        field_info = self.__class__.__fields__["operator"]
-#        try:
-#            self.operator =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.operator =  self.link_based_request("operator", "GET", return_type="str")
-#        return self.operator
-#
-#    @rest_operator.setter
-#    def rest_operator(self, value):
-#        self.operator = value
-
-#    @property
-#    def rest_query_param(self):
-#        if self.query_param is not None:
-#            return self.query_param
-#        field_info = self.__class__.__fields__["query_param"]
-#        try:
-#            self.query_param =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.query_param =  self.link_based_request("query_param", "GET", return_type="str")
-#        return self.query_param
-#
-#    @rest_query_param.setter
-#    def rest_query_param(self, value):
-#        self.query_param = value
-
 
 
     def to_str(self) -> str:
@@ -258,6 +87,13 @@ class Parameter(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of metadata
         if self.metadata:
             _dict['Metadata'] = self.metadata.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -281,79 +117,12 @@ class Parameter(BaseModel):
                         "Type": obj.get("Type"),
                         "field": obj.get("field"),
                         "id": obj.get("id"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "operator": obj.get("operator"),
                         "queryParam": obj.get("queryParam")
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -44,6 +44,17 @@ class TestAgentAssignmentDetails(unittest.TestCase):
                 id = '',
                 interfaces = [
                     ''
+                    ],
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
                     ]
             )
         else:

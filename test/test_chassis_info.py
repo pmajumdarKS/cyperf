@@ -35,6 +35,7 @@ class TestChassisInfo(unittest.TestCase):
         model = ChassisInfo()
         if include_optional:
             return ChassisInfo(
+                checkout_id = 56,
                 compute_node_id = '',
                 port_id = ''
             )

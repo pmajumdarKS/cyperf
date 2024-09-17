@@ -5,12 +5,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**auth_method** | [**Enum**](Enum.md) |  | [optional] 
-**explicit_proxy** | **bool** | This is an authentication profile used along with an explicit proxy | [optional] 
-**idp_type** | [**Enum**](Enum.md) |  | [optional] 
-**sgw_name** | **str** | The name of the secure gateway | [optional] 
-**sgw_type** | **str** | The type of the secure gateway | [optional] 
-**sgw_type_value** | **str** | The agent secure gateway type value of the secure gateway type | [optional] 
+**direction** | **str** | The direction of the strike | [optional] 
+**is_banner** | **bool** | Indicates that this is a command that is required, can only be add once and also must be the first | [optional] 
+**keywords** | [**List[ConfigMetadataConfigDataValue]**](ConfigMetadataConfigDataValue.md) | The keywords of the strike | [optional] 
+**legacy_names** | **List[str]** | The names of the equivalent application/strike | [optional] 
+**protocol** | **str** | The protocol of the strike | [optional] 
+**rtp_profile_meta** | [**RTPProfileMeta**](RTPProfileMeta.md) |  | [optional] 
+**references** | [**List[Reference]**](Reference.md) | The references of the strike | [optional] 
+**requires_uniqueness** | **bool** | If true, for applications with the same protocol id, application/attack must have been uniquely identified in previous commands | [optional] 
+**severity** | **str** | The severity of the strike | [optional] 
+**skip_attack_generation** | **bool** | If true, don&#39;t generate an attack for this strike | [optional] 
+**sort_severity** | **str** | The field by which the severity is sorted | [optional] 
+**static** | **bool** | If true, the application/strike is managed directly by the controller | [optional] 
+**supported_apps** | **List[str]** | The apps that this strike can be used with | [optional] 
+**year** | **str** | The year of the strike | [optional] 
 
 ## Example
 

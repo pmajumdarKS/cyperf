@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the HTTP profile. | 
 **params** | [**List[Params]**](Params.md) | The list of parameters present in the HTTP profile. | [optional] 
 **use_application_server_headers** | **bool** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

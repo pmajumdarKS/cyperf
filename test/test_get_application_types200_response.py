@@ -50,21 +50,37 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                     ], 
                                 is_strike = True, 
                                 metadata = cyperf.models.metadata.Metadata(
-                                    auth_method = cyperf.models.enum.Enum(
-                                        choices = [
-                                            cyperf.models.choice.Choice(
-                                                description = '', 
-                                                hidden = True, 
-                                                name = '', 
-                                                value = '', )
-                                            ], 
-                                        default = '', ), 
-                                    explicit_proxy = True, 
-                                    idp_type = cyperf.models.enum.Enum(
-                                        default = '', ), 
-                                    sgw_name = '', 
-                                    sgw_type = '', 
-                                    sgw_type_value = '', ), 
+                                    direction = '', 
+                                    is_banner = True, 
+                                    keywords = [
+                                        null
+                                        ], 
+                                    legacy_names = [
+                                        ''
+                                        ], 
+                                    protocol = '', 
+                                    rtp_profile_meta = cyperf.models.rtp_profile_meta.RTPProfileMeta(
+                                        custom_header_len_offset = 56, 
+                                        custom_header_len_size = 56, 
+                                        custom_header_signature = 'YQ==', 
+                                        custom_header_signature_offset = 56, 
+                                        custom_header_size = 56, 
+                                        encryption_mode = '', 
+                                        requires_rtp_profile = True, ), 
+                                    references = [
+                                        cyperf.models.reference.Reference(
+                                            type = '', 
+                                            value = '', )
+                                        ], 
+                                    requires_uniqueness = True, 
+                                    severity = '', 
+                                    skip_attack_generation = True, 
+                                    sort_severity = '', 
+                                    static = True, 
+                                    supported_apps = [
+                                        ''
+                                        ], 
+                                    year = '', ), 
                                 name = '', 
                                 parameters = [
                                     cyperf.models.parameter.Parameter(
@@ -82,8 +98,30 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                                         type = '', 
                                         field = '', 
                                         id = '', 
+                                        links = [
+                                            cyperf.models.api_link.APILink(
+                                                content_type = '', 
+                                                href = '', 
+                                                id = '', 
+                                                method = '', 
+                                                name = '', 
+                                                references_count = 56, 
+                                                rel = 'self', 
+                                                type = 'self', )
+                                            ], 
                                         operator = '', 
                                         query_param = '', )
+                                    ], 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        id = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
                                     ], )
                             ], 
                         connections = [
@@ -137,10 +175,15 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                         md5_content = '', 
                         md5_metadata = '', 
                         metadata = cyperf.models.metadata.Metadata(
-                            explicit_proxy = True, 
-                            sgw_name = '', 
-                            sgw_type = '', 
-                            sgw_type_value = '', ), 
+                            direction = '', 
+                            is_banner = True, 
+                            protocol = '', 
+                            requires_uniqueness = True, 
+                            severity = '', 
+                            skip_attack_generation = True, 
+                            sort_severity = '', 
+                            static = True, 
+                            year = '', ), 
                         name = '', 
                         parameters = [
                             cyperf.models.parameter.Parameter(
@@ -166,7 +209,8 @@ class TestGetApplicationTypes200Response(unittest.TestCase):
                         supports_server_http_profile = True, 
                         supports_strikes = True, 
                         supports_tls = True, 
-                        id = '', )
+                        id = '', 
+                        links = , )
                     ],
                 total_count = 56
             )

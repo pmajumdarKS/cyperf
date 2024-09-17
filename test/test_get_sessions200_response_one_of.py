@@ -38,7 +38,73 @@ class TestGetSessions200ResponseOneOf(unittest.TestCase):
                 data = [
                     cyperf.models.session.Session(
                         application = '', 
-                        config = null, 
+                        config = cyperf.models.appsec_config.AppsecConfig(
+                            config = cyperf.models.config.Config(
+                                attack_profiles = [
+                                    null
+                                    ], 
+                                config_validation = null, 
+                                custom_dashboards = null, 
+                                expected_disk_space = [
+                                    cyperf.models.expected_disk_space.ExpectedDiskSpace(
+                                        message = cyperf.models.expected_disk_space_message.ExpectedDiskSpace_message(
+                                            per_minute = '', 
+                                            per_second = '', 
+                                            total = '', ), 
+                                        pretty_size = cyperf.models.expected_disk_space_pretty_size.ExpectedDiskSpace_prettySize(
+                                            per_minute = '', 
+                                            per_second = '', 
+                                            total = '', ), 
+                                        size = cyperf.models.expected_disk_space_size.ExpectedDiskSpace_size(
+                                            per_minute = 56, 
+                                            per_second = 56, 
+                                            total = 56, ), )
+                                    ], 
+                                network_profiles = [
+                                    cyperf.models.network_profile.NetworkProfile(
+                                        dut_network_segment = [
+                                            null
+                                            ], 
+                                        ip_network_segment = [
+                                            null
+                                            ], 
+                                        id = '', 
+                                        links = [
+                                            cyperf.models.api_link.APILink(
+                                                content_type = '', 
+                                                href = '', 
+                                                id = '', 
+                                                method = '', 
+                                                name = '', 
+                                                references_count = 56, 
+                                                rel = 'self', 
+                                                type = 'self', )
+                                            ], )
+                                    ], 
+                                traffic_profiles = [
+                                    null
+                                    ], 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        id = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
+                                    ], 
+                                validate = [
+                                    'YQ=='
+                                    ], ), 
+                            session_id = '', 
+                            template_id = '', 
+                            config_type_name = '', 
+                            data_model_version = '', 
+                            id = '', 
+                            links = , 
+                            name = '', ), 
                         config_name = '', 
                         config_url = '', 
                         created = 56, 
@@ -46,6 +112,7 @@ class TestGetSessions200ResponseOneOf(unittest.TestCase):
                         id = '', 
                         index = 56, 
                         last_visited = 56, 
+                        links = , 
                         meta = [
                             cyperf.models.pair.Pair(
                                 id = 56, 

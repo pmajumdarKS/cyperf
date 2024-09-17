@@ -41,6 +41,17 @@ class TestAgentAssignmentByPort(unittest.TestCase):
                     log_level = null, 
                     max_capture_size = 56, ),
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 port_id = ''
             )
         else:

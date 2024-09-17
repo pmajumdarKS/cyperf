@@ -62,12 +62,6 @@ class TestTestResultsApi(unittest.TestCase):
         """
         pass
 
-    def test_get_result_tags(self) -> None:
-        """Test case for get_result_tags
-
-        """
-        pass
-
     def test_get_results(self) -> None:
         """Test case for get_results
 
@@ -82,6 +76,12 @@ class TestTestResultsApi(unittest.TestCase):
 
     def test_get_results_results_id_files_files_id_content(self) -> None:
         """Test case for get_results_results_id_files_files_id_content
+
+        """
+        pass
+
+    def test_get_results_tags(self) -> None:
+        """Test case for get_results_tags
 
         """
         pass

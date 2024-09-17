@@ -41,7 +41,18 @@ class TestAttackTrack(unittest.TestCase):
                 add_actions = [
                     'YQ=='
                     ],
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return AttackTrack(

@@ -48,7 +48,18 @@ class TestPANGPSettings(unittest.TestCase):
                     usernames = [
                         ''
                         ], 
-                    usernames_param = null, ),
+                    usernames_param = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 outer_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
@@ -69,6 +80,17 @@ class TestPANGPSettings(unittest.TestCase):
                     tx_buffer = 56, 
                     user_mss = 56, 
                     wscale_enabled = True, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 esp_probe_retry_timeout = 56,
                 esp_probe_timeout = 56,
                 is_portal = True,
@@ -90,6 +112,17 @@ class TestPANGPSettings(unittest.TestCase):
                     immediate_close = True, 
                     key_file = null, 
                     key_file_password = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [
@@ -140,7 +173,18 @@ class TestPANGPSettings(unittest.TestCase):
                     esp_over_udp_enabled = True, 
                     esp_over_udp_settings = null, 
                     encapsulation_mode = 'ESP_OVER_UDP', 
-                    udp_port = 56, ),
+                    udp_port = 56, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 portal_hostname = '02::84',
                 vpn_gateway = '',
                 vpn_gateways = [

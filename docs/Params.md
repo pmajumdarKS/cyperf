@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **value** | **str** | The value of the parameter. | [optional] 
 **file_upload** | **List[bytearray]** |  | [optional] 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **supports_dynamic_payload** | **bool** | A value that indicates if the parameter can have dynamic payload. | [optional] 
 **upload_url** | **str** | The URL where the file parameter content could be uploaded. | [optional] 
 

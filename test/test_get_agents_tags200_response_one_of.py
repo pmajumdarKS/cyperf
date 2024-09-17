@@ -14,10 +14,10 @@
 
 import unittest
 
-from cyperf.models.get_agent_tags200_response import GetAgentTags200Response
+from cyperf.models.get_agents_tags200_response_one_of import GetAgentsTags200ResponseOneOf
 
-class TestGetAgentTags200Response(unittest.TestCase):
-    """GetAgentTags200Response unit test stubs"""
+class TestGetAgentsTags200ResponseOneOf(unittest.TestCase):
+    """GetAgentsTags200ResponseOneOf unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,16 +25,16 @@ class TestGetAgentTags200Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetAgentTags200Response:
-        """Test GetAgentTags200Response
+    def make_instance(self, include_optional) -> GetAgentsTags200ResponseOneOf:
+        """Test GetAgentsTags200ResponseOneOf
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetAgentTags200Response`
+        # uncomment below to create an instance of `GetAgentsTags200ResponseOneOf`
         """
-        model = GetAgentTags200Response()
+        model = GetAgentsTags200ResponseOneOf()
         if include_optional:
-            return GetAgentTags200Response(
+            return GetAgentsTags200ResponseOneOf(
                 data = [
                     cyperf.models.agents_group.AgentsGroup(
                         agents = [
@@ -47,12 +47,12 @@ class TestGetAgentTags200Response(unittest.TestCase):
                 total_count = 56
             )
         else:
-            return GetAgentTags200Response(
+            return GetAgentsTags200ResponseOneOf(
         )
         """
 
-    def testGetAgentTags200Response(self):
-        """Test GetAgentTags200Response"""
+    def testGetAgentsTags200ResponseOneOf(self):
+        """Test GetAgentsTags200ResponseOneOf"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -41,6 +41,17 @@ class TestAppsecApp(unittest.TestCase):
                 static = True,
                 user_defined = True,
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 owner = '',
                 owner_id = ''
             )

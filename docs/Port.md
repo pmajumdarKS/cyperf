@@ -8,7 +8,11 @@ Name | Type | Description | Notes
 **disabled** | **bool** |  | [optional] 
 **id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
+**owner** | **str** |  | [optional] 
+**owner_id** | **str** |  | [optional] 
 **speed** | **str** |  | [optional] 
+**status** | **str** |  | [optional] 
+**traffic_status** | **str** |  | [optional] 
 
 ## Example
 

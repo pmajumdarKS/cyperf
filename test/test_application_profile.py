@@ -37,8 +37,30 @@ class TestApplicationProfile(unittest.TestCase):
             return ApplicationProfile(
                 active = True,
                 traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
+                    default_transport_profile = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 applications = [
                     null
                     ],
@@ -66,10 +88,30 @@ class TestApplicationProfile(unittest.TestCase):
                                 ], 
                             type = null, 
                             unit = null, 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     timeline_segments = [
                         null
+                        ], 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
                         ], ),
                 add_applications = [
                     cyperf.models.external_resource_info.ExternalResourceInfo(

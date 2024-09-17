@@ -19,14 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.esp_over_udp_settings import ESPOverUDPSettings
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "PANGPEncapsulation" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class PANGPEncapsulation(BaseModel):
     """
@@ -36,9 +33,8 @@ class PANGPEncapsulation(BaseModel):
     esp_over_udp_settings: Optional[ESPOverUDPSettings] = Field(default=None, alias="ESPOverUDPSettings")
     encapsulation_mode: StrictStr = Field(description="The encapsulation mode for inner traffic.", alias="EncapsulationMode")
     udp_port: StrictInt = Field(alias="UdpPort")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["ESPOverUDPEnabled", "ESPOverUDPSettings", "EncapsulationMode", "UdpPort"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["ESPOverUDPEnabled", "ESPOverUDPSettings", "EncapsulationMode", "UdpPort", "links"]
 
     @field_validator('encapsulation_mode')
     def encapsulation_mode_validate_enum(cls, value):
@@ -52,68 +48,6 @@ class PANGPEncapsulation(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_esp_over_udp_enabled(self):
-#        if self.esp_over_udp_enabled is not None:
-#            return self.esp_over_udp_enabled
-#        field_info = self.__class__.__fields__["esp_over_udp_enabled"]
-#        try:
-#            self.esp_over_udp_enabled =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.esp_over_udp_enabled =  self.link_based_request("esp_over_udp_enabled", "GET", return_type="bool")
-#        return self.esp_over_udp_enabled
-#
-#    @rest_esp_over_udp_enabled.setter
-#    def rest_esp_over_udp_enabled(self, value):
-#        self.esp_over_udp_enabled = value
-
-#    @property
-#    def rest_esp_over_udp_settings(self):
-#        if self.esp_over_udp_settings is not None:
-#            return self.esp_over_udp_settings
-#        field_info = self.__class__.__fields__["esp_over_udp_settings"]
-#        try:
-#            self.esp_over_udp_settings =  self.link_based_request(field_info.alias, "GET", return_type="ESPOverUDPSettings")
-#        except LinkNameException as e:
-#            self.esp_over_udp_settings =  self.link_based_request("esp_over_udp_settings", "GET", return_type="ESPOverUDPSettings")
-#        return self.esp_over_udp_settings
-#
-#    @rest_esp_over_udp_settings.setter
-#    def rest_esp_over_udp_settings(self, value):
-#        self.esp_over_udp_settings = value
-
-#    @property
-#    def rest_encapsulation_mode(self):
-#        if self.encapsulation_mode is not None:
-#            return self.encapsulation_mode
-#        field_info = self.__class__.__fields__["encapsulation_mode"]
-#        try:
-#            self.encapsulation_mode =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.encapsulation_mode =  self.link_based_request("encapsulation_mode", "GET", return_type="str")
-#        return self.encapsulation_mode
-#
-#    @rest_encapsulation_mode.setter
-#    def rest_encapsulation_mode(self, value):
-#        self.encapsulation_mode = value
-
-#    @property
-#    def rest_udp_port(self):
-#        if self.udp_port is not None:
-#            return self.udp_port
-#        field_info = self.__class__.__fields__["udp_port"]
-#        try:
-#            self.udp_port =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.udp_port =  self.link_based_request("udp_port", "GET", return_type="int")
-#        return self.udp_port
-#
-#    @rest_udp_port.setter
-#    def rest_udp_port(self, value):
-#        self.udp_port = value
-
 
 
     def to_str(self) -> str:
@@ -151,6 +85,13 @@ class PANGPEncapsulation(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of esp_over_udp_settings
         if self.esp_over_udp_settings:
             _dict['ESPOverUDPSettings'] = self.esp_over_udp_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -168,78 +109,11 @@ class PANGPEncapsulation(BaseModel):
             "ESPOverUDPEnabled": obj.get("ESPOverUDPEnabled"),
                         "ESPOverUDPSettings": ESPOverUDPSettings.from_dict(obj["ESPOverUDPSettings"]) if obj.get("ESPOverUDPSettings") is not None else None,
                         "EncapsulationMode": obj.get("EncapsulationMode"),
-                        "UdpPort": obj.get("UdpPort")
+                        "UdpPort": obj.get("UdpPort"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

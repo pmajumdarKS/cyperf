@@ -18,23 +18,23 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from cyperf.models.agents_group import AgentsGroup
-from cyperf.models.get_agent_tags200_response_one_of import GetAgentTags200ResponseOneOf
+from cyperf.models.get_agents_tags200_response_one_of import GetAgentsTags200ResponseOneOf
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-GETAGENTTAGS200RESPONSE_ONE_OF_SCHEMAS = ["GetAgentTags200ResponseOneOf", "List[AgentsGroup]"]
+GETAGENTSTAGS200RESPONSE_ONE_OF_SCHEMAS = ["GetAgentsTags200ResponseOneOf", "List[AgentsGroup]"]
 
-class GetAgentTags200Response(BaseModel):
+class GetAgentsTags200Response(BaseModel):
     """
-    GetAgentTags200Response
+    GetAgentsTags200Response
     """
     # data type: List[AgentsGroup]
     oneof_schema_1_validator: Optional[List[AgentsGroup]] = None
-    # data type: GetAgentTags200ResponseOneOf
-    oneof_schema_2_validator: Optional[GetAgentTags200ResponseOneOf] = None
-    actual_instance: Optional[Union[GetAgentTags200ResponseOneOf, List[AgentsGroup]]] = None
-    one_of_schemas: Set[str] = { "GetAgentTags200ResponseOneOf", "List[AgentsGroup]" }
+    # data type: GetAgentsTags200ResponseOneOf
+    oneof_schema_2_validator: Optional[GetAgentsTags200ResponseOneOf] = None
+    actual_instance: Optional[Union[GetAgentsTags200ResponseOneOf, List[AgentsGroup]]] = None
+    one_of_schemas: Set[str] = { "GetAgentsTags200ResponseOneOf", "List[AgentsGroup]" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -54,7 +54,7 @@ class GetAgentTags200Response(BaseModel):
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = GetAgentTags200Response.model_construct()
+        instance = GetAgentsTags200Response.model_construct()
         error_messages = []
         match = 0
         # validate data type: List[AgentsGroup]
@@ -63,17 +63,17 @@ class GetAgentTags200Response(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: GetAgentTags200ResponseOneOf
-        if not isinstance(v, GetAgentTags200ResponseOneOf):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `GetAgentTags200ResponseOneOf`")
+        # validate data type: GetAgentsTags200ResponseOneOf
+        if not isinstance(v, GetAgentsTags200ResponseOneOf):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `GetAgentsTags200ResponseOneOf`")
         else:
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in GetAgentTags200Response with oneOf schemas: GetAgentTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in GetAgentsTags200Response with oneOf schemas: GetAgentsTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in GetAgentTags200Response with oneOf schemas: GetAgentTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in GetAgentsTags200Response with oneOf schemas: GetAgentsTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -98,19 +98,19 @@ class GetAgentTags200Response(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into GetAgentTags200ResponseOneOf
+        # deserialize data into GetAgentsTags200ResponseOneOf
         try:
-            instance.actual_instance = GetAgentTags200ResponseOneOf.from_json(json_str)
+            instance.actual_instance = GetAgentsTags200ResponseOneOf.from_json(json_str)
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into GetAgentTags200Response with oneOf schemas: GetAgentTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into GetAgentsTags200Response with oneOf schemas: GetAgentsTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into GetAgentTags200Response with oneOf schemas: GetAgentTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into GetAgentsTags200Response with oneOf schemas: GetAgentsTags200ResponseOneOf, List[AgentsGroup]. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -124,7 +124,7 @@ class GetAgentTags200Response(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], GetAgentTags200ResponseOneOf, List[AgentsGroup]]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], GetAgentsTags200ResponseOneOf, List[AgentsGroup]]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

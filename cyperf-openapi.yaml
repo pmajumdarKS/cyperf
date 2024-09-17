@@ -105,6 +105,10 @@ components:
           x-readonly: 'true'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     AdvancedSettings:
       properties:
@@ -248,6 +252,10 @@ components:
           x-put: '*'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         portId:
           description: The id of the port that is assigned.
           type: string
@@ -274,6 +282,10 @@ components:
           description: The names of the assigned test interfaces for the agent.
           items:
             type: string
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
           type: array
       required:
       - id
@@ -306,6 +318,10 @@ components:
           description: The tags according to which the agents are dynamically assigned.
           items:
             type: string
+          type: array
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
           type: array
       required:
       - ByTag
@@ -527,6 +543,10 @@ components:
             x-patch: -,*
             x-post: '*'
             x-put: -,*
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
           modify-excluded-dut-recursively:
             items:
               $ref: '#/components/schemas/UpdateNetworkMapping'
@@ -580,6 +600,10 @@ components:
             type: array
             x-operation: 'true'
             x-post: -,AddApps
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
           modify-excluded-dut-recursively:
             items:
               $ref: '#/components/schemas/UpdateNetworkMapping'
@@ -688,6 +712,10 @@ components:
           description: The unique identifier of the flow
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     AppsecApp:
       properties:
@@ -712,6 +740,10 @@ components:
           description: The unique identifier of the application
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         owner:
           description: The friendly display name of the application's owner
           readOnly: 'true'
@@ -738,6 +770,10 @@ components:
           description: The unique identifier of the attack
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         owner:
           description: The friendly display name of the attack's owner
           readOnly: 'true'
@@ -761,6 +797,10 @@ components:
             from which this configuration was created
           readOnly: 'true'
           type: string
+        configTypeName:
+          description: Used for API clients to decide what type of config they have
+            loaded
+          type: string
         dataModelVersion:
           description: The version of the data model used for this configuration
           readOnly: 'true'
@@ -769,6 +809,10 @@ components:
           description: The unique identifier of the CyPerf configuration
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         name:
           description: The name of the configuration
           type: string
@@ -944,6 +988,10 @@ components:
             type: array
             x-operation: 'true'
             x-post: CreateAttack
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
           modify-excluded-dut-recursively:
             items:
               $ref: '#/components/schemas/UpdateNetworkMapping'
@@ -975,6 +1023,10 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     AttackProfile:
       allOf:
@@ -1013,6 +1065,10 @@ components:
             type: array
             x-operation: 'true'
             x-post: -,AddAttacks
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
           modify-excluded-dut-recursively:
             items:
               $ref: '#/components/schemas/UpdateNetworkMapping'
@@ -1093,6 +1149,10 @@ components:
           x-post: -,CreateAttackAction
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       type: object
@@ -1142,6 +1202,10 @@ components:
           description: The unique identifier of the profile
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         type:
           description: The type of the authentication profile
           readOnly: 'true'
@@ -1205,6 +1269,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     AuthenticationSettings:
       properties:
@@ -1241,6 +1309,10 @@ components:
           maxLength: '4096'
           type: string
           x-auto: default(ipsec)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     AutomaticIpType:
       enum:
@@ -1392,6 +1464,10 @@ components:
           maxLength: '200'
           type: string
           x-auto: default(appsec)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         playlistColumnName:
           type: string
         playlistFilename:
@@ -1438,6 +1514,10 @@ components:
       type: object
     ChassisInfo:
       properties:
+        checkoutID:
+          description: The id of the compute node used for checkout licenses
+          readOnly: 'true'
+          type: integer
         computeNodeID:
           description: The id of the compute node where the agent is running
           readOnly: 'true'
@@ -1532,6 +1612,10 @@ components:
           VPNGateway:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
         required:
         - VPNGateway
         type: object
@@ -1561,6 +1645,10 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(1024)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - DTLSEnabled
       - UdpPort
@@ -1595,14 +1683,18 @@ components:
           items:
             $ref: '#/components/schemas/Parameter'
           type: array
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     ComputeNode:
       properties:
+        aggregatedMode:
+          type: boolean
         appMode:
           $ref: '#/components/schemas/AppMode'
         id:
-          type: string
-        mode:
           type: string
         name:
           type: string
@@ -1610,6 +1702,10 @@ components:
           items:
             $ref: '#/components/schemas/Port'
           type: array
+        slotNumber:
+          type: integer
+        status:
+          type: string
         type:
           type: string
       type: object
@@ -1664,6 +1760,10 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         validate:
           items:
             format: byte
@@ -1767,6 +1867,10 @@ components:
           type: array
           x-get: '*'
           x-multiplicity: list
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - IsValidated
       type: object
@@ -1889,6 +1993,10 @@ components:
           x-auto: default(http)
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - ClientPort
@@ -1925,6 +2033,10 @@ components:
           type: array
         id:
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         name:
           type: string
         serial:
@@ -1957,6 +2069,10 @@ components:
           x-get: '*,*'
           x-multiplicity: list
           x-post: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - Active
       type: object
@@ -1988,6 +2104,10 @@ components:
         enablePerconnect:
           description: The enable perconnection value.
           type: boolean
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         nameServers:
           description: A list of name servers.
           items:
@@ -2034,6 +2154,122 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
+      type: object
+    DTLSStack:
+      properties:
+        DTLSRangeName:
+          $ref: '#/components/schemas/Name'
+        Epoch:
+          format: int32
+          maximum: '65535'
+          minimum: '0'
+          type: integer
+          x-auto: default(1)
+        EpochIncr:
+          format: int32
+          maximum: '65535'
+          minimum: '0'
+          type: integer
+          x-auto: default(1)
+        IPRange:
+          allOf:
+          - $ref: '#/components/schemas/IPRange'
+          x-auto: default(method(GetDefaultIPRangeForDTLS))
+          x-get: '*'
+          x-multiplicity: required
+          x-patch: '*'
+          x-put: '*'
+        InIV:
+          description: 'The in IV start for the DTLSRange (default: 0x22222222).'
+          pattern: ^0x[A-Fa-f0-9]{8}$
+          type: string
+          x-auto: default(0x22222222)
+        InIVIncr:
+          description: 'The in IV increment for the DTLSRange (default: 0x00000001).'
+          pattern: ^0x[A-Fa-f0-9]{8}$
+          type: string
+          x-auto: default(0x00000001)
+        InKey:
+          description: 'The in key start for the DTLSRange (default: 0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB).'
+          pattern: ^0x[A-Fa-f0-9]{64}$
+          type: string
+          x-auto: default(0xBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB)
+        InKeyIncr:
+          description: 'The in key increment for the DTLSRange (default: 0x0000000000000000000000000000000000000000000000000000000000000001).'
+          pattern: ^0x[A-Fa-f0-9]{64}$
+          type: string
+          x-auto: default(0x0000000000000000000000000000000000000000000000000000000000000001)
+        OutIV:
+          description: 'The out IV start for the DTLSRange (default: 0x11111111).'
+          pattern: ^0x[A-Fa-f0-9]{8}$
+          type: string
+          x-auto: default(0x11111111)
+        OutIVIncr:
+          description: 'The out IV increment for the DTLSRange (default: 0x00000001).'
+          pattern: ^0x[A-Fa-f0-9]{8}$
+          type: string
+          x-auto: default(0x00000001)
+        OutKey:
+          description: 'The out key start for the DTLSRange (default: 0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA).'
+          pattern: ^0x[A-Fa-f0-9]{64}$
+          type: string
+          x-auto: default(0xAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)
+        OutKeyIncr:
+          description: 'The out key start for the DTLSRange (default: 0x0000000000000000000000000000000000000000000000000000000000000001).'
+          pattern: ^0x[A-Fa-f0-9]{64}$
+          type: string
+          x-auto: default(0x0000000000000000000000000000000000000000000000000000000000000001)
+        TunnelCount:
+          format: int32
+          maximum: '1000000'
+          minimum: '0'
+          type: integer
+          x-auto: default(1)
+        TunnelDestinationMacIncr:
+          description: 'The MAC address increment rule for the DTLSRange (default:
+            00:00:00:00:00:01).'
+          pattern: ^$|(^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$)
+          type: string
+          x-auto: default(00:00:00:00:00:01)
+        TunnelDestinationMacStart:
+          description: 'The MAC start address for the DTLSRange (default: AA:BB:CC:DD:EE:FF).'
+          pattern: ^$|(^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$)
+          type: string
+          x-auto: default(AA:BB:CC:DD:EE:FF)
+        VlanRange:
+          allOf:
+          - $ref: '#/components/schemas/VLANRange'
+          description: The inner VLAN range assigned to the current DTLS Range configuration
+          x-get: '*'
+          x-multiplicity: required
+          x-patch: '*'
+          x-put: '*'
+        id:
+          $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
+      required:
+      - id
+      - DTLSRangeName
+      - TunnelDestinationMacStart
+      - TunnelDestinationMacIncr
+      - TunnelCount
+      - InKey
+      - InKeyIncr
+      - OutKey
+      - OutKeyIncr
+      - InIV
+      - InIVIncr
+      - OutIV
+      - OutIVIncr
+      - Epoch
+      - EpochIncr
       type: object
     DUTNetwork:
       allOf:
@@ -2185,6 +2421,10 @@ components:
             allOf:
             - $ref: '#/components/schemas/Host'
             description: The hostname where the traffic goes if server DUT is active.
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
         type: object
     Dashboard:
       properties:
@@ -2374,6 +2614,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     EffectivePorts:
       properties:
@@ -2407,6 +2651,10 @@ components:
         Enabled:
           type: boolean
           x-auto: default(False)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - Enabled
     EmulatedRouterRange:
@@ -2603,6 +2851,10 @@ components:
           x-readonly: 'true'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - Name
@@ -2647,10 +2899,10 @@ components:
           type: string
           x-auto: default(00:00:00:00:00:01)
         MacStart:
-          description: 'The MAC start address for the EthRange (default: 01:02:03:04:05:06).'
+          description: 'The MAC start address for the EthRange (default: 00:11:01:00:00:01).'
           pattern: ^$|(^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$)
           type: string
-          x-auto: default(01:02:03:04:05:06)
+          x-auto: default(00:11:01:00:00:01)
         OneMacPerIP:
           description: 'A flag indicating if there is only one MAC address for the
             EthRange per IPRange (default: true).'
@@ -2667,6 +2919,10 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: '*,*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         maxCountPerAgent:
           description: 'The maximum number of MACs that should be assigned to each
             traffic agent for this Ethernet range segment in a valid test (default:
@@ -2849,6 +3105,10 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(1024)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - PPPOverDTLSEnabled
       - UdpPort
@@ -2876,6 +3136,10 @@ components:
           VPNGateway:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
         type: object
     FileMetadata:
       properties:
@@ -2952,6 +3216,10 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(1024)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - PPPOverDTLSEnabled
       - UdpPort
@@ -2979,6 +3247,10 @@ components:
           VPNGateway:
             pattern: ^$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-\_]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-\_]*[A-Za-z0-9])$|^(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))$)
             type: string
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
         type: object
     GenerateAllOperation:
       properties:
@@ -3183,6 +3455,10 @@ components:
           x-put: -,*
         UseApplicationServerHeaders:
           type: boolean
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - Name
       - Description
@@ -3259,6 +3535,10 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(80)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     Host:
       pattern: ^$|^(([a-zA-Z0-9\-]*[a-zA-Z0-9])\.)+([A-Za-z|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|(^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$|^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(([0-9a-fA-F]{1,4}:){5,5}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}|([0-9a-fA-F]{1,4}:){1,4}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){2,2}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){3,3}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){4,4})|:(:[0-9a-fA-F]{1,4}){1,5}):((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$
@@ -3287,6 +3567,17 @@ components:
             x-multiplicity: required
             x-patch: '*'
             x-put: '*'
+          DTLSStacks:
+            items:
+              $ref: '#/components/schemas/DTLSStack'
+            type: array
+            x-auto: default(items(0))
+            x-delete: -,*
+            x-get: '*,*'
+            x-multiplicity: list
+            x-patch: -,*
+            x-post: '*'
+            x-put: '*,*'
           DUTConnections:
             description: The connected DUT network segments.
             items:
@@ -3359,6 +3650,10 @@ components:
             x-put: '*'
           id:
             $ref: '#/components/schemas/ID'
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
           minAgents:
             description: 'The minimum number of agents that should be assigned to
               this network segment in a valid test (default: 1).'
@@ -3396,6 +3691,19 @@ components:
           pattern: ^(((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(([0-9a-fA-F]{1,4}:){5,5}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}|([0-9a-fA-F]{1,4}:){1,4}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){2,2}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){3,3}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){4,4})|:(:[0-9a-fA-F]{1,4}){1,5}):((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])))$
           type: string
           x-auto: default(10.0.0.1)
+        HostCount:
+          description: 'The number of Host IPs generated (default: 1).'
+          format: int32
+          maximum: '10000000'
+          minimum: '1'
+          type: integer
+          x-auto: default(1)
+        HostIpIncr:
+          description: 'The Host IP incrementation rule (default: 0.0.0.1).'
+          minLength: '1'
+          pattern: ^(((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))|(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|(([0-9a-fA-F]{1,4}:){5,5}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}|([0-9a-fA-F]{1,4}:){1,4}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){2,2}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){3,3}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){4,4})|:(:[0-9a-fA-F]{1,4}){1,5}):((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])))$
+          type: string
+          x-auto: default(0.0.0.1)
         InnerVlanRange:
           allOf:
           - $ref: '#/components/schemas/VLANRange'
@@ -3458,6 +3766,10 @@ components:
           x-auto: default(True)
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         maxCountPerAgent:
           description: 'The maximum number of IPs that should be assigned to each
             traffic agent for this IP range segment in a valid test (default: 1).'
@@ -3546,6 +3858,10 @@ components:
           x-readonly: 'true'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - IPSecRangeName
@@ -3656,6 +3972,10 @@ components:
           x-auto: default(INITIATOR)
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - IPSecStackName
@@ -3837,6 +4157,10 @@ components:
           x-put: '*,*'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     MediaTrack:
       properties:
@@ -3862,22 +4186,64 @@ components:
       type: object
     Metadata:
       properties:
-        AuthMethod:
-          $ref: '#/components/schemas/Enum'
-        ExplicitProxy:
-          description: This is an authentication profile used along with an explicit
-            proxy
+        Direction:
+          description: The direction of the strike
+          type: string
+        IsBanner:
+          description: Indicates that this is a command that is required, can only
+            be add once and also must be the first
           type: boolean
-        IDPType:
-          $ref: '#/components/schemas/Enum'
-        SGWName:
-          description: The name of the secure gateway
+        Keywords:
+          description: The keywords of the strike
+          items:
+            anyOf:
+            - type: string
+            - type: number
+            - type: integer
+            - type: boolean
+            - items: {}
+              type: array
+            - type: object
+          type: array
+        LegacyNames:
+          description: The names of the equivalent application/strike
+          items:
+            type: string
+          type: array
+        Protocol:
+          description: The protocol of the strike
           type: string
-        SGWType:
-          description: The type of the secure gateway
+        RTPProfileMeta:
+          $ref: '#/components/schemas/RTPProfileMeta'
+        References:
+          description: The references of the strike
+          items:
+            $ref: '#/components/schemas/Reference'
+          type: array
+        RequiresUniqueness:
+          description: If true, for applications with the same protocol id, application/attack
+            must have been uniquely identified in previous commands
+          type: boolean
+        Severity:
+          description: The severity of the strike
           type: string
-        SGWTypeValue:
-          description: The agent secure gateway type value of the secure gateway type
+        SkipAttackGeneration:
+          description: If true, don't generate an attack for this strike
+          type: boolean
+        SortSeverity:
+          description: The field by which the severity is sorted
+          type: string
+        Static:
+          description: If true, the application/strike is managed directly by the
+            controller
+          type: boolean
+        SupportedApps:
+          description: The apps that this strike can be used with
+          items:
+            type: string
+          type: array
+        Year:
+          description: The year of the strike
           type: string
       type: object
     MosMode:
@@ -3958,6 +4324,10 @@ components:
           x-put: -,*
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       type: object
@@ -4158,6 +4528,10 @@ components:
           x-patch: -,*
           x-post: '*'
           x-put: -,*
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     OpenAPIDefinitions:
       properties:
@@ -4269,6 +4643,10 @@ components:
           minimum: '0'
           type: integer
           x-auto: default(1024)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - ESPOverUDPEnabled
       - UdpPort
@@ -4318,6 +4696,10 @@ components:
           VPNGateways:
             items:
               type: string
+            type: array
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
             type: array
         required:
         - VPNGateways
@@ -4443,6 +4825,10 @@ components:
           description: The unique identifier of the parameter
           readOnly: 'true'
           type: string
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         operator:
           description: The operator that the parameter supports
           type: string
@@ -4502,6 +4888,10 @@ components:
           description: If true, the value of this parameter must be unique across
             all Applications/Actions
           type: boolean
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     Params:
       properties:
@@ -4603,6 +4993,10 @@ components:
           x-post: -,UploadFile
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         supportsDynamicPayload:
           description: A value that indicates if the parameter can have dynamic payload.
           type: boolean
@@ -4698,6 +5092,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     PfsP2Group:
       enum:
@@ -4812,7 +5210,15 @@ components:
           type: string
         name:
           type: string
+        owner:
+          type: string
+        ownerId:
+          type: string
         speed:
+          type: string
+        status:
+          type: string
+        trafficStatus:
           type: string
       type: object
     PortSettings:
@@ -4848,6 +5254,10 @@ components:
           maximum: '65535'
           minimum: '1'
           type: integer
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - Automatic
       - DestinationPort
@@ -5416,6 +5826,10 @@ components:
           type: boolean
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     SecondaryObjective:
       properties:
@@ -5507,14 +5921,9 @@ components:
           type: string
         config:
           anyOf:
-          - type: string
-          - type: number
-          - type: integer
-          - type: boolean
-          - items: {}
-            type: array
-          - type: object
-          description: The current session's configuration
+          - $ref: '#/components/schemas/AppsecConfig'
+          discriminator:
+            propertyName: configTypeName
         configName:
           description: The display name of the configuration loaded in the session
           type: string
@@ -5543,6 +5952,10 @@ components:
           format: int64
           readOnly: 'true'
           type: integer
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         meta:
           description: The session's metadata as a list of key-value pairs
           items:
@@ -5643,6 +6056,10 @@ components:
           type: array
           x-get: DownloadSimulatedIDPMetadata
           x-multiplicity: required
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - SingleSignOnURL
       - AudienceURI
@@ -5722,6 +6139,10 @@ components:
           description: 'The objective''s unit. Must be one of: bps or ''''.'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - Type
@@ -5750,6 +6171,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     StaticARPEntry:
       properties:
@@ -5993,6 +6418,10 @@ components:
           maxLength: '200'
           type: string
           x-auto: default(appsec)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
         middleBoxEnabled:
           description: If true, the middle box compatibility will be enabled
           type: boolean
@@ -6311,6 +6740,10 @@ components:
             x-patch: -,*
             x-post: '*'
             x-put: -,*
+          links:
+            items:
+              $ref: '#/components/schemas/APILink'
+            type: array
         required:
         - PrimaryObjectiveValue
         - PrimaryObjectiveUnit
@@ -6395,6 +6828,10 @@ components:
           x-post: -,CreateAction
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       type: object
@@ -6427,6 +6864,10 @@ components:
           x-put: '*'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     TrafficSettings:
       properties:
@@ -6437,6 +6878,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     TransportProfile:
       allOf:
@@ -6519,6 +6964,10 @@ components:
           format: int32
           type: integer
           x-auto: default(0)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     TunnelRange:
       description: The Tunnel Range assigned to the current test configuration
@@ -6589,6 +7038,10 @@ components:
           - F5
           type: string
           x-auto: default(CISCO_ANY_CONNECT)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - VendorType
       - TunnelCountPerOuterIP
@@ -6611,6 +7064,10 @@ components:
           x-multiplicity: required
           x-patch: '*'
           x-put: '*'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       type: object
     TunnelStack:
       description: The tunnel stack assigned to the current test configuration
@@ -6640,6 +7097,10 @@ components:
           $ref: '#/components/schemas/Name'
         id:
           $ref: '#/components/schemas/ID'
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - id
       - TunnelStackName
@@ -6821,6 +7282,10 @@ components:
           minimum: '1'
           type: integer
           x-auto: default(1)
+        links:
+          items:
+            $ref: '#/components/schemas/APILink'
+          type: array
       required:
       - VlanAuto
       type: object
@@ -7609,7 +8074,7 @@ paths:
   /api/v2/agents/operations/update:
     post:
       description: Update agents to the recommended version.
-      operationId: startRootUpdateAgents
+      operationId: startRootUpdate
       responses:
         '202':
           content:
@@ -7933,7 +8398,7 @@ paths:
   /api/v2/cert-manager/operations/generate:
     post:
       description: Generate a certificate.
-      operationId: startRootGenerateCertificate
+      operationId: startRootGenerate
       requestBody:
         content:
           application/json:
@@ -7971,7 +8436,7 @@ paths:
   /api/v2/cert-manager/operations/upload:
     post:
       description: Upload a certificate/key pair that will replace the system certificate.
-      operationId: startRootUploadCertificate
+      operationId: startRootUpload
       responses:
         '202':
           content:
@@ -8627,6 +9092,64 @@ paths:
       required: 'true'
       schema:
         type: string
+  /api/v2/controllers/{controllerId}/compute-nodes/{computeNodeId}/operations/switch-aggregation-mode:
+    parameters:
+    - description: The ID of the controller.
+      in: path
+      name: controllerId
+      required: 'true'
+      schema:
+        type: string
+    - description: The ID of the compute node.
+      in: path
+      name: computeNodeId
+      required: 'true'
+      schema:
+        type: string
+    post:
+      description: Switch the compute-node aggregation mode.
+      operationId: startComputeNodesSwitchAggregationMode
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the operation that just started
+      tags:
+      - Agents
+  /api/v2/controllers/{controllerId}/compute-nodes/{computeNodeId}/operations/switch-aggregation-mode/{id}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: pollComputeNodesSwitchAggregationMode
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncContext'
+          description: Details about the ongoing operation
+      tags:
+      - Agents
+    parameters:
+    - description: The ID of the controller.
+      in: path
+      name: controllerId
+      required: 'true'
+      schema:
+        type: string
+    - description: The ID of the compute node.
+      in: path
+      name: computeNodeId
+      required: 'true'
+      schema:
+        type: string
+    - description: The ID of the async operation.
+      in: path
+      name: id
+      required: 'true'
+      schema:
+        type: integer
   /api/v2/controllers/{controllerId}/operations/switch-app:
     parameters:
     - description: The ID of the controller.
@@ -10576,10 +11099,20 @@ paths:
       - Application Resources
   /api/v2/resources/captures/operations/uploadFile:
     post:
+      description: Upload a file.
       operationId: createResourcesCapturesOperationsUploadFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  format: binary
+                  type: string
+              type: object
       responses:
-        '201':
-          description: Resource successfully created.
+        '202':
+          description: Details about the operation that just started.
         '500':
           content:
             application/json:
@@ -10588,6 +11121,62 @@ paths:
           description: Unexpected error
       tags:
       - Application Resources
+  /api/v2/resources/captures/operations/uploadFile/{uploadFileId}:
+    get:
+      description: Get the state of an ongoing operation.
+      operationId: getResourcesCapturesOperationsUploadFileOperationId
+      responses:
+        '200':
+          description: Details about the ongoing operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+    parameters:
+    - description: The ID of the uploadfile.
+      in: path
+      name: uploadFileId
+      required: 'true'
+      schema:
+        type: string
+  /api/v2/resources/captures/operations/uploadFile/{uploadFileId}/result:
+    get:
+      description: Get the result of the upload file operation.
+      operationId: getResourcesCapturesOperationsUploadFileOperationIdResult
+      responses:
+        '200':
+          description: The payload file that was added
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unexpected error
+      tags:
+      - Application Resources
+    parameters:
+    - description: The ID of the uploadfile.
+      in: path
+      name: uploadFileId
+      required: 'true'
+      schema:
+        type: string
   /api/v2/resources/captures/{captureId}:
     delete:
       operationId: deleteCaptures
@@ -14406,7 +14995,7 @@ paths:
   /api/v2/results/tags:
     get:
       description: Get all the currently available agent groups.
-      operationId: getResultTags
+      operationId: getResultsTags
       parameters:
       - description: The number of search results to return
         in: query
@@ -15514,64 +16103,6 @@ paths:
       required: 'true'
       schema:
         type: string
-  /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments:
-    parameters:
-    - description: The ID of the session.
-      in: path
-      name: sessionId
-      required: 'true'
-      schema:
-        type: string
-    - description: 'The ID of the network segment. Note: this might be an INT or a
-        STRING that holds an int value. Defaulting to string for now.'
-      in: path
-      name: netProfileId
-      required: 'true'
-      schema:
-        type: string
-    patch:
-      description: Update the agent assignments for a network group.
-      operationId: patchAgentAssignmentsForNetSegment
-      responses:
-        '204':
-          description: The agent assignments were successfully updated.
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Unexpected error
-      tags:
-      - Agent assignment
-  /api/v2/sessions/{sessionId}/config/config/NetworkProfiles/{netProfileId}/IPNetworkSegment/agentAssignments/ByID:
-    parameters:
-    - description: The ID of the session.
-      in: path
-      name: sessionId
-      required: 'true'
-      schema:
-        type: string
-    - description: 'The ID of the network segment. Note: this might be an INT or a
-        STRING that holds an int value. Defaulting to string for now.'
-      in: path
-      name: netProfileId
-      required: 'true'
-      schema:
-        type: string
-    put:
-      description: Update the list of agent IDs assigned to this network segment.
-      operationId: putAgentAssignmentsByIdForNetSegment
-      responses:
-        '204':
-          description: The agent assignments were successfully updated.
-        '500':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Unexpected error
-      tags:
-      - Agent assignment
   /api/v2/sessions/{sessionId}/config/granular-stats:
     get:
       description: Get granular statistics based on the session configuration.
@@ -16273,7 +16804,7 @@ paths:
         type: string
     post:
       description: Start calibration for the test configured in the current session.
-      operationId: startRootStartCalibration
+      operationId: startRootStart
       responses:
         '202':
           content:
@@ -16286,7 +16817,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStartCalibration
+      operationId: pollRootStart
       responses:
         '200':
           content:
@@ -16319,7 +16850,7 @@ paths:
         type: string
     post:
       description: Stop calibration for the test configured in the current session.
-      operationId: startRootStopCalibration
+      operationId: startRootStop
       responses:
         '202':
           content:
@@ -16332,7 +16863,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-calibrate/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStopCalibration
+      operationId: pollRootStop
       responses:
         '200':
           content:
@@ -16365,7 +16896,7 @@ paths:
         type: string
     post:
       description: Abort traffic for the test configured in the current session.
-      operationId: startRootAbortTest
+      operationId: startTestAbort
       responses:
         '202':
           content:
@@ -16411,7 +16942,7 @@ paths:
         type: string
     post:
       description: Start traffic for the test configured in the current session.
-      operationId: startRootStartTest
+      operationId: startTestStart
       responses:
         '202':
           content:
@@ -16424,7 +16955,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/start/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStartTest
+      operationId: pollTestStart
       responses:
         '200':
           content:
@@ -16457,7 +16988,7 @@ paths:
         type: string
     post:
       description: Stop traffic for the test configured in the current session.
-      operationId: startRootStopTest
+      operationId: startTestStop
       responses:
         '202':
           content:
@@ -16470,7 +17001,7 @@ paths:
   /api/v2/sessions/{sessionId}/test-run/operations/stop/{id}:
     get:
       description: Get the state of an ongoing operation.
-      operationId: pollRootStopTest
+      operationId: pollTestStop
       responses:
         '200':
           content:
@@ -16630,7 +17161,7 @@ paths:
   /api/v2/tags:
     get:
       description: Get all the currently available agent groups.
-      operationId: getAgentTags
+      operationId: getAgentsTags
       parameters:
       - description: The number of search results to return
         in: query

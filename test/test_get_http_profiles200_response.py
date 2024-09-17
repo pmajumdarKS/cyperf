@@ -86,15 +86,25 @@ class TestGetHttpProfiles200Response(unittest.TestCase):
                                                 track_type = null, 
                                                 id = '', )
                                             ], 
-                                        id = '', )
+                                        id = '', 
+                                        links = [
+                                            cyperf.models.api_link.APILink(
+                                                content_type = '', 
+                                                href = '', 
+                                                id = '', 
+                                                method = '', 
+                                                name = '', 
+                                                references_count = 56, 
+                                                rel = 'self', 
+                                                type = 'self', )
+                                            ], )
                                     ], 
                                 metadata = cyperf.models.param_metadata.ParamMetadata(
                                     type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                         array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                             elements = [
                                                 cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                    id = '', 
-                                                    type = '', )
+                                                    id = '', )
                                                 ], ), 
                                         int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                             max_value = 56, 
@@ -119,10 +129,22 @@ class TestGetHttpProfiles200Response(unittest.TestCase):
                                     'YQ=='
                                     ], 
                                 id = '', 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        id = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
+                                    ], 
                                 supports_dynamic_payload = True, 
                                 upload_url = '', )
                             ], 
-                        use_application_server_headers = True, )
+                        use_application_server_headers = True, 
+                        links = , )
                     ],
                 total_count = 56
             )

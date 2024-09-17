@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **primary_objective_unit** | **str** | Deprecated. Use PrimaryObjective.Timeline[].ObjectiveUnit instead. The primary objective unit. (default: Gbps) | 
 **primary_objective_value** | **float** | Deprecated. Use PrimaryObjective.Timeline[].ObjectiveValue instead. The primary objective value (default: 1). | 
 **secondary_objective_values** | [**List[ObjectiveValueEntry]**](ObjectiveValueEntry.md) | Deprecated. Use SecondaryObjective.ObjectiveValue/ObjectiveUnit instead. The secondary objectives values. | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

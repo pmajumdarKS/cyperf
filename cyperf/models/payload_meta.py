@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "PayloadMeta" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class PayloadMeta(BaseModel):
     """
@@ -37,8 +33,6 @@ class PayloadMeta(BaseModel):
     location: Optional[StrictStr] = None
     md5sum: Optional[StrictStr] = None
     resource_url: Optional[StrictStr] = Field(default=None, alias="resourceURL")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["byteSize", "contentFileURL", "fileName", "location", "md5sum", "resourceURL"]
 
     model_config = ConfigDict(
@@ -46,98 +40,6 @@ class PayloadMeta(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_byte_size(self):
-#        if self.byte_size is not None:
-#            return self.byte_size
-#        field_info = self.__class__.__fields__["byte_size"]
-#        try:
-#            self.byte_size =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.byte_size =  self.link_based_request("byte_size", "GET", return_type="int")
-#        return self.byte_size
-#
-#    @rest_byte_size.setter
-#    def rest_byte_size(self, value):
-#        self.byte_size = value
-
-#    @property
-#    def rest_content_file_url(self):
-#        if self.content_file_url is not None:
-#            return self.content_file_url
-#        field_info = self.__class__.__fields__["content_file_url"]
-#        try:
-#            self.content_file_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.content_file_url =  self.link_based_request("content_file_url", "GET", return_type="str")
-#        return self.content_file_url
-#
-#    @rest_content_file_url.setter
-#    def rest_content_file_url(self, value):
-#        self.content_file_url = value
-
-#    @property
-#    def rest_file_name(self):
-#        if self.file_name is not None:
-#            return self.file_name
-#        field_info = self.__class__.__fields__["file_name"]
-#        try:
-#            self.file_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.file_name =  self.link_based_request("file_name", "GET", return_type="str")
-#        return self.file_name
-#
-#    @rest_file_name.setter
-#    def rest_file_name(self, value):
-#        self.file_name = value
-
-#    @property
-#    def rest_location(self):
-#        if self.location is not None:
-#            return self.location
-#        field_info = self.__class__.__fields__["location"]
-#        try:
-#            self.location =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.location =  self.link_based_request("location", "GET", return_type="str")
-#        return self.location
-#
-#    @rest_location.setter
-#    def rest_location(self, value):
-#        self.location = value
-
-#    @property
-#    def rest_md5sum(self):
-#        if self.md5sum is not None:
-#            return self.md5sum
-#        field_info = self.__class__.__fields__["md5sum"]
-#        try:
-#            self.md5sum =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.md5sum =  self.link_based_request("md5sum", "GET", return_type="str")
-#        return self.md5sum
-#
-#    @rest_md5sum.setter
-#    def rest_md5sum(self, value):
-#        self.md5sum = value
-
-#    @property
-#    def rest_resource_url(self):
-#        if self.resource_url is not None:
-#            return self.resource_url
-#        field_info = self.__class__.__fields__["resource_url"]
-#        try:
-#            self.resource_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.resource_url =  self.link_based_request("resource_url", "GET", return_type="str")
-#        return self.resource_url
-#
-#    @rest_resource_url.setter
-#    def rest_resource_url(self, value):
-#        self.resource_url = value
-
 
 
     def to_str(self) -> str:
@@ -195,74 +97,6 @@ class PayloadMeta(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

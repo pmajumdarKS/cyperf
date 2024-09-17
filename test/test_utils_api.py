@@ -152,14 +152,14 @@ class TestUtilsApi(unittest.TestCase):
         """
         pass
 
-    def test_start_root_generate_certificate(self) -> None:
-        """Test case for start_root_generate_certificate
+    def test_start_root_generate(self) -> None:
+        """Test case for start_root_generate
 
         """
         pass
 
-    def test_start_root_upload_certificate(self) -> None:
-        """Test case for start_root_upload_certificate
+    def test_start_root_upload(self) -> None:
+        """Test case for start_root_upload
 
         """
         pass

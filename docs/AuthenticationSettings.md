@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **key_file** | [**Params**](Params.md) | The authentication key file of the IPsec tunnel(s). | [optional] 
 **key_file_password** | **str** | The key file password of the IPsec authentication. | [optional] 
 **shared_key** | **str** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

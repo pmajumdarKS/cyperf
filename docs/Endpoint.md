@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **network_mapping** | [**NetworkMapping**](NetworkMapping.md) | The per-endpoint network mapping. Depending on Endpoint type, only ClientNetworkTags or ServerNetworkTags will be used. | [optional] 
 **type** | **str** |  | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

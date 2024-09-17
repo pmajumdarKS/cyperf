@@ -41,7 +41,18 @@ class TestNetworkProfile(unittest.TestCase):
                 ip_network_segment = [
                     null
                     ],
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return NetworkProfile(

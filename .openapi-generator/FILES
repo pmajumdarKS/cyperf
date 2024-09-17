@@ -6,7 +6,6 @@
 README.md
 cyperf/__init__.py
 cyperf/api/__init__.py
-cyperf/api/agent_assignment_api.py
 cyperf/api/agents_api.py
 cyperf/api/application_resources_api.py
 cyperf/api/authorization_api.py
@@ -118,6 +117,7 @@ cyperf/models/disk_usage.py
 cyperf/models/dns_resolver.py
 cyperf/models/dns_server.py
 cyperf/models/dtls_settings.py
+cyperf/models/dtls_stack.py
 cyperf/models/dut_network.py
 cyperf/models/effective_ports.py
 cyperf/models/emulated_router.py
@@ -160,10 +160,10 @@ cyperf/models/generate_all_operation.py
 cyperf/models/generate_csv_reports_operation.py
 cyperf/models/generate_pdf_report_operation.py
 cyperf/models/generic_file.py
-cyperf/models/get_agent_tags200_response.py
-cyperf/models/get_agent_tags200_response_one_of.py
 cyperf/models/get_agents200_response.py
 cyperf/models/get_agents200_response_one_of.py
+cyperf/models/get_agents_tags200_response.py
+cyperf/models/get_agents_tags200_response_one_of.py
 cyperf/models/get_application_types200_response.py
 cyperf/models/get_application_types200_response_one_of.py
 cyperf/models/get_apps200_response.py
@@ -202,10 +202,10 @@ cyperf/models/get_notifications200_response.py
 cyperf/models/get_notifications200_response_one_of.py
 cyperf/models/get_plugins200_response.py
 cyperf/models/get_plugins200_response_one_of.py
-cyperf/models/get_result_tags200_response.py
-cyperf/models/get_result_tags200_response_one_of.py
 cyperf/models/get_results200_response.py
 cyperf/models/get_results200_response_one_of.py
+cyperf/models/get_results_tags200_response.py
+cyperf/models/get_results_tags200_response_one_of.py
 cyperf/models/get_sessions200_response.py
 cyperf/models/get_sessions200_response_one_of.py
 cyperf/models/get_stats200_response.py
@@ -364,7 +364,6 @@ docs/ActivationCodeListRequest.md
 docs/ActivationCodeRequest.md
 docs/AdvancedSettings.md
 docs/Agent.md
-docs/AgentAssignmentApi.md
 docs/AgentAssignmentByPort.md
 docs/AgentAssignmentDetails.md
 docs/AgentAssignments.md
@@ -440,6 +439,7 @@ docs/CustomStat.md
 docs/DNSResolver.md
 docs/DNSServer.md
 docs/DTLSSettings.md
+docs/DTLSStack.md
 docs/DUTNetwork.md
 docs/Dashboard.md
 docs/DataMigrationApi.md
@@ -493,10 +493,10 @@ docs/GenerateAllOperation.md
 docs/GenerateCSVReportsOperation.md
 docs/GeneratePDFReportOperation.md
 docs/GenericFile.md
-docs/GetAgentTags200Response.md
-docs/GetAgentTags200ResponseOneOf.md
 docs/GetAgents200Response.md
 docs/GetAgents200ResponseOneOf.md
+docs/GetAgentsTags200Response.md
+docs/GetAgentsTags200ResponseOneOf.md
 docs/GetApplicationTypes200Response.md
 docs/GetApplicationTypes200ResponseOneOf.md
 docs/GetApps200Response.md
@@ -535,10 +535,10 @@ docs/GetNotifications200Response.md
 docs/GetNotifications200ResponseOneOf.md
 docs/GetPlugins200Response.md
 docs/GetPlugins200ResponseOneOf.md
-docs/GetResultTags200Response.md
-docs/GetResultTags200ResponseOneOf.md
 docs/GetResults200Response.md
 docs/GetResults200ResponseOneOf.md
+docs/GetResultsTags200Response.md
+docs/GetResultsTags200ResponseOneOf.md
 docs/GetSessions200Response.md
 docs/GetSessions200ResponseOneOf.md
 docs/GetStats200Response.md
@@ -709,7 +709,6 @@ test/test_activation_code_list_request.py
 test/test_activation_code_request.py
 test/test_advanced_settings.py
 test/test_agent.py
-test/test_agent_assignment_api.py
 test/test_agent_assignment_by_port.py
 test/test_agent_assignment_details.py
 test/test_agent_assignments.py
@@ -798,6 +797,7 @@ test/test_disk_usage.py
 test/test_dns_resolver.py
 test/test_dns_server.py
 test/test_dtls_settings.py
+test/test_dtls_stack.py
 test/test_dut_network.py
 test/test_effective_ports.py
 test/test_emulated_router.py
@@ -840,10 +840,10 @@ test/test_generate_all_operation.py
 test/test_generate_csv_reports_operation.py
 test/test_generate_pdf_report_operation.py
 test/test_generic_file.py
-test/test_get_agent_tags200_response.py
-test/test_get_agent_tags200_response_one_of.py
 test/test_get_agents200_response.py
 test/test_get_agents200_response_one_of.py
+test/test_get_agents_tags200_response.py
+test/test_get_agents_tags200_response_one_of.py
 test/test_get_application_types200_response.py
 test/test_get_application_types200_response_one_of.py
 test/test_get_apps200_response.py
@@ -882,10 +882,10 @@ test/test_get_notifications200_response.py
 test/test_get_notifications200_response_one_of.py
 test/test_get_plugins200_response.py
 test/test_get_plugins200_response_one_of.py
-test/test_get_result_tags200_response.py
-test/test_get_result_tags200_response_one_of.py
 test/test_get_results200_response.py
 test/test_get_results200_response_one_of.py
+test/test_get_results_tags200_response.py
+test/test_get_results_tags200_response_one_of.py
 test/test_get_sessions200_response.py
 test/test_get_sessions200_response_one_of.py
 test/test_get_stats200_response.py

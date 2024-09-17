@@ -86,14 +86,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -118,6 +127,16 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
@@ -127,7 +146,8 @@ class TestDUTNetwork(unittest.TestCase):
                     is_explicit_proxy = True, 
                     pep_host = null, 
                     pep_port = 56, 
-                    simulated_id_p = null, ),
+                    simulated_id_p = null, 
+                    links = , ),
                 forward_proxy_pep_dut_active = True,
                 http_health_check = cyperf.models.health_check_config.HealthCheckConfig(
                     enabled = True, 
@@ -171,14 +191,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -203,10 +232,21 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
-                    port = 56, ),
+                    port = 56, 
+                    links = , ),
                 https_health_check = cyperf.models.health_check_config.HealthCheckConfig(
                     enabled = True, 
                     params = [
@@ -249,14 +289,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -281,10 +330,21 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
-                    port = 56, ),
+                    port = 56, 
+                    links = , ),
                 hostname_suffix = '252.7.188.200',
                 http_forward_proxy_mode = 'PROXY_MODE',
                 non_proxied_hosts = cyperf.models.params.Params(
@@ -326,14 +386,23 @@ class TestDUTNetwork(unittest.TestCase):
                                     track_type = null, 
                                     id = '', )
                                 ], 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                             array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
-                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        type = '', )
+                                    cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                     ], ), 
                             int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
@@ -358,6 +427,16 @@ class TestDUTNetwork(unittest.TestCase):
                         'YQ=='
                         ], 
                     id = , 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
                 pep_dut = cyperf.models.pep_dut.PepDUT(
@@ -402,14 +481,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -434,6 +522,16 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
@@ -443,7 +541,8 @@ class TestDUTNetwork(unittest.TestCase):
                     is_explicit_proxy = True, 
                     pep_host = null, 
                     pep_port = 56, 
-                    simulated_id_p = null, ),
+                    simulated_id_p = null, 
+                    links = , ),
                 pep_dut_active = True,
                 reverse_proxy_pep_dut = cyperf.models.pep_dut.PepDUT(
                     auth_method = null, 
@@ -487,14 +586,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -519,6 +627,16 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
@@ -528,7 +646,8 @@ class TestDUTNetwork(unittest.TestCase):
                     is_explicit_proxy = True, 
                     pep_host = null, 
                     pep_port = 56, 
-                    simulated_id_p = null, ),
+                    simulated_id_p = null, 
+                    links = , ),
                 reverse_proxy_pep_dut_active = True,
                 server_dut_active = True,
                 server_dut_host = '252.7.188.200',
@@ -575,14 +694,23 @@ class TestDUTNetwork(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -607,13 +735,35 @@ class TestDUTNetwork(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
-                    port = 56, ),
+                    port = 56, 
+                    links = , ),
                 use_real_host = True,
                 active = True,
-                host = '252.7.188.200'
+                host = '252.7.188.200',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return DUTNetwork(

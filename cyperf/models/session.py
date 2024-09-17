@@ -19,22 +19,20 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
+from cyperf.models.appsec_config import AppsecConfig
 from cyperf.models.pair import Pair
 from cyperf.models.test_info import TestInfo
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "Session" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class Session(BaseModel):
     """
     Session
     """ # noqa: E501
     application: Optional[StrictStr] = Field(default=None, description="The user-friendly name for the application that controls this session")
-    config: Optional[Any] = Field(default=None, description="The current session's configuration")
+    config: Optional[AppsecConfig] = None
     config_name: Optional[StrictStr] = Field(default=None, description="The display name of the configuration loaded in the session", alias="configName")
     config_url: Optional[StrictStr] = Field(default=None, description="The external URL of the configuration loaded in the session", alias="configUrl")
     created: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the session was created")
@@ -42,6 +40,7 @@ class Session(BaseModel):
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the session")
     index: Optional[StrictInt] = Field(default=None, description="The session's index")
     last_visited: Optional[StrictInt] = Field(default=None, description="A Unix timestamp that indicates when the session was last visited", alias="lastVisited")
+    links: Optional[List[APILink]] = None
     meta: Optional[List[Pair]] = Field(default=None, description="The session's metadata as a list of key-value pairs")
     name: Optional[StrictStr] = Field(default=None, description="The user-visible name of the session")
     owner: Optional[StrictStr] = Field(default=None, description="The user-visible name of the session's owner")
@@ -49,257 +48,13 @@ class Session(BaseModel):
     pinned: Optional[StrictBool] = Field(default=None, description="A flag that indicates if the session is pinned")
     state: Optional[StrictStr] = Field(default=None, description="The current state of the session")
     test: Optional[TestInfo] = None
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["application", "config", "configName", "configUrl", "created", "dataModelUrl", "id", "index", "lastVisited", "meta", "name", "owner", "ownerID", "pinned", "state", "test"]
+    __properties: ClassVar[List[str]] = ["application", "config", "configName", "configUrl", "created", "dataModelUrl", "id", "index", "lastVisited", "links", "meta", "name", "owner", "ownerID", "pinned", "state", "test"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_application(self):
-#        if self.application is not None:
-#            return self.application
-#        field_info = self.__class__.__fields__["application"]
-#        try:
-#            self.application =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.application =  self.link_based_request("application", "GET", return_type="str")
-#        return self.application
-#
-#    @rest_application.setter
-#    def rest_application(self, value):
-#        self.application = value
-
-#    @property
-#    def rest_config(self):
-#        if self.config is not None:
-#            return self.config
-#        field_info = self.__class__.__fields__["config"]
-#        try:
-#            self.config =  self.link_based_request(field_info.alias, "GET", return_type="object")
-#        except LinkNameException as e:
-#            self.config =  self.link_based_request("config", "GET", return_type="object")
-#        return self.config
-#
-#    @rest_config.setter
-#    def rest_config(self, value):
-#        self.config = value
-
-#    @property
-#    def rest_config_name(self):
-#        if self.config_name is not None:
-#            return self.config_name
-#        field_info = self.__class__.__fields__["config_name"]
-#        try:
-#            self.config_name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.config_name =  self.link_based_request("config_name", "GET", return_type="str")
-#        return self.config_name
-#
-#    @rest_config_name.setter
-#    def rest_config_name(self, value):
-#        self.config_name = value
-
-#    @property
-#    def rest_config_url(self):
-#        if self.config_url is not None:
-#            return self.config_url
-#        field_info = self.__class__.__fields__["config_url"]
-#        try:
-#            self.config_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.config_url =  self.link_based_request("config_url", "GET", return_type="str")
-#        return self.config_url
-#
-#    @rest_config_url.setter
-#    def rest_config_url(self, value):
-#        self.config_url = value
-
-#    @property
-#    def rest_created(self):
-#        if self.created is not None:
-#            return self.created
-#        field_info = self.__class__.__fields__["created"]
-#        try:
-#            self.created =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.created =  self.link_based_request("created", "GET", return_type="int")
-#        return self.created
-#
-#    @rest_created.setter
-#    def rest_created(self, value):
-#        self.created = value
-
-#    @property
-#    def rest_data_model_url(self):
-#        if self.data_model_url is not None:
-#            return self.data_model_url
-#        field_info = self.__class__.__fields__["data_model_url"]
-#        try:
-#            self.data_model_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.data_model_url =  self.link_based_request("data_model_url", "GET", return_type="str")
-#        return self.data_model_url
-#
-#    @rest_data_model_url.setter
-#    def rest_data_model_url(self, value):
-#        self.data_model_url = value
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="str")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_index(self):
-#        if self.index is not None:
-#            return self.index
-#        field_info = self.__class__.__fields__["index"]
-#        try:
-#            self.index =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.index =  self.link_based_request("index", "GET", return_type="int")
-#        return self.index
-#
-#    @rest_index.setter
-#    def rest_index(self, value):
-#        self.index = value
-
-#    @property
-#    def rest_last_visited(self):
-#        if self.last_visited is not None:
-#            return self.last_visited
-#        field_info = self.__class__.__fields__["last_visited"]
-#        try:
-#            self.last_visited =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.last_visited =  self.link_based_request("last_visited", "GET", return_type="int")
-#        return self.last_visited
-#
-#    @rest_last_visited.setter
-#    def rest_last_visited(self, value):
-#        self.last_visited = value
-
-#    @property
-#    def rest_meta(self):
-#        if self.meta is not None:
-#            return self.meta
-#        field_info = self.__class__.__fields__["meta"]
-#        try:
-#            self.meta =  self.link_based_request(field_info.alias, "GET", return_type="List[Pair]")
-#        except LinkNameException as e:
-#            self.meta =  self.link_based_request("meta", "GET", return_type="List[Pair]")
-#        return self.meta
-#
-#    @rest_meta.setter
-#    def rest_meta(self, value):
-#        self.meta = value
-
-#    @property
-#    def rest_name(self):
-#        if self.name is not None:
-#            return self.name
-#        field_info = self.__class__.__fields__["name"]
-#        try:
-#            self.name =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.name =  self.link_based_request("name", "GET", return_type="str")
-#        return self.name
-#
-#    @rest_name.setter
-#    def rest_name(self, value):
-#        self.name = value
-
-#    @property
-#    def rest_owner(self):
-#        if self.owner is not None:
-#            return self.owner
-#        field_info = self.__class__.__fields__["owner"]
-#        try:
-#            self.owner =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.owner =  self.link_based_request("owner", "GET", return_type="str")
-#        return self.owner
-#
-#    @rest_owner.setter
-#    def rest_owner(self, value):
-#        self.owner = value
-
-#    @property
-#    def rest_owner_id(self):
-#        if self.owner_id is not None:
-#            return self.owner_id
-#        field_info = self.__class__.__fields__["owner_id"]
-#        try:
-#            self.owner_id =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.owner_id =  self.link_based_request("owner_id", "GET", return_type="str")
-#        return self.owner_id
-#
-#    @rest_owner_id.setter
-#    def rest_owner_id(self, value):
-#        self.owner_id = value
-
-#    @property
-#    def rest_pinned(self):
-#        if self.pinned is not None:
-#            return self.pinned
-#        field_info = self.__class__.__fields__["pinned"]
-#        try:
-#            self.pinned =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.pinned =  self.link_based_request("pinned", "GET", return_type="bool")
-#        return self.pinned
-#
-#    @rest_pinned.setter
-#    def rest_pinned(self, value):
-#        self.pinned = value
-
-#    @property
-#    def rest_state(self):
-#        if self.state is not None:
-#            return self.state
-#        field_info = self.__class__.__fields__["state"]
-#        try:
-#            self.state =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.state =  self.link_based_request("state", "GET", return_type="str")
-#        return self.state
-#
-#    @rest_state.setter
-#    def rest_state(self, value):
-#        self.state = value
-
-#    @property
-#    def rest_test(self):
-#        if self.test is not None:
-#            return self.test
-#        field_info = self.__class__.__fields__["test"]
-#        try:
-#            self.test =  self.link_based_request(field_info.alias, "GET", return_type="TestInfo")
-#        except LinkNameException as e:
-#            self.test =  self.link_based_request("test", "GET", return_type="TestInfo")
-#        return self.test
-#
-#    @rest_test.setter
-#    def rest_test(self, value):
-#        self.test = value
-
 
 
     def to_str(self) -> str:
@@ -348,6 +103,16 @@ class Session(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of config
+        if self.config:
+            _dict['config'] = self.config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in meta (list)
         _items = []
         if self.meta:
@@ -358,11 +123,6 @@ class Session(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of test
         if self.test:
             _dict['test'] = self.test.to_dict()
-        # set to None if config (nullable) is None
-        # and model_fields_set contains the field
-        if self.config is None and "config" in self.model_fields_set:
-            _dict['config'] = None
-
         return _dict
 
     @classmethod
@@ -378,7 +138,7 @@ class Session(BaseModel):
 
         _obj = cls.model_validate({
             "application": obj.get("application"),
-                        "config": obj.get("config"),
+                        "config": AppsecConfig.from_dict(obj["config"]) if obj.get("config") is not None else None,
                         "configName": obj.get("configName"),
                         "configUrl": obj.get("configUrl"),
                         "created": obj.get("created"),
@@ -386,6 +146,7 @@ class Session(BaseModel):
                         "id": obj.get("id"),
                         "index": obj.get("index"),
                         "lastVisited": obj.get("lastVisited"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "meta": [Pair.from_dict(_item) for _item in obj["meta"]] if obj.get("meta") is not None else None,
                         "name": obj.get("name"),
                         "owner": obj.get("owner"),
@@ -396,74 +157,6 @@ class Session(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -47,6 +47,17 @@ class TestSimulatedIdP(unittest.TestCase):
                     is_playlist = True, 
                     key_file = null, 
                     key_file_password = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     playlist_column_name = '', 
                     playlist_filename = '', 
                     resolve_sni_conflicts = [
@@ -64,6 +75,17 @@ class TestSimulatedIdP(unittest.TestCase):
                 single_sign_on_url = '',
                 xml_metadata = [
                     'YQ=='
+                    ],
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
                     ]
             )
         else:

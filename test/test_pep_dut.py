@@ -74,15 +74,25 @@ class TestPepDUT(unittest.TestCase):
                                     track_type = null, 
                                     id = '', )
                                 ], 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    id = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                             array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
                                     cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        id = '', 
-                                        type = '', )
+                                        id = '', )
                                     ], ), 
                             int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
@@ -107,6 +117,17 @@ class TestPepDUT(unittest.TestCase):
                         'YQ=='
                         ], 
                     id = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
                 auth_profile_params = [
@@ -149,15 +170,25 @@ class TestPepDUT(unittest.TestCase):
                                         track_type = null, 
                                         id = '', )
                                     ], 
-                                id = '', )
+                                id = '', 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        id = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
+                                    ], )
                             ], 
                         metadata = cyperf.models.param_metadata.ParamMetadata(
                             type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                 array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                     elements = [
                                         cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                            id = '', 
-                                            type = '', )
+                                            id = '', )
                                         ], ), 
                                 int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                     max_value = 56, 
@@ -182,6 +213,17 @@ class TestPepDUT(unittest.TestCase):
                             'YQ=='
                             ], 
                         id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                id = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], 
                         supports_dynamic_payload = True, 
                         upload_url = '', )
                     ],
@@ -226,15 +268,25 @@ class TestPepDUT(unittest.TestCase):
                                     track_type = null, 
                                     id = '', )
                                 ], 
-                            id = '', )
+                            id = '', 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    id = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], )
                         ], 
                     metadata = cyperf.models.param_metadata.ParamMetadata(
                         type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                             array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                 elements = [
                                     cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                        id = '', 
-                                        type = '', )
+                                        id = '', )
                                     ], ), 
                             int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                 max_value = 56, 
@@ -259,6 +311,17 @@ class TestPepDUT(unittest.TestCase):
                         'YQ=='
                         ], 
                     id = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     supports_dynamic_payload = True, 
                     upload_url = '', ),
                 is_explicit_proxy = True,
@@ -274,7 +337,29 @@ class TestPepDUT(unittest.TestCase):
                     single_sign_on_url = '', 
                     xml_metadata = [
                         'YQ=='
-                        ], )
+                        ], 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return PepDUT(

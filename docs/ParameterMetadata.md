@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **type** | **str** | The type of the parameter | [optional] 
 **type_info** | [**TypeInfoMetadata**](TypeInfoMetadata.md) |  | [optional] 
 **unique_value** | **bool** | If true, the value of this parameter must be unique across all Applications/Actions | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

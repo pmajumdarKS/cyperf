@@ -19,14 +19,11 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
+from cyperf.models.api_link import APILink
 from cyperf.models.name_server import NameServer
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "DNSResolver" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class DNSResolver(BaseModel):
     """
@@ -34,63 +31,15 @@ class DNSResolver(BaseModel):
     """ # noqa: E501
     cache_timeout: Optional[StrictInt] = Field(default=None, description="The cached timeout for the DNS Resolver", alias="cacheTimeout")
     enable_perconnect: Optional[StrictBool] = Field(default=None, description="The enable perconnection value.", alias="enablePerconnect")
+    links: Optional[List[APILink]] = None
     name_servers: Optional[List[NameServer]] = Field(default=None, description="A list of name servers.", alias="nameServers")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["cacheTimeout", "enablePerconnect", "nameServers"]
+    __properties: ClassVar[List[str]] = ["cacheTimeout", "enablePerconnect", "links", "nameServers"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_cache_timeout(self):
-#        if self.cache_timeout is not None:
-#            return self.cache_timeout
-#        field_info = self.__class__.__fields__["cache_timeout"]
-#        try:
-#            self.cache_timeout =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.cache_timeout =  self.link_based_request("cache_timeout", "GET", return_type="int")
-#        return self.cache_timeout
-#
-#    @rest_cache_timeout.setter
-#    def rest_cache_timeout(self, value):
-#        self.cache_timeout = value
-
-#    @property
-#    def rest_enable_perconnect(self):
-#        if self.enable_perconnect is not None:
-#            return self.enable_perconnect
-#        field_info = self.__class__.__fields__["enable_perconnect"]
-#        try:
-#            self.enable_perconnect =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.enable_perconnect =  self.link_based_request("enable_perconnect", "GET", return_type="bool")
-#        return self.enable_perconnect
-#
-#    @rest_enable_perconnect.setter
-#    def rest_enable_perconnect(self, value):
-#        self.enable_perconnect = value
-
-#    @property
-#    def rest_name_servers(self):
-#        if self.name_servers is not None:
-#            return self.name_servers
-#        field_info = self.__class__.__fields__["name_servers"]
-#        try:
-#            self.name_servers =  self.link_based_request(field_info.alias, "GET", return_type="List[NameServer]")
-#        except LinkNameException as e:
-#            self.name_servers =  self.link_based_request("name_servers", "GET", return_type="List[NameServer]")
-#        return self.name_servers
-#
-#    @rest_name_servers.setter
-#    def rest_name_servers(self, value):
-#        self.name_servers = value
-
 
 
     def to_str(self) -> str:
@@ -125,6 +74,13 @@ class DNSResolver(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in name_servers (list)
         _items = []
         if self.name_servers:
@@ -148,78 +104,11 @@ class DNSResolver(BaseModel):
         _obj = cls.model_validate({
             "cacheTimeout": obj.get("cacheTimeout"),
                         "enablePerconnect": obj.get("enablePerconnect"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None,
                         "nameServers": [NameServer.from_dict(_item) for _item in obj["nameServers"]] if obj.get("nameServers") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

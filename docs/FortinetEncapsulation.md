@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ppp_over_dtls_enabled** | **bool** |  | 
 **ppp_over_dtls_settings** | [**DTLSSettings**](DTLSSettings.md) |  | [optional] 
 **udp_port** | **int** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

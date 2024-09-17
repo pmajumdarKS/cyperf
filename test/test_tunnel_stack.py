@@ -44,6 +44,8 @@ class TestTunnelStack(unittest.TestCase):
                     count = 56, 
                     gw_auto = True, 
                     gw_start = '::02:84:9:0cc0:F:CCf', 
+                    host_count = 56, 
+                    host_ip_incr = '::02:84:9:0cc0:F:CCf', 
                     inner_vlan_range = null, 
                     ip_auto = True, 
                     ip_incr = '::02:84:9:0cc0:F:CCf', 
@@ -56,6 +58,17 @@ class TestTunnelStack(unittest.TestCase):
                     net_mask = 56, 
                     net_mask_auto = True, 
                     id = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     max_count_per_agent = 56, 
                     network_tags = [
                         ''
@@ -70,9 +83,31 @@ class TestTunnelStack(unittest.TestCase):
                     tcp_dst_port = 56, 
                     tunnel_count_per_outer_ip = 56, 
                     tunnel_establishment_timeout = 56, 
-                    vendor_type = 'CISCO_ANY_CONNECT', ),
+                    vendor_type = 'CISCO_ANY_CONNECT', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 tunnel_stack_name = 'YBuLd',
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return TunnelStack(

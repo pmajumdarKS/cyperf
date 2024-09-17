@@ -87,14 +87,23 @@ class TestScenario(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -119,10 +128,21 @@ class TestScenario(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
-                    use_application_server_headers = True, ),
+                    use_application_server_headers = True, 
+                    links = , ),
                 connections = [
                     cyperf.models.connection.Connection(
                         client_endpoint = '', 
@@ -143,7 +163,17 @@ class TestScenario(unittest.TestCase):
                         server_endpoint = '', 
                         server_port = 56, 
                         type = 'http', 
-                        id = '', )
+                        id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], )
                     ],
                 connections_max_transactions = 56,
                 description = '',
@@ -155,7 +185,17 @@ class TestScenario(unittest.TestCase):
                         name = '', 
                         network_mapping = null, 
                         type = 'Client', 
-                        id = '', )
+                        id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], )
                     ],
                 external_resource_url = '',
                 index = 56,
@@ -215,14 +255,23 @@ class TestScenario(unittest.TestCase):
                                         track_type = null, 
                                         id = '', )
                                     ], 
-                                id = '', )
+                                id = '', 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
+                                    ], )
                             ], 
                         metadata = cyperf.models.param_metadata.ParamMetadata(
                             type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                 array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                     elements = [
-                                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                            type = '', )
+                                        cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                         ], ), 
                                 int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                     max_value = 56, 
@@ -247,6 +296,16 @@ class TestScenario(unittest.TestCase):
                             'YQ=='
                             ], 
                         id = , 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], 
                         supports_dynamic_payload = True, 
                         upload_url = '', )
                     ],
@@ -303,14 +362,23 @@ class TestScenario(unittest.TestCase):
                                             track_type = null, 
                                             id = '', )
                                         ], 
-                                    id = '', )
+                                    id = '', 
+                                    links = [
+                                        cyperf.models.api_link.APILink(
+                                            content_type = '', 
+                                            href = '', 
+                                            method = '', 
+                                            name = '', 
+                                            references_count = 56, 
+                                            rel = 'self', 
+                                            type = 'self', )
+                                        ], )
                                 ], 
                             metadata = cyperf.models.param_metadata.ParamMetadata(
                                 type_info = cyperf.models.param_metadata_type_info.ParamMetadata_TypeInfo(
                                     array_v2 = cyperf.models.param_metadata_type_info_array_v2.ParamMetadata_TypeInfo_arrayV2(
                                         elements = [
-                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner(
-                                                type = '', )
+                                            cyperf.models.param_metadata_type_info_array_v2_elements_inner.ParamMetadata_TypeInfo_arrayV2_elements_inner()
                                             ], ), 
                                     int = cyperf.models.param_metadata_type_info_int.ParamMetadata_TypeInfo_int(
                                         max_value = 56, 
@@ -335,14 +403,36 @@ class TestScenario(unittest.TestCase):
                                 'YQ=='
                                 ], 
                             id = , 
+                            links = [
+                                cyperf.models.api_link.APILink(
+                                    content_type = '', 
+                                    href = '', 
+                                    method = '', 
+                                    name = '', 
+                                    references_count = 56, 
+                                    rel = 'self', 
+                                    type = 'self', )
+                                ], 
                             supports_dynamic_payload = True, 
                             upload_url = '', )
                         ], 
-                    use_application_server_headers = True, ),
+                    use_application_server_headers = True, 
+                    links = , ),
                 supports_client_http_profile = True,
                 supports_http_profiles = True,
                 supports_server_http_profile = True,
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return Scenario(

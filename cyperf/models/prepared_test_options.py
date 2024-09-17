@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "PreparedTestOptions" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class PreparedTestOptions(BaseModel):
     """
@@ -37,8 +33,6 @@ class PreparedTestOptions(BaseModel):
     filter_by_properties: Optional[Dict[str, StrictStr]] = Field(default=None, alias="FilterByProperties")
     format_protocol_name: Optional[StrictBool] = Field(default=None, alias="FormatProtocolName")
     override_properties: Optional[Dict[str, StrictStr]] = Field(default=None, alias="OverrideProperties")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["AddActivityMeta", "DatasourceForUIViews", "ExtraTags", "FilterByProperties", "FormatProtocolName", "OverrideProperties"]
 
     model_config = ConfigDict(
@@ -46,98 +40,6 @@ class PreparedTestOptions(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_add_activity_meta(self):
-#        if self.add_activity_meta is not None:
-#            return self.add_activity_meta
-#        field_info = self.__class__.__fields__["add_activity_meta"]
-#        try:
-#            self.add_activity_meta =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.add_activity_meta =  self.link_based_request("add_activity_meta", "GET", return_type="bool")
-#        return self.add_activity_meta
-#
-#    @rest_add_activity_meta.setter
-#    def rest_add_activity_meta(self, value):
-#        self.add_activity_meta = value
-
-#    @property
-#    def rest_datasource_for_ui_views(self):
-#        if self.datasource_for_ui_views is not None:
-#            return self.datasource_for_ui_views
-#        field_info = self.__class__.__fields__["datasource_for_ui_views"]
-#        try:
-#            self.datasource_for_ui_views =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.datasource_for_ui_views =  self.link_based_request("datasource_for_ui_views", "GET", return_type="str")
-#        return self.datasource_for_ui_views
-#
-#    @rest_datasource_for_ui_views.setter
-#    def rest_datasource_for_ui_views(self, value):
-#        self.datasource_for_ui_views = value
-
-#    @property
-#    def rest_extra_tags(self):
-#        if self.extra_tags is not None:
-#            return self.extra_tags
-#        field_info = self.__class__.__fields__["extra_tags"]
-#        try:
-#            self.extra_tags =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, List[str]]")
-#        except LinkNameException as e:
-#            self.extra_tags =  self.link_based_request("extra_tags", "GET", return_type="Dict[str, List[str]]")
-#        return self.extra_tags
-#
-#    @rest_extra_tags.setter
-#    def rest_extra_tags(self, value):
-#        self.extra_tags = value
-
-#    @property
-#    def rest_filter_by_properties(self):
-#        if self.filter_by_properties is not None:
-#            return self.filter_by_properties
-#        field_info = self.__class__.__fields__["filter_by_properties"]
-#        try:
-#            self.filter_by_properties =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, str]")
-#        except LinkNameException as e:
-#            self.filter_by_properties =  self.link_based_request("filter_by_properties", "GET", return_type="Dict[str, str]")
-#        return self.filter_by_properties
-#
-#    @rest_filter_by_properties.setter
-#    def rest_filter_by_properties(self, value):
-#        self.filter_by_properties = value
-
-#    @property
-#    def rest_format_protocol_name(self):
-#        if self.format_protocol_name is not None:
-#            return self.format_protocol_name
-#        field_info = self.__class__.__fields__["format_protocol_name"]
-#        try:
-#            self.format_protocol_name =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.format_protocol_name =  self.link_based_request("format_protocol_name", "GET", return_type="bool")
-#        return self.format_protocol_name
-#
-#    @rest_format_protocol_name.setter
-#    def rest_format_protocol_name(self, value):
-#        self.format_protocol_name = value
-
-#    @property
-#    def rest_override_properties(self):
-#        if self.override_properties is not None:
-#            return self.override_properties
-#        field_info = self.__class__.__fields__["override_properties"]
-#        try:
-#            self.override_properties =  self.link_based_request(field_info.alias, "GET", return_type="Dict[str, str]")
-#        except LinkNameException as e:
-#            self.override_properties =  self.link_based_request("override_properties", "GET", return_type="Dict[str, str]")
-#        return self.override_properties
-#
-#    @rest_override_properties.setter
-#    def rest_override_properties(self, value):
-#        self.override_properties = value
-
 
 
     def to_str(self) -> str:
@@ -195,74 +97,6 @@ class PreparedTestOptions(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

@@ -21,13 +21,10 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from cyperf.models.agent_assignment_by_port import AgentAssignmentByPort
 from cyperf.models.agent_assignment_details import AgentAssignmentDetails
+from cyperf.models.api_link import APILink
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "AgentAssignments" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class AgentAssignments(BaseModel):
     """
@@ -36,62 +33,14 @@ class AgentAssignments(BaseModel):
     by_id: Optional[List[AgentAssignmentDetails]] = Field(default=None, description="The agents statically assigned to the current test configuration.", alias="ByID")
     by_port: Optional[List[AgentAssignmentByPort]] = Field(default=None, description="The ports assigned to the current test configuration.", alias="ByPort")
     by_tag: List[StrictStr] = Field(description="The tags according to which the agents are dynamically assigned.", alias="ByTag")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["ByID", "ByPort", "ByTag"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["ByID", "ByPort", "ByTag", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_by_id(self):
-#        if self.by_id is not None:
-#            return self.by_id
-#        field_info = self.__class__.__fields__["by_id"]
-#        try:
-#            self.by_id =  self.link_based_request(field_info.alias, "GET", return_type="List[AgentAssignmentDetails]")
-#        except LinkNameException as e:
-#            self.by_id =  self.link_based_request("by_id", "GET", return_type="List[AgentAssignmentDetails]")
-#        return self.by_id
-#
-#    @rest_by_id.setter
-#    def rest_by_id(self, value):
-#        self.by_id = value
-
-#    @property
-#    def rest_by_port(self):
-#        if self.by_port is not None:
-#            return self.by_port
-#        field_info = self.__class__.__fields__["by_port"]
-#        try:
-#            self.by_port =  self.link_based_request(field_info.alias, "GET", return_type="List[AgentAssignmentByPort]")
-#        except LinkNameException as e:
-#            self.by_port =  self.link_based_request("by_port", "GET", return_type="List[AgentAssignmentByPort]")
-#        return self.by_port
-#
-#    @rest_by_port.setter
-#    def rest_by_port(self, value):
-#        self.by_port = value
-
-#    @property
-#    def rest_by_tag(self):
-#        if self.by_tag is not None:
-#            return self.by_tag
-#        field_info = self.__class__.__fields__["by_tag"]
-#        try:
-#            self.by_tag =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.by_tag =  self.link_based_request("by_tag", "GET", return_type="List[str]")
-#        return self.by_tag
-#
-#    @rest_by_tag.setter
-#    def rest_by_tag(self, value):
-#        self.by_tag = value
-
 
 
     def to_str(self) -> str:
@@ -140,6 +89,13 @@ class AgentAssignments(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['ByPort'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -156,78 +112,11 @@ class AgentAssignments(BaseModel):
         _obj = cls.model_validate({
             "ByID": [AgentAssignmentDetails.from_dict(_item) for _item in obj["ByID"]] if obj.get("ByID") is not None else None,
                         "ByPort": [AgentAssignmentByPort.from_dict(_item) for _item in obj["ByPort"]] if obj.get("ByPort") is not None else None,
-                        "ByTag": obj.get("ByTag")
+                        "ByTag": obj.get("ByTag"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

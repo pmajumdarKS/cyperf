@@ -1,4 +1,4 @@
-# GetAgentTags200Response
+# GetAgentsTags200Response
 
 
 ## Properties
@@ -11,19 +11,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from cyperf.models.get_agent_tags200_response import GetAgentTags200Response
+from cyperf.models.get_agents_tags200_response import GetAgentsTags200Response
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of GetAgentTags200Response from a JSON string
-get_agent_tags200_response_instance = GetAgentTags200Response.from_json(json)
+# create an instance of GetAgentsTags200Response from a JSON string
+get_agents_tags200_response_instance = GetAgentsTags200Response.from_json(json)
 # print the JSON string representation of the object
-print(GetAgentTags200Response.to_json())
+print(GetAgentsTags200Response.to_json())
 
 # convert the object into a dict
-get_agent_tags200_response_dict = get_agent_tags200_response_instance.to_dict()
-# create an instance of GetAgentTags200Response from a dict
-get_agent_tags200_response_from_dict = GetAgentTags200Response.from_dict(get_agent_tags200_response_dict)
+get_agents_tags200_response_dict = get_agents_tags200_response_instance.to_dict()
+# create an instance of GetAgentsTags200Response from a dict
+get_agents_tags200_response_from_dict = GetAgentsTags200Response.from_dict(get_agents_tags200_response_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

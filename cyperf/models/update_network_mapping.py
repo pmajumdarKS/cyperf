@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "UpdateNetworkMapping" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class UpdateNetworkMapping(BaseModel):
     """
@@ -35,8 +31,6 @@ class UpdateNetworkMapping(BaseModel):
     excluded_dut_list: Optional[List[StrictStr]] = Field(default=None, alias="ExcludedDUTList")
     select_tags: Optional[StrictBool] = Field(default=None, alias="SelectTags")
     server_network_tags: Optional[List[StrictStr]] = Field(default=None, alias="ServerNetworkTags")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["ClientNetworkTags", "ExcludedDUTList", "SelectTags", "ServerNetworkTags"]
 
     model_config = ConfigDict(
@@ -44,68 +38,6 @@ class UpdateNetworkMapping(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_client_network_tags(self):
-#        if self.client_network_tags is not None:
-#            return self.client_network_tags
-#        field_info = self.__class__.__fields__["client_network_tags"]
-#        try:
-#            self.client_network_tags =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.client_network_tags =  self.link_based_request("client_network_tags", "GET", return_type="List[str]")
-#        return self.client_network_tags
-#
-#    @rest_client_network_tags.setter
-#    def rest_client_network_tags(self, value):
-#        self.client_network_tags = value
-
-#    @property
-#    def rest_excluded_dut_list(self):
-#        if self.excluded_dut_list is not None:
-#            return self.excluded_dut_list
-#        field_info = self.__class__.__fields__["excluded_dut_list"]
-#        try:
-#            self.excluded_dut_list =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.excluded_dut_list =  self.link_based_request("excluded_dut_list", "GET", return_type="List[str]")
-#        return self.excluded_dut_list
-#
-#    @rest_excluded_dut_list.setter
-#    def rest_excluded_dut_list(self, value):
-#        self.excluded_dut_list = value
-
-#    @property
-#    def rest_select_tags(self):
-#        if self.select_tags is not None:
-#            return self.select_tags
-#        field_info = self.__class__.__fields__["select_tags"]
-#        try:
-#            self.select_tags =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.select_tags =  self.link_based_request("select_tags", "GET", return_type="bool")
-#        return self.select_tags
-#
-#    @rest_select_tags.setter
-#    def rest_select_tags(self, value):
-#        self.select_tags = value
-
-#    @property
-#    def rest_server_network_tags(self):
-#        if self.server_network_tags is not None:
-#            return self.server_network_tags
-#        field_info = self.__class__.__fields__["server_network_tags"]
-#        try:
-#            self.server_network_tags =  self.link_based_request(field_info.alias, "GET", return_type="List[str]")
-#        except LinkNameException as e:
-#            self.server_network_tags =  self.link_based_request("server_network_tags", "GET", return_type="List[str]")
-#        return self.server_network_tags
-#
-#    @rest_server_network_tags.setter
-#    def rest_server_network_tags(self, value):
-#        self.server_network_tags = value
-
 
 
     def to_str(self) -> str:
@@ -161,74 +93,6 @@ class UpdateNetworkMapping(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

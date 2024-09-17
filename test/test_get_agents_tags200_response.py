@@ -14,10 +14,10 @@
 
 import unittest
 
-from cyperf.models.get_result_tags200_response_one_of import GetResultTags200ResponseOneOf
+from cyperf.models.get_agents_tags200_response import GetAgentsTags200Response
 
-class TestGetResultTags200ResponseOneOf(unittest.TestCase):
-    """GetResultTags200ResponseOneOf unit test stubs"""
+class TestGetAgentsTags200Response(unittest.TestCase):
+    """GetAgentsTags200Response unit test stubs"""
 
     def setUp(self):
         pass
@@ -25,32 +25,34 @@ class TestGetResultTags200ResponseOneOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> GetResultTags200ResponseOneOf:
-        """Test GetResultTags200ResponseOneOf
+    def make_instance(self, include_optional) -> GetAgentsTags200Response:
+        """Test GetAgentsTags200Response
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `GetResultTags200ResponseOneOf`
+        # uncomment below to create an instance of `GetAgentsTags200Response`
         """
-        model = GetResultTags200ResponseOneOf()
+        model = GetAgentsTags200Response()
         if include_optional:
-            return GetResultTags200ResponseOneOf(
+            return GetAgentsTags200Response(
                 data = [
-                    cyperf.models.results_group.ResultsGroup(
-                        name = '', 
-                        results = [
+                    cyperf.models.agents_group.AgentsGroup(
+                        agents = [
                             ''
-                            ], )
+                            ], 
+                        available = True, 
+                        name = '', 
+                        online = True, )
                     ],
                 total_count = 56
             )
         else:
-            return GetResultTags200ResponseOneOf(
+            return GetAgentsTags200Response(
         )
         """
 
-    def testGetResultTags200ResponseOneOf(self):
-        """Test GetResultTags200ResponseOneOf"""
+    def testGetAgentsTags200Response(self):
+        """Test GetAgentsTags200Response"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -53,7 +53,18 @@ class TestVLANRange(unittest.TestCase):
                 vlan_auto = True,
                 vlan_enabled = True,
                 vlan_id = 56,
-                vlan_incr = 56
+                vlan_incr = 56,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return VLANRange(

@@ -416,6 +416,18 @@ class TestApplicationResourcesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_resources_captures_operations_upload_file_operation_id(self) -> None:
+        """Test case for get_resources_captures_operations_upload_file_operation_id
+
+        """
+        pass
+
+    def test_get_resources_captures_operations_upload_file_operation_id_result(self) -> None:
+        """Test case for get_resources_captures_operations_upload_file_operation_id_result
+
+        """
+        pass
+
     def test_get_resources_certificates_certificates_id_content_file(self) -> None:
         """Test case for get_resources_certificates_certificates_id_content_file
 

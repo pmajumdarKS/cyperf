@@ -22,10 +22,6 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "AsyncContext" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class AsyncContext(BaseModel):
     """
@@ -39,8 +35,6 @@ class AsyncContext(BaseModel):
     state: Optional[StrictStr] = Field(default=None, description="A string enum showing the state of the async operation")
     type: Optional[StrictStr] = Field(default=None, description="The async operation that is being executed")
     url: Optional[StrictStr] = Field(default=None, description="The URL where the user has to call GET requests until the async operation is completed")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["id", "message", "progress", "result", "resultUrl", "state", "type", "url"]
 
     model_config = ConfigDict(
@@ -48,128 +42,6 @@ class AsyncContext(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_id(self):
-#        if self.id is not None:
-#            return self.id
-#        field_info = self.__class__.__fields__["id"]
-#        try:
-#            self.id =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.id =  self.link_based_request("id", "GET", return_type="int")
-#        return self.id
-#
-#    @rest_id.setter
-#    def rest_id(self, value):
-#        self.id = value
-
-#    @property
-#    def rest_message(self):
-#        if self.message is not None:
-#            return self.message
-#        field_info = self.__class__.__fields__["message"]
-#        try:
-#            self.message =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.message =  self.link_based_request("message", "GET", return_type="str")
-#        return self.message
-#
-#    @rest_message.setter
-#    def rest_message(self, value):
-#        self.message = value
-
-#    @property
-#    def rest_progress(self):
-#        if self.progress is not None:
-#            return self.progress
-#        field_info = self.__class__.__fields__["progress"]
-#        try:
-#            self.progress =  self.link_based_request(field_info.alias, "GET", return_type="int")
-#        except LinkNameException as e:
-#            self.progress =  self.link_based_request("progress", "GET", return_type="int")
-#        return self.progress
-#
-#    @rest_progress.setter
-#    def rest_progress(self, value):
-#        self.progress = value
-
-#    @property
-#    def rest_result(self):
-#        if self.result is not None:
-#            return self.result
-#        field_info = self.__class__.__fields__["result"]
-#        try:
-#            self.result =  self.link_based_request(field_info.alias, "GET", return_type="object")
-#        except LinkNameException as e:
-#            self.result =  self.link_based_request("result", "GET", return_type="object")
-#        return self.result
-#
-#    @rest_result.setter
-#    def rest_result(self, value):
-#        self.result = value
-
-#    @property
-#    def rest_result_url(self):
-#        if self.result_url is not None:
-#            return self.result_url
-#        field_info = self.__class__.__fields__["result_url"]
-#        try:
-#            self.result_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.result_url =  self.link_based_request("result_url", "GET", return_type="str")
-#        return self.result_url
-#
-#    @rest_result_url.setter
-#    def rest_result_url(self, value):
-#        self.result_url = value
-
-#    @property
-#    def rest_state(self):
-#        if self.state is not None:
-#            return self.state
-#        field_info = self.__class__.__fields__["state"]
-#        try:
-#            self.state =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.state =  self.link_based_request("state", "GET", return_type="str")
-#        return self.state
-#
-#    @rest_state.setter
-#    def rest_state(self, value):
-#        self.state = value
-
-#    @property
-#    def rest_type(self):
-#        if self.type is not None:
-#            return self.type
-#        field_info = self.__class__.__fields__["type"]
-#        try:
-#            self.type =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.type =  self.link_based_request("type", "GET", return_type="str")
-#        return self.type
-#
-#    @rest_type.setter
-#    def rest_type(self, value):
-#        self.type = value
-
-#    @property
-#    def rest_url(self):
-#        if self.url is not None:
-#            return self.url
-#        field_info = self.__class__.__fields__["url"]
-#        try:
-#            self.url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.url =  self.link_based_request("url", "GET", return_type="str")
-#        return self.url
-#
-#    @rest_url.setter
-#    def rest_url(self, value):
-#        self.url = value
-
 
 
     def to_str(self) -> str:
@@ -234,74 +106,6 @@ class AsyncContext(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

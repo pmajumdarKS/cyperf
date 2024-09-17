@@ -40,7 +40,18 @@ class TestIPSecRange(unittest.TestCase):
                     certificate_file = null, 
                     key_file = null, 
                     key_file_password = '', 
-                    shared_key = '', ),
+                    shared_key = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 ike_phase1_config = cyperf.models.p1_config.P1Config(
                     dh_group = null, 
                     enc_algorithm = null, 
@@ -77,7 +88,18 @@ class TestIPSecRange(unittest.TestCase):
                     dpd_idle_period = 56, 
                     dpd_timeout = 56, ),
                 tunnel_count_per_outer_ip = 56,
-                id = ''
+                id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return IPSecRange(

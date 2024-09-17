@@ -32,12 +32,6 @@ class TestAgentsApi(unittest.TestCase):
         """
         pass
 
-    def test_get_agent_tags(self) -> None:
-        """Test case for get_agent_tags
-
-        """
-        pass
-
     def test_get_agents(self) -> None:
         """Test case for get_agents
 
@@ -46,6 +40,12 @@ class TestAgentsApi(unittest.TestCase):
 
     def test_get_agents_by_id(self) -> None:
         """Test case for get_agents_by_id
+
+        """
+        pass
+
+    def test_get_agents_tags(self) -> None:
+        """Test case for get_agents_tags
 
         """
         pass
@@ -64,6 +64,12 @@ class TestAgentsApi(unittest.TestCase):
 
     def test_patch_agents(self) -> None:
         """Test case for patch_agents
+
+        """
+        pass
+
+    def test_poll_compute_nodes_switch_aggregation_mode(self) -> None:
+        """Test case for poll_compute_nodes_switch_aggregation_mode
 
         """
         pass
@@ -122,6 +128,12 @@ class TestAgentsApi(unittest.TestCase):
         """
         pass
 
+    def test_start_compute_nodes_switch_aggregation_mode(self) -> None:
+        """Test case for start_compute_nodes_switch_aggregation_mode
+
+        """
+        pass
+
     def test_start_controllers_switch_app(self) -> None:
         """Test case for start_controllers_switch_app
 
@@ -170,8 +182,8 @@ class TestAgentsApi(unittest.TestCase):
         """
         pass
 
-    def test_start_root_update_agents(self) -> None:
-        """Test case for start_root_update_agents
+    def test_start_root_update(self) -> None:
+        """Test case for start_root_update
 
         """
         pass

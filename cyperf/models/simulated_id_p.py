@@ -19,16 +19,13 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictBytes, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from cyperf.models.api_link import APILink
 from cyperf.models.cert_config import CertConfig
 from cyperf.models.id_p_signature_algo import IdPSignatureAlgo
 from cyperf.models.name_id_format import NameIdFormat
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "SimulatedIdP" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class SimulatedIdP(BaseModel):
     """
@@ -42,137 +39,14 @@ class SimulatedIdP(BaseModel):
     signature_algorithm: Optional[IdPSignatureAlgo] = Field(default=None, alias="SignatureAlgorithm")
     single_sign_on_url: StrictStr = Field(alias="SingleSignOnURL")
     xml_metadata: Optional[List[Union[StrictBytes, StrictStr]]] = Field(default=None, alias="XMLMetadata")
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["AssertionSignature", "AudienceURI", "CertConfig", "NameIdFormat", "ResponseSignature", "SignatureAlgorithm", "SingleSignOnURL", "XMLMetadata"]
+    links: Optional[List[APILink]] = None
+    __properties: ClassVar[List[str]] = ["AssertionSignature", "AudienceURI", "CertConfig", "NameIdFormat", "ResponseSignature", "SignatureAlgorithm", "SingleSignOnURL", "XMLMetadata", "links"]
 
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_assertion_signature(self):
-#        if self.assertion_signature is not None:
-#            return self.assertion_signature
-#        field_info = self.__class__.__fields__["assertion_signature"]
-#        try:
-#            self.assertion_signature =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.assertion_signature =  self.link_based_request("assertion_signature", "GET", return_type="bool")
-#        return self.assertion_signature
-#
-#    @rest_assertion_signature.setter
-#    def rest_assertion_signature(self, value):
-#        self.assertion_signature = value
-
-#    @property
-#    def rest_audience_uri(self):
-#        if self.audience_uri is not None:
-#            return self.audience_uri
-#        field_info = self.__class__.__fields__["audience_uri"]
-#        try:
-#            self.audience_uri =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.audience_uri =  self.link_based_request("audience_uri", "GET", return_type="str")
-#        return self.audience_uri
-#
-#    @rest_audience_uri.setter
-#    def rest_audience_uri(self, value):
-#        self.audience_uri = value
-
-#    @property
-#    def rest_cert_config(self):
-#        if self.cert_config is not None:
-#            return self.cert_config
-#        field_info = self.__class__.__fields__["cert_config"]
-#        try:
-#            self.cert_config =  self.link_based_request(field_info.alias, "GET", return_type="CertConfig")
-#        except LinkNameException as e:
-#            self.cert_config =  self.link_based_request("cert_config", "GET", return_type="CertConfig")
-#        return self.cert_config
-#
-#    @rest_cert_config.setter
-#    def rest_cert_config(self, value):
-#        self.cert_config = value
-
-#    @property
-#    def rest_name_id_format(self):
-#        if self.name_id_format is not None:
-#            return self.name_id_format
-#        field_info = self.__class__.__fields__["name_id_format"]
-#        try:
-#            self.name_id_format =  self.link_based_request(field_info.alias, "GET", return_type="NameIdFormat")
-#        except LinkNameException as e:
-#            self.name_id_format =  self.link_based_request("name_id_format", "GET", return_type="NameIdFormat")
-#        return self.name_id_format
-#
-#    @rest_name_id_format.setter
-#    def rest_name_id_format(self, value):
-#        self.name_id_format = value
-
-#    @property
-#    def rest_response_signature(self):
-#        if self.response_signature is not None:
-#            return self.response_signature
-#        field_info = self.__class__.__fields__["response_signature"]
-#        try:
-#            self.response_signature =  self.link_based_request(field_info.alias, "GET", return_type="bool")
-#        except LinkNameException as e:
-#            self.response_signature =  self.link_based_request("response_signature", "GET", return_type="bool")
-#        return self.response_signature
-#
-#    @rest_response_signature.setter
-#    def rest_response_signature(self, value):
-#        self.response_signature = value
-
-#    @property
-#    def rest_signature_algorithm(self):
-#        if self.signature_algorithm is not None:
-#            return self.signature_algorithm
-#        field_info = self.__class__.__fields__["signature_algorithm"]
-#        try:
-#            self.signature_algorithm =  self.link_based_request(field_info.alias, "GET", return_type="IdPSignatureAlgo")
-#        except LinkNameException as e:
-#            self.signature_algorithm =  self.link_based_request("signature_algorithm", "GET", return_type="IdPSignatureAlgo")
-#        return self.signature_algorithm
-#
-#    @rest_signature_algorithm.setter
-#    def rest_signature_algorithm(self, value):
-#        self.signature_algorithm = value
-
-#    @property
-#    def rest_single_sign_on_url(self):
-#        if self.single_sign_on_url is not None:
-#            return self.single_sign_on_url
-#        field_info = self.__class__.__fields__["single_sign_on_url"]
-#        try:
-#            self.single_sign_on_url =  self.link_based_request(field_info.alias, "GET", return_type="str")
-#        except LinkNameException as e:
-#            self.single_sign_on_url =  self.link_based_request("single_sign_on_url", "GET", return_type="str")
-#        return self.single_sign_on_url
-#
-#    @rest_single_sign_on_url.setter
-#    def rest_single_sign_on_url(self, value):
-#        self.single_sign_on_url = value
-
-#    @property
-#    def rest_xml_metadata(self):
-#        if self.xml_metadata is not None:
-#            return self.xml_metadata
-#        field_info = self.__class__.__fields__["xml_metadata"]
-#        try:
-#            self.xml_metadata =  self.link_based_request(field_info.alias, "GET", return_type="List[bytearray]")
-#        except LinkNameException as e:
-#            self.xml_metadata =  self.link_based_request("xml_metadata", "GET", return_type="List[bytearray]")
-#        return self.xml_metadata
-#
-#    @rest_xml_metadata.setter
-#    def rest_xml_metadata(self, value):
-#        self.xml_metadata = value
-
 
 
     def to_str(self) -> str:
@@ -210,6 +84,13 @@ class SimulatedIdP(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of cert_config
         if self.cert_config:
             _dict['CertConfig'] = self.cert_config.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in links (list)
+        _items = []
+        if self.links:
+            for _item in self.links:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['links'] = _items
         return _dict
 
     @classmethod
@@ -231,78 +112,11 @@ class SimulatedIdP(BaseModel):
                         "ResponseSignature": obj.get("ResponseSignature"),
                         "SignatureAlgorithm": obj.get("SignatureAlgorithm"),
                         "SingleSignOnURL": obj.get("SingleSignOnURL"),
-                        "XMLMetadata": obj.get("XMLMetadata")
+                        "XMLMetadata": obj.get("XMLMetadata"),
+                        "links": [APILink.from_dict(_item) for _item in obj["links"]] if obj.get("links") is not None else None
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

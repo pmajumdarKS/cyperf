@@ -48,7 +48,18 @@ class TestF5Settings(unittest.TestCase):
                     usernames = [
                         ''
                         ], 
-                    usernames_param = null, ),
+                    usernames_param = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 outer_tcp_profile = cyperf.models.tcp_profile.TcpProfile(
                     close_with_reset = True, 
                     defer_accept = True, 
@@ -69,11 +80,33 @@ class TestF5Settings(unittest.TestCase):
                     tx_buffer = 56, 
                     user_mss = 56, 
                     wscale_enabled = True, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 f5_encapsulation = cyperf.models.f5_encapsulation.F5Encapsulation(
                     encapsulation_mode = 'PPP_OVER_DTLS', 
                     ppp_over_dtls_enabled = True, 
                     ppp_over_dtls_settings = null, 
-                    udp_port = 56, ),
+                    udp_port = 56, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 outer_tls_client_profile = cyperf.models.tls_profile.TLSProfile(
                     certificate_file = null, 
                     cipher = null, 
@@ -92,6 +125,17 @@ class TestF5Settings(unittest.TestCase):
                     immediate_close = True, 
                     key_file = null, 
                     key_file_password = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     middle_box_enabled = True, 
                     profile_id = '', 
                     resolve_tls_conflicts = [

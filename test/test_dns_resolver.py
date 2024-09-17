@@ -37,6 +37,17 @@ class TestDNSResolver(unittest.TestCase):
             return DNSResolver(
                 cache_timeout = 56,
                 enable_perconnect = True,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 name_servers = [
                     cyperf.models.name_server.NameServer(
                         name = '4.207.188.200', )

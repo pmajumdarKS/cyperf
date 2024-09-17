@@ -35,19 +35,25 @@ class TestComputeNode(unittest.TestCase):
         model = ComputeNode()
         if include_optional:
             return ComputeNode(
+                aggregated_mode = True,
                 app_mode = cyperf.models.app_mode.AppMode(
                     app_id = '', 
                     ui_app_id = '', ),
                 id = '',
-                mode = '',
                 name = '',
                 ports = [
                     cyperf.models.port.Port(
                         disabled = True, 
                         id = '', 
                         name = '', 
-                        speed = '', )
+                        owner = '', 
+                        owner_id = '', 
+                        speed = '', 
+                        status = '', 
+                        traffic_status = '', )
                     ],
+                slot_number = 56,
+                status = '',
                 type = ''
             )
         else:

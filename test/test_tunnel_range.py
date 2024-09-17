@@ -40,6 +40,17 @@ class TestTunnelRange(unittest.TestCase):
                 dns_resolver = cyperf.models.dns_resolver.DNSResolver(
                     cache_timeout = 56, 
                     enable_perconnect = True, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], 
                     name_servers = [
                         cyperf.models.name_server.NameServer(
                             name = '4.207.188.200', )
@@ -50,7 +61,18 @@ class TestTunnelRange(unittest.TestCase):
                 tcp_dst_port = 56,
                 tunnel_count_per_outer_ip = 56,
                 tunnel_establishment_timeout = 56,
-                vendor_type = 'CISCO_ANY_CONNECT'
+                vendor_type = 'CISCO_ANY_CONNECT',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return TunnelRange(

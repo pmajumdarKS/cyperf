@@ -57,7 +57,18 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                                 server_endpoint = '', 
                                 server_port = 56, 
                                 type = 'http', 
-                                id = '', )
+                                id = '', 
+                                links = [
+                                    cyperf.models.api_link.APILink(
+                                        content_type = '', 
+                                        href = '', 
+                                        id = '', 
+                                        method = '', 
+                                        name = '', 
+                                        references_count = 56, 
+                                        rel = 'self', 
+                                        type = 'self', )
+                                    ], )
                             ], 
                         data_types = [
                             cyperf.models.data_type.DataType(
@@ -77,21 +88,37 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                             ], 
                         file_name = '', 
                         metadata = cyperf.models.metadata.Metadata(
-                            auth_method = cyperf.models.enum.Enum(
-                                choices = [
-                                    cyperf.models.choice.Choice(
-                                        description = '', 
-                                        hidden = True, 
-                                        name = '', 
-                                        value = '', )
-                                    ], 
-                                default = '', ), 
-                            explicit_proxy = True, 
-                            idp_type = cyperf.models.enum.Enum(
-                                default = '', ), 
-                            sgw_name = '', 
-                            sgw_type = '', 
-                            sgw_type_value = '', ), 
+                            direction = '', 
+                            is_banner = True, 
+                            keywords = [
+                                null
+                                ], 
+                            legacy_names = [
+                                ''
+                                ], 
+                            protocol = '', 
+                            rtp_profile_meta = cyperf.models.rtp_profile_meta.RTPProfileMeta(
+                                custom_header_len_offset = 56, 
+                                custom_header_len_size = 56, 
+                                custom_header_signature = 'YQ==', 
+                                custom_header_signature_offset = 56, 
+                                custom_header_size = 56, 
+                                encryption_mode = '', 
+                                requires_rtp_profile = True, ), 
+                            references = [
+                                cyperf.models.reference.Reference(
+                                    type = '', 
+                                    value = '', )
+                                ], 
+                            requires_uniqueness = True, 
+                            severity = '', 
+                            skip_attack_generation = True, 
+                            sort_severity = '', 
+                            static = True, 
+                            supported_apps = [
+                                ''
+                                ], 
+                            year = '', ), 
                         parameters = [
                             cyperf.models.parameter.Parameter(
                                 default_array_elements = [
@@ -113,6 +140,17 @@ class TestGetAuthProfiles200ResponseOneOf(unittest.TestCase):
                             ], 
                         description = '', 
                         id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                id = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], 
                         type = '', )
                     ],
                 total_count = 56

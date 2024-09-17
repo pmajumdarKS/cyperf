@@ -37,9 +37,31 @@ class TestPANGPEncapsulation(unittest.TestCase):
             return PANGPEncapsulation(
                 esp_over_udp_enabled = True,
                 esp_over_udp_settings = cyperf.models.esp_over_udp_settings.ESPOverUDPSettings(
-                    udp_profile = null, ),
+                    udp_profile = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 encapsulation_mode = 'ESP_OVER_UDP',
-                udp_port = 56
+                udp_port = 56,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return PANGPEncapsulation(

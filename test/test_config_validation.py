@@ -40,6 +40,17 @@ class TestConfigValidation(unittest.TestCase):
                     cyperf.models.validation_message.ValidationMessage(
                         message = '', 
                         severity = 'WARNING', )
+                    ],
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
                     ]
             )
         else:

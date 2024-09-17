@@ -39,6 +39,8 @@ class TestEmulatedRouterRange(unittest.TestCase):
                 count = 56,
                 gw_auto = True,
                 gw_start = '::02:84:9:0cc0:F:CCf',
+                host_count = 56,
+                host_ip_incr = '::02:84:9:0cc0:F:CCf',
                 inner_vlan_range = cyperf.models.vlan_range.VLANRange(
                     count = 56, 
                     count_per_agent = 56, 
@@ -58,7 +60,17 @@ class TestEmulatedRouterRange(unittest.TestCase):
                     vlan_auto = True, 
                     vlan_enabled = True, 
                     vlan_id = 56, 
-                    vlan_incr = 56, ),
+                    vlan_incr = 56, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 ip_auto = True,
                 ip_incr = '::02:84:9:0cc0:F:CCf',
                 ip_range_name = 'YBuLd',
@@ -70,6 +82,17 @@ class TestEmulatedRouterRange(unittest.TestCase):
                 net_mask = 56,
                 net_mask_auto = True,
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 max_count_per_agent = 56,
                 network_tags = [
                     ''

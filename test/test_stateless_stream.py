@@ -50,7 +50,18 @@ class TestStatelessStream(unittest.TestCase):
                     payload_type = null, 
                     total_estimated_throughput = '', 
                     total_estimated_throughput_per_simulated_user = '', 
-                    unique_pool_size = 56, )
+                    unique_pool_size = 56, ),
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return StatelessStream(

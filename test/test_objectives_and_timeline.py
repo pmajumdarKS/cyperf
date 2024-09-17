@@ -49,7 +49,17 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                         ], 
                     type = null, 
                     unit = null, 
-                    id = '', ),
+                    id = '', 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 secondary_objective = cyperf.models.secondary_objective.SecondaryObjective(
                     enabled = True, 
                     max_pending_simulated_users = '4', 
@@ -66,10 +76,31 @@ class TestObjectivesAndTimeline(unittest.TestCase):
                             ], 
                         type = null, 
                         unit = null, 
-                        id = '', )
+                        id = '', 
+                        links = [
+                            cyperf.models.api_link.APILink(
+                                content_type = '', 
+                                href = '', 
+                                method = '', 
+                                name = '', 
+                                references_count = 56, 
+                                rel = 'self', 
+                                type = 'self', )
+                            ], )
                     ],
                 timeline_segments = [
                     null
+                    ],
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
                     ]
             )
         else:

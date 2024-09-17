@@ -25,10 +25,6 @@ from cyperf.models.expected_disk_space_size import ExpectedDiskSpaceSize
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "ExpectedDiskSpace" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class ExpectedDiskSpace(BaseModel):
     """
@@ -37,8 +33,6 @@ class ExpectedDiskSpace(BaseModel):
     message: ExpectedDiskSpaceMessage
     pretty_size: ExpectedDiskSpacePrettySize = Field(alias="prettySize")
     size: ExpectedDiskSpaceSize
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["message", "prettySize", "size"]
 
     model_config = ConfigDict(
@@ -46,53 +40,6 @@ class ExpectedDiskSpace(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_message(self):
-#        if self.message is not None:
-#            return self.message
-#        field_info = self.__class__.__fields__["message"]
-#        try:
-#            self.message =  self.link_based_request(field_info.alias, "GET", return_type="ExpectedDiskSpaceMessage")
-#        except LinkNameException as e:
-#            self.message =  self.link_based_request("message", "GET", return_type="ExpectedDiskSpaceMessage")
-#        return self.message
-#
-#    @rest_message.setter
-#    def rest_message(self, value):
-#        self.message = value
-
-#    @property
-#    def rest_pretty_size(self):
-#        if self.pretty_size is not None:
-#            return self.pretty_size
-#        field_info = self.__class__.__fields__["pretty_size"]
-#        try:
-#            self.pretty_size =  self.link_based_request(field_info.alias, "GET", return_type="ExpectedDiskSpacePrettySize")
-#        except LinkNameException as e:
-#            self.pretty_size =  self.link_based_request("pretty_size", "GET", return_type="ExpectedDiskSpacePrettySize")
-#        return self.pretty_size
-#
-#    @rest_pretty_size.setter
-#    def rest_pretty_size(self, value):
-#        self.pretty_size = value
-
-#    @property
-#    def rest_size(self):
-#        if self.size is not None:
-#            return self.size
-#        field_info = self.__class__.__fields__["size"]
-#        try:
-#            self.size =  self.link_based_request(field_info.alias, "GET", return_type="ExpectedDiskSpaceSize")
-#        except LinkNameException as e:
-#            self.size =  self.link_based_request("size", "GET", return_type="ExpectedDiskSpaceSize")
-#        return self.size
-#
-#    @rest_size.setter
-#    def rest_size(self, value):
-#        self.size = value
-
 
 
     def to_str(self) -> str:
@@ -156,74 +103,6 @@ class ExpectedDiskSpace(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 

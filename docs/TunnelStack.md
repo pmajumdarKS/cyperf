@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **tunnel_range** | [**TunnelRange**](TunnelRange.md) |  | [optional] 
 **tunnel_stack_name** | **str** |  | 
 **id** | **str** |  | 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 
 ## Example
 

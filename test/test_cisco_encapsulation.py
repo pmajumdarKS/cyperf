@@ -38,9 +38,31 @@ class TestCiscoEncapsulation(unittest.TestCase):
                 dtls_enabled = True,
                 dtls_settings = cyperf.models.dtls_settings.DTLSSettings(
                     tls_client_profile = null, 
-                    udp_profile = null, ),
+                    udp_profile = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 encapsulation_mode = 'DTLS',
-                udp_port = 56
+                udp_port = 56,
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ]
             )
         else:
             return CiscoEncapsulation(

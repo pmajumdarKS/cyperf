@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **server_tcp_profile** | [**TcpProfile**](TcpProfile.md) |  | [optional] 
 **udp_profile** | [**UdpProfile**](UdpProfile.md) |  | [optional] 
 **vlan_prio** | **int** |  | [optional] 
+**links** | [**List[APILink]**](APILink.md) |  | [optional] 
 **l4_profile_name** | **str** |  | 
 
 ## Example

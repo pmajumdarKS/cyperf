@@ -38,7 +38,11 @@ class TestPort(unittest.TestCase):
                 disabled = True,
                 id = '',
                 name = '',
-                speed = ''
+                owner = '',
+                owner_id = '',
+                speed = '',
+                status = '',
+                traffic_status = ''
             )
         else:
             return Port(

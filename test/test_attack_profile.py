@@ -37,8 +37,30 @@ class TestAttackProfile(unittest.TestCase):
             return AttackProfile(
                 active = True,
                 traffic_settings = cyperf.models.traffic_settings.TrafficSettings(
-                    default_transport_profile = null, ),
+                    default_transport_profile = null, 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
+                        ], ),
                 id = '',
+                links = [
+                    cyperf.models.api_link.APILink(
+                        content_type = '', 
+                        href = '', 
+                        id = '', 
+                        method = '', 
+                        name = '', 
+                        references_count = 56, 
+                        rel = 'self', 
+                        type = 'self', )
+                    ],
                 attacks = [
                     null
                     ],
@@ -56,6 +78,17 @@ class TestAttackProfile(unittest.TestCase):
                 objectives_and_timeline = cyperf.models.attack_objectives_and_timeline.AttackObjectivesAndTimeline(
                     timeline_segments = [
                         null
+                        ], 
+                    links = [
+                        cyperf.models.api_link.APILink(
+                            content_type = '', 
+                            href = '', 
+                            id = '', 
+                            method = '', 
+                            name = '', 
+                            references_count = 56, 
+                            rel = 'self', 
+                            type = 'self', )
                         ], ),
                 add_attacks = [
                     cyperf.models.external_resource_info.ExternalResourceInfo(

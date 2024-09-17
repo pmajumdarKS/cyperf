@@ -23,18 +23,12 @@ from cyperf.models.param_metadata_type_info_array_v2_elements_inner import Param
 from typing import Optional, Set, Union, GenericAlias, get_args
 from typing_extensions import Self
 from pydantic import Field
-#from cyperf.models import LinkNameException
-
-if "ParamMetadataTypeInfoArrayV2" != "APILink":
-    from cyperf.models.api_link import APILink
 
 class ParamMetadataTypeInfoArrayV2(BaseModel):
     """
     ParamMetadataTypeInfoArrayV2
     """ # noqa: E501
     elements: Optional[List[ParamMetadataTypeInfoArrayV2ElementsInner]] = None
-    links: Optional[List[APILink]] = Field(default=None, description="Links to other properties")
-#    api_client: Optional[Any] = None
     __properties: ClassVar[List[str]] = ["elements"]
 
     model_config = ConfigDict(
@@ -42,23 +36,6 @@ class ParamMetadataTypeInfoArrayV2(BaseModel):
         validate_assignment=True,
         protected_namespaces=(),
     )
-
-
-#    @property
-#    def rest_elements(self):
-#        if self.elements is not None:
-#            return self.elements
-#        field_info = self.__class__.__fields__["elements"]
-#        try:
-#            self.elements =  self.link_based_request(field_info.alias, "GET", return_type="List[ParamMetadataTypeInfoArrayV2ElementsInner]")
-#        except LinkNameException as e:
-#            self.elements =  self.link_based_request("elements", "GET", return_type="List[ParamMetadataTypeInfoArrayV2ElementsInner]")
-#        return self.elements
-#
-#    @rest_elements.setter
-#    def rest_elements(self, value):
-#        self.elements = value
-
 
 
     def to_str(self) -> str:
@@ -118,74 +95,6 @@ class ParamMetadataTypeInfoArrayV2(BaseModel):
             ,
             "links": obj.get("links")
         })
-#        _obj.api_client = client
         return _obj
-
-#    def update(self):
-#        self.link_request("self", "PUT", body=self)
-#
-#   def link_based_request(self, link_name, method, return_type = None, body = None):
-#        if self.links == None:
-#           raise Exception("You must allow links to be present to use automatic retrieval functions.")
-#        if link_name == 'self':
-#            self_links = [link for link in self.links if link.rel == link_name]
-#        else:
-#            self_links = [link for link in self.links if link.rel == "child" and link.name == link_name]
-#        if len(self_links) == 0:
-#           raise LinkNameException(f"Missing {link_name} link.")
-#        self_link = self_links[0]
-#        
-#        _host = None
-#
-#        _collection_formats: Dict[str, str] = {
-#        }#
-#
-#        _path_params: Dict[str, str] = {}
-#        _query_params: List[Tuple[str, str]] = []
-#        _header_params: Dict[str, Optional[str]] = {}
-#        _form_params: List[Tuple[str, str]] = []
-#        _files: Dict[str, Union[str, bytes]] = {}
-#        _body_params: Optional[bytes] = None
-#        if body:
-#            _body_params = body.to_json().encode('utf-8')
-#
-#        # set the HTTP header `Accept`
-#        if 'Accept' not in _header_params:
-#            _header_params['Accept'] = self.api_client.select_header_accept(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        if 'Content-Type' not in _header_params:
-#            _header_params['Content-Type'] = self.api_client.select_header_content_type(
-#                [
-#                    'application/json'
-#                ]
-#            )
-#        _auth_settings: List[str] = [
-#            'OAuth2',
-#        ]
-#        _param = self.api_client.param_serialize(
-#            method=method,
-#           resource_path=self_link.href,
-#            path_params=_path_params,
-#           query_params=_query_params,
-#           body=_body_params,
-#            post_params=_form_params,
-#            files=_files,
-#            auth_settings=_auth_settings,
-#            collection_formats=_collection_formats,
-#            _host=_host
-#        )
-#        response_data = self.api_client.call_api(
-#            *_param
-#        )
-#        response_data.read()
-#        response_types = {
-#            '200': return_type,
-#            '500': 'ErrorResponse'
-#        }
-#        return self.api_client.response_deserialize(response_data, response_types).data
-    
 
 
