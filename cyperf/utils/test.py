@@ -80,7 +80,7 @@ class TestRunner(object):
         apiInstance = cyperf.LicenseServersApi (self.apiClient)
         try:
             response = apiInstance.get_license_servers()
-            servers  = [lData.host_name for lData in response.actual_instance if lData.connection_status == 'ESTABLISHED']
+            servers  = [lData.host_name for lData in response if lData.connection_status == 'ESTABLISHED']
             if self.licenseServer in servers:
                 pprint(f'License server {self.licenseServer} is already configured')
             else:
@@ -96,10 +96,7 @@ class TestRunner(object):
     def RefreshAgents(self):
         apiInstance = cyperf.AgentsApi(self.apiClient)
         try:
-            response = apiInstance.get_agents() ## This is an object instead of a json
-            ### [PARTHA] how do I access information from the following response
-            agents   = response.actual_instance
-            ### [PARTHA]
+            agents = apiInstance.get_agents() ## This is an object instead of a json
             for agent in agents:
                 self.agents [agent.ip] = agent
         except cyperf.exceptions.ApiException as e:
@@ -118,7 +115,7 @@ class TestRunner(object):
             configs = {}
             for elem in results:
                 ### [PARTHA] Can we avoid translating json to an AppsecConfig object in the caller script?
-                configs [elem['id']] = (elem['configUrl'], cyperf.AppsecConfig.from_dict(elem['configData']))
+                configs [elem['id']] = (elem['configUrl'], cyperf.AppsecConfig.from_dict(elem))
                 ### [PARTHA]
         except cyperf.exceptions.ApiException as e:
             pprint (e)
@@ -138,16 +135,8 @@ class TestRunner(object):
             session.config_url = configUrl
             ## [PARTHA]
             sessions.append (session)
-        try:
-            ### [PARTHA] Ugly: Fix the following lines
-            sessions = [apiInstance.get_sessions_by_id (session_id=session.id) for session in apiInstance.create_sessions(session=sessions)]
-            for session in sessions:
-                session.config = apiInstance.get_config(session_id=session.id).base_model
-            ### [PARTHA]
-            return sessions
-        except cyperf.exceptions.ApiException as e:
-            pprint (e)
-            return []
+        sessions = apiInstance.create_sessions(sessions)
+        return sessions
 
     def CloseSessions(self, sessions):
         apiInstance = cyperf.SessionsApi(self.apiClient)
@@ -166,24 +155,20 @@ class TestRunner(object):
                 ###          objective type is changed.
                 for segment in obj.timeline:
                     if segment.enabled:
-                        ### [PARTHA] How can I avoid accessing base_model
-                        segmentType = segment.segment_type.base_model
+                        segmentType = segment.segment_type
                         if segmentType == cyperf.SegmentType.STEADYSEGMENT or segmentType == cyperf.SegmentType.NORMALSEGMENT:
                             duration = segment.duration
-                        ### [PARTHA]
                 ### [PARTHA]
             obj.type = objective['type']
             obj.update()
             for segment in obj.timeline:
                 if segment.enabled:
-                    ### [PARTHA] How can I avoid accessing base_model
-                    segmentType = segment.segment_type.base_model
-                    ### [PARTHA]
+                    segmentType = segment.segment_type
                     if segmentType == cyperf.SegmentType.STEADYSEGMENT or segmentType == cyperf.SegmentType.NORMALSEGMENT:
                         segment.objective_value = objective['value']
                         segment.objective_unit  = objective['unit']
                         segment.duration        = duration
-                        segment.update()
+            obj.update()
 
     def __updateAgents__(self, session, agentMapping):
         config      = session.config.config
@@ -209,7 +194,7 @@ class TestRunner(object):
     def StartSessions(self, sessions):
         apiInstance = cyperf.TestOperationsApi(self.apiClient)
         try:
-            tests = [apiInstance.start_root_start_test(session_id = session.id) for session in sessions]
+            tests = [apiInstance.start_test_start(session_id = session.id) for session in sessions]
         except cyperf.exceptions.ApiException as e:
             pprint (e)
 
@@ -217,13 +202,8 @@ class TestRunner(object):
             try:
                 result = test.await_completion()
                 #pprint (result)
-            ### [PARTHA] await_completion is generating generic Exception for API call failures.
-            ###          It should generate cyperf.exceptions.ApiException or something else from
-            ###          cyperf.exceptions
-            #except cyperf.exceptions.ApiException as e:
-            except Exception as e:
+            except cyperf.ApiException as e:
                 pprint (e)
-            ### [PARTHA]
 
     def WaitUntilStopped(self, sessions):
         apiInstance = cyperf.SessionsApi(self.apiClient)
@@ -244,7 +224,7 @@ class TestRunner(object):
         sessions = self.LaunchSessions (configs)
         pprint (f"Updating agents as {config.agents} ...", width=width)
         self.UpdateSessionConfig (sessions, config)
-        pprint (f"Statrting session for configuration {config.file} ...", width=width)
+        pprint (f"Starting session for configuration {config.file} ...", width=width)
         self.StartSessions(sessions)
         pprint (f"Started test for configuration {config.file} ... session id: {sessions[0].index}", width=width)
         self.WaitUntilStopped(sessions)
