@@ -41,12 +41,12 @@ class TestConfig(object):
 class TestRunner(object):
     WAP_CLIENT_ID = 'clt-wap'
 
-    def __init__(self, controller, username, password, licenseServer = None):
+    def __init__(self, controller, username="", password="", refresh_token="", licenseServer = None):
         self.host          = f'https://{controller}'
         self.username      = username
         self.password      = password
+        self.refresh_token = refresh_token
         self.licenseServer = licenseServer
-
         self.configuration = cyperf.Configuration(host = self.host)
         self.configuration.verify_ssl   = False
         self.apiClient     = cyperf.ApiClient(self.configuration)
@@ -60,11 +60,13 @@ class TestRunner(object):
     def __authorize__(self):
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         apiInstance = cyperf.AuthorizationApi(self.apiClient)
+        grant_type = "refresh_token" if self.refresh_token else "password"
         try:
             response = apiInstance.auth_realms_keysight_protocol_openid_connect_token_post (client_id  = TestRunner.WAP_CLIENT_ID,
-                                                                                            grant_type = "password",
+                                                                                            grant_type = grant_type,
                                                                                             password   = self.password,
-                                                                                            username   = self.username)
+                                                                                            username   = self.username,
+                                                                                            refresh_token = self.refresh_token)
             return response.access_token
         except cyperf.exceptions.ApiException as e:
             raise (e)
