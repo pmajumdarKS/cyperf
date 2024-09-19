@@ -1,10 +1,12 @@
-import cyperf
+import sys
+import time
+import datetime
 import re
 import urllib3
 import requests
 from pprint import pprint
 
-import time
+import cyperf
 
 class TestConfig(object):
     def __init__(self,
@@ -48,14 +50,20 @@ class TestRunner(object):
         self.licenseServer = licenseServer
 
         self.configuration = cyperf.Configuration(host = self.host)
-        self.configuration.verify_ssl   = False
+        self.configuration.verify_ssl = False
         self.apiClient     = cyperf.ApiClient(self.configuration)
+        self.addedLicenseServers      = []
         self.agents        = {}
 
         self.configuration.access_token = self.__authorize__()
 
         self.UpdateLicenseServer()
         self.RefreshAgents()
+
+    def __del__(self, time=time, datetime=datetime):
+        if not sys.modules ['time']:
+            sys.modules ['time'] = time
+        self.RemoveLicenseServer()
 
     def __authorize__(self):
         urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -80,18 +88,40 @@ class TestRunner(object):
         apiInstance = cyperf.LicenseServersApi (self.apiClient)
         try:
             response = apiInstance.get_license_servers()
-            servers  = [lData.host_name for lData in response if lData.connection_status == 'ESTABLISHED']
+            servers  = [lData.host_name for lData in response]
             if self.licenseServer in servers:
                 pprint(f'License server {self.licenseServer} is already configured')
             else:
                 lServer = cyperf.LicenseServerMetadata(host_name = self.licenseServer,
-                                                       interactive_fingerprint_verification = False,
+                                                       trust_new = True,
                                                        user = self.username,
                                                        password = self.password)
-                #api_response = apiInstance.create_license_servers(license_server_metadata=[lServer])
-                #pprint(api_instance)
+                newServers = apiInstance.create_license_servers(license_server_metadata=[lServer])
+                while newServers:
+                    for server in newServers:
+                        ### [PARTHA] If get_license_servers_by_id expects a string as id then
+                        ###          LicenseServerMetadata shoud have it as a string. User shouldn't
+                        ###          need to change the type.
+                        s = apiInstance.get_license_servers_by_id(str(server.id))
+                        ### [PARTHA]
+                        if 'IN_PROGRESS' != s.connection_status:
+                            newServers.remove(server)
+                            self.addedLicenseServers.append(server)
+                            if 'ESTABLISHED' == s.connection_status:
+                                print (f'Successfully added license server {s.host_name}')
+                            else:
+                                print (f'Could not connect to license server {s.host_name}')
+                    time.sleep(0.5)
         except cyperf.ApiException as e:
             raise (e)
+
+    def RemoveLicenseServer (self):
+        apiInstance = cyperf.LicenseServersApi (self.apiClient)
+        for server in self.addedLicenseServers:
+            try:
+                apiInstance.delete_license_servers(str(server.id))
+            except cyperf.ApiException as e:
+                pprint (f'{e}')
 
     def RefreshAgents(self):
         apiInstance = cyperf.AgentsApi(self.apiClient)
@@ -220,6 +250,41 @@ class TestRunner(object):
                     tmpSessions.append(session)
             sessions = tmpSessions
 
+    def __CollectStats__(self, session):
+        apiInstance = cyperf.StatisticsApi(self.apiClient)
+        try:
+            resp = apiInstance.get_stats(session.test.test_id)
+            stats = {}
+            for stats_group in resp:
+                stat  = apiInstance.get_stats_by_id(session.test.test_id, stats_group.name)
+                stats [stat.name] = stat
+            return stats
+        except cyperf.exceptions.ApiException as e:
+            pprint (f'{e}')
+
+    def CollectStats(self, sessions):
+        return [self.__CollectStats__(session) for session in sessions]
+
+    def __Analyze__(self, stats):
+        statDict = {}
+        for statName in stats:
+            pprint(statName)
+            stat = stats[statName]
+            statDict[statName] = {}
+            if stat.snapshots:
+                for snapshot in stat.snapshots:
+                    timeStamp = snapshot.timestamp
+                    statDict[statName][timeStamp] = []
+                    for val in snapshot.values:
+                        d = dict(zip(stat.columns, [data.actual_instance for data in val]))
+                        statDict[statName][timeStamp].append(d)
+
+        pprint (statDict)
+        return True
+
+    def Analyze(self, stats):
+        return [self.__Analyze__(s) for s in stats]
+
     def Run(self, config):
         width = 200
         pprint (f"Loading configuration {config.file} ...", width=width)
@@ -232,6 +297,12 @@ class TestRunner(object):
         self.StartSessions(sessions)
         pprint (f"Started test for configuration {config.file} ... session id: {sessions[0].index}", width=width)
         self.WaitUntilStopped(sessions)
+        pprint (f"Collecting stats for configuration {config.file} ...", width=width)
+        stats = self.CollectStats(sessions)
+        if False in self.Analyze(stats):
+            pprint (f"Test Failed for {config.file}")
+        else:
+            pprint (f"Test Passed for {config.file}")
         pprint (f"Closing session for configuration {config.file} ...", width=width)
         self.CloseSessions (sessions)
         pprint (f"Deleting configuration {config.file} ...", width=width)
