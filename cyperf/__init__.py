@@ -375,3 +375,6 @@ from cyperf.models.update_network_mapping import UpdateNetworkMapping
 from cyperf.models.vlan_range import VLANRange
 from cyperf.models.validation_message import ValidationMessage
 from cyperf.models.version import Version
+
+from cyperf.utils.test import TestConfig
+from cyperf.utils.test import TestRunner

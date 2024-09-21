@@ -11,8 +11,11 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 COPY envs/entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY requirements.txt /tmp/requirements.txt
 
+RUN python -m pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 RUN rm /tmp/requirements.txt
 RUN pip install requests
+RUN python3 -m pip install --upgrade build
+RUN python3 -m pip install --upgrade twine
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

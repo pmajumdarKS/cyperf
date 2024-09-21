@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "cyperf"
+name = "cyperf_api"
 version = "1.0.0"
 description = "CyPerf Application API"
-authors = ["OpenAPI Generator Community <team@openapitools.org>"]
-license = "NoLicense"
+authors = ["Partha Majumdar <partha.majumdar@keysight.com>"]
+license = "LICENSE"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
+repository = "https://github.com/pmajumdarKS/cyperf"
 keywords = ["OpenAPI", "OpenAPI-Generator", "CyPerf Application API"]
 include = ["cyperf/py.typed"]
 
@@ -35,8 +35,8 @@ extension-pkg-whitelist = "pydantic"
 [tool.mypy]
 files = [
   "cyperf",
-  #"test",  # auto-generated tests
-  "tests", # hand-written tests
+  "test",  # auto-generated tests
+  #"tests", # hand-written tests
 ]
 # TODO: enable "strict" once all these individual checks are passing
 # strict = true
