@@ -3,7 +3,6 @@ import time
 import datetime
 import re
 import urllib3
-import requests
 from pprint import pprint
 
 import cyperf

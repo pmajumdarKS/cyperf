@@ -1,33 +1,60 @@
-[tool.poetry]
-name = "cyperf_api"
-version = "1.0.0"
-description = "CyPerf Application API"
-authors = ["Partha Majumdar <partha.majumdar@keysight.com>"]
-license = "LICENSE"
-readme = "README.md"
-repository = "https://github.com/pmajumdarKS/cyperf"
-keywords = ["OpenAPI", "OpenAPI-Generator", "CyPerf Application API"]
-include = ["cyperf/py.typed"]
-
-[tool.poetry.dependencies]
-python = "^3.7"
-
-urllib3 = ">= 1.25.3"
-python-dateutil = ">=2.8.2"
-pydantic = ">=2"
-typing-extensions = ">=4.7.1"
-
-[tool.poetry.dev-dependencies]
-pytest = ">=7.2.1"
-tox = ">=3.9.0"
-flake8 = ">=4.0.0"
-types-python-dateutil = ">=2.8.19.14"
-mypy = "1.4.1"
-
-
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "setuptools_scm[toml]"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyperf-api"
+dynamic = ["version"]
+description = "CyPerf REST API"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+keywords = ["CyPerf", "CyPerf REST API", "CyPerf Python", "CyPerf wrapper", "CyPerf Python wrapper"]
+authors = [
+    {name = "Partha Majumdar", email = "partha.majumdar@keysight.com" }
+]
+maintainers = [
+    {name = "Partha Majumdar", email = "partha.majumdar@keysight.com" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "urllib3>= 1.25.3",
+    "python-dateutil>=2.8.2",
+    "pydantic>=2",
+    "typing-extensions>=4.7.1",
+]
+
+[project.urls]
+Documentation = "https://github.com/pmajumdarKS/cyperf#readme.md"
+Issues = "https://github.com/pmajumdarKS/cyperf/issues"
+Source = "https://github.com/pmajumdarKS/cyperf"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.2.1",
+    "tox>=3.9.0",
+    "flake8>=4.0.0",
+    "types-python-dateutil>=2.8.19.14",
+    "mypy==1.4.1",
+]
+
+[project.entry-points."setuptools.finalize_distribution_options"]
+setuptools_scm = "setuptools_scm._integration.setuptools:infer_version"
+
+[tool.setuptools_scm]
+# Empty is fine
 
 [tool.pylint.'MESSAGES CONTROL']
 extension-pkg-whitelist = "pydantic"

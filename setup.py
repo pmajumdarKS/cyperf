@@ -20,8 +20,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "cyperf_api"
-VERSION = "1.0.0"
+NAME = "cyperf-api"
 PYTHON_REQUIRES = ">=3.7"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
@@ -32,18 +31,14 @@ REQUIRES = [
 
 setup(
     name=NAME,
-    version=VERSION,
-    description="CyPerf Application API",
-    author="OpenAPI Generator community",
-    author_email="team@openapitools.org",
-    url="",
+    description="CyPerf REST API",
+    author="Partha Majumdar",
+    author_email="partha.majumdar@keysight.com",
+    url="https://github.com/pmajumdarKS/cyperf",
     keywords=["OpenAPI", "OpenAPI-Generator", "CyPerf Application API"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     long_description_content_type='text/markdown',
-    long_description="""\
-    CyPerf REST API
-    """,  # noqa: E501
     package_data={"cyperf": ["py.typed"]},
 )
